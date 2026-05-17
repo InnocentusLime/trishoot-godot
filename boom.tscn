@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://ceti3p0vtpeg"]
+
+[ext_resource type="Script" uid="uid://cow8wdj64hjrv" path="res://boom.gd" id="1_37ygf"]
+[ext_resource type="Texture2D" uid="uid://rrecam8ni4kg" path="res://sprites/john.png" id="1_crcy4"]
+
+[sub_resource type="Animation" id="Animation_crcy4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(1, 111, 124, 105)]
+}
+
+[sub_resource type="Animation" id="Animation_37ygf"]
+resource_name = "boom"
+length = 0.12500417
+step = 0.041666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.041666668, 0.083333336),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Rect2(1, 111, 124, 105), Rect2(236, 114, 124, 38), Rect2(477, 144, 123, 19)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.125),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_done"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yvxa8"]
+_data = {
+&"RESET": SubResource("Animation_crcy4"),
+&"boom": SubResource("Animation_37ygf")
+}
+
+[node name="Boom" type="Node2D" unique_id=777597560]
+script = ExtResource("1_37ygf")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1661512887]
+texture = ExtResource("1_crcy4")
+offset = Vector2(-60, 0)
+region_enabled = true
+region_rect = Rect2(1, 111, 124, 105)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1383185131]
+libraries/ = SubResource("AnimationLibrary_yvxa8")
