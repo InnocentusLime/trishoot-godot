@@ -55,6 +55,9 @@ _data = {
 &"boom": SubResource("Animation_37ygf")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_37ygf"]
+size = Vector2(88, 67)
+
 [node name="Boom" type="Node2D" unique_id=777597560]
 script = ExtResource("1_37ygf")
 
@@ -66,3 +69,12 @@ region_rect = Rect2(1, 111, 124, 105)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1383185131]
 libraries/ = SubResource("AnimationLibrary_yvxa8")
+
+[node name="Damge" type="Area2D" parent="." unique_id=1551977819]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damge" unique_id=457899906]
+position = Vector2(-44, -1.5)
+shape = SubResource("RectangleShape2D_37ygf")
+debug_color = Color(0.99949735, 0, 0.12846798, 0.41960785)

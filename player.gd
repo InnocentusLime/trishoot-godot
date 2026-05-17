@@ -20,7 +20,7 @@ var shooting: bool = false
 var recoiling: bool = false
 
 func _ready():
-	$AnimationPlayer.current_animation = "running"
+	$AnimationPlayer.current_animation = "idle_left"
 
 func _physics_process(delta):
 	if recoiling:
@@ -54,6 +54,7 @@ func _physics_process(delta):
 		the_boom.rotation = weapon_angle
 		add_sibling(the_boom)
 		shoot.play()
+		get_parent().call("_on_enemy_hit_bounds")
 	else:
 		if face_right:
 			$AnimationPlayer.current_animation = "idle_right"

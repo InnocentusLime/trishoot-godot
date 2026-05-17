@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://bf0ba4s62capo"]
 
 [ext_resource type="Script" uid="uid://c06gjxq87qvnt" path="res://window_manager.gd" id="1_1oj5k"]
+[ext_resource type="Script" uid="uid://b26fcqi34xaif" path="res://main_game.gd" id="1_4srsv"]
 [ext_resource type="Script" uid="uid://cqf1f287vqnct" path="res://player.gd" id="2_ykeeq"]
 [ext_resource type="Texture2D" uid="uid://rrecam8ni4kg" path="res://sprites/john.png" id="2_yx7mw"]
 [ext_resource type="PackedScene" uid="uid://ceti3p0vtpeg" path="res://boom.tscn" id="3_2pltu"]
 [ext_resource type="Animation" uid="uid://cn1w4deihytdq" path="res://anims/player_idle.res" id="4_dugkq"]
 [ext_resource type="Animation" uid="uid://djxsf110u2rub" path="res://anims/player_running_left.res" id="5_2pltu"]
 [ext_resource type="AudioStream" uid="uid://c5jgwpj3tyitn" path="res://snd/shotgun.wav" id="7_f52ns"]
+[ext_resource type="PackedScene" uid="uid://drsntvbi0rlqq" path="res://enemy.tscn" id="9_4srsv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1oj5k"]
 size = Vector2(18, 35)
@@ -285,6 +287,7 @@ _data = {
 }
 
 [node name="MainGame" type="Node2D" unique_id=1130606135]
+script = ExtResource("1_4srsv")
 
 [node name="FieldBounds" type="StaticBody2D" parent="." unique_id=12779202]
 
@@ -334,3 +337,21 @@ libraries/ = SubResource("AnimationLibrary_dugkq")
 
 [node name="Shoot" type="AudioStreamPlayer2D" parent="Player" unique_id=846593309]
 stream = ExtResource("7_f52ns")
+
+[node name="Enemy" parent="." unique_id=1015365341 instance=ExtResource("9_4srsv")]
+position = Vector2(484, 215)
+
+[node name="Enemy2" parent="." unique_id=794690758 instance=ExtResource("9_4srsv")]
+position = Vector2(561, 211)
+
+[node name="Enemy3" parent="." unique_id=54252079 instance=ExtResource("9_4srsv")]
+position = Vector2(490, 450)
+
+[node name="Enemy4" parent="." unique_id=970577874 instance=ExtResource("9_4srsv")]
+position = Vector2(538, 452)
+
+[node name="Enemy5" parent="." unique_id=2096764928 instance=ExtResource("9_4srsv")]
+position = Vector2(559, 402)
+
+[node name="Enemy6" parent="." unique_id=1998714197 instance=ExtResource("9_4srsv")]
+position = Vector2(499, 398)

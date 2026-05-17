@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://drsntvbi0rlqq"]
+
+[ext_resource type="Script" uid="uid://dx18pu6kw3h1b" path="res://enemy.gd" id="1_7k104"]
+[ext_resource type="AudioStream" uid="uid://c6iqk6uutelt1" path="res://snd/hit_bound.wav" id="2_4gyqm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f52ns"]
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1015365341]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_7k104")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1079489802]
+shape = SubResource("RectangleShape2D_f52ns")
+
+[node name="HitPlayer" type="AudioStreamPlayer2D" parent="." unique_id=532110199]
+stream = ExtResource("2_4gyqm")
+volume_db = -1.189
