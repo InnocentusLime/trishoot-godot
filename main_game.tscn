@@ -307,6 +307,7 @@ position = Vector2(480, 270)
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=288906619]
 position = Vector2(344, 192)
+collision_layer = 8
 script = ExtResource("2_ykeeq")
 boom = ExtResource("3_2pltu")
 

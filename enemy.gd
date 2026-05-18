@@ -53,4 +53,8 @@ func _process(delta):
 	if lifetime <= 0.0:
 		prints("delete", self)
 		queue_free()
-		
+
+func _on_attack(to_dmg: Node2D):
+	if to_dmg.has_method("_on_dmg"):
+		to_dmg.call("_on_dmg", position)
+	

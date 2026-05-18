@@ -63,6 +63,9 @@ _data = {
 &"idle": SubResource("Animation_3yqyl")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iifgy"]
+size = Vector2(18, 18)
+
 [node name="Enemy" type="CharacterBody2D" unique_id=1015365341]
 collision_layer = 2
 collision_mask = 3
@@ -83,3 +86,13 @@ region_enabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1008077418]
 libraries/ = SubResource("AnimationLibrary_wujgv")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=849043208]
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=426614787]
+shape = SubResource("RectangleShape2D_iifgy")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_attack"]

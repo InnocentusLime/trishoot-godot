@@ -13,11 +13,18 @@ const SPEED = 164.0
 const KNOCKBACK_SPEED = 666.0
 const WEAPON_DIST = 24.0
 const BOOM_DIST = 24.0
+const FLICKER_SPEED = 20.0 / 1.0 # flick / s
+const INVINCE_TIME = 2.0
 
 var aim_angle: float = 0.0
 var face_right: bool = false
 var shooting: bool = false
 var recoiling: bool = false
+var invince_left: float = 0.0
+
+func _on_dmg(hitpos: Vector2):
+	if invince_left > 0.0: return
+	invince_left = INVINCE_TIME
 
 func _ready():
 	$AnimationPlayer.current_animation = "idle_left"
@@ -85,6 +92,13 @@ func _process(delta):
 	else:
 		weaponSprite.offset = Vector2i(0, 0)
 	weaponSprite.flip_v = face_right
+	
+	if invince_left > 0:
+		invince_left -= delta
+		var current_flicker = int(invince_left * FLICKER_SPEED)
+		if current_flicker % 2 == 0: body.modulate = Color.RED
+		else: body.modulate = Color.TRANSPARENT
+	else: body.modulate = Color.WHITE
 
 func _on_recoil_stop():
 	recoiling = false
