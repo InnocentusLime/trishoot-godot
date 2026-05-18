@@ -10,8 +10,14 @@ var lifetime: float = 1.0
 var state: EnemyState = EnemyState.ALIVE
 var knockback_dir: Vector2 = Vector2.ZERO
 
+@onready var anims: AnimationPlayer = $AnimationPlayer
 @onready var die_angle_sign: int = (randi() & 2) - 1
 @onready var hit_player: AudioStreamPlayer2D = $HitPlayer
+
+@export var hitspark: PackedScene
+
+func _ready():
+	anims.current_animation = "idle"
 
 func _on_dmg(attack_pos: Vector2):
 	if state != EnemyState.ALIVE: return
@@ -21,6 +27,7 @@ func _on_dmg(attack_pos: Vector2):
 	set_collision_mask_value(EnemyLayer.ACTIVE, false)
 	state = EnemyState.KNOCKBACK
 	knockback_dir = (position - attack_pos).normalized()
+	anims.current_animation = "hurt"
 	
 func _physics_process(delta):
 	match state:
@@ -36,6 +43,9 @@ func _physics_process(delta):
 		state = EnemyState.OFFSCREEN
 		hit_player.play()
 		get_parent().call("_on_enemy_hit_bounds")
+		var hit: Node2D = hitspark.instantiate()
+		hit.position = position + knockback_dir * 16.0
+		add_sibling(hit)
 		
 func _process(delta):
 	if state == EnemyState.OFFSCREEN:

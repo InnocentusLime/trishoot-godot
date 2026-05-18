@@ -2,13 +2,72 @@
 
 [ext_resource type="Script" uid="uid://dx18pu6kw3h1b" path="res://enemy.gd" id="1_7k104"]
 [ext_resource type="AudioStream" uid="uid://c6iqk6uutelt1" path="res://snd/hit_bound.wav" id="2_4gyqm"]
+[ext_resource type="PackedScene" uid="uid://blk4gg3st88kl" path="res://hitspark.tscn" id="2_iifgy"]
+[ext_resource type="Texture2D" uid="uid://114unu2t58bl" path="res://sprites/dumbo.png" id="3_qi2p4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f52ns"]
+
+[sub_resource type="Animation" id="Animation_iifgy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_epg4t"]
+resource_name = "hurt"
+length = 1.0001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(34, 2, 44, 41)]
+}
+
+[sub_resource type="Animation" id="Animation_3yqyl"]
+resource_name = "idle"
+length = 1.0001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 33, 38)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wujgv"]
+_data = {
+&"RESET": SubResource("Animation_iifgy"),
+&"hurt": SubResource("Animation_epg4t"),
+&"idle": SubResource("Animation_3yqyl")
+}
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1015365341]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_7k104")
+hitspark = ExtResource("2_iifgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1079489802]
 shape = SubResource("RectangleShape2D_f52ns")
@@ -16,3 +75,11 @@ shape = SubResource("RectangleShape2D_f52ns")
 [node name="HitPlayer" type="AudioStreamPlayer2D" parent="." unique_id=532110199]
 stream = ExtResource("2_4gyqm")
 volume_db = -1.189
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1690170646]
+position = Vector2(0, -7)
+texture = ExtResource("3_qi2p4")
+region_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1008077418]
+libraries/ = SubResource("AnimationLibrary_wujgv")

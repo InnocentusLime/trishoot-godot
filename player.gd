@@ -79,7 +79,7 @@ func _process(delta):
 	var weapon_angle: float = aim_angle - PI
 	weapon.position = center - Vector2.from_angle(weapon_angle) * WEAPON_DIST
 	weapon.rotation = weapon_angle
-	
+
 	if face_right:
 		weaponSprite.offset = Vector2i(0, -4)
 	else:
