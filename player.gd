@@ -16,6 +16,7 @@ const BOOM_DIST = 24.0
 const FLICKER_SPEED = 20.0 / 1.0 # flick / s
 const INVINCE_TIME = 2.0
 
+var hp: int = 3
 var aim_angle: float = 0.0
 var face_right: bool = false
 var shooting: bool = false
@@ -24,7 +25,11 @@ var invince_left: float = 0.0
 
 func _on_dmg(hitpos: Vector2):
 	if invince_left > 0.0: return
+	hp -= 1
 	invince_left = INVINCE_TIME
+	get_parent().call("_on_player_hit")
+	if hp <= 0:
+		queue_free()
 
 func _ready():
 	$AnimationPlayer.current_animation = "idle_left"
