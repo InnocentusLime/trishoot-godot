@@ -38,11 +38,11 @@ func _physics_process(delta):
 			velocity = 1.6 * KNOCKBACK_SPEED * knockback_dir.rotated(offscreen_dir_angle)
 		_: pass
 	if move_and_slide() and state == EnemyState.KNOCKBACK:
+		GameEvents.enemy_hit_bounds.emit()
 		# Don't collide with the level
 		set_collision_mask_value(1, false)
 		state = EnemyState.OFFSCREEN
 		hit_player.play()
-		get_parent().call("_on_enemy_hit_bounds")
 		var hit: Node2D = hitspark.instantiate()
 		hit.position = position + knockback_dir * 16.0
 		add_sibling(hit)

@@ -1,3 +1,4 @@
+class_name Boom
 extends Node2D
 
 @onready var hitbox = $Damge
@@ -15,7 +16,7 @@ func _physics_process(delta):
 		if to_dmg.has_method("_on_dmg"):
 				to_dmg.call("_on_dmg", position)
 	processed = true
-	get_parent().call("_on_combo", to_dmg_list.size())
+	GameEvents.player_comboed.emit(to_dmg_list.size())
 
 func _on_done():
 	queue_free()

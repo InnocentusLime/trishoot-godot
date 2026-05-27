@@ -1,3 +1,4 @@
+class_name MainGame
 extends Node2D
 
 const SHAKE_AMPLITUDE: float = 1.0
@@ -7,6 +8,12 @@ const BASE_SCORE: int = 10
 
 var score: int = 0
 var shake_koeff: float = 0.0
+
+func _ready():
+	GameEvents.player_comboed.connect(_on_combo)
+	GameEvents.enemy_hit_bounds.connect(_on_enemy_hit_bounds)
+	GameEvents.player_gun_shot.connect(_on_player_shoot)
+	GameEvents.player_hit.connect(_on_player_hit)
 
 func _on_combo(count: int):
 	var reward: int = (count*count) * BASE_SCORE 
