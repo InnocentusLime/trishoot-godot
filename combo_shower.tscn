@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dux3t8ovio4bv"]
+
+[ext_resource type="Script" uid="uid://8fhcsom0f48a" path="res://combo_shower.gd" id="1_ejp0t"]
+
+[node name="ComboShower" type="Label" unique_id=355317575]
+offset_top = 24.0
+offset_right = 43.0
+offset_bottom = 47.0
+text = "Wow!"
+script = ExtResource("1_ejp0t")
+
+[node name="Timer" type="Timer" parent="." unique_id=636200727]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_timer_finished"]

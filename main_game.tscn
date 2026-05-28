@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://cqf1f287vqnct" path="res://player.gd" id="2_ykeeq"]
 [ext_resource type="Texture2D" uid="uid://rrecam8ni4kg" path="res://sprites/john.png" id="2_yx7mw"]
 [ext_resource type="PackedScene" uid="uid://ceti3p0vtpeg" path="res://boom.tscn" id="3_2pltu"]
+[ext_resource type="Script" uid="uid://cy0665amiaiit" path="res://ui.gd" id="3_mf81u"]
+[ext_resource type="PackedScene" uid="uid://dux3t8ovio4bv" path="res://combo_shower.tscn" id="4_02kkc"]
 [ext_resource type="Animation" uid="uid://cn1w4deihytdq" path="res://anims/player_idle.res" id="4_dugkq"]
 [ext_resource type="Animation" uid="uid://djxsf110u2rub" path="res://anims/player_running_left.res" id="5_2pltu"]
 [ext_resource type="AudioStream" uid="uid://c5jgwpj3tyitn" path="res://snd/shotgun.wav" id="7_f52ns"]
@@ -304,6 +306,42 @@ script = ExtResource("1_1oj5k")
 
 [node name="Camera2D" type="Camera2D" parent="WindowManager" unique_id=772954090]
 position = Vector2(480, 270)
+
+[node name="UI" type="CanvasLayer" parent="WindowManager/Camera2D" unique_id=1762282750]
+script = ExtResource("3_mf81u")
+combo_widget = ExtResource("4_02kkc")
+
+[node name="HUD" type="MarginContainer" parent="WindowManager/Camera2D/UI" unique_id=519479056]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Stack" type="VBoxContainer" parent="WindowManager/Camera2D/UI/HUD" unique_id=598065105]
+layout_mode = 2
+
+[node name="Health" type="Label" parent="WindowManager/Camera2D/UI/HUD/Stack" unique_id=1077726921]
+layout_mode = 2
+text = "HP: 0"
+
+[node name="Score" type="Control" parent="WindowManager/Camera2D/UI/HUD/Stack" unique_id=1778823574]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="WindowManager/Camera2D/UI/HUD/Stack/Score" unique_id=215628016]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 23.0
+pivot_offset = Vector2(30, 12)
+text = "Score: 0"
+
+[node name="Comboer" type="Control" parent="WindowManager/Camera2D/UI/HUD/Stack" unique_id=406280679]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=288906619]
 position = Vector2(344, 192)
