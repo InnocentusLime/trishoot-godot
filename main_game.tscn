@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" uid="uid://c06gjxq87qvnt" path="res://window_manager.gd" id="1_1oj5k"]
 [ext_resource type="Script" uid="uid://b26fcqi34xaif" path="res://main_game.gd" id="1_4srsv"]
+[ext_resource type="Texture2D" uid="uid://d1gyesxr35ehm" path="res://sprites/field.png" id="2_jgkyn"]
 [ext_resource type="Script" uid="uid://cqf1f287vqnct" path="res://player.gd" id="2_ykeeq"]
 [ext_resource type="Texture2D" uid="uid://rrecam8ni4kg" path="res://sprites/john.png" id="2_yx7mw"]
 [ext_resource type="PackedScene" uid="uid://ceti3p0vtpeg" path="res://boom.tscn" id="3_2pltu"]
 [ext_resource type="Script" uid="uid://cy0665amiaiit" path="res://ui.gd" id="3_mf81u"]
+[ext_resource type="Texture2D" uid="uid://dn0eonhbvc677" path="res://sprites/fence.png" id="3_qpaub"]
 [ext_resource type="PackedScene" uid="uid://dux3t8ovio4bv" path="res://combo_shower.tscn" id="4_02kkc"]
 [ext_resource type="Animation" uid="uid://cn1w4deihytdq" path="res://anims/player_idle.res" id="4_dugkq"]
 [ext_resource type="Animation" uid="uid://djxsf110u2rub" path="res://anims/player_running_left.res" id="5_2pltu"]
@@ -293,13 +295,261 @@ _data = {
 [node name="MainGame" type="Node2D" unique_id=1130606135]
 script = ExtResource("1_4srsv")
 
-[node name="FieldBounds" type="StaticBody2D" parent="." unique_id=12779202]
+[node name="Field" type="StaticBody2D" parent="." unique_id=12779202]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FieldBounds" unique_id=49009492]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Field" unique_id=49009492]
 position = Vector2(235.99997, 51.000004)
 scale = Vector2(1.4830151, 1.9832014)
 build_mode = 1
 polygon = PackedVector2Array(2.697235, -1.0084686, 2.697235, 220.85506, 326.3622, 220.85506, 326.3622, -1.0084686)
+
+[node name="Field" type="Sprite2D" parent="Field" unique_id=867149644]
+position = Vector2(240, 49)
+texture = ExtResource("2_jgkyn")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 40, 480, 440)
+
+[node name="Fences" type="Node2D" parent="Field" unique_id=1967193850]
+
+[node name="Top" type="Node2D" parent="Field/Fences" unique_id=1685101741]
+
+[node name="Sprite2D" type="Sprite2D" parent="Field/Fences/Top" unique_id=356116627]
+texture_repeat = 2
+position = Vector2(282, 48)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Field/Fences/Top" unique_id=1243326082]
+texture_repeat = 2
+position = Vector2(368, 48)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Field/Fences/Top" unique_id=1020091436]
+texture_repeat = 2
+position = Vector2(454, 48)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Field/Fences/Top" unique_id=103407808]
+texture_repeat = 2
+position = Vector2(540, 48)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D5" type="Sprite2D" parent="Field/Fences/Top" unique_id=1939613062]
+texture_repeat = 2
+position = Vector2(626, 48)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D6" type="Sprite2D" parent="Field/Fences/Top" unique_id=1568360007]
+texture_repeat = 2
+position = Vector2(694, 48)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(42, 71, 52, 12)
+
+[node name="Right" type="Node2D" parent="Field/Fences" unique_id=666510646]
+position = Vector2(2, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Field/Fences/Right" unique_id=1044007868]
+position = Vector2(716, 64)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Field/Fences/Right" unique_id=1709315394]
+position = Vector2(716, 101)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Field/Fences/Right" unique_id=450451101]
+position = Vector2(716, 139)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Field/Fences/Right" unique_id=1500974645]
+position = Vector2(716, 178)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D5" type="Sprite2D" parent="Field/Fences/Right" unique_id=1238359517]
+position = Vector2(716, 216)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D6" type="Sprite2D" parent="Field/Fences/Right" unique_id=195906884]
+position = Vector2(716, 254)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D7" type="Sprite2D" parent="Field/Fences/Right" unique_id=1636864715]
+position = Vector2(716, 294)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D8" type="Sprite2D" parent="Field/Fences/Right" unique_id=1282099557]
+position = Vector2(716, 333)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D9" type="Sprite2D" parent="Field/Fences/Right" unique_id=1279050499]
+position = Vector2(716, 372)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D10" type="Sprite2D" parent="Field/Fences/Right" unique_id=576326215]
+position = Vector2(716, 411)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D11" type="Sprite2D" parent="Field/Fences/Right" unique_id=559007246]
+position = Vector2(716, 446)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D12" type="Sprite2D" parent="Field/Fences/Right" unique_id=1509168265]
+position = Vector2(716, 476)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 26)
+
+[node name="Left" type="Node2D" parent="Field/Fences" unique_id=1656118188]
+position = Vector2(-476, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Field/Fences/Left" unique_id=1283891015]
+position = Vector2(716, 64)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Field/Fences/Left" unique_id=2080820299]
+position = Vector2(716, 101)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Field/Fences/Left" unique_id=595857106]
+position = Vector2(716, 139)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Field/Fences/Left" unique_id=451340547]
+position = Vector2(716, 178)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D5" type="Sprite2D" parent="Field/Fences/Left" unique_id=278716472]
+position = Vector2(716, 216)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D6" type="Sprite2D" parent="Field/Fences/Left" unique_id=464747456]
+position = Vector2(716, 254)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D7" type="Sprite2D" parent="Field/Fences/Left" unique_id=543079140]
+position = Vector2(716, 294)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D8" type="Sprite2D" parent="Field/Fences/Left" unique_id=1543841521]
+position = Vector2(716, 333)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D9" type="Sprite2D" parent="Field/Fences/Left" unique_id=706629904]
+position = Vector2(716, 372)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D10" type="Sprite2D" parent="Field/Fences/Left" unique_id=1416352831]
+position = Vector2(716, 411)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D11" type="Sprite2D" parent="Field/Fences/Left" unique_id=759677043]
+position = Vector2(716, 446)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D12" type="Sprite2D" parent="Field/Fences/Left" unique_id=845156727]
+position = Vector2(716, 476)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 26)
+
+[node name="Bot" type="Node2D" parent="Field/Fences" unique_id=836813292]
+position = Vector2(0, 443)
+
+[node name="Sprite2D" type="Sprite2D" parent="Field/Fences/Bot" unique_id=309291104]
+texture_repeat = 2
+position = Vector2(282, 48)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Field/Fences/Bot" unique_id=1484639536]
+texture_repeat = 2
+position = Vector2(368, 48)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Field/Fences/Bot" unique_id=40160839]
+texture_repeat = 2
+position = Vector2(454, 48)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Field/Fences/Bot" unique_id=462597329]
+texture_repeat = 2
+position = Vector2(540, 48)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D5" type="Sprite2D" parent="Field/Fences/Bot" unique_id=621470013]
+texture_repeat = 2
+position = Vector2(626, 48)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D6" type="Sprite2D" parent="Field/Fences/Bot" unique_id=920134739]
+texture_repeat = 2
+position = Vector2(694, 48)
+texture = ExtResource("3_qpaub")
+region_enabled = true
+region_rect = Rect2(42, 71, 52, 12)
 
 [node name="WindowManager" type="Node2D" parent="." unique_id=2054509005]
 position = Vector2(-6.1035156e-05, -1.5258789e-05)
