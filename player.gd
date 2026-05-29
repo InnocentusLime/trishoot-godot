@@ -5,8 +5,10 @@ extends CharacterBody2D
 @onready var center: Vector2 = $MapCol.shape.get_rect().size / 2.0
 @onready var body: Sprite2D = $Body
 @onready var shoot: AudioStreamPlayer2D = $Shoot
+@onready var pain: AudioStreamPlayer2D = $Pain
 
 @export var boom: PackedScene
+@export var hitspark: PackedScene
 @export var recoil_acc: float = 1.0
 
 const SPEED = 164.0
@@ -29,8 +31,14 @@ func _on_dmg(hitpos: Vector2):
 	invince_left = INVINCE_TIME
 	if hp <= 0:
 		queue_free()
-	else:
-		GameEvents.player_hit.emit()
+		return
+	GameEvents.player_hit.emit()
+	pain.play()
+	var hit_dir: Vector2 = (hitpos - position).normalized()
+	var hit: Node2D = hitspark.instantiate()
+	hit.position = position + hit_dir * 16.0
+	hit.scale = Vector2(4.0, 4.0)
+	add_sibling(hit)
 
 func _ready():
 	$AnimationPlayer.current_animation = "idle_left"
@@ -102,9 +110,9 @@ func _process(delta):
 	if invince_left > 0:
 		invince_left -= delta
 		var current_flicker = int(invince_left * FLICKER_SPEED)
-		if current_flicker % 2 == 0: body.modulate = Color.RED
-		else: body.modulate = Color.TRANSPARENT
-	else: body.modulate = Color.WHITE
+		if current_flicker % 2 == 0: modulate = Color.RED
+		else: modulate = Color.TRANSPARENT
+	else: modulate = Color.WHITE
 
 func _on_recoil_stop():
 	recoiling = false

@@ -28,7 +28,7 @@ func _on_player_shoot():
 		shake_koeff += (1.0 - shake_koeff)
 		
 func _on_player_hit():
-	shake_koeff = 6.0
+	shake_koeff = 10.0
 
 func _process(delta):
 	var boost: float

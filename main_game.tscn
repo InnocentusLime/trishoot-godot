@@ -10,7 +10,9 @@
 [ext_resource type="Animation" uid="uid://cn1w4deihytdq" path="res://anims/player_idle.res" id="4_dugkq"]
 [ext_resource type="Animation" uid="uid://djxsf110u2rub" path="res://anims/player_running_left.res" id="5_2pltu"]
 [ext_resource type="AudioStream" uid="uid://c5jgwpj3tyitn" path="res://snd/shotgun.wav" id="7_f52ns"]
+[ext_resource type="PackedScene" uid="uid://blk4gg3st88kl" path="res://hitspark.tscn" id="7_krmtw"]
 [ext_resource type="PackedScene" uid="uid://drsntvbi0rlqq" path="res://enemy.tscn" id="9_4srsv"]
+[ext_resource type="AudioStream" uid="uid://bwb4hrhnm2cg5" path="res://snd/oldhit.wav" id="11_aomqu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1oj5k"]
 size = Vector2(18, 35)
@@ -348,6 +350,7 @@ position = Vector2(344, 192)
 collision_layer = 8
 script = ExtResource("2_ykeeq")
 boom = ExtResource("3_2pltu")
+hitspark = ExtResource("7_krmtw")
 
 [node name="MapCol" type="CollisionShape2D" parent="Player" unique_id=1671047533]
 position = Vector2(9, 17.5)
@@ -376,6 +379,9 @@ libraries/ = SubResource("AnimationLibrary_dugkq")
 
 [node name="Shoot" type="AudioStreamPlayer2D" parent="Player" unique_id=846593309]
 stream = ExtResource("7_f52ns")
+
+[node name="Pain" type="AudioStreamPlayer2D" parent="Player" unique_id=1498715349]
+stream = ExtResource("11_aomqu")
 
 [node name="Enemy" parent="." unique_id=1015365341 instance=ExtResource("9_4srsv")]
 position = Vector2(484, 215)
