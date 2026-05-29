@@ -44,31 +44,41 @@ func _ready():
 	$AnimationPlayer.current_animation = "idle_left"
 
 func _physics_process(delta):
+	var h_dir = Input.get_axis("move_left", "move_right")
+	var v_dir = Input.get_axis("move_up", "move_down")
+	var move_vel = Vector2(h_dir, v_dir).normalized() * SPEED
+	
+	velocity = Vector2.ZERO
 	if recoiling:
+		var knock_dir = -Vector2.from_angle(aim_angle)
 		var k = ease(recoil_acc, 0.4)
-		velocity = -Vector2.from_angle(aim_angle) * KNOCKBACK_SPEED * k
-	else:
-		velocity = Vector2.ZERO
+		move_vel *= (1 - k) * 0.8
+		var dot = move_vel.dot(knock_dir)
+		if dot > 0.0: move_vel -= dot * knock_dir
+		velocity += knock_dir * KNOCKBACK_SPEED * k
+	elif shooting:
+		move_vel *= 0.8
+	velocity += move_vel
 		
 	if shooting:
 		move_and_slide()
 		return
-		
-	var h_dir = Input.get_axis("ui_left", "ui_right")
-	var v_dir = Input.get_axis("ui_up", "ui_down")
-	velocity = Vector2(h_dir, v_dir).normalized() * SPEED
 
+	var animation: StringName
+	if face_right:
+		animation = "idle_right"
+	else:
+		animation = "idle_left"
 	if velocity:
 		if face_right:
-			$AnimationPlayer.current_animation = "running_right"
+			animation = "running_right"
 		else:
-			$AnimationPlayer.current_animation = "running_left"
-		$AnimationPlayer.speed_scale = 1.0
-	elif Input.is_action_just_pressed("ui_accept"):
+			animation = "running_left"
+	if Input.is_action_just_pressed("shoot"):
 		shooting = true
 		recoiling = true
 		velocity = -Vector2.from_angle(aim_angle) * KNOCKBACK_SPEED
-		$AnimationPlayer.current_animation = "shoot_left"
+		animation = "shoot_left"
 		var the_boom: Node2D = boom.instantiate()
 		var weapon_angle: float = aim_angle - PI
 		the_boom.position = position + center - Vector2.from_angle(weapon_angle) * (WEAPON_DIST + BOOM_DIST)
@@ -76,12 +86,7 @@ func _physics_process(delta):
 		add_sibling(the_boom)
 		shoot.play()
 		GameEvents.player_gun_shot.emit()
-	else:
-		if face_right:
-			$AnimationPlayer.current_animation = "idle_right"
-		else:
-			$AnimationPlayer.current_animation = "idle_left"
-		$AnimationPlayer.speed_scale = 1.0
+	$AnimationPlayer.current_animation = animation
 	
 	move_and_slide()
 	
