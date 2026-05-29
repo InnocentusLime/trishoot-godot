@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+const WALK_SPEED: float = 40.0
 const KNOCKBACK_SPEED: float = 999.0
 const OFFSCREEN_DELTA: float = PI / 5
 
@@ -36,7 +37,9 @@ func _physics_process(delta):
 		EnemyState.OFFSCREEN: 
 			var offscreen_dir_angle: float = OFFSCREEN_DELTA * float(die_angle_sign)
 			velocity = 1.6 * KNOCKBACK_SPEED * knockback_dir.rotated(offscreen_dir_angle)
-		_: pass
+		EnemyState.ALIVE:
+			var dir = (GameEvents.player_pos - position).normalized()
+			velocity = WALK_SPEED * dir
 	if move_and_slide() and state == EnemyState.KNOCKBACK:
 		GameEvents.enemy_hit_bounds.emit()
 		# Don't collide with the level

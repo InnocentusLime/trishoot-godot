@@ -94,6 +94,7 @@ func _physics_process(delta):
 	#return 1 - pow(2.0, -10 * x)
 	
 func _process(delta):
+	GameEvents.player_pos = position
 	if shooting:
 		return
 	
