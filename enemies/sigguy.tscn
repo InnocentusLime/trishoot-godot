@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://b12cng6sqw7n5"]
 
-[ext_resource type="Script" uid="uid://dx18pu6kw3h1b" path="res://enemies/enemy.gd" id="1_i28le"]
-[ext_resource type="PackedScene" uid="uid://blk4gg3st88kl" path="res://hits/hitenemy.tscn" id="2_abnyj"]
-[ext_resource type="AudioStream" uid="uid://c6iqk6uutelt1" path="res://snd/hit_bound.wav" id="3_7qgmw"]
+[ext_resource type="Script" uid="uid://dgxa7h3y1e0u2" path="res://attacks/attack.gd" id="4_t1w7k"]
 [ext_resource type="Texture2D" uid="uid://114unu2t58bl" path="res://sprites/dumbo.png" id="4_tyje4"]
 [ext_resource type="Script" uid="uid://miqjnbok2r57" path="res://enemies/sigguy.gd" id="5_abnyj"]
+[ext_resource type="PackedScene" uid="uid://djfg4hw82bmed" path="res://enemies/ai_base.tscn" id="5_i28le"]
 [ext_resource type="PackedScene" uid="uid://dj04y2bnsk3yu" path="res://attacks/laserball.tscn" id="6_7qgmw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iifgy"]
@@ -69,19 +68,15 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iifgy"]
 size = Vector2(42, 24)
 
-[node name="Enemy" type="CharacterBody2D" unique_id=1015365341]
+[node name="Sigguy" type="CharacterBody2D" unique_id=1015365341]
 collision_layer = 2
 collision_mask = 3
-script = ExtResource("1_i28le")
-hitspark = ExtResource("2_abnyj")
+script = ExtResource("5_abnyj")
+laserball = ExtResource("6_7qgmw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1079489802]
 position = Vector2(-3, 1)
 shape = SubResource("CircleShape2D_iifgy")
-
-[node name="HitPlayer" type="AudioStreamPlayer2D" parent="." unique_id=532110199]
-stream = ExtResource("3_7qgmw")
-volume_db = -1.189
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1690170646]
 position = Vector2(0, -7)
@@ -94,15 +89,17 @@ libraries/ = SubResource("AnimationLibrary_wujgv")
 [node name="Attack" type="Area2D" parent="." unique_id=849043208]
 collision_mask = 8
 monitorable = false
+script = ExtResource("4_t1w7k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack" unique_id=426614787]
 position = Vector2(-2, 1)
 shape = SubResource("RectangleShape2D_iifgy")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="Thinker" type="Node2D" parent="." unique_id=1742900450]
-position = Vector2(9, -19)
-script = ExtResource("5_abnyj")
-laserball = ExtResource("6_7qgmw")
+[node name="AIBase" parent="." unique_id=281758926 instance=ExtResource("5_i28le")]
+think_time = 1.5
+
+[node name="ProjectileSpawn" type="Node2D" parent="." unique_id=130052624]
+position = Vector2(8, -18)
 
 [connection signal="area_entered" from="Attack" to="." method="_on_attack"]

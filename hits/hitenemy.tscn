@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://blk4gg3st88kl"]
 
 [ext_resource type="Texture2D" uid="uid://114unu2t58bl" path="res://sprites/dumbo.png" id="1_qy0r5"]
+[ext_resource type="AudioStream" uid="uid://c6iqk6uutelt1" path="res://snd/hit_bound.wav" id="2_bgcy1"]
 
 [node name="hitspark" type="Sprite2D" unique_id=1628699677]
 texture = ExtResource("1_qy0r5")
@@ -12,4 +13,11 @@ wait_time = 0.08
 one_shot = true
 autostart = true
 
-[connection signal="timeout" from="Timer" to="." method="queue_free"]
+[node name="HitPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1851988733]
+position = Vector2(485, 194)
+stream = ExtResource("2_bgcy1")
+volume_db = -1.189
+autoplay = true
+
+[connection signal="timeout" from="Timer" to="." method="hide"]
+[connection signal="finished" from="HitPlayer" to="." method="queue_free"]
