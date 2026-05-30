@@ -94,6 +94,16 @@ func _physics_process(delta):
 	
 func _process(delta):
 	GameEvents.player_pos = position
+		
+	if invince_left > 0:
+		invince_left -= delta
+		var current_flicker = int(invince_left * FLICKER_SPEED)
+		if current_flicker % 2 == 0: 
+			modulate = pain_color()
+		else: 
+			modulate = Color.TRANSPARENT
+	else: modulate = Color.WHITE
+	
 	if shooting:
 		return
 	
@@ -111,15 +121,6 @@ func _process(delta):
 	else:
 		weaponSprite.offset = Vector2i(0, 0)
 	weaponSprite.flip_v = face_right
-	
-	if invince_left > 0:
-		invince_left -= delta
-		var current_flicker = int(invince_left * FLICKER_SPEED)
-		if current_flicker % 2 == 0: 
-			modulate = pain_color()
-		else: 
-			modulate = Color.TRANSPARENT
-	else: modulate = Color.WHITE
 
 func _on_recoil_stop():
 	recoiling = false
