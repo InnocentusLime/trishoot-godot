@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://ceti3p0vtpeg"]
 
-[ext_resource type="Script" uid="uid://cow8wdj64hjrv" path="res://boom.gd" id="1_37ygf"]
+[ext_resource type="Script" uid="uid://cow8wdj64hjrv" path="res://attacks/boom.gd" id="1_37ygf"]
 [ext_resource type="Texture2D" uid="uid://rrecam8ni4kg" path="res://sprites/john.png" id="1_crcy4"]
+[ext_resource type="AudioStream" uid="uid://c5jgwpj3tyitn" path="res://snd/shotgun.wav" id="3_qf6iu"]
 
 [sub_resource type="Animation" id="Animation_crcy4"]
 length = 0.001
@@ -29,24 +30,10 @@ tracks/0/path = NodePath("Sprite2D:region_rect")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.041666668, 0.083333336),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.041666668, 0.083333336, 0.125),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Rect2(1, 111, 124, 105), Rect2(236, 114, 124, 38), Rect2(477, 144, 123, 19)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.125),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"_on_done"
-}]
+"values": [Rect2(1, 111, 124, 105), Rect2(236, 114, 124, 38), Rect2(477, 144, 123, 19), Rect2(1, 111, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yvxa8"]
@@ -78,3 +65,9 @@ collision_mask = 2
 position = Vector2(-51.5, 0)
 shape = SubResource("RectangleShape2D_37ygf")
 debug_color = Color(0.99949735, 0, 0.12846798, 0.41960785)
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="." unique_id=881165830]
+stream = ExtResource("3_qf6iu")
+autoplay = true
+
+[connection signal="finished" from="Shoot" to="." method="queue_free"]

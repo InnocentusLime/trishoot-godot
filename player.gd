@@ -3,8 +3,6 @@ extends CharacterBody2D
 @onready var weapon: Node2D = $Weapon
 @onready var weaponSprite: Sprite2D = $Weapon/Weapon
 @onready var center: Vector2 = $MapCol.shape.get_rect().size / 2.0
-@onready var body: Sprite2D = $Body
-@onready var shoot: AudioStreamPlayer2D = $Shoot
 
 @export var boom: PackedScene
 @export var hitspark: PackedScene
@@ -17,7 +15,7 @@ const BOOM_DIST = 24.0
 const FLICKER_SPEED = 20.0 / 1.0 # flick / s
 const INVINCE_TIME = 3.0
 
-var hp: int = 3
+var hp: int = 1
 var aim_angle: float = 0.0
 var face_right: bool = false
 var shooting: bool = false
@@ -26,11 +24,12 @@ var invince_left: float = 0.0
 
 func _on_dmg(hitpos: Vector2):
 	if invince_left > 0.0: return
+	
 	hp -= 1
 	invince_left = INVINCE_TIME
 	if hp <= 0:
 		queue_free()
-		return
+	
 	var hit_dir: Vector2 = (hitpos - position).normalized()
 	var hit: Node2D = hitspark.instantiate()
 	hit.position = position + hit_dir * 16.0
@@ -80,7 +79,6 @@ func _physics_process(delta):
 		the_boom.position = position + center - Vector2.from_angle(weapon_angle) * (WEAPON_DIST + BOOM_DIST)
 		the_boom.rotation = weapon_angle
 		add_sibling(the_boom)
-		shoot.play()
 		GameEvents.player_gun_shot.emit()
 	$AnimationPlayer.current_animation = animation
 	

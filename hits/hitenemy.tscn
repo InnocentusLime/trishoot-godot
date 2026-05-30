@@ -5,7 +5,7 @@
 [node name="hitspark" type="Sprite2D" unique_id=1628699677]
 texture = ExtResource("1_qy0r5")
 region_enabled = true
-region_rect = Rect2(161, 4, 54, 42)
+region_rect = Rect2(1, 327, 54, 41)
 
 [node name="Timer" type="Timer" parent="." unique_id=356963946]
 wait_time = 0.08

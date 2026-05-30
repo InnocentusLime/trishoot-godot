@@ -17,6 +17,3 @@ func _physics_process(delta):
 				to_dmg.call("_on_dmg", position)
 	processed = true
 	GameEvents.player_comboed.emit(to_dmg_list.size())
-
-func _on_done():
-	queue_free()
