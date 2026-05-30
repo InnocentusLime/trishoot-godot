@@ -12,7 +12,9 @@
 [ext_resource type="Animation" uid="uid://cn1w4deihytdq" path="res://anims/player_idle.res" id="4_dugkq"]
 [ext_resource type="Animation" uid="uid://djxsf110u2rub" path="res://anims/player_running_left.res" id="5_2pltu"]
 [ext_resource type="PackedScene" uid="uid://c2mrriy54iu40" path="res://hits/hitplayer.tscn" id="9_an1vu"]
-[ext_resource type="PackedScene" uid="uid://8qvjrhgeu4wr" path="res://enemies/firepeno.tscn" id="13_krmtw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aomqu"]
+size = Vector2(20, 480)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1oj5k"]
 size = Vector2(18, 35)
@@ -298,12 +300,6 @@ script = ExtResource("1_4srsv")
 
 [node name="Field" type="StaticBody2D" parent="." unique_id=12779202]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Field" unique_id=49009492]
-position = Vector2(235.99997, 51.000004)
-scale = Vector2(1.4830151, 1.9832014)
-build_mode = 1
-polygon = PackedVector2Array(2.697235, -1.0084686, 2.697235, 220.85506, 326.3622, 220.85506, 326.3622, -1.0084686)
-
 [node name="Field" type="Sprite2D" parent="Field" unique_id=867149644]
 position = Vector2(240, 49)
 texture = ExtResource("2_jgkyn")
@@ -552,6 +548,24 @@ texture = ExtResource("3_qpaub")
 region_enabled = true
 region_rect = Rect2(42, 71, 52, 12)
 
+[node name="Left" type="CollisionShape2D" parent="Field" unique_id=1891934933]
+position = Vector2(231, 270)
+shape = SubResource("RectangleShape2D_aomqu")
+
+[node name="Right" type="CollisionShape2D" parent="Field" unique_id=596060914]
+position = Vector2(730, 272)
+shape = SubResource("RectangleShape2D_aomqu")
+
+[node name="Top" type="CollisionShape2D" parent="Field" unique_id=1376993726]
+position = Vector2(481, 39)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_aomqu")
+
+[node name="Bottom" type="CollisionShape2D" parent="Field" unique_id=1829275838]
+position = Vector2(480, 501)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_aomqu")
+
 [node name="WindowManager" type="Node2D" parent="." unique_id=2054509005]
 position = Vector2(-6.1035156e-05, -1.5258789e-05)
 scale = Vector2(1.0000001, 1.0000001)
@@ -638,6 +652,3 @@ monitoring = false
 position = Vector2(7, 6.5)
 shape = SubResource("RectangleShape2D_krmtw")
 debug_color = Color(0.2711291, 0.6329507, 0, 0.41960785)
-
-[node name="Firepeno" parent="." unique_id=1015365341 instance=ExtResource("13_krmtw")]
-position = Vector2(569, 220)

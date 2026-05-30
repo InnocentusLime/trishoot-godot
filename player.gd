@@ -23,7 +23,7 @@ var recoiling: bool = false
 var invince_left: float = 0.0
 
 func _on_dmg(hitpos: Vector2):
-	if invince_left > 0.0: return
+	if invince_left > 0.0 or shooting: return
 	
 	hp -= 1
 	invince_left = INVINCE_TIME
