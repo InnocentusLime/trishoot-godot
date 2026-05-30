@@ -9,6 +9,8 @@ const MY_PROJ_VELOCITY: float = 256.0
 
 var walk_dir: Vector2 = Vector2.ZERO
 
+func _die(): pass
+
 func _think(bumped: bool):
 	velocity = WALK_SPEED * walk_dir
 	if bumped:

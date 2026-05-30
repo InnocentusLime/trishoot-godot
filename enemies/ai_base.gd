@@ -21,11 +21,13 @@ var bumped_this_frame: bool = false
 var body: CharacterBody2D
 var impl_think: Callable
 var impl_update_think: Callable
+var impl_die: Callable
 
 func _ready():
 	body = get_parent()
 	impl_think = Callable(body, "_think")
 	impl_update_think = Callable(body, "_update_think")
+	impl_die = Callable(body, "_die")
 	think_tick.start(0.1)
 
 func _on_dmg(attack_pos: Vector2):
@@ -37,6 +39,7 @@ func _on_dmg(attack_pos: Vector2):
 	knockback_dir = (body.position - attack_pos).normalized()
 	delete_timer.start()
 	think_tick.stop()
+	impl_die.call()
 
 func _physics_process(delta):
 	bumped_this_frame = body.move_and_slide()

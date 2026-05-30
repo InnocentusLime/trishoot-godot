@@ -12,7 +12,7 @@
 [ext_resource type="Animation" uid="uid://cn1w4deihytdq" path="res://anims/player_idle.res" id="4_dugkq"]
 [ext_resource type="Animation" uid="uid://djxsf110u2rub" path="res://anims/player_running_left.res" id="5_2pltu"]
 [ext_resource type="PackedScene" uid="uid://c2mrriy54iu40" path="res://hits/hitplayer.tscn" id="9_an1vu"]
-[ext_resource type="PackedScene" uid="uid://bf7pjooog1yfr" path="res://enemies/pogshot.tscn" id="13_krmtw"]
+[ext_resource type="PackedScene" uid="uid://8qvjrhgeu4wr" path="res://enemies/firepeno.tscn" id="13_krmtw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1oj5k"]
 size = Vector2(18, 35)
@@ -639,5 +639,5 @@ position = Vector2(7, 6.5)
 shape = SubResource("RectangleShape2D_krmtw")
 debug_color = Color(0.2711291, 0.6329507, 0, 0.41960785)
 
-[node name="Sigguy" parent="." unique_id=1015365341 instance=ExtResource("13_krmtw")]
-position = Vector2(554, 214)
+[node name="Firepeno" parent="." unique_id=1015365341 instance=ExtResource("13_krmtw")]
+position = Vector2(569, 220)

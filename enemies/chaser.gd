@@ -5,6 +5,8 @@ const WALK_SPEED: float = 100.0
 var walk_dir: Vector2 = Vector2.ZERO
 var walk_rot: float = 0.0
 
+func _die(): pass
+
 func _think(bumped: bool):
 	var dir = (GameEvents.player_pos - position).normalized()
 	if bumped:
