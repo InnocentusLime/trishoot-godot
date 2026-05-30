@@ -36,6 +36,7 @@ func _on_dmg(attack_pos: Vector2):
 	state = EnemyState.KNOCKBACK
 	knockback_dir = (body.position - attack_pos).normalized()
 	delete_timer.start()
+	think_tick.stop()
 
 func _physics_process(delta):
 	bumped_this_frame = body.move_and_slide()
@@ -61,6 +62,7 @@ func _lifetime_out():
 	body.queue_free()
 
 func _update_think():
+	if state != EnemyState.ALIVE: return
 	var k = 1.0 + 0.5 * randi_range(0, 3)
 	think_tick.start(think_time * k)
 	impl_update_think.call()
