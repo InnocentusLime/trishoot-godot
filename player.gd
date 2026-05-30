@@ -16,7 +16,7 @@ const KNOCKBACK_SPEED = 666.0
 const WEAPON_DIST = 24.0
 const BOOM_DIST = 24.0
 const FLICKER_SPEED = 20.0 / 1.0 # flick / s
-const INVINCE_TIME = 2.0
+const INVINCE_TIME = 3.0
 
 var hp: int = 3
 var aim_angle: float = 0.0
@@ -37,7 +37,6 @@ func _on_dmg(hitpos: Vector2):
 	var hit_dir: Vector2 = (hitpos - position).normalized()
 	var hit: Node2D = hitspark.instantiate()
 	hit.position = position + hit_dir * 16.0
-	hit.scale = Vector2(4.0, 4.0)
 	add_sibling(hit)
 
 func _ready():

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b12cng6sqw7n5"]
 
 [ext_resource type="Script" uid="uid://dx18pu6kw3h1b" path="res://enemy.gd" id="1_i28le"]
-[ext_resource type="PackedScene" uid="uid://blk4gg3st88kl" path="res://hitspark.tscn" id="2_abnyj"]
+[ext_resource type="PackedScene" uid="uid://blk4gg3st88kl" path="res://hits/hitenemy.tscn" id="2_abnyj"]
 [ext_resource type="AudioStream" uid="uid://c6iqk6uutelt1" path="res://snd/hit_bound.wav" id="3_7qgmw"]
 [ext_resource type="Texture2D" uid="uid://114unu2t58bl" path="res://sprites/dumbo.png" id="4_tyje4"]
 [ext_resource type="Script" uid="uid://c1ltmhwaka4ke" path="res://enemies/chaser.gd" id="5_qx7m7"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dx18pu6kw3h1b" path="res://enemy.gd" id="1_7k104"]
 [ext_resource type="AudioStream" uid="uid://c6iqk6uutelt1" path="res://snd/hit_bound.wav" id="2_4gyqm"]
-[ext_resource type="PackedScene" uid="uid://blk4gg3st88kl" path="res://hitspark.tscn" id="2_iifgy"]
+[ext_resource type="PackedScene" uid="uid://blk4gg3st88kl" path="res://hits/hitenemy.tscn" id="2_iifgy"]
 [ext_resource type="Texture2D" uid="uid://114unu2t58bl" path="res://sprites/dumbo.png" id="3_qi2p4"]
 [ext_resource type="Script" uid="uid://c1ltmhwaka4ke" path="res://enemies/chaser.gd" id="5_epg4t"]
 
