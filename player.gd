@@ -15,7 +15,7 @@ const BOOM_DIST = 24.0
 const FLICKER_SPEED = 20.0 / 1.0 # flick / s
 const INVINCE_TIME = 3.0
 
-var hp: int = 1
+var hp: int = 3
 var aim_angle: float = 0.0
 var face_right: bool = false
 var shooting: bool = false
@@ -108,7 +108,7 @@ func _process(delta):
 	face_right = abs(rad_to_deg(aim_angle)) < 90
 	
 	var weapon_angle: float = aim_angle - PI
-	weapon.position = center - Vector2.from_angle(weapon_angle) * WEAPON_DIST
+	weapon.position = -Vector2.from_angle(weapon_angle) * WEAPON_DIST
 	weapon.rotation = weapon_angle
 
 	if face_right:

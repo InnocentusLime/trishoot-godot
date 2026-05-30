@@ -9,6 +9,7 @@ enum EnemyState {ALIVE = 0, KNOCKBACK=1, OFFSCREEN=2}
 var lifetime: float = 1.0
 var state: EnemyState = EnemyState.ALIVE
 var knockback_dir: Vector2 = Vector2.ZERO
+var bumped_this_frame: bool = false
 
 @onready var anims: AnimationPlayer = $AnimationPlayer
 @onready var die_angle_sign: int = (randi() & 2) - 1
@@ -31,6 +32,8 @@ func _on_dmg(attack_pos: Vector2):
 	anims.current_animation = "hurt"
 	
 func _physics_process(delta):
+	bumped_this_frame = move_and_slide()
+	
 	match state:
 		EnemyState.KNOCKBACK: 
 			velocity = KNOCKBACK_SPEED * knockback_dir
@@ -39,9 +42,9 @@ func _physics_process(delta):
 			velocity = 1.6 * KNOCKBACK_SPEED * knockback_dir.rotated(offscreen_dir_angle)
 		EnemyState.ALIVE:
 			if thinker.has_method("_think"):
-				thinker.call("_think", self, anims)
-			
-	if move_and_slide() and state == EnemyState.KNOCKBACK:
+				thinker.call("_think", bumped_this_frame, delta, self, anims)
+		
+	if bumped_this_frame and state == EnemyState.KNOCKBACK:
 		GameEvents.enemy_hit_bounds.emit()
 		# Don't collide with the level
 		set_collision_mask_value(1, false)

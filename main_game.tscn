@@ -12,7 +12,6 @@
 [ext_resource type="Animation" uid="uid://cn1w4deihytdq" path="res://anims/player_idle.res" id="4_dugkq"]
 [ext_resource type="Animation" uid="uid://djxsf110u2rub" path="res://anims/player_running_left.res" id="5_2pltu"]
 [ext_resource type="PackedScene" uid="uid://c2mrriy54iu40" path="res://hits/hitplayer.tscn" id="9_an1vu"]
-[ext_resource type="PackedScene" uid="uid://dj04y2bnsk3yu" path="res://attacks/laserball.tscn" id="14_jgkyn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1oj5k"]
 size = Vector2(18, 35)
@@ -597,18 +596,17 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=288906619]
-position = Vector2(540, 238)
+position = Vector2(303, 128)
 collision_layer = 16
 script = ExtResource("2_ykeeq")
 boom = ExtResource("3_2pltu")
 hitspark = ExtResource("9_an1vu")
 
 [node name="MapCol" type="CollisionShape2D" parent="Player" unique_id=1671047533]
-position = Vector2(9, 17)
 shape = SubResource("RectangleShape2D_1oj5k")
 
 [node name="Sprite" type="Sprite2D" parent="Player" unique_id=2141150842]
-position = Vector2(-16, -15)
+position = Vector2(-28, -29)
 texture = ExtResource("2_yx7mw")
 centered = false
 offset = Vector2(8, -3)
@@ -617,7 +615,7 @@ region_enabled = true
 region_rect = Rect2(52, 55, 37, 49)
 
 [node name="Weapon" type="Node2D" parent="Player" unique_id=1786017647]
-position = Vector2(-14, 16)
+position = Vector2(-17, -3)
 
 [node name="Weapon" type="Sprite2D" parent="Player/Weapon" unique_id=782101925]
 position = Vector2(-19, 2)
@@ -629,7 +627,7 @@ region_rect = Rect2(1, 24, 38, 14)
 libraries/ = SubResource("AnimationLibrary_dugkq")
 
 [node name="HurtBox" type="Area2D" parent="Player" unique_id=53200646]
-position = Vector2(3, 8)
+position = Vector2(-7, -7)
 collision_layer = 8
 collision_mask = 0
 monitoring = false
@@ -638,6 +636,3 @@ monitoring = false
 position = Vector2(7, 6.5)
 shape = SubResource("RectangleShape2D_krmtw")
 debug_color = Color(0.2711291, 0.6329507, 0, 0.41960785)
-
-[node name="Projectile" parent="." unique_id=103431693 instance=ExtResource("14_jgkyn")]
-position = Vector2(684, 254)
