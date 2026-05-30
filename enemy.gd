@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-const WALK_SPEED: float = 40.0
 const KNOCKBACK_SPEED: float = 999.0
 const OFFSCREEN_DELTA: float = PI / 5
 
@@ -14,6 +13,7 @@ var knockback_dir: Vector2 = Vector2.ZERO
 @onready var anims: AnimationPlayer = $AnimationPlayer
 @onready var die_angle_sign: int = (randi() & 2) - 1
 @onready var hit_player: AudioStreamPlayer2D = $HitPlayer
+@onready var thinker: Node2D = $Thinker
 
 @export var hitspark: PackedScene
 
@@ -38,8 +38,9 @@ func _physics_process(delta):
 			var offscreen_dir_angle: float = OFFSCREEN_DELTA * float(die_angle_sign)
 			velocity = 1.6 * KNOCKBACK_SPEED * knockback_dir.rotated(offscreen_dir_angle)
 		EnemyState.ALIVE:
-			var dir = (GameEvents.player_pos - position).normalized()
-			velocity = WALK_SPEED * dir
+			if thinker.has_method("_think"):
+				thinker.call("_think", self, anims)
+			
 	if move_and_slide() and state == EnemyState.KNOCKBACK:
 		GameEvents.enemy_hit_bounds.emit()
 		# Don't collide with the level

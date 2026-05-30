@@ -6,5 +6,5 @@
 [node name="hitspark" type="Sprite2D" unique_id=1628699677]
 texture = ExtResource("1_qy0r5")
 region_enabled = true
-region_rect = Rect2(80, 1, 51, 42)
+region_rect = Rect2(161, 4, 54, 42)
 script = ExtResource("2_u3u8u")

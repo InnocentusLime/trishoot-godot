@@ -40,4 +40,5 @@ func _process(delta):
 	shake_koeff = max(0.0, shake_koeff)
 	
 	var shake_angle: float = randf() * (2*PI)
-	game_camera.offset = Vector2.from_angle(shake_angle) * (SHAKE_AMPLITUDE * shake_koeff)
+	var ampl = SHAKE_AMPLITUDE * shake_koeff * shake_koeff
+	game_camera.offset = Vector2.from_angle(shake_angle) * ampl

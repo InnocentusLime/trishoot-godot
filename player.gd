@@ -116,8 +116,10 @@ func _process(delta):
 	if invince_left > 0:
 		invince_left -= delta
 		var current_flicker = int(invince_left * FLICKER_SPEED)
-		if current_flicker % 2 == 0: modulate = Color.RED
-		else: modulate = Color.TRANSPARENT
+		if current_flicker % 2 == 0: 
+			modulate = pain_color()
+		else: 
+			modulate = Color.TRANSPARENT
 	else: modulate = Color.WHITE
 
 func _on_recoil_stop():
@@ -125,3 +127,11 @@ func _on_recoil_stop():
 
 func _on_shoot_done():
 	shooting = false
+	
+func pain_color() -> Color:
+	var k = 1.0 - invince_left / INVINCE_TIME
+	k = min(curve(k * 4.0) / curve(1), 1.0)
+	return Color(1.0, k, k)
+	
+func curve(x: float) -> float:
+	return pow(4.0, x) - 1

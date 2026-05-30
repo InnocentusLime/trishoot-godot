@@ -13,8 +13,9 @@
 [ext_resource type="Animation" uid="uid://djxsf110u2rub" path="res://anims/player_running_left.res" id="5_2pltu"]
 [ext_resource type="AudioStream" uid="uid://c5jgwpj3tyitn" path="res://snd/shotgun.wav" id="7_f52ns"]
 [ext_resource type="PackedScene" uid="uid://blk4gg3st88kl" path="res://hitspark.tscn" id="7_krmtw"]
-[ext_resource type="PackedScene" uid="uid://drsntvbi0rlqq" path="res://enemy.tscn" id="9_4srsv"]
 [ext_resource type="AudioStream" uid="uid://bwb4hrhnm2cg5" path="res://snd/oldhit.wav" id="11_aomqu"]
+[ext_resource type="Script" uid="uid://uwataje5pc8s" path="res://projectile.gd" id="15_an1vu"]
+[ext_resource type="Texture2D" uid="uid://114unu2t58bl" path="res://sprites/dumbo.png" id="15_qpaub"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1oj5k"]
 size = Vector2(18, 35)
@@ -291,6 +292,9 @@ _data = {
 &"running_right": SubResource("Animation_f52ns"),
 &"shoot_left": SubResource("Animation_2pltu")
 }
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_an1vu"]
+radius = 6.0
 
 [node name="MainGame" type="Node2D" unique_id=1130606135]
 script = ExtResource("1_4srsv")
@@ -596,7 +600,7 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=288906619]
-position = Vector2(344, 192)
+position = Vector2(345, 238)
 collision_layer = 8
 script = ExtResource("2_ykeeq")
 boom = ExtResource("3_2pltu")
@@ -633,20 +637,21 @@ stream = ExtResource("7_f52ns")
 [node name="Pain" type="AudioStreamPlayer2D" parent="Player" unique_id=1498715349]
 stream = ExtResource("11_aomqu")
 
-[node name="Enemy" parent="." unique_id=1015365341 instance=ExtResource("9_4srsv")]
-position = Vector2(484, 215)
+[node name="Projectile" type="Area2D" parent="." unique_id=971500752]
+position = Vector2(534, 253)
+collision_mask = 8
+monitorable = false
+script = ExtResource("15_an1vu")
 
-[node name="Enemy2" parent="." unique_id=794690758 instance=ExtResource("9_4srsv")]
-position = Vector2(561, 211)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile" unique_id=359537627]
+shape = SubResource("CircleShape2D_an1vu")
+debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="Enemy3" parent="." unique_id=54252079 instance=ExtResource("9_4srsv")]
-position = Vector2(490, 450)
+[node name="Sprite2D" type="Sprite2D" parent="Projectile" unique_id=1572421929]
+position = Vector2(-8, -8)
+texture = ExtResource("15_qpaub")
+centered = false
+region_enabled = true
+region_rect = Rect2(71, 12, 16, 16)
 
-[node name="Enemy4" parent="." unique_id=970577874 instance=ExtResource("9_4srsv")]
-position = Vector2(538, 452)
-
-[node name="Enemy5" parent="." unique_id=2096764928 instance=ExtResource("9_4srsv")]
-position = Vector2(559, 402)
-
-[node name="Enemy6" parent="." unique_id=1998714197 instance=ExtResource("9_4srsv")]
-position = Vector2(499, 398)
+[connection signal="body_entered" from="Projectile" to="Projectile" method="_on_attack"]
