@@ -5,7 +5,6 @@ extends CharacterBody2D
 @onready var center: Vector2 = $MapCol.shape.get_rect().size / 2.0
 @onready var body: Sprite2D = $Body
 @onready var shoot: AudioStreamPlayer2D = $Shoot
-@onready var pain: AudioStreamPlayer2D = $Pain
 
 @export var boom: PackedScene
 @export var hitspark: PackedScene
@@ -32,8 +31,6 @@ func _on_dmg(hitpos: Vector2):
 	if hp <= 0:
 		queue_free()
 		return
-	GameEvents.player_hit.emit()
-	pain.play()
 	var hit_dir: Vector2 = (hitpos - position).normalized()
 	var hit: Node2D = hitspark.instantiate()
 	hit.position = position + hit_dir * 16.0
