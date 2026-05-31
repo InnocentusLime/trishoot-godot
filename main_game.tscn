@@ -12,6 +12,7 @@
 [ext_resource type="Animation" uid="uid://cn1w4deihytdq" path="res://anims/player_idle.res" id="4_dugkq"]
 [ext_resource type="Animation" uid="uid://djxsf110u2rub" path="res://anims/player_running_left.res" id="5_2pltu"]
 [ext_resource type="PackedScene" uid="uid://c2mrriy54iu40" path="res://hits/hitplayer.tscn" id="9_an1vu"]
+[ext_resource type="PackedScene" uid="uid://due6y6601ung" path="res://enemies/chaser.tscn" id="13_krmtw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aomqu"]
 size = Vector2(20, 480)
@@ -652,3 +653,9 @@ monitoring = false
 position = Vector2(7, 6.5)
 shape = SubResource("RectangleShape2D_krmtw")
 debug_color = Color(0.2711291, 0.6329507, 0, 0.41960785)
+
+[node name="Chaser" parent="." unique_id=1610205134 instance=ExtResource("13_krmtw")]
+position = Vector2(1020, 219)
+
+[node name="Chaser2" parent="." unique_id=1389883298 instance=ExtResource("13_krmtw")]
+position = Vector2(-365, 200)

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://djfg4hw82bmed"]
 
 [ext_resource type="Script" uid="uid://d1wasio52jtvn" path="res://enemies/ai_base.gd" id="1_s6s0r"]
+[ext_resource type="AudioStream" uid="uid://rbsruhvkjoxq" path="res://snd/hop.wav" id="2_07hu3"]
 
 [node name="AIBase" type="Node2D" unique_id=281758926]
 script = ExtResource("1_s6s0r")
@@ -13,5 +14,14 @@ one_shot = true
 wait_time = 6.0
 one_shot = true
 
+[node name="JumpTimer" type="Timer" parent="." unique_id=1022736897]
+wait_time = 0.6
+one_shot = true
+
+[node name="Hop" type="AudioStreamPlayer2D" parent="." unique_id=902485585]
+stream = ExtResource("2_07hu3")
+volume_db = -10.904
+
 [connection signal="timeout" from="ThinkTick" to="." method="_update_think"]
 [connection signal="timeout" from="DeleteTimer" to="." method="_lifetime_out"]
+[connection signal="timeout" from="JumpTimer" to="." method="_jump_done"]

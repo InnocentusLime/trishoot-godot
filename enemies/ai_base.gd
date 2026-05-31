@@ -3,16 +3,23 @@ extends Node2D
 
 const KNOCKBACK_SPEED: float = 999.0
 const OFFSCREEN_DELTA: float = PI / 5
+const ENTER_SPEED: float = 64.0
+const JUMP_VELOCITY: Vector2 = Vector2(200, -300)
+const JUMP_GRAVITY: float = 1000.0
+const LEFT_JUMP_X: float = 150.0
+const RIGHT_JUMP_X: float = 800.0
 
 enum EnemyLayer {ACTIVE = 2, DYING = 3}
-enum EnemyState {ALIVE = 0, KNOCKBACK=1, OFFSCREEN=2}
+enum EnemyState {ENTERING=-2, HOPPINGOVER=-1, ALIVE = 0, KNOCKBACK=1, OFFSCREEN=2}
 
-var state: EnemyState = EnemyState.ALIVE
+var state: EnemyState = EnemyState.ENTERING
 var knockback_dir: Vector2 = Vector2.ZERO
 var bumped_this_frame: bool = false
 
+@onready var hop: AudioStreamPlayer2D = $Hop
 @onready var think_tick: Timer = $ThinkTick
 @onready var delete_timer: Timer = $DeleteTimer
+@onready var jump_timer: Timer = $JumpTimer
 @onready var die_angle_sign: int = (randi() & 2) - 1
 @onready var hitspark: PackedScene = preload("res://hits/hitenemy.tscn")
 
@@ -22,13 +29,19 @@ var body: CharacterBody2D
 var impl_think: Callable
 var impl_update_think: Callable
 var impl_die: Callable
+var impl_jump: Callable
+
+var jumps_on_left: bool = true
+var hop_start: Vector2
+var jump_vel: Vector2
 
 func _ready():
 	body = get_parent()
 	impl_think = Callable(body, "_think")
 	impl_update_think = Callable(body, "_update_think")
 	impl_die = Callable(body, "_die")
-	think_tick.start(0.1)
+	impl_jump = Callable(body, "_jump")
+	jumps_on_left = body.position.x < LEFT_JUMP_X
 
 func _on_dmg(attack_pos: Vector2):
 	if state != EnemyState.ALIVE: return
@@ -60,6 +73,38 @@ func _physics_process(delta):
 			body.velocity = 1.6 * KNOCKBACK_SPEED * knockback_dir.rotated(offscreen_dir_angle)
 		EnemyState.ALIVE:
 			impl_think.call(bumped_this_frame)
+		EnemyState.ENTERING:
+			# FIXME: hardcoded
+			if jumps_on_left:
+				if body.position.x >= LEFT_JUMP_X:
+					hop_start = body.position
+					state = EnemyState.HOPPINGOVER
+					jump_vel = JUMP_VELOCITY
+					jump_timer.start()
+					impl_jump.call()
+					hop.play()
+				else:
+					body.velocity = Vector2(ENTER_SPEED, 0.0)
+			else: 
+				if body.position.x <= RIGHT_JUMP_X:
+					hop_start = body.position
+					state = EnemyState.HOPPINGOVER
+					jump_vel = JUMP_VELOCITY
+					jump_vel.x *= -1
+					jump_timer.start()
+					impl_jump.call()
+					hop.play()
+				else:
+					body.velocity = Vector2(-ENTER_SPEED, 0.0)
+		EnemyState.HOPPINGOVER:
+			body.velocity = jump_vel
+			jump_vel.y += JUMP_GRAVITY * delta
+
+func _jump_done():
+	body.set_collision_mask_value(1, true)
+	body.set_collision_mask_value(EnemyLayer.ACTIVE, true)
+	think_tick.start(0.1)
+	state = EnemyState.ALIVE
 
 func _lifetime_out():
 	body.queue_free()

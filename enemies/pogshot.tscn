@@ -70,7 +70,7 @@ size = Vector2(42, 24)
 
 [node name="Pogshot" type="CharacterBody2D" unique_id=1015365341]
 collision_layer = 2
-collision_mask = 3
+collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_twup2")
 laserball = ExtResource("2_eveg3")

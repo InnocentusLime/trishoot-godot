@@ -10,3 +10,6 @@ func _ready():
 func _on_dmg(attack_pos: Vector2): 
 	anim.current_animation = "hurt"
 	ai_base._on_dmg(attack_pos)
+
+func _jump():
+	anim.current_animation = "jump"

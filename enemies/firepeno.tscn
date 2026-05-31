@@ -70,7 +70,7 @@ size = Vector2(11, 24)
 
 [node name="Firepeno" type="CharacterBody2D" unique_id=1015365341]
 collision_layer = 2
-collision_mask = 3
+collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_u74kb")
 laserball = ExtResource("2_63c86")
