@@ -43,7 +43,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_37ygf"]
-size = Vector2(103, 88)
+size = Vector2(121, 88)
 
 [node name="Boom" type="Node2D" unique_id=777597560]
 script = ExtResource("1_37ygf")
@@ -62,7 +62,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Damge" unique_id=457899906]
-position = Vector2(-51.5, 0)
+position = Vector2(-42.5, 0)
 shape = SubResource("RectangleShape2D_37ygf")
 debug_color = Color(0.99949735, 0, 0.12846798, 0.41960785)
 
