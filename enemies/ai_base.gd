@@ -43,8 +43,8 @@ func _ready():
 	impl_jump = Callable(body, "_jump")
 	jumps_on_left = body.position.x < LEFT_JUMP_X
 
-func _on_dmg(attack_pos: Vector2):
-	if state != EnemyState.ALIVE: return
+func _on_dmg(attack_pos: Vector2) -> bool:
+	if state != EnemyState.ALIVE: return false
 	body.set_collision_layer_value(EnemyLayer.ACTIVE, false)
 	body.set_collision_layer_value(EnemyLayer.DYING, true)
 	body.set_collision_mask_value(EnemyLayer.ACTIVE, false)
@@ -53,6 +53,7 @@ func _on_dmg(attack_pos: Vector2):
 	delete_timer.start()
 	think_tick.stop()
 	impl_die.call()
+	return true
 
 func _physics_process(delta):
 	bumped_this_frame = body.move_and_slide()
