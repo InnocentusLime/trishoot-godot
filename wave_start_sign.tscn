@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bceryb2t6c4tb"]
+
+[ext_resource type="Script" uid="uid://dr63cv135i8ul" path="res://wave_start_sign.gd" id="1_jr8ka"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qpaub"]
+font_size = 35
+font_color = Color(1, 0, 0, 1)
+
+[node name="WaveStartSign" type="Label" unique_id=613257846]
+offset_right = 960.0
+offset_bottom = 49.0
+text = "Next Wave"
+label_settings = SubResource("LabelSettings_qpaub")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_jr8ka")
+
+[node name="Timer" type="Timer" parent="." unique_id=1645108737]
+wait_time = 1.4
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_done"]

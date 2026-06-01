@@ -4,8 +4,10 @@ extends CanvasLayer
 @onready var score_label: Label = $HUD/Stack/Score/Label
 @onready var hp: Label = $HUD/Stack/Health
 @onready var comboer: Control = $HUD/Stack/Comboer
+@onready var wave_start: Control = $WaveCompPort/WaveStart
 
 @export var combo_widget: PackedScene
+@export var wave_start_widget: PackedScene
 
 var current_score = 0
 var current_hp = 3
@@ -15,8 +17,13 @@ var score_distort = 1.0
 func _ready():
 	GameEvents.player_comboed.connect(_on_player_combo)
 	GameEvents.player_hit.connect(_on_player_damage)
+	GameEvents.wave_complete.connect(_on_wave_complete)
 	score_label.text = "Score: %d" % current_score
 	hp.text = "HP: %d" % current_hp
+
+func _on_wave_complete():
+	var sign: WaveStart = wave_start_widget.instantiate()
+	wave_start.add_child(sign)
 
 func _on_player_damage():
 	current_hp -= 1

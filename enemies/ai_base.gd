@@ -3,7 +3,7 @@ extends Node2D
 
 const KNOCKBACK_SPEED: float = 999.0
 const OFFSCREEN_DELTA: float = PI / 5
-const ENTER_SPEED: float = 64.0
+const ENTER_SPEED: float = 260.0
 const JUMP_VELOCITY: Vector2 = Vector2(200, -300)
 const JUMP_GRAVITY: float = 1000.0
 const LEFT_JUMP_X: float = 150.0
@@ -53,6 +53,7 @@ func _on_dmg(attack_pos: Vector2) -> bool:
 	delete_timer.start()
 	think_tick.stop()
 	impl_die.call()
+	GameEvents.enemy_died.emit()
 	return true
 
 func _physics_process(delta):
@@ -108,6 +109,7 @@ func _jump_done():
 	state = EnemyState.ALIVE
 
 func _lifetime_out():
+	GameEvents.enemy_despawned.emit()
 	body.queue_free()
 
 func _update_think():

@@ -11,7 +11,7 @@ think_time = 1.2
 one_shot = true
 
 [node name="DeleteTimer" type="Timer" parent="." unique_id=1928931609]
-wait_time = 6.0
+wait_time = 2.0
 one_shot = true
 
 [node name="JumpTimer" type="Timer" parent="." unique_id=1022736897]

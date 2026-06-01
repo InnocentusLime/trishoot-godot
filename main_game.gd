@@ -4,7 +4,7 @@ extends Node2D
 const SHAKE_AMPLITUDE: float = 1.0
 const BASE_SCORE: int = 10
 
-@onready var game_camera: Camera2D = $WindowManager/Camera2D
+@onready var game_camera: Camera2D = $WindowManager/Gameplay
 
 var score: int = 0
 var shake_koeff: float = 0.0
