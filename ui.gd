@@ -17,7 +17,7 @@ var score_distort = 1.0
 func _ready():
 	GameEvents.player_comboed.connect(_on_player_combo)
 	GameEvents.player_hit.connect(_on_player_damage)
-	GameEvents.wave_complete.connect(_on_wave_complete)
+	#GameEvents.wave_complete.connect(_on_wave_complete)
 	score_label.text = "Score: %d" % current_score
 	hp.text = "HP: %d" % current_hp
 

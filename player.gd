@@ -22,13 +22,17 @@ var shooting: bool = false
 var recoiling: bool = false
 var invince_left: float = 0.0
 
+
+var god: bool = false
+
 func _on_dmg(hitpos: Vector2):
 	if invince_left > 0.0: return
 	
-	hp -= 1
-	invince_left = INVINCE_TIME
-	if hp <= 0:
-		queue_free()
+	if not god:
+		hp -= 1
+		invince_left = INVINCE_TIME
+		if hp <= 0:
+			queue_free()
 	
 	var hit_dir: Vector2 = (hitpos - position).normalized()
 	var hit: Node2D = hitspark.instantiate()

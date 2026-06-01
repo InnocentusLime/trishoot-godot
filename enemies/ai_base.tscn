@@ -11,11 +11,11 @@ think_time = 1.2
 one_shot = true
 
 [node name="DeleteTimer" type="Timer" parent="." unique_id=1928931609]
-wait_time = 2.0
+wait_time = 0.8
 one_shot = true
 
 [node name="JumpTimer" type="Timer" parent="." unique_id=1022736897]
-wait_time = 0.6
+wait_time = 0.75
 one_shot = true
 
 [node name="Hop" type="AudioStreamPlayer2D" parent="." unique_id=902485585]

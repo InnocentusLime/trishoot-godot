@@ -169,4 +169,8 @@ think_time = 1.5
 [node name="ProjectileSpawn" type="Node2D" parent="." unique_id=130052624]
 position = Vector2(8, -18)
 
+[node name="Shoot" type="Timer" parent="." unique_id=1894168074]
+wait_time = 0.9
+
 [connection signal="area_entered" from="Attack" to="." method="_on_attack"]
+[connection signal="timeout" from="Shoot" to="." method="_shoot"]

@@ -51,6 +51,7 @@ func _on_enemy_despawned():
 	enemies_despawn_left -= 1
 	if enemies_despawn_left <= 0:
 		GameEvents.wave_complete.emit()
+		GameEvents.wave_start.emit()
 
 func _on_do_spawn():
 	spawn_enemies()

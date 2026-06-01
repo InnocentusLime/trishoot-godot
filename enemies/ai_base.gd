@@ -104,7 +104,6 @@ func _physics_process(delta):
 
 func _jump_done():
 	body.set_collision_mask_value(1, true)
-	body.set_collision_mask_value(EnemyLayer.ACTIVE, true)
 	think_tick.start(0.1)
 	state = EnemyState.ALIVE
 
@@ -117,3 +116,4 @@ func _update_think():
 	var k = 1.0 + 0.5 * randi_range(0, 3)
 	think_tick.start(think_time * k)
 	impl_update_think.call()
+	body.set_collision_mask_value(EnemyLayer.ACTIVE, randi_range(0, 2) == 2)
