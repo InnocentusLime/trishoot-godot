@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var weapon: Node2D = $Weapon
 @onready var weaponSprite: Sprite2D = $Weapon/Weapon
 @onready var center: Vector2 = $MapCol.shape.get_rect().size / 2.0
+@onready var cock: AudioStreamPlayer2D = $Cock
 
 @export var boom: PackedScene
 @export var hitspark: PackedScene
@@ -22,7 +23,7 @@ var shooting: bool = false
 var recoiling: bool = false
 var invince_left: float = 0.0
 
-
+var hasgun: bool = false
 var god: bool = false
 
 func _on_dmg(hitpos: Vector2):
@@ -41,6 +42,12 @@ func _on_dmg(hitpos: Vector2):
 
 func _ready():
 	$AnimationPlayer.current_animation = "idle_left"
+	GameEvents.game_start.connect(_on_game_start)
+
+func _on_game_start():
+	cock.play()
+	weapon.visible = true
+	hasgun = true
 
 func _physics_process(delta):
 	var h_dir = Input.get_axis("move_left", "move_right")
@@ -73,7 +80,7 @@ func _physics_process(delta):
 			animation = "running_right"
 		else:
 			animation = "running_left"
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") and hasgun:
 		shooting = true
 		recoiling = true
 		velocity = -Vector2.from_angle(aim_angle) * KNOCKBACK_SPEED

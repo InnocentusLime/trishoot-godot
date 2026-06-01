@@ -41,6 +41,7 @@ func _ready():
 	GameEvents.enemy_died.connect(_on_enemy_dead)
 	GameEvents.wave_start.connect(start_wave)
 	GameEvents.enemy_despawned.connect(_on_enemy_despawned)
+	GameEvents.game_start.connect(start_wave)
 	
 func _on_enemy_dead():
 	enemies_killed += 1

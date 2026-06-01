@@ -10,3 +10,4 @@ signal enemy_died
 signal wave_complete
 signal wave_start
 signal enemy_despawned
+signal game_start

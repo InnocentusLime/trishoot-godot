@@ -15,7 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://c2mrriy54iu40" path="res://hits/hitplayer.tscn" id="9_an1vu"]
 [ext_resource type="Script" uid="uid://0focy8a8p1yl" path="res://wave_manager.gd" id="13_krmtw"]
 [ext_resource type="PackedScene" uid="uid://b12cng6sqw7n5" path="res://enemies/sigguy.tscn" id="14_an1vu"]
+[ext_resource type="AudioStream" uid="uid://bip4mw50ruc1w" path="res://snd/cock.wav" id="14_borgi"]
 [ext_resource type="PackedScene" uid="uid://due6y6601ung" path="res://enemies/chaser.tscn" id="14_jgkyn"]
+[ext_resource type="Script" uid="uid://ddpypaosue7dh" path="res://gun_pickup.gd" id="18_ih6an"]
+[ext_resource type="Texture2D" uid="uid://djd22agmoquif" path="res://sprites/gun.png" id="19_umrn2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aomqu"]
 size = Vector2(20, 480)
@@ -298,6 +301,9 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_krmtw"]
 size = Vector2(14, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_borgi"]
+size = Vector2(35, 13)
 
 [node name="MainGame" type="Node2D" unique_id=1130606135]
 script = ExtResource("1_4srsv")
@@ -626,9 +632,6 @@ alignment = 1
 [node name="WaveStart" type="Control" parent="WindowManager/Gameplay/UI/WaveCompPort" unique_id=253562828]
 layout_mode = 2
 
-[node name="WaveStartSign" parent="WindowManager/Gameplay/UI/WaveCompPort/WaveStart" unique_id=613257846 instance=ExtResource("7_an1vu")]
-layout_mode = 0
-
 [node name="Player" type="CharacterBody2D" parent="." unique_id=288906619]
 position = Vector2(303, 128)
 collision_layer = 16
@@ -650,6 +653,7 @@ region_enabled = true
 region_rect = Rect2(52, 55, 37, 49)
 
 [node name="Weapon" type="Node2D" parent="Player" unique_id=1786017647]
+visible = false
 position = Vector2(-17, -3)
 
 [node name="Weapon" type="Sprite2D" parent="Player/Weapon" unique_id=782101925]
@@ -672,6 +676,10 @@ position = Vector2(7, 6.5)
 shape = SubResource("RectangleShape2D_krmtw")
 debug_color = Color(0.2711291, 0.6329507, 0, 0.41960785)
 
+[node name="Cock" type="AudioStreamPlayer2D" parent="Player" unique_id=349822624]
+stream = ExtResource("14_borgi")
+volume_db = -4.194
+
 [node name="WaveManager" type="Node2D" parent="." unique_id=398805920]
 script = ExtResource("13_krmtw")
 enemies = Array[PackedScene]([ExtResource("14_jgkyn"), ExtResource("14_an1vu")])
@@ -686,4 +694,26 @@ position = Vector2(1053, 273)
 wait_time = 0.6
 one_shot = true
 
+[node name="GunPickup" type="Area2D" parent="." unique_id=233186281]
+position = Vector2(479, 282)
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+script = ExtResource("18_ih6an")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GunPickup" unique_id=1984977917]
+position = Vector2(0.5, -1.5)
+shape = SubResource("RectangleShape2D_borgi")
+
+[node name="Sprite2D" type="Sprite2D" parent="GunPickup" unique_id=1784967425]
+texture = ExtResource("19_umrn2")
+
+[node name="Label" type="Label" parent="GunPickup" unique_id=40314010]
+offset_left = -33.0
+offset_top = -36.0
+offset_right = 37.0
+offset_bottom = -13.0
+text = "Free Gun"
+
 [connection signal="timeout" from="WaveManager/SpawnTimer" to="WaveManager" method="_on_do_spawn"]
+[connection signal="body_entered" from="GunPickup" to="GunPickup" method="_on_body_entered"]
