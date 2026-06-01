@@ -104,7 +104,7 @@ func _physics_process(delta):
 
 func _jump_done():
 	body.set_collision_mask_value(1, true)
-	think_tick.start(0.1)
+	think_tick.start(randf_range(0.1, 0.4))
 	state = EnemyState.ALIVE
 
 func _lifetime_out():

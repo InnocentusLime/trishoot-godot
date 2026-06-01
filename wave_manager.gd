@@ -37,12 +37,12 @@ func start_wave():
 			enemmy_group_prob = 0.4
 			spawn_time = 0.7
 		1: 
-			enemies_despawn_left = 20
+			enemies_spawn_left = 20
 			enemy_limit = 10
 			enemmy_group_prob = 0.6
 			spawn_time = 0.5
 		2: 
-			enemies_despawn_left = 40
+			enemies_spawn_left = 40
 			enemy_limit = 15
 			enemmy_group_prob = 0.7
 			spawn_time = 0.4
@@ -53,7 +53,7 @@ func start_wave():
 			probabilities = [0.6, 1.5]
 		1:
 			lookup = [0, 1, 2]
-			probabilities = [0.6, 0.8, 0.4]
+			probabilities = [0.6, 0.4, 0.4]
 		2:
 			lookup = [0, 1, 2, 3]
 			probabilities = [0.6, 0.8, 0.4, 0.2]

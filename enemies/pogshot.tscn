@@ -164,7 +164,7 @@ shape = SubResource("RectangleShape2D_iifgy")
 debug_color = Color(1, 0, 0, 0.41960785)
 
 [node name="AIBase" parent="." unique_id=281758926 instance=ExtResource("5_weggl")]
-think_time = 0.7
+think_time = 1.5
 
 [node name="ProjectileSpawn" type="Node2D" parent="." unique_id=130052624]
 position = Vector2(11, 6)

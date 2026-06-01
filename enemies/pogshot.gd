@@ -5,7 +5,7 @@ extends Think
 @onready var spawnpoint: Node2D = $ProjectileSpawn
 
 const WALK_SPEED: float = 42.0
-const MY_PROJ_VELOCITY: float = 256.0
+const MY_PROJ_VELOCITY: float = 84.0
 
 var walk_dir: Vector2 = Vector2.ZERO
 
