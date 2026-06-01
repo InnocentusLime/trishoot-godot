@@ -23,8 +23,40 @@ var enemies_spawned: int = 0
 var enemies_killed: int = 0
 var enemies_despawn_left: int = 0
 
+var wave_num: int = -1
+
 func start_wave():
-	enemies_spawn_left = 10
+	wave_num += 1
+	
+	if wave_num >= 9: return
+	
+	match wave_num % 3:
+		0: 
+			enemies_spawn_left = 10
+			enemy_limit = 5
+			enemmy_group_prob = 0.4
+			spawn_time = 0.7
+		1: 
+			enemies_despawn_left = 20
+			enemy_limit = 10
+			enemmy_group_prob = 0.6
+			spawn_time = 0.5
+		2: 
+			enemies_despawn_left = 40
+			enemy_limit = 15
+			enemmy_group_prob = 0.7
+			spawn_time = 0.4
+			
+	match wave_num / 3:
+		0:
+			lookup = [0, 1]
+			probabilities = [0.6, 1.5]
+		1:
+			lookup = [0, 1, 2]
+			probabilities = [0.6, 0.8, 0.4]
+		2:
+			lookup = [0, 1, 2, 3]
+			probabilities = [0.6, 0.8, 0.4, 0.2]
 	
 	enemies_spawned = 0
 	enemies_killed = 0

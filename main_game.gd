@@ -5,6 +5,7 @@ const SHAKE_AMPLITUDE: float = 1.0
 const BASE_SCORE: int = 10
 
 @onready var game_camera: Camera2D = $WindowManager/Gameplay
+@onready var music: AudioStreamPlayer = $Music
 
 var score: int = 0
 var shake_koeff: float = 0.0
@@ -14,6 +15,10 @@ func _ready():
 	GameEvents.enemy_hit_bounds.connect(_on_enemy_hit_bounds)
 	GameEvents.player_gun_shot.connect(_on_player_shoot)
 	GameEvents.player_hit.connect(_on_player_hit)
+	GameEvents.game_start.connect(_on_game_start)
+	
+func _on_game_start():
+	music.play()
 
 func _on_combo(count: int):
 	var reward: int = (count*count) * BASE_SCORE 

@@ -17,8 +17,11 @@
 [ext_resource type="PackedScene" uid="uid://b12cng6sqw7n5" path="res://enemies/sigguy.tscn" id="14_an1vu"]
 [ext_resource type="AudioStream" uid="uid://bip4mw50ruc1w" path="res://snd/cock.wav" id="14_borgi"]
 [ext_resource type="PackedScene" uid="uid://due6y6601ung" path="res://enemies/chaser.tscn" id="14_jgkyn"]
+[ext_resource type="PackedScene" uid="uid://bf7pjooog1yfr" path="res://enemies/pogshot.tscn" id="15_borgi"]
+[ext_resource type="PackedScene" uid="uid://8qvjrhgeu4wr" path="res://enemies/firepeno.tscn" id="16_ih6an"]
 [ext_resource type="Script" uid="uid://ddpypaosue7dh" path="res://gun_pickup.gd" id="18_ih6an"]
 [ext_resource type="Texture2D" uid="uid://djd22agmoquif" path="res://sprites/gun.png" id="19_umrn2"]
+[ext_resource type="AudioStream" uid="uid://clsg10otuyn1d" path="res://Thousand March.mp3" id="20_2i4tw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aomqu"]
 size = Vector2(20, 480)
@@ -682,7 +685,7 @@ volume_db = -4.194
 
 [node name="WaveManager" type="Node2D" parent="." unique_id=398805920]
 script = ExtResource("13_krmtw")
-enemies = Array[PackedScene]([ExtResource("14_jgkyn"), ExtResource("14_an1vu")])
+enemies = Array[PackedScene]([ExtResource("14_jgkyn"), ExtResource("14_an1vu"), ExtResource("15_borgi"), ExtResource("16_ih6an")])
 
 [node name="LeftSpawnPoint" type="Node2D" parent="WaveManager" unique_id=1728663601]
 position = Vector2(-79, 268)
@@ -714,6 +717,10 @@ offset_top = -36.0
 offset_right = 37.0
 offset_bottom = -13.0
 text = "Free Gun"
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1326820840]
+stream = ExtResource("20_2i4tw")
+volume_db = -6.502
 
 [connection signal="timeout" from="WaveManager/SpawnTimer" to="WaveManager" method="_on_do_spawn"]
 [connection signal="body_entered" from="GunPickup" to="GunPickup" method="_on_body_entered"]
