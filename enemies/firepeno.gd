@@ -6,7 +6,7 @@ extends Think
 @onready var chaintimer: Timer = $ChainTimer
 
 const WALK_SPEED: float = 42.0
-const MY_PROJ_VELOCITY: float = 400.0
+const MY_PROJ_VELOCITY: float = 200.0
 
 var walk_dir: Vector2 = Vector2.ZERO
 
@@ -34,5 +34,5 @@ func _shoot():
 	var dir = (GameEvents.player_pos - position).normalized()
 	var proj: Projectile = laserball.instantiate()
 	proj.position = spawnpoint.global_position
-	proj.move_vel = dir * MY_PROJ_VELOCITY
+	proj.move_vel = dir.rotated(randi_range(-2, 2) * PI / 8.0) * MY_PROJ_VELOCITY
 	add_sibling(proj)

@@ -3,7 +3,8 @@ extends Area2D
 
 var move_vel: Vector2 = Vector2(-15.0, 0.0)
 
-func _on_attack(hurtbox: Area2D):
+func _on_attack(hurtbox: Node2D):
+	queue_free()
 	var to_dmg = hurtbox.get_parent()
 	if to_dmg == null: return
 	if to_dmg.has_method("_on_dmg"):

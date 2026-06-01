@@ -8,7 +8,7 @@
 radius = 6.0
 
 [node name="Projectile" type="Area2D" unique_id=103431693]
-collision_mask = 8
+collision_mask = 9
 monitorable = false
 script = ExtResource("1_p4umi")
 
@@ -34,4 +34,5 @@ volume_db = -12.404
 autoplay = true
 
 [connection signal="area_entered" from="." to="." method="_on_attack"]
+[connection signal="body_entered" from="." to="." method="_on_attack"]
 [connection signal="timeout" from="Timer" to="." method="queue_free"]

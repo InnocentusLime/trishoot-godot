@@ -31,9 +31,9 @@ func _on_dmg(hitpos: Vector2):
 	
 	if not god:
 		hp -= 1
-		invince_left = INVINCE_TIME
-		if hp <= 0:
-			queue_free()
+	invince_left = INVINCE_TIME
+	if hp <= 0:
+		queue_free()
 	
 	var hit_dir: Vector2 = (hitpos - position).normalized()
 	var hit: Node2D = hitspark.instantiate()
@@ -66,33 +66,6 @@ func _physics_process(delta):
 		move_vel *= 0.8
 	velocity += move_vel
 		
-	if shooting:
-		move_and_slide()
-		return
-
-	var animation: StringName
-	if face_right:
-		animation = "idle_right"
-	else:
-		animation = "idle_left"
-	if velocity:
-		if face_right:
-			animation = "running_right"
-		else:
-			animation = "running_left"
-	if Input.is_action_just_pressed("shoot") and hasgun:
-		shooting = true
-		recoiling = true
-		velocity = -Vector2.from_angle(aim_angle) * KNOCKBACK_SPEED
-		animation = "shoot_left"
-		var the_boom: Node2D = boom.instantiate()
-		var weapon_angle: float = aim_angle - PI
-		the_boom.position = position + center - Vector2.from_angle(weapon_angle) * (WEAPON_DIST + BOOM_DIST)
-		the_boom.rotation = weapon_angle
-		add_sibling(the_boom)
-		GameEvents.player_gun_shot.emit()
-	$AnimationPlayer.current_animation = animation
-	
 	move_and_slide()
 	
 #func ease(x: float) -> float:
@@ -127,6 +100,27 @@ func _process(delta):
 	else:
 		weaponSprite.offset = Vector2i(0, 0)
 	weaponSprite.flip_v = face_right
+	
+	var animation: StringName
+	if face_right:
+		animation = "idle_right"
+	else:
+		animation = "idle_left"
+	if velocity:
+		if face_right:
+			animation = "running_right"
+		else:
+			animation = "running_left"
+	if Input.is_action_just_pressed("shoot") and hasgun:
+		shooting = true
+		recoiling = true
+		animation = "shoot_left"
+		var the_boom: Node2D = boom.instantiate()
+		the_boom.position = position + center - Vector2.from_angle(weapon_angle) * (WEAPON_DIST + BOOM_DIST)
+		the_boom.rotation = weapon_angle
+		add_sibling(the_boom)
+		GameEvents.player_gun_shot.emit()
+	$AnimationPlayer.current_animation = animation
 
 func _on_recoil_stop():
 	recoiling = false

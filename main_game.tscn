@@ -309,9 +309,11 @@ size = Vector2(14, 13)
 size = Vector2(35, 13)
 
 [node name="MainGame" type="Node2D" unique_id=1130606135]
+y_sort_enabled = true
 script = ExtResource("1_4srsv")
 
-[node name="Field" type="StaticBody2D" parent="." unique_id=12779202]
+[node name="Field" type="AnimatableBody2D" parent="." unique_id=976939261]
+z_index = -1
 
 [node name="Field" type="Sprite2D" parent="Field" unique_id=867149644]
 position = Vector2(240, 49)

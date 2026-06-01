@@ -164,13 +164,13 @@ shape = SubResource("RectangleShape2D_iifgy")
 debug_color = Color(1, 0, 0, 0.41960785)
 
 [node name="AIBase" parent="." unique_id=281758926 instance=ExtResource("5_12y52")]
-think_time = 1.0
+think_time = 1.1
 
 [node name="ProjectileSpawn" type="Node2D" parent="." unique_id=130052624]
 position = Vector2(-7, 3)
 
 [node name="ChainTimer" type="Timer" parent="." unique_id=1780527672]
-wait_time = 0.06
+wait_time = 0.1
 
 [connection signal="area_entered" from="Attack" to="." method="_on_attack"]
 [connection signal="timeout" from="ChainTimer" to="." method="_shoot"]

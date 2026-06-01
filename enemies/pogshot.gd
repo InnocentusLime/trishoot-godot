@@ -5,7 +5,7 @@ extends Think
 @onready var spawnpoint: Node2D = $ProjectileSpawn
 
 const WALK_SPEED: float = 42.0
-const MY_PROJ_VELOCITY: float = 84.0
+const MY_PROJ_VELOCITY: float = 100.0
 
 var walk_dir: Vector2 = Vector2.ZERO
 
@@ -23,8 +23,8 @@ func _update_think():
 	var walk_rot = float(increment) * PI / 8.0
 	walk_dir = dir.rotated(walk_rot)
 	
-	var proj_increment = PI / 8
-	for i in range(-3, 3):
+	var proj_increment = PI / 4
+	for i in range(-2, 2):
 		var proj: Projectile = laserball.instantiate()
 		proj.position = spawnpoint.global_position
 		proj.move_vel = dir.rotated(i * proj_increment) * MY_PROJ_VELOCITY
