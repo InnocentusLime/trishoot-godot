@@ -6,7 +6,7 @@
 
 [node name="hitspark" type="Sprite2D" unique_id=1628699677]
 process_mode = 3
-z_index = 1
+z_index = 2
 texture = ExtResource("3_e21xx")
 region_enabled = true
 region_rect = Rect2(1, 216, 107, 95)

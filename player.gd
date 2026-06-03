@@ -1,43 +1,39 @@
 extends CharacterBody2D
 
-@onready var weapon: Node2D = $Weapon
-@onready var weaponSprite: Sprite2D = $Weapon/Weapon
-@onready var center: Vector2 = $MapCol.shape.get_rect().size / 2.0
-@onready var cock: AudioStreamPlayer2D = $Cock
-
-@export var boom: PackedScene
-@export var hitspark: PackedScene
-@export var recoil_acc: float = 1.0
+enum State {IDLE=0, RUNNING=1, SHOOTING=2}
 
 const SPEED = 164.0
 const KNOCKBACK_SPEED = 666.0
 const WEAPON_DIST = 24.0
 const BOOM_DIST = 24.0
 const FLICKER_SPEED = 20.0 / 1.0 # flick / s
-const INVINCE_TIME = 3.0
 
+@onready var weapon: Node2D = $Weapon
+@onready var weaponSprite: Sprite2D = $Weapon/Weapon
+@onready var invince: Timer = $Invince
+@onready var anims: AnimationPlayer = $AnimationPlayer
+
+@export var boom: PackedScene
+@export var hitspark: PackedScene
+@export var recoil_acc: float = 0.0
+
+var state: State = State.IDLE
 var hp: int = 3
 var aim_angle: float = 0.0
 var face_right: bool = false
-var shooting: bool = false
-var recoiling: bool = false
-var invince_left: float = 0.0
 
 var hasgun: bool = false
 var god: bool = false
 
 func _on_dmg(hitpos: Vector2):
-	if invince_left > 0.0: return
+	if !invince.is_stopped(): return
+	invince.start()
 	
-	if not god:
-		hp -= 1
-	invince_left = INVINCE_TIME
-	if hp <= 0:
-		queue_free()
+	if not god: hp -= 1
+	if hp <= 0: queue_free()
 	
-	var hit_dir: Vector2 = (hitpos - position).normalized()
 	var hit: Node2D = hitspark.instantiate()
-	hit.position = position + hit_dir * 16.0
+	hit.position = position
 	add_sibling(hit)
 
 func _ready():
@@ -45,7 +41,6 @@ func _ready():
 	GameEvents.game_start.connect(_on_game_start)
 
 func _on_game_start():
-	cock.play()
 	weapon.visible = true
 	hasgun = true
 
@@ -55,83 +50,76 @@ func _physics_process(delta):
 	var move_vel = Vector2(h_dir, v_dir).normalized() * SPEED
 	
 	velocity = Vector2.ZERO
-	if recoiling:
+	if state == State.SHOOTING and recoil_acc >= 0.00001:
 		var knock_dir = -Vector2.from_angle(aim_angle)
-		var k = ease(recoil_acc, 0.4)
-		move_vel *= (1 - k) * 0.8
+		move_vel *= (1 - recoil_acc) * 0.8
 		var dot = move_vel.dot(knock_dir)
 		if dot > 0.0: move_vel -= dot * knock_dir
-		velocity += knock_dir * KNOCKBACK_SPEED * k
-	elif shooting:
+		velocity += knock_dir * KNOCKBACK_SPEED * recoil_acc
+	elif state == State.SHOOTING:
 		move_vel *= 0.8
 	velocity += move_vel
 		
 	move_and_slide()
 	
-#func ease(x: float) -> float:
-	#return 1 - pow(2.0, -10 * x)
-	
 func _process(delta):
 	GameEvents.player_pos = position
 		
-	if invince_left > 0:
-		invince_left -= delta
-		var current_flicker = int(invince_left * FLICKER_SPEED)
-		if current_flicker % 2 == 0: 
-			modulate = pain_color()
-		else: 
-			modulate = Color.TRANSPARENT
+	if !invince.is_stopped():
+		var current_flicker = int(invince.time_left * FLICKER_SPEED)
+		if current_flicker % 2 == 0: modulate = pain_color()
+		else: modulate = Color.TRANSPARENT
 	else: modulate = Color.WHITE
 	
-	if shooting:
-		return
+	if state == State.SHOOTING: return
 	
 	var m: Vector2 = get_global_mouse_position()
-	var o: Vector2 = position + center
+	var o: Vector2 = position
 	aim_angle = (m - o).angle()
-	face_right = abs(rad_to_deg(aim_angle)) < 90
+	var new_face_right = abs(rad_to_deg(aim_angle)) < 90
 	
 	var weapon_angle: float = aim_angle - PI
 	weapon.position = -Vector2.from_angle(weapon_angle) * WEAPON_DIST
 	weapon.rotation = weapon_angle
-
-	if face_right:
-		weaponSprite.offset = Vector2i(0, -4)
-	else:
-		weaponSprite.offset = Vector2i(0, 0)
-	weaponSprite.flip_v = face_right
 	
-	var animation: StringName
-	if face_right:
-		animation = "idle_right"
-	else:
-		animation = "idle_left"
-	if velocity:
-		if face_right:
-			animation = "running_right"
-		else:
-			animation = "running_left"
-	if Input.is_action_just_pressed("shoot") and hasgun:
-		shooting = true
-		recoiling = true
-		animation = "shoot_left"
-		var the_boom: Node2D = boom.instantiate()
-		the_boom.position = position + center - Vector2.from_angle(weapon_angle) * (WEAPON_DIST + BOOM_DIST)
-		the_boom.rotation = weapon_angle
-		add_sibling(the_boom)
-		GameEvents.player_gun_shot.emit()
-	$AnimationPlayer.current_animation = animation
-
-func _on_recoil_stop():
-	recoiling = false
-
-func _on_shoot_done():
-	shooting = false
+	if Input.is_action_just_pressed("shoot") and hasgun: enter_state(State.SHOOTING, new_face_right)
+	elif velocity: enter_state(State.RUNNING, new_face_right)
+	else: enter_state(State.IDLE, new_face_right)
 	
 func pain_color() -> Color:
-	var k = 1.0 - invince_left / INVINCE_TIME
+	var k = 1.0 - invince.time_left / invince.wait_time
 	k = min(curve(k * 4.0) / curve(1), 1.0)
 	return Color(1.0, k, k)
 	
 func curve(x: float) -> float:
 	return pow(4.0, x) - 1
+
+func _on_animation_finished(anim_name: StringName):
+	if anim_name == "shoot_left": enter_state(State.IDLE, face_right, true)
+
+func enter_state(new_state: State, new_face_right: bool, force: bool = false):
+	if state == State.SHOOTING and not force: return
+	if state == new_state and new_face_right == face_right: return
+	
+	var animation: StringName
+	match new_state:
+		State.IDLE when new_face_right: animation = "idle_right"
+		State.IDLE: animation = "idle_left"
+		State.RUNNING when new_face_right: animation = "running_right"
+		State.RUNNING: animation = "running_left"
+		State.SHOOTING: animation = "shoot_left"
+	state = new_state
+	anims.current_animation = animation
+	face_right = new_face_right
+	
+	if face_right: weaponSprite.offset = Vector2i(0, -4)
+	else: weaponSprite.offset = Vector2i(0, 0)
+	weaponSprite.flip_v = face_right
+	
+	if new_state == State.SHOOTING:
+		var the_boom: Node2D = boom.instantiate()
+		var weapon_angle: float = aim_angle - PI
+		the_boom.position = position - Vector2.from_angle(weapon_angle) * (WEAPON_DIST + BOOM_DIST)
+		the_boom.rotation = weapon_angle
+		add_sibling(the_boom)
+		GameEvents.player_gun_shot.emit()
