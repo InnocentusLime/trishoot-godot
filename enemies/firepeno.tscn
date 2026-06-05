@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://damw52iudubys" path="res://enemies/firepeno.gd" id="1_u74kb"]
 [ext_resource type="PackedScene" uid="uid://dj04y2bnsk3yu" path="res://attacks/laserball.tscn" id="2_63c86"]
 [ext_resource type="Texture2D" uid="uid://114unu2t58bl" path="res://sprites/dumbo.png" id="3_qma5v"]
-[ext_resource type="Script" uid="uid://dgxa7h3y1e0u2" path="res://attacks/attack.gd" id="4_78i1g"]
 [ext_resource type="PackedScene" uid="uid://djfg4hw82bmed" path="res://enemies/ai_base.tscn" id="5_12y52"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iifgy"]
@@ -131,9 +130,6 @@ _data = {
 &"jump": SubResource("Animation_6yvan")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iifgy"]
-size = Vector2(11, 24)
-
 [node name="Firepeno" type="CharacterBody2D" unique_id=1015365341]
 collision_layer = 2
 collision_mask = 0
@@ -153,16 +149,6 @@ region_enabled = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1008077418]
 libraries/ = SubResource("AnimationLibrary_wujgv")
 
-[node name="Attack" type="Area2D" parent="." unique_id=849043208]
-collision_mask = 8
-monitorable = false
-script = ExtResource("4_78i1g")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack" unique_id=426614787]
-position = Vector2(-8.5, -4)
-shape = SubResource("RectangleShape2D_iifgy")
-debug_color = Color(1, 0, 0, 0.41960785)
-
 [node name="AIBase" parent="." unique_id=281758926 instance=ExtResource("5_12y52")]
 think_time = 1.1
 
@@ -172,5 +158,4 @@ position = Vector2(-7, 3)
 [node name="ChainTimer" type="Timer" parent="." unique_id=1780527672]
 wait_time = 0.1
 
-[connection signal="area_entered" from="Attack" to="." method="_on_attack"]
 [connection signal="timeout" from="ChainTimer" to="." method="_shoot"]

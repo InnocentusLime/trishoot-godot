@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://b12cng6sqw7n5"]
 
-[ext_resource type="Script" uid="uid://dgxa7h3y1e0u2" path="res://attacks/attack.gd" id="4_t1w7k"]
 [ext_resource type="Texture2D" uid="uid://114unu2t58bl" path="res://sprites/dumbo.png" id="4_tyje4"]
 [ext_resource type="Script" uid="uid://miqjnbok2r57" path="res://enemies/sigguy.gd" id="5_abnyj"]
 [ext_resource type="PackedScene" uid="uid://djfg4hw82bmed" path="res://enemies/ai_base.tscn" id="5_i28le"]
@@ -131,9 +130,6 @@ _data = {
 &"jump": SubResource("Animation_i28le")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iifgy"]
-size = Vector2(42, 24)
-
 [node name="Sigguy" type="CharacterBody2D" unique_id=1015365341]
 collision_layer = 2
 collision_mask = 0
@@ -153,16 +149,6 @@ region_enabled = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1008077418]
 libraries/ = SubResource("AnimationLibrary_wujgv")
 
-[node name="Attack" type="Area2D" parent="." unique_id=849043208]
-collision_mask = 8
-monitorable = false
-script = ExtResource("4_t1w7k")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack" unique_id=426614787]
-position = Vector2(-2, 1)
-shape = SubResource("RectangleShape2D_iifgy")
-debug_color = Color(1, 0, 0, 0.41960785)
-
 [node name="AIBase" parent="." unique_id=281758926 instance=ExtResource("5_i28le")]
 think_time = 1.5
 
@@ -172,5 +158,4 @@ position = Vector2(8, -18)
 [node name="Shoot" type="Timer" parent="." unique_id=1894168074]
 wait_time = 2.0
 
-[connection signal="area_entered" from="Attack" to="." method="_on_attack"]
 [connection signal="timeout" from="Shoot" to="." method="_shoot"]
