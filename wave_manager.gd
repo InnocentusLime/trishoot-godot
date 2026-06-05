@@ -72,7 +72,6 @@ func start_wave():
 
 func _ready(): 
 	GameEvents.enemy_died.connect(_on_enemy_dead)
-	GameEvents.wave_start.connect(start_wave)
 	GameEvents.enemy_despawned.connect(_on_enemy_despawned)
 	GameEvents.game_start.connect(start_wave)
 	GameEvents.game_over.connect(_on_game_over)
@@ -85,8 +84,7 @@ func _on_enemy_dead():
 func _on_enemy_despawned():
 	enemies_despawn_left -= 1
 	if enemies_despawn_left <= 0:
-		GameEvents.wave_complete.emit()
-		GameEvents.wave_start.emit()
+		start_wave()
 
 func _on_do_spawn():
 	spawn_enemies()
