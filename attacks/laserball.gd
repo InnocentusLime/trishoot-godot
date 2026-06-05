@@ -3,6 +3,9 @@ extends Area2D
 
 var move_vel: Vector2 = Vector2(-15.0, 0.0)
 
+func _ready():
+	GameEvents.game_over.connect(queue_free)
+
 func _on_attack(hurtbox: Node2D):
 	queue_free()
 	var to_dmg = hurtbox.get_parent()

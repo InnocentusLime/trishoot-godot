@@ -33,8 +33,9 @@ func _on_dmg(hitpos: Vector2):
 	if not god: hp -= 1
 	if hp <= 0: 
 		GameEvents.game_over.emit()
-		var dieanim: Node2D = die.instantiate()
+		var dieanim: PlayerDead = die.instantiate()
 		dieanim.position = position
+		dieanim.score = $"..".score
 		add_sibling(dieanim)
 		queue_free()
 	

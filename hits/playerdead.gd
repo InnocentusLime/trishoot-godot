@@ -1,3 +1,4 @@
+class_name PlayerDead
 extends Node2D
 
 @onready var die: AudioStreamPlayer2D = $Die
@@ -7,6 +8,7 @@ const FLY_SPEED: float = 800.0
 enum State {FLYING=0, LANDING=1}
 
 var state: State = State.FLYING
+var score: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,8 +27,8 @@ func _on_fly_done():
 	
 func _land_done():
 	die.play()
-	$Label.visible = true
-	print("oops")
+	$OverText.visible = true
+	$OverText/Score.text = "Score: %d" % score
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
