@@ -287,7 +287,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_krmtw"]
-size = Vector2(14, 14)
+size = Vector2(14, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_borgi"]
 size = Vector2(35, 13)
@@ -657,13 +657,13 @@ region_rect = Rect2(1, 24, 38, 14)
 libraries/ = SubResource("AnimationLibrary_dugkq")
 
 [node name="HurtBox" type="Area2D" parent="Player" unique_id=53200646]
-position = Vector2(-7, -6)
+position = Vector2(-7, -7)
 collision_layer = 8
 collision_mask = 0
 monitoring = false
 
 [node name="HurtBox" type="CollisionShape2D" parent="Player/HurtBox" unique_id=1996316767]
-position = Vector2(7, 6)
+position = Vector2(7, 6.5)
 shape = SubResource("RectangleShape2D_krmtw")
 debug_color = Color(0.2711291, 0.6329507, 0, 0.41960785)
 

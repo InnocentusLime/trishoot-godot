@@ -24,6 +24,7 @@ var enemies_killed: int = 0
 var enemies_despawn_left: int = 0
 
 var wave_num: int = -1
+var locked: bool = false
 
 func start_wave():
 	wave_num += 1
@@ -74,6 +75,7 @@ func _ready():
 	GameEvents.wave_start.connect(start_wave)
 	GameEvents.enemy_despawned.connect(_on_enemy_despawned)
 	GameEvents.game_start.connect(start_wave)
+	GameEvents.game_over.connect(_on_game_over)
 	
 func _on_enemy_dead():
 	enemies_killed += 1
@@ -96,6 +98,7 @@ func spawn_enemies():
 		succ = spawn_enemy()
 
 func spawn_enemy() -> bool:
+	if locked: return false
 	if enemies_spawn_left <= 0: return false
 	
 	var spawn_pos = pick_spawnpoint()
@@ -132,3 +135,6 @@ func pick_enemy() -> PackedScene:
 		if weight <= weights[idx]:
 			return enemies[lookup[idx]]
 	return null
+	
+func _on_game_over():
+	locked = true

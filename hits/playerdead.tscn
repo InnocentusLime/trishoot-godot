@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://b5r4j1xmhu0vl"]
+
+[ext_resource type="Texture2D" uid="uid://rrecam8ni4kg" path="res://sprites/john.png" id="1_nfwpo"]
+[ext_resource type="Script" uid="uid://c1u6chax0fhuf" path="res://hits/playerdead.gd" id="2_n4coa"]
+[ext_resource type="AudioStream" uid="uid://xtmsj4ur1766" path="res://snd/die.wav" id="3_n4coa"]
+[ext_resource type="AudioStream" uid="uid://tgc70cfo7rtd" path="res://snd/flop.wav" id="4_sacs7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sacs7"]
+font_color = Color(1, 0, 0, 1)
+
+[node name="Playerdead" type="Node2D" unique_id=1574253827]
+script = ExtResource("2_n4coa")
+
+[node name="FlyTime" type="Timer" parent="." unique_id=1756005505]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="Die" type="AudioStreamPlayer2D" parent="." unique_id=1686465643]
+stream = ExtResource("3_n4coa")
+volume_db = 10.903
+pitch_scale = 0.84
+
+[node name="Flop" type="AudioStreamPlayer2D" parent="." unique_id=346204583]
+stream = ExtResource("4_sacs7")
+volume_db = 24.0
+pitch_scale = 1.68
+
+[node name="FlySpr" type="Sprite2D" parent="." unique_id=2145358618]
+position = Vector2(9, 0)
+texture = ExtResource("1_nfwpo")
+region_enabled = true
+region_rect = Rect2(1, 312, 88, 58)
+
+[node name="LandSpr" type="Sprite2D" parent="." unique_id=256715542]
+visible = false
+texture = ExtResource("1_nfwpo")
+region_enabled = true
+region_rect = Rect2(88, 311, 66, 37)
+
+[node name="Label" type="Label" parent="." unique_id=1062901829]
+visible = false
+offset_left = -59.0
+offset_top = -85.0
+offset_right = 75.0
+offset_bottom = -36.0
+text = "Game Over
+Press R to restart"
+label_settings = SubResource("LabelSettings_sacs7")
+
+[connection signal="timeout" from="FlyTime" to="." method="_on_fly_done"]

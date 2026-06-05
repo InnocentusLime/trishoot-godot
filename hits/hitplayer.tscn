@@ -22,4 +22,4 @@ stream = ExtResource("3_dx6ai")
 autoplay = true
 
 [connection signal="timeout" from="Visibility" to="." method="_hide"]
-[connection signal="finished" from="Pain" to="." method="queue_free"]
+[connection signal="finished" from="Pain" to="." method="_sound_done"]

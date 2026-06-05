@@ -9,6 +9,7 @@ const BASE_SCORE: int = 10
 
 var score: int = 0
 var shake_koeff: float = 0.0
+var restart_locked: bool
 
 func _ready():
 	GameEvents.player_comboed.connect(_on_combo)
@@ -16,7 +17,12 @@ func _ready():
 	GameEvents.player_gun_shot.connect(_on_player_shoot)
 	GameEvents.player_hit.connect(_on_player_hit)
 	GameEvents.game_start.connect(_on_game_start)
+	GameEvents.game_over.connect(_on_game_over)
 	
+func _on_game_over():
+	music.stop()
+	restart_locked = false
+
 func _on_game_start():
 	music.play()
 
@@ -47,3 +53,6 @@ func _process(delta):
 	var shake_angle: float = randf() * (2*PI)
 	var ampl = SHAKE_AMPLITUDE * shake_koeff * shake_koeff
 	game_camera.offset = Vector2.from_angle(shake_angle) * ampl
+	
+	if Input.is_action_just_pressed("restart") and not restart_locked:
+		get_tree().reload_current_scene()

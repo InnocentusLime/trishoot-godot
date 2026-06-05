@@ -1,3 +1,4 @@
+class_name PlayerHit
 extends Sprite2D
 
 const SCALE_SPEED: float = 4.0
@@ -5,11 +6,12 @@ const MAX_SCALE: float = 2.0
 const SHAKE_AMPLITUDE: float  = 16.0
 const APPEAR_TIME: float = 0.16
 
+var fatal: bool = false
 var t: float = 0.0
-@onready var max_time: float = $Visibility.wait_time
 @onready var pain: AudioStreamPlayer2D = $Pain
 
 func _enter_tree():
+	if fatal: $Visibility.wait_time = 1.0
 	get_tree().paused = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,9 +22,13 @@ func _process(delta):
 	var shake_angle: float = randf() * (2*PI)
 	
 	var ampl = SHAKE_AMPLITUDE * (1.0 - 0.999*k)
+	if fatal: ampl = SHAKE_AMPLITUDE * (1.0 - 0.8*k)
 	offset = Vector2.from_angle(shake_angle) * ampl 
+	
+func _sound_done(): if not fatal: queue_free()
 	
 func _hide():
 	visible = false
 	get_tree().paused = false
 	GameEvents.player_hit.emit()
+	if fatal: queue_free()

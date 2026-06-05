@@ -42,9 +42,12 @@ func _ready():
 	jumps_on_left = body.position.x < LEFT_JUMP_X
 	if jumps_on_left: body.velocity = Vector2(ENTER_SPEED, 0.0)
 	else: body.velocity = Vector2(-ENTER_SPEED, 0.0)
+	GameEvents.game_over.connect(_on_game_over)
+	
+func _on_game_over(): _on_dmg(Vector2(480, 282.2), true)
 
-func _on_dmg(attack_pos: Vector2) -> bool:
-	if state != EnemyState.ALIVE: return false
+func _on_dmg(attack_pos: Vector2, force: bool = false) -> bool:
+	if state != EnemyState.ALIVE and not force: return false
 	body.set_collision_layer_value(EnemyLayer.ACTIVE, false)
 	body.set_collision_layer_value(EnemyLayer.DYING, true)
 	body.set_collision_mask_value(EnemyLayer.ACTIVE, false)
@@ -52,6 +55,7 @@ func _on_dmg(attack_pos: Vector2) -> bool:
 	knockback_dir = (body.position - attack_pos).normalized()
 	delete_timer.start()
 	think_tick.stop()
+	jump_timer.stop()
 	impl_die.call()
 	body.velocity = KNOCKBACK_SPEED * knockback_dir
 	GameEvents.enemy_died.emit()

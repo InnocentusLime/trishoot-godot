@@ -24,7 +24,7 @@ func _update_think():
 	walk_dir = dir.rotated(walk_rot)
 	
 	var proj_increment = PI / 4
-	for i in range(-2, 2):
+	for i in range(-1, 2):
 		var proj: Projectile = laserball.instantiate()
 		proj.position = spawnpoint.global_position
 		proj.move_vel = dir.rotated(i * proj_increment) * MY_PROJ_VELOCITY

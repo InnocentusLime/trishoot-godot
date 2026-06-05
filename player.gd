@@ -15,10 +15,11 @@ const FLICKER_SPEED = 20.0 / 1.0 # flick / s
 
 @export var boom: PackedScene
 @export var hitspark: PackedScene
+@export var die: PackedScene
 @export var recoil_acc: float = 0.0
 
 var state: State = State.IDLE
-var hp: int = 3
+var hp: int = 1
 var aim_angle: float = 0.0
 var face_right: bool = false
 
@@ -30,9 +31,15 @@ func _on_dmg(hitpos: Vector2):
 	invince.start()
 	
 	if not god: hp -= 1
-	if hp <= 0: queue_free()
+	if hp <= 0: 
+		GameEvents.game_over.emit()
+		var dieanim: Node2D = die.instantiate()
+		dieanim.position = position
+		add_sibling(dieanim)
+		queue_free()
 	
-	var hit: Node2D = hitspark.instantiate()
+	var hit: PlayerHit = hitspark.instantiate()
+	hit.fatal = hp <= 0
 	hit.position = position
 	add_sibling(hit)
 

@@ -11,3 +11,4 @@ signal wave_complete
 signal wave_start
 signal enemy_despawned
 signal game_start
+signal game_over
