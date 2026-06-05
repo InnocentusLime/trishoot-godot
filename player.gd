@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal player_hp_change(new_val: int)
+
 enum State {IDLE=0, RUNNING=1, SHOOTING=2}
 
 const SPEED = 164.0
@@ -39,6 +41,9 @@ func _on_dmg(hitpos: Vector2):
 		add_sibling(dieanim)
 		queue_free()
 	
+	player_hp_change.emit(hp)
+	GameEvents.shake.emit(10.0, true)
+	
 	var hit: PlayerHit = hitspark.instantiate()
 	hit.fatal = hp <= 0
 	hit.position = position
@@ -47,6 +52,7 @@ func _on_dmg(hitpos: Vector2):
 func _ready():
 	$AnimationPlayer.current_animation = "idle_left"
 	GameEvents.game_start.connect(_on_game_start)
+	player_hp_change.emit(hp)
 
 func _on_game_start():
 	weapon.visible = true
@@ -130,4 +136,4 @@ func enter_state(new_state: State, new_face_right: bool, force: bool = false):
 		the_boom.position = position - Vector2.from_angle(weapon_angle) * (WEAPON_DIST + BOOM_DIST)
 		the_boom.rotation = weapon_angle
 		add_sibling(the_boom)
-		GameEvents.player_gun_shot.emit()
+		GameEvents.shake.emit(1.0, false)

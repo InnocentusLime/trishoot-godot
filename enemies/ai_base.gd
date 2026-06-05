@@ -69,7 +69,7 @@ func _physics_process(delta):
 		EnemyState.HOPPINGOVER: body.velocity.y += JUMP_GRAVITY * delta
 		EnemyState.KNOCKBACK when bumped_this_frame:
 			state = EnemyState.OFFSCREEN
-			GameEvents.enemy_hit_bounds.emit()
+			GameEvents.shake.emit(1.0, false)
 			# Don't collide with the level
 			body.set_collision_mask_value(1, false)
 			var hit: Node2D = hitspark.instantiate()

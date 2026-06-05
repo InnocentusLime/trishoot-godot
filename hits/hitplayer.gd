@@ -30,5 +30,4 @@ func _sound_done(): if not fatal: queue_free()
 func _hide():
 	visible = false
 	get_tree().paused = false
-	GameEvents.player_hit.emit()
 	if fatal: queue_free()

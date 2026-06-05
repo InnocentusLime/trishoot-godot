@@ -12,10 +12,8 @@ var shake_koeff: float = 0.0
 var restart_locked: bool
 
 func _ready():
+	GameEvents.shake.connect(_on_shake)
 	GameEvents.player_comboed.connect(_on_combo)
-	GameEvents.enemy_hit_bounds.connect(_on_enemy_hit_bounds)
-	GameEvents.player_gun_shot.connect(_on_player_shoot)
-	GameEvents.player_hit.connect(_on_player_hit)
 	GameEvents.game_start.connect(_on_game_start)
 	GameEvents.game_over.connect(_on_game_over)
 	
@@ -30,16 +28,10 @@ func _on_combo(count: int):
 	var reward: int = (count*count) * BASE_SCORE 
 	score += reward
 	prints("COMBO", count, "REWARD", reward)
-
-func _on_enemy_hit_bounds():
-	shake_koeff += 1.0
 	
-func _on_player_shoot():
-	if shake_koeff < 1.0:
-		shake_koeff += (1.0 - shake_koeff)
-		
-func _on_player_hit():
-	shake_koeff = 10.0
+func _on_shake(acc: float, setter: bool):
+	if setter: shake_koeff = acc
+	else: shake_koeff += acc
 
 func _process(delta):
 	var boost: float

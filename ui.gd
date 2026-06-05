@@ -16,11 +16,9 @@ var score_distort = 1.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameEvents.player_comboed.connect(_on_player_combo)
-	GameEvents.player_hit.connect(_on_player_damage)
 	GameEvents.game_over.connect(_on_game_over)
 	#GameEvents.wave_complete.connect(_on_wave_complete)
 	score_label.text = "Score: %d" % current_score
-	hp.text = "HP: %d" % current_hp
 	
 func _on_game_over():
 	$HUD.visible = false
@@ -29,8 +27,8 @@ func _on_wave_complete():
 	var sign: WaveStart = wave_start_widget.instantiate()
 	wave_start.add_child(sign)
 
-func _on_player_damage():
-	current_hp -= 1
+func _on_player_hp_change(new_hp: int):
+	current_hp = new_hp
 	hp.text = "HP: %d" % current_hp
 
 func _on_player_combo(combo_size: int):
