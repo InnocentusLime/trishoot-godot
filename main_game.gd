@@ -7,6 +7,8 @@ const BASE_SCORE: int = 10
 @onready var game_camera: Camera2D = $WindowManager/Gameplay
 @onready var music: AudioStreamPlayer = $Music
 
+@export var die: PackedScene
+
 var score: int = 0
 var shake_koeff: float = 0.0
 var restart_locked: bool
@@ -20,6 +22,11 @@ func _ready():
 func _on_game_over():
 	music.stop()
 	restart_locked = false
+	
+	var dieanim: PlayerDead = die.instantiate()
+	dieanim.position = GameEvents.player_pos
+	dieanim.score = score
+	add_child(dieanim)
 
 func _on_game_start():
 	music.play()

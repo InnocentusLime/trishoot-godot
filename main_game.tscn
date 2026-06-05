@@ -295,6 +295,7 @@ size = Vector2(35, 13)
 [node name="MainGame" type="Node2D" unique_id=1130606135]
 y_sort_enabled = true
 script = ExtResource("1_4srsv")
+die = ExtResource("11_wt57k")
 
 [node name="Field" type="AnimatableBody2D" parent="." unique_id=976939261]
 z_index = -1
