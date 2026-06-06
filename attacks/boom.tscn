@@ -43,13 +43,13 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_37ygf"]
-size = Vector2(92, 88)
+size = Vector2(107, 75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qf6iu"]
-size = Vector2(124, 105)
+size = Vector2(51, 101)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k4nx5"]
-size = Vector2(40.5, 35)
+size = Vector2(40.5, 18.75)
 
 [node name="Boom" type="Node2D" unique_id=777597560]
 script = ExtResource("1_37ygf")
@@ -64,24 +64,25 @@ region_rect = Rect2(1, 111, 124, 105)
 libraries/ = SubResource("AnimationLibrary_yvxa8")
 
 [node name="Damge" type="Area2D" parent="." unique_id=1551977819]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 0
+collision_mask = 34
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Damge" unique_id=457899906]
 z_index = 1
-position = Vector2(-46, 0)
+position = Vector2(-33.5, -4.5)
 shape = SubResource("RectangleShape2D_37ygf")
 debug_color = Color(0.99949735, 0, 0.12846798, 0.41960785)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Damge" unique_id=1722274115]
 z_index = 1
-position = Vector2(-14, -1.5)
+position = Vector2(-50.5, 0.5)
 shape = SubResource("RectangleShape2D_qf6iu")
 debug_color = Color(0.99949735, 0, 0.12846798, 0.41960785)
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Damge" unique_id=2028850931]
 z_index = 1
-position = Vector2(-98, 0)
+position = Vector2(-96, 0.625)
 shape = SubResource("RectangleShape2D_k4nx5")
 debug_color = Color(0.99949735, 0, 0.12846798, 0.41960785)
 

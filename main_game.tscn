@@ -273,7 +273,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.083333336),
 "transitions": PackedFloat32Array(1, 5.656862),
 "update": 0,
-"values": [1.0, 0.0]
+"values": [1.8, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dugkq"]
