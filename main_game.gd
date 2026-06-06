@@ -17,6 +17,12 @@ func _ready():
 	GameEvents.score_changed.connect(_on_score_changed)
 	GameEvents.game_start.connect(_on_game_start)
 	GameEvents.game_over.connect(_on_game_over)
+	GameEvents.demo_over.connect(_on_demo_over)
+	
+func _on_demo_over():
+	restart_locked = false
+	get_tree().create_tween() \
+		.tween_property(music, "volume_linear", 0.0, 2.0)
 	
 func _on_game_over():
 	music.stop()

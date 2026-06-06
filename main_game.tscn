@@ -622,6 +622,18 @@ alignment = 1
 [node name="WaveStart" type="Control" parent="WindowManager/Gameplay/UI/WaveCompPort" unique_id=253562828]
 layout_mode = 2
 
+[node name="DemoOver" type="Label" parent="WindowManager/Gameplay/UI" unique_id=103310198]
+modulate = Color(1, 1, 1, 0)
+offset_left = 411.0
+offset_top = 85.0
+offset_right = 558.0
+offset_bottom = 186.0
+text = "Demo Over!
+Thanks for playing!
+
+Press R to restart"
+horizontal_alignment = 1
+
 [node name="Player" type="CharacterBody2D" parent="." unique_id=288906619]
 position = Vector2(303, 128)
 collision_layer = 16

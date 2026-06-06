@@ -17,8 +17,12 @@ var score_distort = 1.0
 func _ready():
 	GameEvents.score_changed.connect(_on_score_changed)
 	GameEvents.game_over.connect(_on_game_over)
-	#GameEvents.wave_complete.connect(_on_wave_complete)
+	GameEvents.demo_over.connect(_on_demo_over)
 	score_label.text = "Score: %d" % current_score
+	
+func _on_demo_over():
+	get_tree().create_tween()\
+		.tween_property($DemoOver, "modulate", Color.WHITE, 3.0)
 	
 func _on_game_over():
 	$HUD.visible = false

@@ -9,3 +9,4 @@ signal enemy_died
 signal enemy_despawned
 signal game_start
 signal game_over
+signal demo_over
