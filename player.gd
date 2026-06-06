@@ -21,7 +21,7 @@ const FLICKER_SPEED = 20.0 / 1.0 # flick / s
 @export var recoil_acc: float = 0.0
 
 var state: State = State.IDLE
-var hp: int = 1
+var hp: int = 3
 var aim_angle: float = 0.0
 var face_right: bool = false
 

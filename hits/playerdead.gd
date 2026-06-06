@@ -13,20 +13,14 @@ var score: int
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Flop.play()
+	$AnimationPlayer.current_animation = "fly"
 
 func _on_fly_done():
 	state = State.LANDING
-	position = Vector2(480, -128)
-	var tween = get_tree().create_tween()
-	tween.tween_property(self, "position", Vector2(480, 282.2), 0.7) \
-		.set_trans(Tween.TRANS_EXPO) \
-		.set_ease(Tween.EASE_IN)
-	tween.tween_callback(_land_done)
-	$FlySpr.visible = false
-	$LandSpr.visible = true
+	$AnimationPlayer.current_animation = "flop"
+	position = Vector2(480, -230)
 	
 func _land_done():
-	die.play()
 	$OverText.visible = true
 	$OverText/Score.text = "Score: %d" % score
 

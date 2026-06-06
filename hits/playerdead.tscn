@@ -8,6 +8,172 @@
 [sub_resource type="LabelSettings" id="LabelSettings_sacs7"]
 font_color = Color(1, 0, 0, 1)
 
+[sub_resource type="Animation" id="Animation_y6yos"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlySpr:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(1, 312, 88, 58)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlySpr:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlySpr:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlopSpark:region_rect")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_sacs7"]
+resource_name = "flop"
+length = 2.1666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlySpr:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.70000005, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Rect2(89, 312, 66, 39), Rect2(156, 311, 70, 31), Rect2(228, 311, 63, 37)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlySpr:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6666667, 0.73333335, 0.8666667),
+"transitions": PackedFloat32Array(1, 1, 4.2870927, 9.849147),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(2.039, 0.8), Vector2(1, 1)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Die")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_n4coa")
+}],
+"times": PackedFloat32Array(0.6333333)
+}
+tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlySpr:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.6333334, 0.7333334, 0.86666673),
+"transitions": PackedFloat32Array(1, 4.28, 9.84),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 13.97), Vector2(0, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_land_done"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.70000005),
+"transitions": PackedFloat32Array(13.45432, 13.928785),
+"update": 0,
+"values": [Vector2(488, -64), Vector2(488, 282)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FlopSpark:region_rect")
+tracks/6/interp = 0
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.6333333, 0.70000005, 0.7666667, 0.8333333, 0.8666666),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 0, 0, 0), Rect2(1, 369, 94, 39), Rect2(286, 370, 240, 117), Rect2(525, 368, 290, 157), Rect2(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jbylq"]
+resource_name = "fly"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlySpr:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(1, 312, 88, 58)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y6yos"]
+_data = {
+&"RESET": SubResource("Animation_y6yos"),
+&"flop": SubResource("Animation_sacs7"),
+&"fly": SubResource("Animation_jbylq")
+}
+
 [node name="Playerdead" type="Node2D" unique_id=1574253827]
 script = ExtResource("2_n4coa")
 
@@ -17,7 +183,6 @@ one_shot = true
 autostart = true
 
 [node name="Die" type="AudioStreamPlayer2D" parent="." unique_id=1686465643]
-stream = ExtResource("3_n4coa")
 volume_db = 10.903
 pitch_scale = 0.84
 
@@ -26,17 +191,15 @@ stream = ExtResource("4_sacs7")
 volume_db = 24.0
 pitch_scale = 1.68
 
+[node name="FlopSpark" type="Sprite2D" parent="." unique_id=1586351348]
+position = Vector2(-2, 12)
+texture = ExtResource("1_nfwpo")
+region_enabled = true
+
 [node name="FlySpr" type="Sprite2D" parent="." unique_id=2145358618]
-position = Vector2(9, 0)
 texture = ExtResource("1_nfwpo")
 region_enabled = true
 region_rect = Rect2(1, 312, 88, 58)
-
-[node name="LandSpr" type="Sprite2D" parent="." unique_id=256715542]
-visible = false
-texture = ExtResource("1_nfwpo")
-region_enabled = true
-region_rect = Rect2(88, 311, 66, 37)
 
 [node name="OverText" type="VBoxContainer" parent="." unique_id=2136318261]
 visible = false
@@ -56,5 +219,8 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "Score: 0"
 horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=477349717]
+libraries/ = SubResource("AnimationLibrary_y6yos")
 
 [connection signal="timeout" from="FlyTime" to="." method="_on_fly_done"]
