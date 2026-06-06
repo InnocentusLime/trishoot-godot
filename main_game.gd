@@ -7,6 +7,7 @@ const SHAKE_AMPLITUDE: float = 1.0
 @onready var music: AudioStreamPlayer = $Music
 
 @export var die: PackedScene
+@export var signguy: PackedScene
 
 var score: int = 0
 var shake_koeff: float = 0.0
@@ -23,6 +24,11 @@ func _on_demo_over():
 	restart_locked = false
 	get_tree().create_tween() \
 		.tween_property(music, "volume_linear", 0.0, 2.0)
+	
+func _on_gun_pickup(_body: Node2D):
+	var starter: Node2D = signguy.instantiate()
+	starter.position = Vector2(-50, 250)
+	add_child(starter)
 	
 func _on_game_over():
 	music.stop()

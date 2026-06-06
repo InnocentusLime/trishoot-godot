@@ -92,6 +92,7 @@ func _on_do_spawn():
 	spawn_enemies()
 	
 func spawn_enemies():
+	if wave_num < 0: return
 	var succ = spawn_enemy()
 	while succ:
 		if randf() < enemmy_group_prob: break

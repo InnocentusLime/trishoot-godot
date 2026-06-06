@@ -14,16 +14,19 @@ const FLICKER_SPEED = 20.0 / 1.0 # flick / s
 @onready var weaponSprite: Sprite2D = $Weapon/Weapon
 @onready var invince: Timer = $Invince
 @onready var anims: AnimationPlayer = $AnimationPlayer
+@onready var walk_hints: Sprite2D = $Hints
 
 @export var boom: PackedScene
 @export var hitspark: PackedScene
 @export var die: PackedScene
 @export var recoil_acc: float = 0.0
+@export var hint_life: float = 1.5
 
 var state: State = State.IDLE
 var hp: int = 3
 var aim_angle: float = 0.0
 var face_right: bool = false
+var walk_time: float = 0.0
 
 var hasgun: bool = false
 var god: bool = false
@@ -47,10 +50,10 @@ func _on_dmg(hitpos: Vector2):
 
 func _ready():
 	$AnimationPlayer.current_animation = "idle_left"
-	GameEvents.game_start.connect(_on_game_start)
 	player_hp_change.emit(hp)
 
-func _on_game_start():
+func _on_gun_pickup(_body: Node2D):
+	walk_hints.visible = false
 	weapon.visible = true
 	hasgun = true
 
@@ -74,7 +77,10 @@ func _physics_process(delta):
 	
 func _process(delta):
 	GameEvents.player_pos = position
-		
+	
+	if state == State.RUNNING: walk_time += delta
+	if walk_time >= hint_life: walk_hints.visible = false
+	
 	if !invince.is_stopped():
 		var current_flicker = int(invince.time_left * FLICKER_SPEED)
 		if current_flicker % 2 == 0: modulate = pain_color()
