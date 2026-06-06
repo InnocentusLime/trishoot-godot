@@ -5,24 +5,23 @@ signal reward_appeared(value: int)
 
 @onready var timer: Timer = $Timer
 
-var combo_size: int
-var score: int
-var value: int
+var score_delta: int
+var score_label: String
+
 var orig_y: float
 var start: Vector2
 var end: Vector2
 
 func _timer_finished():
-	reward_appeared.emit(value)
+	reward_appeared.emit(score_delta)
 	queue_free()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	text = score_label
 	await get_tree().process_frame
 	start = global_position
 	orig_y = position.y
-	value = combo_size * score
-	text = "%d x %d" % [score, combo_size]
 	timer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

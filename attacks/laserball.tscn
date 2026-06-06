@@ -7,10 +7,13 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_an1vu"]
 radius = 6.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_gxifv"]
+
 [node name="Projectile" type="Area2D" unique_id=103431693]
 z_index = 1
-collision_layer = 32
+collision_layer = 0
 collision_mask = 9
+monitorable = false
 script = ExtResource("1_p4umi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=54245830]
@@ -33,6 +36,14 @@ autostart = true
 stream = ExtResource("3_gxifv")
 volume_db = -12.404
 autoplay = true
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1739175877]
+collision_layer = 32
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=9249057]
+shape = SubResource("CircleShape2D_gxifv")
 
 [connection signal="area_entered" from="." to="." method="_on_attack"]
 [connection signal="body_entered" from="." to="." method="_on_attack"]

@@ -43,10 +43,10 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_37ygf"]
-size = Vector2(107, 75)
+size = Vector2(107, 87)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qf6iu"]
-size = Vector2(51, 101)
+size = Vector2(60.5, 106)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k4nx5"]
 size = Vector2(40.5, 18.75)
@@ -70,13 +70,13 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Damge" unique_id=457899906]
 z_index = 1
-position = Vector2(-33.5, -4.5)
+position = Vector2(-33.5, -3.5)
 shape = SubResource("RectangleShape2D_37ygf")
 debug_color = Color(0.99949735, 0, 0.12846798, 0.41960785)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Damge" unique_id=1722274115]
 z_index = 1
-position = Vector2(-50.5, 0.5)
+position = Vector2(-44.25, 0)
 shape = SubResource("RectangleShape2D_qf6iu")
 debug_color = Color(0.99949735, 0, 0.12846798, 0.41960785)
 

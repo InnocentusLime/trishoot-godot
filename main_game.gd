@@ -2,7 +2,6 @@ class_name MainGame
 extends Node2D
 
 const SHAKE_AMPLITUDE: float = 1.0
-const BASE_SCORE: int = 10
 
 @onready var game_camera: Camera2D = $WindowManager/Gameplay
 @onready var music: AudioStreamPlayer = $Music
@@ -15,7 +14,7 @@ var restart_locked: bool
 
 func _ready():
 	GameEvents.shake.connect(_on_shake)
-	GameEvents.player_comboed.connect(_on_combo)
+	GameEvents.score_changed.connect(_on_score_changed)
 	GameEvents.game_start.connect(_on_game_start)
 	GameEvents.game_over.connect(_on_game_over)
 	
@@ -31,10 +30,8 @@ func _on_game_over():
 func _on_game_start():
 	music.play()
 
-func _on_combo(count: int):
-	var reward: int = (count*count) * BASE_SCORE 
-	score += reward
-	prints("COMBO", count, "REWARD", reward)
+func _on_score_changed(score_delta: int, _score_label: String):
+	score += score_delta
 	
 func _on_shake(acc: float, setter: bool):
 	if setter: shake_koeff = acc

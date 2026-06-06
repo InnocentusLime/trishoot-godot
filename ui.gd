@@ -15,7 +15,7 @@ var score_distort = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GameEvents.player_comboed.connect(_on_player_combo)
+	GameEvents.score_changed.connect(_on_score_changed)
 	GameEvents.game_over.connect(_on_game_over)
 	#GameEvents.wave_complete.connect(_on_wave_complete)
 	score_label.text = "Score: %d" % current_score
@@ -31,17 +31,16 @@ func _on_player_hp_change(new_hp: int):
 	current_hp = new_hp
 	hp.text = "HP: %d" % current_hp
 
-func _on_player_combo(combo_size: int):
-	if combo_size == 0: return
+func _on_score_changed(score_delta: int, score_label: String):
 	var combo: ComboShower = combo_widget.instantiate()
 	combo.end = score.global_position
-	combo.combo_size = combo_size
-	combo.score = combo_size * MainGame.BASE_SCORE
+	combo.score_delta = score_delta
+	combo.score_label = score_label
 	combo.reward_appeared.connect(_on_reward_shown)
 	comboer.add_child(combo)
 
-func _on_reward_shown(value: int):
-	current_score += value
+func _on_reward_shown(score_delta):
+	current_score += score_delta
 	score_distort = 1.0
 	score_label.text = "Score: %d" % current_score
 
