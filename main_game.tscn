@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://8qvjrhgeu4wr" path="res://enemies/firepeno.tscn" id="16_ih6an"]
 [ext_resource type="Script" uid="uid://ddpypaosue7dh" path="res://gun_pickup.gd" id="18_ih6an"]
 [ext_resource type="Texture2D" uid="uid://djd22agmoquif" path="res://sprites/gun.png" id="19_umrn2"]
-[ext_resource type="AudioStream" uid="uid://clsg10otuyn1d" path="res://Thousand March.mp3" id="20_2i4tw"]
+[ext_resource type="AudioStream" uid="uid://bimtyxxibgsaw" path="res://MainTheme.mp3" id="25_lght5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aomqu"]
 size = Vector2(20, 480)
@@ -732,8 +732,8 @@ volume_db = -4.194
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=1326820840]
 process_mode = 3
-stream = ExtResource("20_2i4tw")
-volume_db = -10.471
+stream = ExtResource("25_lght5")
+volume_db = -16.0
 
 [connection signal="player_hp_change" from="Player" to="WindowManager/Gameplay/UI" method="_on_player_hp_change"]
 [connection signal="animation_finished" from="Player/AnimationPlayer" to="Player" method="_on_animation_finished"]
