@@ -11,7 +11,7 @@ var t: float = 0.0
 @onready var pain: AudioStreamPlayer2D = $Pain
 
 func _enter_tree():
-	if fatal: $Visibility.wait_time = 1.0
+	if fatal: $Visibility.wait_time = 1.
 	get_tree().paused = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

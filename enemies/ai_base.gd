@@ -30,6 +30,7 @@ var impl_think: Callable
 var impl_update_think: Callable
 var impl_die: Callable
 var impl_jump: Callable
+var die_quiet: bool
 
 var jumps_on_left: bool = true
 
@@ -44,7 +45,9 @@ func _ready():
 	else: body.velocity = Vector2(-ENTER_SPEED, 0.0)
 	GameEvents.game_over.connect(_on_game_over)
 	
-func _on_game_over(): _on_dmg(Vector2(480, 282.2), true)
+func _on_game_over():
+	die_quiet = true
+	_on_dmg(Vector2(480, 282.2), true)
 
 func _on_dmg(attack_pos: Vector2, force: bool = false) -> bool:
 	if state != EnemyState.ALIVE and not force: return false
@@ -72,7 +75,8 @@ func _physics_process(delta):
 			GameEvents.shake.emit(1.0, false)
 			# Don't collide with the level
 			body.set_collision_mask_value(1, false)
-			var hit: Node2D = hitspark.instantiate()
+			var hit: HitEnemy = hitspark.instantiate()
+			hit.be_quiet = die_quiet
 			hit.position = body.position + knockback_dir * 16.0
 			body.add_sibling(hit)
 			var offscreen_dir_angle: float = OFFSCREEN_DELTA * float(die_angle_sign)

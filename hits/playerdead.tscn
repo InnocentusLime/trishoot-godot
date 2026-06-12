@@ -120,9 +120,12 @@ tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.7, 1),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"_land_shake"
+}, {
 "args": [],
 "method": &"_land_done"
 }]
@@ -179,18 +182,17 @@ position = Vector2(488, -64)
 script = ExtResource("2_n4coa")
 
 [node name="FlyTime" type="Timer" parent="." unique_id=1756005505]
-wait_time = 2.0
+wait_time = 4.0
 one_shot = true
 autostart = true
 
-[node name="Die" type="AudioStreamPlayer2D" parent="." unique_id=1686465643]
-volume_db = 10.903
+[node name="Die" type="AudioStreamPlayer" parent="." unique_id=1469748086]
+volume_db = -5.032
 pitch_scale = 0.84
 
-[node name="Flop" type="AudioStreamPlayer2D" parent="." unique_id=346204583]
+[node name="Flop" type="AudioStreamPlayer" parent="." unique_id=878175618]
 stream = ExtResource("4_sacs7")
-volume_db = 24.0
-pitch_scale = 1.68
+volume_db = -6.867
 
 [node name="FlopSpark" type="Sprite2D" parent="." unique_id=1586351348]
 position = Vector2(-2, 12)

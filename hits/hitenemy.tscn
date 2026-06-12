@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://blk4gg3st88kl"]
 
 [ext_resource type="Texture2D" uid="uid://114unu2t58bl" path="res://sprites/dumbo.png" id="1_qy0r5"]
+[ext_resource type="Script" uid="uid://b3m1hhyolduua" path="res://hits/hitenemy.gd" id="2_6gs30"]
 [ext_resource type="AudioStream" uid="uid://c6iqk6uutelt1" path="res://snd/hit_bound.wav" id="2_bgcy1"]
 
 [node name="hitspark" type="Sprite2D" unique_id=1628699677]
 texture = ExtResource("1_qy0r5")
 region_enabled = true
 region_rect = Rect2(1, 327, 54, 41)
+script = ExtResource("2_6gs30")
 
 [node name="Timer" type="Timer" parent="." unique_id=356963946]
 wait_time = 0.08

@@ -1,7 +1,7 @@
 class_name PlayerDead
 extends Node2D
 
-@onready var die: AudioStreamPlayer2D = $Die
+@onready var die: AudioStreamPlayer = $Die
 
 const FLY_SPEED: float = 800.0
 
@@ -14,6 +14,7 @@ var score: int
 func _ready():
 	$Flop.play()
 	$AnimationPlayer.current_animation = "fly"
+	GameEvents.shake.emit(6, true)
 
 func _on_fly_done():
 	state = State.LANDING
@@ -23,6 +24,9 @@ func _on_fly_done():
 func _land_done():
 	$OverText.visible = true
 	$OverText/Score.text = "Score: %d" % score
+	
+func _land_shake():
+	GameEvents.shake.emit(2, true)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
