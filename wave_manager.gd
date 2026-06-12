@@ -29,7 +29,7 @@ var locked: bool = false
 func start_wave():
 	wave_num += 1
 	
-	if wave_num >= 9: 
+	if wave_num >= 9 and !locked: 
 		GameEvents.demo_over.emit()
 		return
 	
