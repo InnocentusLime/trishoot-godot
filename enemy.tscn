@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://drsntvbi0rlqq"]
+
+[ext_resource type="AudioStream" uid="uid://rbsruhvkjoxq" path="res://snd/hop.wav" id="1_7k104"]
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1859096370]
+collision_layer = 2
+collision_mask = 0
+motion_mode = 1
+
+[node name="ThinkTick" type="Timer" parent="." unique_id=327157414]
+one_shot = true
+
+[node name="DeleteTimer" type="Timer" parent="." unique_id=618726664]
+wait_time = 0.8
+one_shot = true
+
+[node name="JumpTimer" type="Timer" parent="." unique_id=62309463]
+wait_time = 0.75
+one_shot = true
+
+[node name="Hop" type="AudioStreamPlayer2D" parent="." unique_id=1818207286]
+stream = ExtResource("1_7k104")
+volume_db = -10.904

@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://b12cng6sqw7n5"]
 
+[ext_resource type="PackedScene" uid="uid://drsntvbi0rlqq" path="res://enemy.tscn" id="1_dbs2y"]
 [ext_resource type="Texture2D" uid="uid://114unu2t58bl" path="res://sprites/dumbo.png" id="4_tyje4"]
 [ext_resource type="Script" uid="uid://miqjnbok2r57" path="res://enemies/sigguy.gd" id="5_abnyj"]
-[ext_resource type="PackedScene" uid="uid://djfg4hw82bmed" path="res://enemies/ai_base.tscn" id="5_i28le"]
 [ext_resource type="PackedScene" uid="uid://dj04y2bnsk3yu" path="res://attacks/laserball.tscn" id="6_7qgmw"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_iifgy"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ajknx"]
 radius = 16.03122
 
 [sub_resource type="Animation" id="Animation_iifgy"]
@@ -122,7 +122,7 @@ tracks/2/keys = {
 "values": [Vector2(1, 1), Vector2(1.24, 0.505), Vector2(1, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_wujgv"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t1w7k"]
 _data = {
 &"RESET": SubResource("Animation_iifgy"),
 &"hurt": SubResource("Animation_epg4t"),
@@ -130,32 +130,27 @@ _data = {
 &"jump": SubResource("Animation_i28le")
 }
 
-[node name="Sigguy" type="CharacterBody2D" unique_id=1015365341]
-collision_layer = 2
-collision_mask = 0
-motion_mode = 1
+[node name="Sigguy" unique_id=1859096370 instance=ExtResource("1_dbs2y")]
 script = ExtResource("5_abnyj")
 laserball = ExtResource("6_7qgmw")
+think_time = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1079489802]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4" unique_id=588914182]
 position = Vector2(-3, 1)
-shape = SubResource("CircleShape2D_iifgy")
+shape = SubResource("CircleShape2D_ajknx")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1690170646]
+[node name="Sprite2D" type="Sprite2D" parent="." index="5" unique_id=1689669079]
 position = Vector2(0, -7)
 texture = ExtResource("4_tyje4")
 region_enabled = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1008077418]
-libraries/ = SubResource("AnimationLibrary_wujgv")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6" unique_id=2004259488]
+libraries/ = SubResource("AnimationLibrary_t1w7k")
 
-[node name="AIBase" parent="." unique_id=281758926 instance=ExtResource("5_i28le")]
-think_time = 1.5
-
-[node name="ProjectileSpawn" type="Node2D" parent="." unique_id=130052624]
+[node name="ProjectileSpawn" type="Node2D" parent="." index="7" unique_id=1533560976]
 position = Vector2(8, -18)
 
-[node name="Shoot" type="Timer" parent="." unique_id=1894168074]
+[node name="Shoot" type="Timer" parent="." index="8" unique_id=202259365]
 wait_time = 2.0
 
 [connection signal="timeout" from="Shoot" to="." method="_shoot"]

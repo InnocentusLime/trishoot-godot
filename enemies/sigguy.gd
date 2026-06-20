@@ -1,7 +1,8 @@
-extends Think
+extends Enemy
 
 @export var laserball: PackedScene
 
+@onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var spawnpoint: Node2D = $ProjectileSpawn
 @onready var brave: bool = randi_range(0, 1) == 0
 @onready var shoot: Timer = $Shoot
@@ -11,16 +12,24 @@ const MY_PROJ_VELOCITY: float = 128.0
 
 var walk_dir: Vector2 = Vector2.ZERO
 
-func _die():
+func _ready():
+	super._ready()
+	anim.current_animation = "idle"
+
+func _on_jump():
+	anim.current_animation = "jump"
+
+func _on_die():
+	anim.current_animation = "hurt"
 	shoot.stop()
 
-func _think(bumped: bool):
+func _on_think():
 	velocity = WALK_SPEED * walk_dir
-	if bumped:
+	if bumped_this_frame:
 		walk_dir = walk_dir.rotated(PI / 8.0)
 	velocity = WALK_SPEED * walk_dir
 
-func _update_think():
+func _on_think_update():
 	var dir: Vector2 = (GameEvents.player_pos - position).normalized()
 	var walk_rot: float
 	if not brave:

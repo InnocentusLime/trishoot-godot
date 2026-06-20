@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cy0665amiaiit" path="res://ui.gd" id="3_g14j6"]
 [ext_resource type="PackedScene" uid="uid://dux3t8ovio4bv" path="res://combo_shower.tscn" id="4_vbegm"]
 [ext_resource type="PackedScene" uid="uid://bceryb2t6c4tb" path="res://wave_start_sign.tscn" id="5_ehkex"]
-[ext_resource type="PackedScene" uid="uid://dj04y2bnsk3yu" path="res://attacks/laserball.tscn" id="6_g14j6"]
+[ext_resource type="PackedScene" uid="uid://blakuum2hob7y" path="res://enemies/pogshot.tscn" id="6_g14j6"]
 
 [node name="Test" type="Node2D" unique_id=496192422]
 
@@ -83,5 +83,5 @@ Thanks for playing!
 Press R to restart"
 horizontal_alignment = 1
 
-[node name="Projectile" parent="." unique_id=103431693 instance=ExtResource("6_g14j6")]
-position = Vector2(477, 308)
+[node name="Pogshot" parent="." unique_id=1859096370 instance=ExtResource("6_g14j6")]
+position = Vector2(653, 207)

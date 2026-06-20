@@ -1,11 +1,11 @@
-[gd_scene format=3 uid="uid://8qvjrhgeu4wr"]
+[gd_scene format=3 uid="uid://cg5bh3sgukcl7"]
 
-[ext_resource type="Script" uid="uid://damw52iudubys" path="res://enemies/firepeno.gd" id="1_u74kb"]
-[ext_resource type="PackedScene" uid="uid://dj04y2bnsk3yu" path="res://attacks/laserball.tscn" id="2_63c86"]
-[ext_resource type="Texture2D" uid="uid://114unu2t58bl" path="res://sprites/dumbo.png" id="3_qma5v"]
-[ext_resource type="PackedScene" uid="uid://djfg4hw82bmed" path="res://enemies/ai_base.tscn" id="5_12y52"]
+[ext_resource type="PackedScene" uid="uid://drsntvbi0rlqq" path="res://enemy.tscn" id="1_jpbv3"]
+[ext_resource type="Script" uid="uid://damw52iudubys" path="res://enemies/firepeno.gd" id="2_krf52"]
+[ext_resource type="Texture2D" uid="uid://114unu2t58bl" path="res://sprites/dumbo.png" id="2_qh3t2"]
+[ext_resource type="PackedScene" uid="uid://dj04y2bnsk3yu" path="res://attacks/laserball.tscn" id="3_u74kb"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_iifgy"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_krf52"]
 radius = 16.03122
 
 [sub_resource type="Animation" id="Animation_iifgy"]
@@ -122,7 +122,7 @@ tracks/2/keys = {
 "values": [Vector2(1, 1), Vector2(1.24, 0.505), Vector2(1, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_wujgv"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_25e2v"]
 _data = {
 &"RESET": SubResource("Animation_iifgy"),
 &"hurt": SubResource("Animation_epg4t"),
@@ -130,32 +130,27 @@ _data = {
 &"jump": SubResource("Animation_6yvan")
 }
 
-[node name="Firepeno" type="CharacterBody2D" unique_id=1015365341]
-collision_layer = 2
-collision_mask = 0
-motion_mode = 1
-script = ExtResource("1_u74kb")
-laserball = ExtResource("2_63c86")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1079489802]
-position = Vector2(-3, 1)
-shape = SubResource("CircleShape2D_iifgy")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1690170646]
-position = Vector2(-2, -4)
-texture = ExtResource("3_qma5v")
-region_enabled = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1008077418]
-libraries/ = SubResource("AnimationLibrary_wujgv")
-
-[node name="AIBase" parent="." unique_id=281758926 instance=ExtResource("5_12y52")]
+[node name="Firepeno" unique_id=1859096370 instance=ExtResource("1_jpbv3")]
+script = ExtResource("2_krf52")
+laserball = ExtResource("3_u74kb")
 think_time = 1.1
 
-[node name="ProjectileSpawn" type="Node2D" parent="." unique_id=130052624]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4" unique_id=1249880394]
+position = Vector2(-3, 1)
+shape = SubResource("CircleShape2D_krf52")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="5" unique_id=2043434460]
+position = Vector2(-2, -4)
+texture = ExtResource("2_qh3t2")
+region_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6" unique_id=1079355286]
+libraries/ = SubResource("AnimationLibrary_25e2v")
+
+[node name="ProjectileSpawn" type="Node2D" parent="." index="7" unique_id=1958068981]
 position = Vector2(-7, 3)
 
-[node name="ChainTimer" type="Timer" parent="." unique_id=1780527672]
+[node name="ChainTimer" type="Timer" parent="." index="8" unique_id=719582504]
 wait_time = 0.1
 
 [connection signal="timeout" from="ChainTimer" to="." method="_shoot"]

@@ -1,11 +1,11 @@
-[gd_scene format=3 uid="uid://bf7pjooog1yfr"]
+[gd_scene format=3 uid="uid://blakuum2hob7y"]
 
+[ext_resource type="PackedScene" uid="uid://drsntvbi0rlqq" path="res://enemy.tscn" id="1_nf6dj"]
 [ext_resource type="Script" uid="uid://f318t4o57i1c" path="res://enemies/pogshot.gd" id="1_twup2"]
 [ext_resource type="PackedScene" uid="uid://dj04y2bnsk3yu" path="res://attacks/laserball.tscn" id="2_eveg3"]
-[ext_resource type="Texture2D" uid="uid://114unu2t58bl" path="res://sprites/dumbo.png" id="3_on1wj"]
-[ext_resource type="PackedScene" uid="uid://djfg4hw82bmed" path="res://enemies/ai_base.tscn" id="5_weggl"]
+[ext_resource type="Texture2D" uid="uid://114unu2t58bl" path="res://sprites/dumbo.png" id="2_iacr4"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_iifgy"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_fxwuo"]
 radius = 16.03122
 
 [sub_resource type="Animation" id="Animation_iifgy"]
@@ -122,7 +122,7 @@ tracks/2/keys = {
 "values": [Vector2(1, 1), Vector2(1.24, 0.505), Vector2(1, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_wujgv"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0nknu"]
 _data = {
 &"RESET": SubResource("Animation_iifgy"),
 &"hurt": SubResource("Animation_epg4t"),
@@ -130,27 +130,22 @@ _data = {
 &"jump": SubResource("Animation_0ubtv")
 }
 
-[node name="Pogshot" type="CharacterBody2D" unique_id=1015365341]
-collision_layer = 2
-collision_mask = 0
-motion_mode = 1
+[node name="Pogshot" unique_id=1859096370 instance=ExtResource("1_nf6dj")]
 script = ExtResource("1_twup2")
 laserball = ExtResource("2_eveg3")
+think_time = 1.2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1079489802]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4" unique_id=1524980344]
 position = Vector2(-3, 1)
-shape = SubResource("CircleShape2D_iifgy")
+shape = SubResource("CircleShape2D_fxwuo")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1690170646]
+[node name="Sprite2D" type="Sprite2D" parent="." index="5" unique_id=417270791]
 position = Vector2(-2, -4)
-texture = ExtResource("3_on1wj")
+texture = ExtResource("2_iacr4")
 region_enabled = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1008077418]
-libraries/ = SubResource("AnimationLibrary_wujgv")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6" unique_id=5366474]
+libraries/ = SubResource("AnimationLibrary_0nknu")
 
-[node name="AIBase" parent="." unique_id=281758926 instance=ExtResource("5_weggl")]
-think_time = 1.5
-
-[node name="ProjectileSpawn" type="Node2D" parent="." unique_id=130052624]
+[node name="ProjectileSpawn" type="Node2D" parent="." index="7" unique_id=1808379949]
 position = Vector2(11, 6)
