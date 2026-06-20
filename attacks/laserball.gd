@@ -1,12 +1,14 @@
 class_name Projectile
 extends Area2D
 
-var move_vel: Vector2 = Vector2(-15.0, 0.0)
+const PARRIED_SPEED: float = 250.0
+
+@export var move_vel: Vector2 = Vector2(-15.0, 0.0)
 
 func _on_dmg(dmg_pos: Vector2):
 	var move_abs: float = move_vel.length()
 	var move_dir = (position - GameEvents.player_pos).normalized()
-	move_vel = move_dir * (move_abs * 0.9)
+	move_vel = move_dir * PARRIED_SPEED
 
 func _ready():
 	GameEvents.game_over.connect(queue_free)
