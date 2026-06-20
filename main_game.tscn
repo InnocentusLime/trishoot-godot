@@ -3,20 +3,14 @@
 [ext_resource type="Script" uid="uid://c06gjxq87qvnt" path="res://window_manager.gd" id="1_1oj5k"]
 [ext_resource type="Script" uid="uid://b26fcqi34xaif" path="res://main_game.gd" id="1_4srsv"]
 [ext_resource type="Texture2D" uid="uid://d1gyesxr35ehm" path="res://sprites/field.png" id="2_jgkyn"]
-[ext_resource type="Script" uid="uid://cqf1f287vqnct" path="res://player.gd" id="2_ykeeq"]
-[ext_resource type="Texture2D" uid="uid://rrecam8ni4kg" path="res://sprites/john.png" id="2_yx7mw"]
-[ext_resource type="PackedScene" uid="uid://ceti3p0vtpeg" path="res://attacks/boom.tscn" id="3_2pltu"]
 [ext_resource type="Script" uid="uid://cy0665amiaiit" path="res://ui.gd" id="3_mf81u"]
 [ext_resource type="PackedScene" uid="uid://hg5sweeb8xua" path="res://enemies/signguy.tscn" id="3_pk5u2"]
 [ext_resource type="Texture2D" uid="uid://dn0eonhbvc677" path="res://sprites/fence.png" id="3_qpaub"]
 [ext_resource type="PackedScene" uid="uid://dux3t8ovio4bv" path="res://combo_shower.tscn" id="4_02kkc"]
-[ext_resource type="Animation" uid="uid://cn1w4deihytdq" path="res://anims/player_idle.res" id="4_dugkq"]
-[ext_resource type="Animation" uid="uid://djxsf110u2rub" path="res://anims/player_running_left.res" id="5_2pltu"]
 [ext_resource type="PackedScene" uid="uid://bceryb2t6c4tb" path="res://wave_start_sign.tscn" id="7_an1vu"]
-[ext_resource type="PackedScene" uid="uid://c2mrriy54iu40" path="res://hits/hitplayer.tscn" id="9_an1vu"]
+[ext_resource type="PackedScene" uid="uid://1hng44hn5qdw" path="res://player.tscn" id="10_umrn2"]
 [ext_resource type="PackedScene" uid="uid://b5r4j1xmhu0vl" path="res://hits/playerdead.tscn" id="11_wt57k"]
 [ext_resource type="Script" uid="uid://0focy8a8p1yl" path="res://wave_manager.gd" id="13_krmtw"]
-[ext_resource type="Texture2D" uid="uid://bg24n80xmhwy8" path="res://sprites/hint.png" id="13_lght5"]
 [ext_resource type="PackedScene" uid="uid://b12cng6sqw7n5" path="res://enemies/sigguy.tscn" id="14_an1vu"]
 [ext_resource type="AudioStream" uid="uid://bip4mw50ruc1w" path="res://snd/cock.wav" id="14_borgi"]
 [ext_resource type="PackedScene" uid="uid://due6y6601ung" path="res://enemies/chaser.tscn" id="14_jgkyn"]
@@ -28,268 +22,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aomqu"]
 size = Vector2(20, 480)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1oj5k"]
-size = Vector2(18, 35)
-
-[sub_resource type="Animation" id="Animation_ykeeq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(52, 55, 37, 49)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:offset")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(8, -3)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:flip_h")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Weapon/Weapon:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Weapon/Weapon:region_rect")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(1, 24, 38, 14)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Weapon/Weapon:offset")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath(".:recoil_acc")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-
-[sub_resource type="Animation" id="Animation_dugkq"]
-resource_name = "idle_right"
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(45, 1, 36, 53)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:offset")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(14, -3)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:flip_h")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_f52ns"]
-resource_name = "running_right"
-length = 0.4
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:region_rect")
-tracks/0/interp = 0
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Rect2(52, 55, 37, 49), Rect2(134, 55, 39, 51), Rect2(217, 55, 36, 51), Rect2(303, 55, 31, 55)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:offset")
-tracks/1/interp = 0
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2(8, -3), Vector2(10, 0), Vector2(16, 0), Vector2(16, -5)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:flip_h")
-tracks/2/interp = 0
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_2pltu"]
-resource_name = "shoot_left"
-length = 0.41667086
-step = 0.041666668
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:region_rect")
-tracks/0/interp = 0
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25000003, 0.3333334, 0.41666666),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Rect2(196, 136, 40, 50), Rect2(436, 110, 40, 51), Rect2(672, 111, 55, 69), Rect2(728, 111, 33, 66), Rect2(763, 111, 32, 64), Rect2(45, 1, 36, 53)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:offset")
-tracks/1/interp = 0
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25000003, 0.3333334, 0.41666666),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2(8, 2), Vector2(8, 1), Vector2(8, -16), Vector2(8, -14), Vector2(8, -12), Vector2(0, -3)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Weapon/Weapon:visible")
-tracks/2/interp = 0
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.41666666),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Weapon/Weapon:region_rect")
-tracks/3/interp = 0
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.083333336, 0.41666666),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [Rect2(150, 146, 38, 23), Rect2(388, 128, 36, 15), Rect2(1, 24, 38, 14)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Weapon/Weapon:offset")
-tracks/4/interp = 0
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.083333336, 0.41666666),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [Vector2(0, -4), Vector2(6, 0), Vector2(0, 0)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath(".:recoil_acc")
-tracks/5/interp = 2
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.083333336),
-"transitions": PackedFloat32Array(1, 5.656862),
-"update": 0,
-"values": [1.8, 0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_dugkq"]
-_data = {
-&"RESET": SubResource("Animation_ykeeq"),
-&"idle_left": ExtResource("4_dugkq"),
-&"idle_right": SubResource("Animation_dugkq"),
-&"running_left": ExtResource("5_2pltu"),
-&"running_right": SubResource("Animation_f52ns"),
-&"shoot_left": SubResource("Animation_2pltu")
-}
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_krmtw"]
-size = Vector2(14, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_borgi"]
 size = Vector2(35, 13)
@@ -637,58 +369,8 @@ Thanks for playing!
 Press R to restart"
 horizontal_alignment = 1
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=288906619]
+[node name="Player" parent="." unique_id=1422128146 instance=ExtResource("10_umrn2")]
 position = Vector2(303, 128)
-collision_layer = 16
-motion_mode = 1
-script = ExtResource("2_ykeeq")
-boom = ExtResource("3_2pltu")
-hitspark = ExtResource("9_an1vu")
-die = ExtResource("11_wt57k")
-recoil_acc = 1.0
-
-[node name="Hints" type="Sprite2D" parent="Player" unique_id=1605193408]
-texture = ExtResource("13_lght5")
-
-[node name="MapCol" type="CollisionShape2D" parent="Player" unique_id=1671047533]
-shape = SubResource("RectangleShape2D_1oj5k")
-
-[node name="Sprite" type="Sprite2D" parent="Player" unique_id=2141150842]
-position = Vector2(-28, -29)
-texture = ExtResource("2_yx7mw")
-centered = false
-offset = Vector2(8, -3)
-flip_h = true
-region_enabled = true
-region_rect = Rect2(52, 55, 37, 49)
-
-[node name="Weapon" type="Node2D" parent="Player" unique_id=1786017647]
-visible = false
-position = Vector2(-17, -3)
-
-[node name="Weapon" type="Sprite2D" parent="Player/Weapon" unique_id=782101925]
-position = Vector2(-19, 2)
-texture = ExtResource("2_yx7mw")
-region_enabled = true
-region_rect = Rect2(1, 24, 38, 14)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Player" unique_id=1920509889]
-libraries/ = SubResource("AnimationLibrary_dugkq")
-
-[node name="HurtBox" type="Area2D" parent="Player" unique_id=53200646]
-position = Vector2(-7, -6)
-collision_layer = 8
-collision_mask = 0
-monitoring = false
-
-[node name="HurtBox" type="CollisionShape2D" parent="Player/HurtBox" unique_id=1996316767]
-position = Vector2(7, 6)
-shape = SubResource("RectangleShape2D_krmtw")
-debug_color = Color(0.2711291, 0.6329507, 0, 0.41960785)
-
-[node name="Invince" type="Timer" parent="Player" unique_id=17435518]
-wait_time = 3.0
-one_shot = true
 
 [node name="WaveManager" type="Node2D" parent="." unique_id=398805920]
 script = ExtResource("13_krmtw")
@@ -736,9 +418,8 @@ stream = ExtResource("25_lght5")
 volume_db = -16.0
 
 [connection signal="player_hp_change" from="Player" to="WindowManager/Gameplay/UI" method="_on_player_hp_change"]
-[connection signal="animation_finished" from="Player/AnimationPlayer" to="Player" method="_on_animation_finished"]
 [connection signal="timeout" from="WaveManager/SpawnTimer" to="WaveManager" method="_on_do_spawn"]
 [connection signal="body_entered" from="GunPickup" to="." method="_on_gun_pickup"]
-[connection signal="body_entered" from="GunPickup" to="Player" method="_on_gun_pickup"]
 [connection signal="body_entered" from="GunPickup" to="GunPickup" method="_on_body_entered"]
+[connection signal="body_entered" from="GunPickup" to="Player" method="_on_gun_pickup"]
 [connection signal="finished" from="GunPickup/Cock" to="GunPickup" method="queue_free"]

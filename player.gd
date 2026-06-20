@@ -21,15 +21,14 @@ const FLICKER_SPEED = 20.0 / 1.0 # flick / s
 @export var die: PackedScene
 @export var recoil_acc: float = 0.0
 @export var hint_life: float = 1.5
+@export var hasgun: bool = false
+@export var god: bool = false
 
 var state: State = State.IDLE
 var hp: int = 3
 var aim_angle: float = 0.0
 var face_right: bool = false
 var walk_time: float = 0.0
-
-var hasgun: bool = false
-var god: bool = false
 
 func _on_dmg(hitpos: Vector2):
 	if !invince.is_stopped(): return
@@ -51,6 +50,7 @@ func _on_dmg(hitpos: Vector2):
 func _ready():
 	$AnimationPlayer.current_animation = "idle_left"
 	player_hp_change.emit(hp)
+	if hasgun: weapon.visible = true
 
 func _on_gun_pickup(_body: Node2D):
 	walk_hints.visible = false

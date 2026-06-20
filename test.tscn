@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://furb5lunk427"]
+
+[ext_resource type="PackedScene" uid="uid://1hng44hn5qdw" path="res://player.tscn" id="1_37kl0"]
+[ext_resource type="Script" uid="uid://c06gjxq87qvnt" path="res://window_manager.gd" id="2_ykrsh"]
+[ext_resource type="Script" uid="uid://cy0665amiaiit" path="res://ui.gd" id="3_g14j6"]
+[ext_resource type="PackedScene" uid="uid://dux3t8ovio4bv" path="res://combo_shower.tscn" id="4_vbegm"]
+[ext_resource type="PackedScene" uid="uid://bceryb2t6c4tb" path="res://wave_start_sign.tscn" id="5_ehkex"]
+
+[node name="Test" type="Node2D" unique_id=496192422]
+
+[node name="Player" parent="." unique_id=1422128146 instance=ExtResource("1_37kl0")]
+position = Vector2(224, 301)
+hint_life = 0.0
+hasgun = true
+god = true
+
+[node name="WindowManager" type="Node2D" parent="." unique_id=1041351405]
+position = Vector2(-6.1035156e-05, -1.5258789e-05)
+scale = Vector2(1.0000001, 1.0000001)
+script = ExtResource("2_ykrsh")
+
+[node name="Gameplay" type="Camera2D" parent="WindowManager" unique_id=928942338]
+position = Vector2(480, 270)
+
+[node name="UI" type="CanvasLayer" parent="WindowManager/Gameplay" unique_id=1692524302]
+script = ExtResource("3_g14j6")
+combo_widget = ExtResource("4_vbegm")
+wave_start_widget = ExtResource("5_ehkex")
+
+[node name="HUD" type="MarginContainer" parent="WindowManager/Gameplay/UI" unique_id=346843339]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Stack" type="VBoxContainer" parent="WindowManager/Gameplay/UI/HUD" unique_id=1557695383]
+layout_mode = 2
+
+[node name="Health" type="Label" parent="WindowManager/Gameplay/UI/HUD/Stack" unique_id=164012571]
+layout_mode = 2
+text = "HP: 0"
+
+[node name="Score" type="Control" parent="WindowManager/Gameplay/UI/HUD/Stack" unique_id=234420851]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="WindowManager/Gameplay/UI/HUD/Stack/Score" unique_id=1585576493]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 23.0
+pivot_offset = Vector2(30, 12)
+text = "Score: 0"
+
+[node name="Comboer" type="Control" parent="WindowManager/Gameplay/UI/HUD/Stack" unique_id=1806035220]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="WaveCompPort" type="VBoxContainer" parent="WindowManager/Gameplay/UI" unique_id=2063549560]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="WaveStart" type="Control" parent="WindowManager/Gameplay/UI/WaveCompPort" unique_id=309278961]
+layout_mode = 2
+
+[node name="DemoOver" type="Label" parent="WindowManager/Gameplay/UI" unique_id=34950317]
+modulate = Color(1, 1, 1, 0)
+offset_left = 411.0
+offset_top = 85.0
+offset_right = 558.0
+offset_bottom = 186.0
+text = "Demo Over!
+Thanks for playing!
+
+Press R to restart"
+horizontal_alignment = 1
