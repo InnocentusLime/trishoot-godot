@@ -35,6 +35,8 @@ func _physics_process(delta):
 	if count != 0:
 		score_delta = get_score(count)
 		score_comment = get_comment(count)
+	elif to_dmg_list2.size() > 0: # Grace for the projectile parrying
+		score_delta /= 2 
 	GameEvents.score_changed.emit(score_delta, "%s %d" % [score_comment, score_delta])
 	
 func get_score(n: int) -> int:
