@@ -20,7 +20,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Rect2(0, 0, 0, 0)]
+"values": [Rect2(1, 137, 46, 39)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -143,6 +143,7 @@ shape = SubResource("CircleShape2D_krf52")
 position = Vector2(-2, -4)
 texture = ExtResource("2_qh3t2")
 region_enabled = true
+region_rect = Rect2(1, 137, 46, 39)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6" unique_id=1079355286]
 libraries/ = SubResource("AnimationLibrary_25e2v")

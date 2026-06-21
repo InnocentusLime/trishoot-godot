@@ -12,7 +12,6 @@ const JUMP_GRAVITY: float = 1000.0
 const LEFT_JUMP_X: float = 150.0
 const RIGHT_JUMP_X: float = 800.0
 
-var state: EnemyState = EnemyState.ENTERING
 var knockback_dir: Vector2 = Vector2.ZERO
 var bumped_this_frame: bool = false
 
@@ -24,6 +23,7 @@ var bumped_this_frame: bool = false
 @onready var hitspark: PackedScene = preload("res://hits/hitenemy.tscn")
 
 @export var think_time: float
+@export var state: EnemyState = EnemyState.ENTERING
 
 var die_quiet: bool
 
@@ -41,8 +41,6 @@ func _ready():
 	jump_timer.connect("timeout", _jump_done)
 	
 	jumps_on_left = position.x < LEFT_JUMP_X
-	if jumps_on_left: velocity = Vector2(ENTER_SPEED, 0.0)
-	else: velocity = Vector2(-ENTER_SPEED, 0.0)
 	GameEvents.game_over.connect(_on_game_over)
 	
 func _on_game_over():
@@ -82,6 +80,8 @@ func _physics_process(delta):
 			var offscreen_dir_angle: float = OFFSCREEN_DELTA * float(die_angle_sign)
 			velocity = 1.6 * KNOCKBACK_SPEED * knockback_dir.rotated(offscreen_dir_angle)
 		EnemyState.ENTERING:
+			if jumps_on_left: velocity = Vector2(ENTER_SPEED, 0.0)
+			else: velocity = Vector2(-ENTER_SPEED, 0.0)
 			var jump_start = false
 			if jumps_on_left and position.x >= LEFT_JUMP_X: 
 				velocity = JUMP_VELOCITY

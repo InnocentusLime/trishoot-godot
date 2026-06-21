@@ -30,7 +30,6 @@ size = Vector2(35, 13)
 y_sort_enabled = true
 script = ExtResource("1_4srsv")
 die = ExtResource("11_wt57k")
-signguy = ExtResource("3_umrn2")
 
 [node name="Field" type="AnimatableBody2D" parent="." unique_id=976939261]
 z_index = -1
@@ -417,9 +416,13 @@ process_mode = 3
 stream = ExtResource("25_lght5")
 volume_db = -16.0
 
+[node name="SignBot" parent="." unique_id=1859096370 instance=ExtResource("3_umrn2")]
+position = Vector2(-49, 265)
+state = 0
+
 [connection signal="player_hp_change" from="Player" to="WindowManager/Gameplay/UI" method="_on_player_hp_change"]
 [connection signal="timeout" from="WaveManager/SpawnTimer" to="WaveManager" method="_on_do_spawn"]
-[connection signal="body_entered" from="GunPickup" to="." method="_on_gun_pickup"]
 [connection signal="body_entered" from="GunPickup" to="Player" method="_on_gun_pickup"]
 [connection signal="body_entered" from="GunPickup" to="GunPickup" method="_on_body_entered"]
+[connection signal="body_entered" from="GunPickup" to="SignBot" method="_on_gun_pickup"]
 [connection signal="finished" from="GunPickup/Cock" to="GunPickup" method="queue_free"]
