@@ -43,7 +43,7 @@ func _on_game_over():
 	_on_dmg(Vector2(480, 282.2), true)
 
 func _on_dmg(attack_pos: Vector2, force: bool = false) -> bool:
-	if state != EnemyState.ALIVE and not force: return false
+	if state != EnemyState.ALIVE and state != EnemyState.HOPPINGOVER and not force: return false
 	set_collision_layer_value(EnemyLayer.ACTIVE, false)
 	set_collision_layer_value(EnemyLayer.DYING, true)
 	set_collision_mask_value(EnemyLayer.ACTIVE, false)
