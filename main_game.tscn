@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dn0eonhbvc677" path="res://sprites/fence.png" id="3_qpaub"]
 [ext_resource type="PackedScene" uid="uid://beax458iexlun" path="res://enemies/sign_bot.tscn" id="3_umrn2"]
 [ext_resource type="PackedScene" uid="uid://dux3t8ovio4bv" path="res://combo_shower.tscn" id="4_02kkc"]
+[ext_resource type="Script" uid="uid://bqxu6kytoqvx8" path="res://jump_zones.gd" id="5_2i4tw"]
 [ext_resource type="PackedScene" uid="uid://bceryb2t6c4tb" path="res://wave_start_sign.tscn" id="7_an1vu"]
 [ext_resource type="PackedScene" uid="uid://1hng44hn5qdw" path="res://player.tscn" id="10_umrn2"]
 [ext_resource type="PackedScene" uid="uid://b5r4j1xmhu0vl" path="res://hits/playerdead.tscn" id="11_wt57k"]
@@ -22,6 +23,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aomqu"]
 size = Vector2(20, 480)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_umrn2"]
+size = Vector2(43, 547)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_borgi"]
 size = Vector2(35, 13)
@@ -300,6 +304,22 @@ position = Vector2(480, 501)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_aomqu")
 
+[node name="JumpZones" type="Area2D" parent="Field" unique_id=199359593]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("5_2i4tw")
+
+[node name="Left" type="CollisionShape2D" parent="Field/JumpZones" unique_id=1829627816]
+position = Vector2(191.5, 268.5)
+shape = SubResource("RectangleShape2D_umrn2")
+debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
+
+[node name="Right" type="CollisionShape2D" parent="Field/JumpZones" unique_id=1842729863]
+position = Vector2(771, 268.5)
+shape = SubResource("RectangleShape2D_umrn2")
+debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
+
 [node name="WindowManager" type="Node2D" parent="." unique_id=2054509005]
 position = Vector2(-6.1035156e-05, -1.5258789e-05)
 scale = Vector2(1.0000001, 1.0000001)
@@ -420,6 +440,7 @@ volume_db = -16.0
 position = Vector2(-49, 265)
 state = 0
 
+[connection signal="body_entered" from="Field/JumpZones" to="Field/JumpZones" method="_on_body_entered"]
 [connection signal="player_hp_change" from="Player" to="WindowManager/Gameplay/UI" method="_on_player_hp_change"]
 [connection signal="timeout" from="WaveManager/SpawnTimer" to="WaveManager" method="_on_do_spawn"]
 [connection signal="body_entered" from="GunPickup" to="Player" method="_on_gun_pickup"]

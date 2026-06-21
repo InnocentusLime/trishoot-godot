@@ -102,11 +102,15 @@ func spawn_enemy() -> bool:
 	if locked: return false
 	if enemies_spawn_left <= 0: return false
 	
-	var spawn_pos = pick_spawnpoint()
+	var spawn_point := pick_spawnpoint()
+	var spawn_pos := spawn_point.position 
+	spawn_pos.y += SPAWN_STEP * randi_range(-3, 3)
+	
 	var to_spawn: PackedScene = pick_enemy()
 	if to_spawn == null: return false
-	var enemy: Node2D = to_spawn.instantiate()
+	var enemy: Enemy = to_spawn.instantiate()
 	enemy.position = spawn_pos
+	enemy.jumps_on_left = spawn_point == left_spawn
 	add_sibling(enemy)
 	
 	enemies_spawned += 1
@@ -115,7 +119,7 @@ func spawn_enemy() -> bool:
 		spawn_timer.start()
 	return true
 
-func pick_spawnpoint() -> Vector2:
+func pick_spawnpoint() -> Node2D:
 	var spawn_point: Node2D
 	
 	if GameEvents.player_pos.x > 550:
@@ -125,10 +129,7 @@ func pick_spawnpoint() -> Vector2:
 	else:
 		if randi_range(0, 1) == 0: spawn_point = left_spawn
 		else: spawn_point = right_spawn
-	
-	var spawn_pos: Vector2 = spawn_point.global_position
-	spawn_pos.y += SPAWN_STEP * randi_range(-3, 3)
-	return spawn_pos
+	return spawn_point
 
 func pick_enemy() -> PackedScene:
 	var weight = randf_range(0.0, max_weight)

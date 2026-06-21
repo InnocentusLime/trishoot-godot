@@ -9,8 +9,6 @@ const OFFSCREEN_DELTA: float = PI / 5
 const ENTER_SPEED: float = 260.0
 const JUMP_VELOCITY: Vector2 = Vector2(200, -300)
 const JUMP_GRAVITY: float = 1000.0
-const LEFT_JUMP_X: float = 150.0
-const RIGHT_JUMP_X: float = 800.0
 
 var knockback_dir: Vector2 = Vector2.ZERO
 var bumped_this_frame: bool = false
@@ -24,10 +22,8 @@ var bumped_this_frame: bool = false
 
 @export var think_time: float
 @export var state: EnemyState = EnemyState.ENTERING
-
-var die_quiet: bool
-
-var jumps_on_left: bool = true
+@export var jumps_on_left: bool = true
+@export var die_quiet: bool
 
 func _on_die(): pass
 func _on_think(): pass
@@ -40,7 +36,6 @@ func _ready():
 	delete_timer.connect("timeout", _lifetime_out)
 	jump_timer.connect("timeout", _jump_done)
 	
-	jumps_on_left = position.x < LEFT_JUMP_X
 	GameEvents.game_over.connect(_on_game_over)
 	
 func _on_game_over():
@@ -68,6 +63,9 @@ func _physics_process(delta):
 	match state:
 		EnemyState.ALIVE: _on_think()
 		EnemyState.HOPPINGOVER: velocity.y += JUMP_GRAVITY * delta
+		EnemyState.ENTERING: 
+			var speed_x_sign: float = 1.0 if jumps_on_left else -1.0
+			velocity = Vector2(ENTER_SPEED * speed_x_sign, 0.0)
 		EnemyState.KNOCKBACK when bumped_this_frame:
 			state = EnemyState.OFFSCREEN
 			GameEvents.shake.emit(1.0, false)
@@ -79,21 +77,15 @@ func _physics_process(delta):
 			add_sibling(hit)
 			var offscreen_dir_angle: float = OFFSCREEN_DELTA * float(die_angle_sign)
 			velocity = 1.6 * KNOCKBACK_SPEED * knockback_dir.rotated(offscreen_dir_angle)
-		EnemyState.ENTERING:
-			if jumps_on_left: velocity = Vector2(ENTER_SPEED, 0.0)
-			else: velocity = Vector2(-ENTER_SPEED, 0.0)
-			var jump_start = false
-			if jumps_on_left and position.x >= LEFT_JUMP_X: 
-				velocity = JUMP_VELOCITY
-				jump_start = true
-			elif not jumps_on_left and position.x <= RIGHT_JUMP_X: 
-				velocity = JUMP_VELOCITY * Vector2(-1.0, 1.0)
-				jump_start = true
-			if jump_start:
-				state = EnemyState.HOPPINGOVER
-				jump_timer.start()
-				_on_jump()
-				hop.play()
+
+func _on_jump_zone():
+	if state != EnemyState.ENTERING: return
+	var speed_x_sign: float = 1.0 if jumps_on_left else -1.0
+	velocity = JUMP_VELOCITY * Vector2(speed_x_sign, 1.0)
+	state = EnemyState.HOPPINGOVER
+	jump_timer.start()
+	_on_jump()
+	hop.play()
 
 func _jump_done():
 	set_collision_mask_value(1, true)
