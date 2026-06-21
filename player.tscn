@@ -297,12 +297,12 @@ region_enabled = true
 region_rect = Rect2(52, 55, 37, 49)
 
 [node name="Weapon" type="Node2D" parent="." unique_id=124633294]
-visible = false
 position = Vector2(-17, -3)
 
 [node name="DamageHint" type="Polygon2D" parent="Weapon" unique_id=477777513]
+position = Vector2(-38, 0)
 color = Color(1, 0, 0, 0.35686275)
-polygon = PackedVector2Array(-36, -5, -143, -60, -143, 60, -36, 0)
+polygon = PackedVector2Array(2, -6, 2, -1, 1, 21, -13, 34, -98, 50, -98, -55, -13, -45, 2, -27)
 
 [node name="Weapon" type="Sprite2D" parent="Weapon" unique_id=1796983978]
 position = Vector2(-19, 2)
@@ -319,9 +319,9 @@ script = ExtResource("7_b26j0")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Weapon/Attack" unique_id=137464507]
 position = Vector2(4, 0)
-polygon = PackedVector2Array(22, -4, 23, 3, -105, 61, -105, -60)
+polygon = PackedVector2Array(22, -4, 23, 3, -13, 34, -99, 51, -98, -54, -13, -45)
 
-[node name="Muzzle" type="Node2D" parent="Weapon" unique_id=876790827]
+[node name="Muzzle" type="Marker2D" parent="Weapon" unique_id=1242479671]
 position = Vector2(-34, -1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1529040987]

@@ -6,7 +6,7 @@ enum State {IDLE=0, RUNNING=1, SHOOTING=2}
 
 const SPEED = 164.0
 const KNOCKBACK_SPEED = 666.0
-const WEAPON_DIST = 24.0
+const WEAPON_DIST = 8.0
 const BOOM_DIST = 24.0
 const FLICKER_SPEED = 20.0 / 1.0 # flick / s
 
