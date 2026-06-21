@@ -22,6 +22,10 @@ func _on_jump():
 func _on_die():
 	anim.current_animation = "hurt"
 	shoot.stop()
+	
+func _on_think_ready():
+	shoot.start()
+	_shoot()
 
 func _on_think():
 	velocity = WALK_SPEED * walk_dir
@@ -39,9 +43,6 @@ func _on_think_update():
 		var increment = randi_range(-2, -2)
 		walk_rot = float(increment) * PI / 4.0
 	walk_dir = dir.rotated(walk_rot)
-	
-	if shoot.is_stopped():
-		shoot.start()
 	
 func _shoot():
 	var proj: Projectile = laserball.instantiate()

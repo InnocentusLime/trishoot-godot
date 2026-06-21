@@ -151,6 +151,6 @@ libraries/ = SubResource("AnimationLibrary_t1w7k")
 position = Vector2(8, -18)
 
 [node name="Shoot" type="Timer" parent="." index="8" unique_id=202259365]
-wait_time = 2.0
+wait_time = 1.5
 
 [connection signal="timeout" from="Shoot" to="." method="_shoot"]

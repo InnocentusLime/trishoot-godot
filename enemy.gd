@@ -33,6 +33,7 @@ func _on_die(): pass
 func _on_think(): pass
 func _on_think_update(): pass
 func _on_jump(): pass
+func _on_think_ready(): pass
 
 func _ready():
 	think_tick.connect("timeout", _update_think)
@@ -96,9 +97,13 @@ func _physics_process(delta):
 
 func _jump_done():
 	set_collision_mask_value(1, true)
-	think_tick.start(randf_range(0.1, 0.4))
+	var k = 1.0 + 0.5 * randi_range(0, 3)
+	think_tick.start(think_time * k)
+	
 	state = EnemyState.ALIVE
 	velocity = Vector2.ZERO
+	_on_think_ready()
+	_update_think()
 
 func _lifetime_out():
 	GameEvents.enemy_despawned.emit()
