@@ -15,6 +15,10 @@ const FLICKER_SPEED = 20.0 / 1.0 # flick / s
 @onready var invince: Timer = $Invince
 @onready var anims: AnimationPlayer = $AnimationPlayer
 @onready var walk_hints: Sprite2D = $Hints
+@onready var attack: PlayerAttack = $Weapon/Attack
+@onready var weapon_muzzle: Node2D = $Weapon/Muzzle
+@onready var damage_hint: Node2D = $Weapon/DamageHint
+@onready var body: Sprite2D = $Sprite
 
 @export var boom: PackedScene
 @export var hitspark: PackedScene
@@ -77,15 +81,16 @@ func _physics_process(delta):
 	
 func _process(delta):
 	GameEvents.player_pos = position
+	damage_hint.visible = hasgun and state != State.SHOOTING
 	
 	if state == State.RUNNING: walk_time += delta
 	if walk_time >= hint_life: walk_hints.visible = false
 	
 	if !invince.is_stopped():
 		var current_flicker = int(invince.time_left * FLICKER_SPEED)
-		if current_flicker % 2 == 0: modulate = pain_color()
-		else: modulate = Color.TRANSPARENT
-	else: modulate = Color.WHITE
+		if current_flicker % 2 == 0: set_color(pain_color())
+		else: set_color(Color.TRANSPARENT)
+	else: set_color(Color.WHITE)
 	
 	if state == State.SHOOTING: return
 	
@@ -98,7 +103,9 @@ func _process(delta):
 	weapon.position = -Vector2.from_angle(weapon_angle) * WEAPON_DIST
 	weapon.rotation = weapon_angle
 	
-	if Input.is_action_just_pressed("shoot") and hasgun: enter_state(State.SHOOTING, new_face_right)
+	if Input.is_action_just_pressed("shoot") and hasgun: 
+		shoot()
+		enter_state(State.SHOOTING, new_face_right)
 	elif velocity: enter_state(State.RUNNING, new_face_right)
 	else: enter_state(State.IDLE, new_face_right)
 	
@@ -131,11 +138,17 @@ func enter_state(new_state: State, new_face_right: bool, force: bool = false):
 	if face_right: weaponSprite.offset = Vector2i(0, -4)
 	else: weaponSprite.offset = Vector2i(0, 0)
 	weaponSprite.flip_v = face_right
+
+func shoot():
+	attack.attack()
+	var the_boom: Node2D = boom.instantiate()
+	var weapon_angle: float = aim_angle - PI
+	the_boom.position = weapon_muzzle.global_position
+	the_boom.rotation = weapon_angle
+	#weapon.add_child(the_boom)
+	add_sibling(the_boom)
+	GameEvents.shake.emit(1.0, false)
 	
-	if new_state == State.SHOOTING:
-		var the_boom: Node2D = boom.instantiate()
-		var weapon_angle: float = aim_angle - PI
-		the_boom.position = position - Vector2.from_angle(weapon_angle) * (WEAPON_DIST + BOOM_DIST)
-		the_boom.rotation = weapon_angle
-		add_sibling(the_boom)
-		GameEvents.shake.emit(1.0, false)
+func set_color(c: Color):
+	body.modulate = c
+	weaponSprite.modulate = c
