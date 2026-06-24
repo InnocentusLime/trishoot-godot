@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bf0ba4s62capo"]
 
 [ext_resource type="Script" uid="uid://c06gjxq87qvnt" path="res://window_manager.gd" id="1_1oj5k"]
-[ext_resource type="Script" uid="uid://b26fcqi34xaif" path="res://main_game.gd" id="1_4srsv"]
+[ext_resource type="Script" uid="uid://b26fcqi34xaif" path="res://oldgame/main_game.gd" id="1_4srsv"]
 [ext_resource type="Texture2D" uid="uid://d1gyesxr35ehm" path="res://sprites/field.png" id="2_jgkyn"]
 [ext_resource type="Script" uid="uid://cy0665amiaiit" path="res://ui.gd" id="3_mf81u"]
 [ext_resource type="Texture2D" uid="uid://dn0eonhbvc677" path="res://sprites/fence.png" id="3_qpaub"]
@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bceryb2t6c4tb" path="res://wave_start_sign.tscn" id="7_an1vu"]
 [ext_resource type="PackedScene" uid="uid://1hng44hn5qdw" path="res://player.tscn" id="10_umrn2"]
 [ext_resource type="PackedScene" uid="uid://b5r4j1xmhu0vl" path="res://hits/playerdead.tscn" id="11_wt57k"]
-[ext_resource type="Script" uid="uid://0focy8a8p1yl" path="res://wave_manager.gd" id="13_krmtw"]
+[ext_resource type="Script" uid="uid://0focy8a8p1yl" path="res://oldgame/wave_manager.gd" id="13_krmtw"]
 [ext_resource type="PackedScene" uid="uid://b12cng6sqw7n5" path="res://enemies/sigguy.tscn" id="14_an1vu"]
 [ext_resource type="AudioStream" uid="uid://bip4mw50ruc1w" path="res://snd/cock.wav" id="14_borgi"]
 [ext_resource type="PackedScene" uid="uid://due6y6601ung" path="res://enemies/chaser.tscn" id="14_jgkyn"]

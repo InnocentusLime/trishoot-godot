@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="triple-shoot"
-run/main_scene="uid://drsntvbi0rlqq"
+run/main_scene="uid://bf0ba4s62capo"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
