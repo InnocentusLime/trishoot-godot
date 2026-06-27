@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var left_spawn: Node2D = $LeftSpawnPoint
@@ -25,6 +25,9 @@ var enemies_despawn_left: int = 0
 
 var wave_num: int = -1
 var locked: bool = false
+
+func _on_sign_bot_killed():
+	start_wave()
 
 func start_wave():
 	wave_num += 1
@@ -73,9 +76,6 @@ func start_wave():
 		weights.append(max_weight)
 
 func _ready(): 
-	GameEvents.enemy_died.connect(_on_enemy_dead)
-	GameEvents.enemy_despawned.connect(_on_enemy_despawned)
-	GameEvents.game_start.connect(start_wave)
 	GameEvents.game_over.connect(_on_game_over)
 	
 func _on_enemy_dead():
@@ -111,6 +111,8 @@ func spawn_enemy() -> bool:
 	var enemy: Enemy = to_spawn.instantiate()
 	enemy.position = spawn_pos
 	enemy.jumps_on_left = spawn_point == left_spawn
+	enemy.killed.connect(_on_enemy_dead)
+	enemy.tree_exiting.connect(_on_enemy_despawned)
 	add_sibling(enemy)
 	
 	enemies_spawned += 1

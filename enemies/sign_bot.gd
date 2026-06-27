@@ -19,4 +19,3 @@ func _on_jumpsdds():
 
 func _on_die():
 	anim.current_animation = "hurt"
-	GameEvents.game_start.emit()

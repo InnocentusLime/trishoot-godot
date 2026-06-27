@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 @onready var window: Window = get_window() 
 @onready var base_width: int = ProjectSettings.get_setting("display/window/size/viewport_width")

@@ -1,6 +1,8 @@
 class_name Enemy
 extends CharacterBody2D
 
+signal killed
+
 enum EnemyLayer {ACTIVE = 2, DYING = 3}
 enum EnemyState {ENTERING=-2, HOPPINGOVER=-1, ALIVE = 0, KNOCKBACK=1, OFFSCREEN=2}
 
@@ -33,7 +35,7 @@ func _on_think_ready(): pass
 
 func _ready():
 	think_tick.connect("timeout", _update_think)
-	delete_timer.connect("timeout", _lifetime_out)
+	delete_timer.connect("timeout", queue_free)
 	jump_timer.connect("timeout", _jump_done)
 	
 	GameEvents.game_over.connect(_on_game_over)
@@ -54,7 +56,7 @@ func _on_dmg(attack_pos: Vector2, force: bool = false) -> bool:
 	jump_timer.stop()
 	_on_die()
 	velocity = KNOCKBACK_SPEED * knockback_dir
-	GameEvents.enemy_died.emit()
+	killed.emit()
 	return true
 
 func _physics_process(delta):
@@ -96,10 +98,6 @@ func _jump_done():
 	velocity = Vector2.ZERO
 	_on_think_ready()
 	_update_think()
-
-func _lifetime_out():
-	GameEvents.enemy_despawned.emit()
-	queue_free()
 
 func _update_think():
 	if state != EnemyState.ALIVE: return

@@ -3,7 +3,7 @@ extends Node2D
 
 const SHAKE_AMPLITUDE: float = 1.0
 
-@onready var game_camera: Camera2D = $WindowManager/Gameplay
+@onready var game_camera: Camera2D = $Gameplay
 @onready var music: AudioStreamPlayer = $Music
 
 @export var die: PackedScene
@@ -15,7 +15,6 @@ var restart_locked: bool
 func _ready():
 	GameEvents.shake.connect(_on_shake)
 	GameEvents.score_changed.connect(_on_score_changed)
-	GameEvents.game_start.connect(_on_game_start)
 	GameEvents.game_over.connect(_on_game_over)
 	GameEvents.demo_over.connect(_on_demo_over)
 	
@@ -33,7 +32,7 @@ func _on_game_over():
 	dieanim.score = score
 	add_child(dieanim)
 
-func _on_game_start():
+func _on_sign_bot_killed():
 	music.play()
 
 func _on_score_changed(score_delta: int, _score_label: String):
