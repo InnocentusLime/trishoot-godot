@@ -1,5 +1,4 @@
-class_name WaveStart
-extends Label
+class_name WaveStart extends Label
 
 @onready var timer = $Timer
 

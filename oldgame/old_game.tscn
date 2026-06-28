@@ -1,23 +1,23 @@
 [gd_scene format=3 uid="uid://bf0ba4s62capo"]
 
-[ext_resource type="Script" uid="uid://c06gjxq87qvnt" path="res://window_manager.gd" id="1_1oj5k"]
-[ext_resource type="Script" uid="uid://b26fcqi34xaif" path="res://oldgame/main_game.gd" id="1_4srsv"]
-[ext_resource type="Texture2D" uid="uid://d1gyesxr35ehm" path="res://sprites/field.png" id="2_jgkyn"]
-[ext_resource type="Script" uid="uid://cy0665amiaiit" path="res://ui.gd" id="3_mf81u"]
-[ext_resource type="Texture2D" uid="uid://dn0eonhbvc677" path="res://sprites/fence.png" id="3_qpaub"]
-[ext_resource type="PackedScene" uid="uid://beax458iexlun" path="res://enemies/sign_bot.tscn" id="3_umrn2"]
-[ext_resource type="PackedScene" uid="uid://dux3t8ovio4bv" path="res://combo_shower.tscn" id="4_02kkc"]
-[ext_resource type="Script" uid="uid://bqxu6kytoqvx8" path="res://waves/jump_zones.gd" id="5_2i4tw"]
-[ext_resource type="PackedScene" uid="uid://bceryb2t6c4tb" path="res://wave_start_sign.tscn" id="7_an1vu"]
-[ext_resource type="PackedScene" uid="uid://1hng44hn5qdw" path="res://player.tscn" id="10_umrn2"]
-[ext_resource type="PackedScene" uid="uid://b5r4j1xmhu0vl" path="res://hits/playerdead.tscn" id="11_wt57k"]
-[ext_resource type="Script" uid="uid://0focy8a8p1yl" path="res://oldgame/wave_manager.gd" id="13_krmtw"]
-[ext_resource type="PackedScene" uid="uid://b12cng6sqw7n5" path="res://enemies/sigguy.tscn" id="14_an1vu"]
-[ext_resource type="PackedScene" uid="uid://due6y6601ung" path="res://enemies/chaser.tscn" id="14_jgkyn"]
-[ext_resource type="PackedScene" uid="uid://blakuum2hob7y" path="res://enemies/pogshot.tscn" id="15_borgi"]
-[ext_resource type="PackedScene" uid="uid://yspcymd65km7" path="res://gun_pickup.tscn" id="16_fgcw8"]
-[ext_resource type="PackedScene" uid="uid://cg5bh3sgukcl7" path="res://enemies/firepeno.tscn" id="16_ih6an"]
-[ext_resource type="AudioStream" uid="uid://bimtyxxibgsaw" path="res://MainTheme.mp3" id="25_lght5"]
+[ext_resource type="Script" uid="uid://b26fcqi34xaif" path="res://oldgame/old_game.gd" id="1_bu5ar"]
+[ext_resource type="PackedScene" uid="uid://b5r4j1xmhu0vl" path="res://hits/playerdead.tscn" id="2_karsg"]
+[ext_resource type="Script" uid="uid://c06gjxq87qvnt" path="res://window_manager.gd" id="3_flst0"]
+[ext_resource type="Script" uid="uid://0focy8a8p1yl" path="res://oldgame/wave_manager.gd" id="4_pjvnq"]
+[ext_resource type="PackedScene" uid="uid://due6y6601ung" path="res://enemies/chaser.tscn" id="5_1qhq6"]
+[ext_resource type="PackedScene" uid="uid://b12cng6sqw7n5" path="res://enemies/sigguy.tscn" id="6_d3mxg"]
+[ext_resource type="PackedScene" uid="uid://blakuum2hob7y" path="res://enemies/pogshot.tscn" id="7_mclb5"]
+[ext_resource type="PackedScene" uid="uid://cg5bh3sgukcl7" path="res://enemies/firepeno.tscn" id="8_at4su"]
+[ext_resource type="Script" uid="uid://cy0665amiaiit" path="res://ui.gd" id="9_8t0rj"]
+[ext_resource type="PackedScene" uid="uid://dux3t8ovio4bv" path="res://combo_shower.tscn" id="10_2r3oi"]
+[ext_resource type="PackedScene" uid="uid://bceryb2t6c4tb" path="res://wave_start_sign.tscn" id="11_mmmvb"]
+[ext_resource type="Texture2D" uid="uid://d1gyesxr35ehm" path="res://sprites/field.png" id="12_3s1do"]
+[ext_resource type="Texture2D" uid="uid://dn0eonhbvc677" path="res://sprites/fence.png" id="13_dsnk0"]
+[ext_resource type="Script" uid="uid://bqxu6kytoqvx8" path="res://waves/jump_zones.gd" id="14_mx2ud"]
+[ext_resource type="PackedScene" uid="uid://1hng44hn5qdw" path="res://player.tscn" id="15_qnjrw"]
+[ext_resource type="PackedScene" uid="uid://yspcymd65km7" path="res://gun_pickup.tscn" id="16_lcsus"]
+[ext_resource type="AudioStream" uid="uid://bimtyxxibgsaw" path="res://MainTheme.mp3" id="17_euodg"]
+[ext_resource type="PackedScene" uid="uid://beax458iexlun" path="res://enemies/sign_bot.tscn" id="18_fuu6c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aomqu"]
 size = Vector2(20, 480)
@@ -27,15 +27,15 @@ size = Vector2(43, 547)
 
 [node name="MainGame" type="Node2D" unique_id=1130606135]
 y_sort_enabled = true
-script = ExtResource("1_4srsv")
-die = ExtResource("11_wt57k")
+script = ExtResource("1_bu5ar")
+die = ExtResource("2_karsg")
 
 [node name="WindowManager" type="Node" parent="." unique_id=1214834291]
-script = ExtResource("1_1oj5k")
+script = ExtResource("3_flst0")
 
 [node name="WaveManager" type="Node" parent="." unique_id=1791239881]
-script = ExtResource("13_krmtw")
-enemies = Array[PackedScene]([ExtResource("14_jgkyn"), ExtResource("14_an1vu"), ExtResource("15_borgi"), ExtResource("16_ih6an")])
+script = ExtResource("4_pjvnq")
+enemies = Array[PackedScene]([ExtResource("5_1qhq6"), ExtResource("6_d3mxg"), ExtResource("7_mclb5"), ExtResource("8_at4su")])
 
 [node name="LeftSpawnPoint" type="Marker2D" parent="WaveManager" unique_id=890141676]
 position = Vector2(-79, 268)
@@ -52,9 +52,9 @@ position = Vector2(480, 270)
 scale = Vector2(1.0000001, 1.0000001)
 
 [node name="UI" type="CanvasLayer" parent="Gameplay" unique_id=1762282750]
-script = ExtResource("3_mf81u")
-combo_widget = ExtResource("4_02kkc")
-wave_start_widget = ExtResource("7_an1vu")
+script = ExtResource("9_8t0rj")
+combo_widget = ExtResource("10_2r3oi")
+wave_start_widget = ExtResource("11_mmmvb")
 
 [node name="HUD" type="MarginContainer" parent="Gameplay/UI" unique_id=519479056]
 anchors_preset = 15
@@ -116,7 +116,7 @@ z_index = -1
 
 [node name="Field" type="Sprite2D" parent="Field" unique_id=867149644]
 position = Vector2(240, 49)
-texture = ExtResource("2_jgkyn")
+texture = ExtResource("12_3s1do")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 40, 480, 440)
@@ -128,42 +128,42 @@ region_rect = Rect2(0, 40, 480, 440)
 [node name="Sprite2D" type="Sprite2D" parent="Field/Fences/Top" unique_id=356116627]
 texture_repeat = 2
 position = Vector2(282, 48)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(42, 71, 86, 12)
 
 [node name="Sprite2D2" type="Sprite2D" parent="Field/Fences/Top" unique_id=1243326082]
 texture_repeat = 2
 position = Vector2(368, 48)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(42, 71, 86, 12)
 
 [node name="Sprite2D3" type="Sprite2D" parent="Field/Fences/Top" unique_id=1020091436]
 texture_repeat = 2
 position = Vector2(454, 48)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(42, 71, 86, 12)
 
 [node name="Sprite2D4" type="Sprite2D" parent="Field/Fences/Top" unique_id=103407808]
 texture_repeat = 2
 position = Vector2(540, 48)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(42, 71, 86, 12)
 
 [node name="Sprite2D5" type="Sprite2D" parent="Field/Fences/Top" unique_id=1939613062]
 texture_repeat = 2
 position = Vector2(626, 48)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(42, 71, 86, 12)
 
 [node name="Sprite2D6" type="Sprite2D" parent="Field/Fences/Top" unique_id=1568360007]
 texture_repeat = 2
 position = Vector2(694, 48)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(42, 71, 52, 12)
 
@@ -172,73 +172,73 @@ position = Vector2(2, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Field/Fences/Right" unique_id=1044007868]
 position = Vector2(716, 64)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D2" type="Sprite2D" parent="Field/Fences/Right" unique_id=1709315394]
 position = Vector2(716, 101)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D3" type="Sprite2D" parent="Field/Fences/Right" unique_id=450451101]
 position = Vector2(716, 139)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D4" type="Sprite2D" parent="Field/Fences/Right" unique_id=1500974645]
 position = Vector2(716, 178)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D5" type="Sprite2D" parent="Field/Fences/Right" unique_id=1238359517]
 position = Vector2(716, 216)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D6" type="Sprite2D" parent="Field/Fences/Right" unique_id=195906884]
 position = Vector2(716, 254)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D7" type="Sprite2D" parent="Field/Fences/Right" unique_id=1636864715]
 position = Vector2(716, 294)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D8" type="Sprite2D" parent="Field/Fences/Right" unique_id=1282099557]
 position = Vector2(716, 333)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D9" type="Sprite2D" parent="Field/Fences/Right" unique_id=1279050499]
 position = Vector2(716, 372)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D10" type="Sprite2D" parent="Field/Fences/Right" unique_id=576326215]
 position = Vector2(716, 411)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D11" type="Sprite2D" parent="Field/Fences/Right" unique_id=559007246]
 position = Vector2(716, 446)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D12" type="Sprite2D" parent="Field/Fences/Right" unique_id=1509168265]
 position = Vector2(716, 476)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 26)
 
@@ -247,73 +247,73 @@ position = Vector2(-476, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Field/Fences/Left" unique_id=1283891015]
 position = Vector2(716, 64)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D2" type="Sprite2D" parent="Field/Fences/Left" unique_id=2080820299]
 position = Vector2(716, 101)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D3" type="Sprite2D" parent="Field/Fences/Left" unique_id=595857106]
 position = Vector2(716, 139)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D4" type="Sprite2D" parent="Field/Fences/Left" unique_id=451340547]
 position = Vector2(716, 178)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D5" type="Sprite2D" parent="Field/Fences/Left" unique_id=278716472]
 position = Vector2(716, 216)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D6" type="Sprite2D" parent="Field/Fences/Left" unique_id=464747456]
 position = Vector2(716, 254)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D7" type="Sprite2D" parent="Field/Fences/Left" unique_id=543079140]
 position = Vector2(716, 294)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D8" type="Sprite2D" parent="Field/Fences/Left" unique_id=1543841521]
 position = Vector2(716, 333)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D9" type="Sprite2D" parent="Field/Fences/Left" unique_id=706629904]
 position = Vector2(716, 372)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D10" type="Sprite2D" parent="Field/Fences/Left" unique_id=1416352831]
 position = Vector2(716, 411)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D11" type="Sprite2D" parent="Field/Fences/Left" unique_id=759677043]
 position = Vector2(716, 446)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D12" type="Sprite2D" parent="Field/Fences/Left" unique_id=845156727]
 position = Vector2(716, 476)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 26)
 
@@ -323,42 +323,42 @@ position = Vector2(0, 443)
 [node name="Sprite2D" type="Sprite2D" parent="Field/Fences/Bot" unique_id=309291104]
 texture_repeat = 2
 position = Vector2(282, 48)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(42, 71, 86, 12)
 
 [node name="Sprite2D2" type="Sprite2D" parent="Field/Fences/Bot" unique_id=1484639536]
 texture_repeat = 2
 position = Vector2(368, 48)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(42, 71, 86, 12)
 
 [node name="Sprite2D3" type="Sprite2D" parent="Field/Fences/Bot" unique_id=40160839]
 texture_repeat = 2
 position = Vector2(454, 48)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(42, 71, 86, 12)
 
 [node name="Sprite2D4" type="Sprite2D" parent="Field/Fences/Bot" unique_id=462597329]
 texture_repeat = 2
 position = Vector2(540, 48)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(42, 71, 86, 12)
 
 [node name="Sprite2D5" type="Sprite2D" parent="Field/Fences/Bot" unique_id=621470013]
 texture_repeat = 2
 position = Vector2(626, 48)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(42, 71, 86, 12)
 
 [node name="Sprite2D6" type="Sprite2D" parent="Field/Fences/Bot" unique_id=920134739]
 texture_repeat = 2
 position = Vector2(694, 48)
-texture = ExtResource("3_qpaub")
+texture = ExtResource("13_dsnk0")
 region_enabled = true
 region_rect = Rect2(42, 71, 52, 12)
 
@@ -384,7 +384,7 @@ shape = SubResource("RectangleShape2D_aomqu")
 collision_layer = 0
 collision_mask = 2
 monitorable = false
-script = ExtResource("5_2i4tw")
+script = ExtResource("14_mx2ud")
 
 [node name="Left" type="CollisionShape2D" parent="Field/JumpZones" unique_id=1829627816]
 position = Vector2(191.5, 268.5)
@@ -396,18 +396,18 @@ position = Vector2(771, 268.5)
 shape = SubResource("RectangleShape2D_umrn2")
 debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
 
-[node name="Player" parent="." unique_id=1422128146 instance=ExtResource("10_umrn2")]
+[node name="Player" parent="." unique_id=1422128146 instance=ExtResource("15_qnjrw")]
 position = Vector2(303, 128)
 
-[node name="GunPickup" parent="." unique_id=454315548 instance=ExtResource("16_fgcw8")]
+[node name="GunPickup" parent="." unique_id=454315548 instance=ExtResource("16_lcsus")]
 position = Vector2(660, 426)
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=1326820840]
 process_mode = 3
-stream = ExtResource("25_lght5")
+stream = ExtResource("17_euodg")
 volume_db = -16.0
 
-[node name="SignBot" parent="." unique_id=1859096370 instance=ExtResource("3_umrn2")]
+[node name="SignBot" parent="." unique_id=1859096370 instance=ExtResource("18_fuu6c")]
 position = Vector2(-49, 265)
 state = 0
 

@@ -1,5 +1,4 @@
-class_name PlayerHit
-extends Sprite2D
+class_name PlayerHit extends Sprite2D
 
 const SCALE_SPEED: float = 4.0
 const MAX_SCALE: float = 2.0

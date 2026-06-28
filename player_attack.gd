@@ -1,5 +1,4 @@
-class_name PlayerAttack
-extends Area2D
+class_name PlayerAttack extends Area2D
 
 const BASE_SCORE: int = 10
 const PUNISH: int = -100

@@ -1,5 +1,4 @@
-class_name PlayerDead
-extends Node2D
+class_name PlayerDead extends Node2D
 
 @onready var die: AudioStreamPlayer = $Die
 

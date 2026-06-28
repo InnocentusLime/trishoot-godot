@@ -5,30 +5,42 @@
 [ext_resource type="Script" uid="uid://cy0665amiaiit" path="res://ui.gd" id="3_g14j6"]
 [ext_resource type="PackedScene" uid="uid://dux3t8ovio4bv" path="res://combo_shower.tscn" id="4_vbegm"]
 [ext_resource type="PackedScene" uid="uid://bceryb2t6c4tb" path="res://wave_start_sign.tscn" id="5_ehkex"]
-[ext_resource type="PackedScene" uid="uid://blakuum2hob7y" path="res://enemies/pogshot.tscn" id="6_g14j6"]
+[ext_resource type="Script" uid="uid://clwjojxc4jt3h" path="res://waves/wave_manger.gd" id="7_vbegm"]
+[ext_resource type="Script" uid="uid://bqxu6kytoqvx8" path="res://waves/jump_zones.gd" id="8_ehkex"]
+[ext_resource type="PackedScene" uid="uid://dehcp0s7086fg" path="res://waves/configs/wave_test1.tscn" id="8_xersf"]
+[ext_resource type="Texture2D" uid="uid://d1gyesxr35ehm" path="res://sprites/field.png" id="9_00tp4"]
+[ext_resource type="Texture2D" uid="uid://dn0eonhbvc677" path="res://sprites/fence.png" id="10_77dp3"]
+[ext_resource type="PackedScene" uid="uid://cg5bh3sgukcl7" path="res://enemies/firepeno.tscn" id="11_77dp3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xersf"]
+size = Vector2(43, 547)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5tkv4"]
+size = Vector2(20, 480)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0m0f1"]
+size = Vector2(43, 547)
 
 [node name="Test" type="Node2D" unique_id=496192422]
 
 [node name="Player" parent="." unique_id=1422128146 instance=ExtResource("1_37kl0")]
-position = Vector2(224, 301)
+position = Vector2(434, 293)
 hint_life = 0.0
 hasgun = true
 god = true
 
-[node name="WindowManager" type="Node2D" parent="." unique_id=1041351405]
-position = Vector2(-6.1035156e-05, -1.5258789e-05)
-scale = Vector2(1.0000001, 1.0000001)
+[node name="WindowManager" type="Node" parent="." unique_id=1480704761]
 script = ExtResource("2_ykrsh")
 
-[node name="Gameplay" type="Camera2D" parent="WindowManager" unique_id=928942338]
+[node name="Gameplay" type="Camera2D" parent="." unique_id=928942338]
 position = Vector2(480, 270)
 
-[node name="UI" type="CanvasLayer" parent="WindowManager/Gameplay" unique_id=1692524302]
+[node name="UI" type="CanvasLayer" parent="Gameplay" unique_id=1692524302]
 script = ExtResource("3_g14j6")
 combo_widget = ExtResource("4_vbegm")
 wave_start_widget = ExtResource("5_ehkex")
 
-[node name="HUD" type="MarginContainer" parent="WindowManager/Gameplay/UI" unique_id=346843339]
+[node name="HUD" type="MarginContainer" parent="Gameplay/UI" unique_id=346843339]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -39,28 +51,28 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Stack" type="VBoxContainer" parent="WindowManager/Gameplay/UI/HUD" unique_id=1557695383]
+[node name="Stack" type="VBoxContainer" parent="Gameplay/UI/HUD" unique_id=1557695383]
 layout_mode = 2
 
-[node name="Health" type="Label" parent="WindowManager/Gameplay/UI/HUD/Stack" unique_id=164012571]
+[node name="Health" type="Label" parent="Gameplay/UI/HUD/Stack" unique_id=164012571]
 layout_mode = 2
 text = "HP: 0"
 
-[node name="Score" type="Control" parent="WindowManager/Gameplay/UI/HUD/Stack" unique_id=234420851]
+[node name="Score" type="Control" parent="Gameplay/UI/HUD/Stack" unique_id=234420851]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="WindowManager/Gameplay/UI/HUD/Stack/Score" unique_id=1585576493]
+[node name="Label" type="Label" parent="Gameplay/UI/HUD/Stack/Score" unique_id=1585576493]
 layout_mode = 0
 offset_right = 960.0
 offset_bottom = 23.0
 pivot_offset = Vector2(30, 12)
 text = "Score: 0"
 
-[node name="Comboer" type="Control" parent="WindowManager/Gameplay/UI/HUD/Stack" unique_id=1806035220]
+[node name="Comboer" type="Control" parent="Gameplay/UI/HUD/Stack" unique_id=1806035220]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="WaveCompPort" type="VBoxContainer" parent="WindowManager/Gameplay/UI" unique_id=2063549560]
+[node name="WaveCompPort" type="VBoxContainer" parent="Gameplay/UI" unique_id=2063549560]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -68,10 +80,10 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="WaveStart" type="Control" parent="WindowManager/Gameplay/UI/WaveCompPort" unique_id=309278961]
+[node name="WaveStart" type="Control" parent="Gameplay/UI/WaveCompPort" unique_id=309278961]
 layout_mode = 2
 
-[node name="DemoOver" type="Label" parent="WindowManager/Gameplay/UI" unique_id=34950317]
+[node name="DemoOver" type="Label" parent="Gameplay/UI" unique_id=34950317]
 modulate = Color(1, 1, 1, 0)
 offset_left = 411.0
 offset_top = 85.0
@@ -83,5 +95,323 @@ Thanks for playing!
 Press R to restart"
 horizontal_alignment = 1
 
-[node name="Pogshot" parent="." unique_id=1859096370 instance=ExtResource("6_g14j6")]
-position = Vector2(653, 207)
+[node name="JumpZones" type="Area2D" parent="." unique_id=41572965]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("8_ehkex")
+
+[node name="Left" type="CollisionShape2D" parent="JumpZones" unique_id=1043408591]
+position = Vector2(191.5, 268.5)
+shape = SubResource("RectangleShape2D_xersf")
+debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
+
+[node name="Right" type="CollisionShape2D" parent="JumpZones" unique_id=1993226629]
+position = Vector2(771, 268.5)
+shape = SubResource("RectangleShape2D_xersf")
+debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
+
+[node name="TestPos" type="Marker2D" parent="." unique_id=329063834]
+position = Vector2(106, 267)
+gizmo_extents = 40.0
+
+[node name="WaveManger" type="Node" parent="." unique_id=227660351 node_paths=PackedStringArray("spawn_points")]
+process_mode = 4
+script = ExtResource("7_vbegm")
+spawn_points = {
+-1: NodePath("../TestPos")
+}
+waves = Array[PackedScene]([ExtResource("8_xersf"), ExtResource("8_xersf"), ExtResource("8_xersf")])
+
+[node name="Field" type="AnimatableBody2D" parent="." unique_id=1148295311]
+z_index = -1
+
+[node name="Field" type="Sprite2D" parent="Field" unique_id=1855787950]
+position = Vector2(240, 49)
+texture = ExtResource("9_00tp4")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 40, 480, 440)
+
+[node name="Fences" type="Node2D" parent="Field" unique_id=445088992]
+
+[node name="Top" type="Node2D" parent="Field/Fences" unique_id=2086815342]
+
+[node name="Sprite2D" type="Sprite2D" parent="Field/Fences/Top" unique_id=2077331863]
+texture_repeat = 2
+position = Vector2(282, 48)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Field/Fences/Top" unique_id=1492167400]
+texture_repeat = 2
+position = Vector2(368, 48)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Field/Fences/Top" unique_id=1296240055]
+texture_repeat = 2
+position = Vector2(454, 48)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Field/Fences/Top" unique_id=1056903056]
+texture_repeat = 2
+position = Vector2(540, 48)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D5" type="Sprite2D" parent="Field/Fences/Top" unique_id=1440968781]
+texture_repeat = 2
+position = Vector2(626, 48)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D6" type="Sprite2D" parent="Field/Fences/Top" unique_id=1677604268]
+texture_repeat = 2
+position = Vector2(694, 48)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(42, 71, 52, 12)
+
+[node name="Right" type="Node2D" parent="Field/Fences" unique_id=1712160728]
+position = Vector2(2, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Field/Fences/Right" unique_id=1847473245]
+position = Vector2(716, 64)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Field/Fences/Right" unique_id=198112144]
+position = Vector2(716, 101)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Field/Fences/Right" unique_id=1282160653]
+position = Vector2(716, 139)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Field/Fences/Right" unique_id=752208757]
+position = Vector2(716, 178)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D5" type="Sprite2D" parent="Field/Fences/Right" unique_id=930564237]
+position = Vector2(716, 216)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D6" type="Sprite2D" parent="Field/Fences/Right" unique_id=2141535616]
+position = Vector2(716, 254)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D7" type="Sprite2D" parent="Field/Fences/Right" unique_id=1098609447]
+position = Vector2(716, 294)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D8" type="Sprite2D" parent="Field/Fences/Right" unique_id=1876584083]
+position = Vector2(716, 333)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D9" type="Sprite2D" parent="Field/Fences/Right" unique_id=1622134109]
+position = Vector2(716, 372)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D10" type="Sprite2D" parent="Field/Fences/Right" unique_id=1382428459]
+position = Vector2(716, 411)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D11" type="Sprite2D" parent="Field/Fences/Right" unique_id=711000954]
+position = Vector2(716, 446)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D12" type="Sprite2D" parent="Field/Fences/Right" unique_id=473050590]
+position = Vector2(716, 476)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 26)
+
+[node name="Left" type="Node2D" parent="Field/Fences" unique_id=1716957973]
+position = Vector2(-476, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Field/Fences/Left" unique_id=228612819]
+position = Vector2(716, 64)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Field/Fences/Left" unique_id=477560554]
+position = Vector2(716, 101)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Field/Fences/Left" unique_id=821302088]
+position = Vector2(716, 139)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Field/Fences/Left" unique_id=2008293855]
+position = Vector2(716, 178)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D5" type="Sprite2D" parent="Field/Fences/Left" unique_id=776812644]
+position = Vector2(716, 216)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D6" type="Sprite2D" parent="Field/Fences/Left" unique_id=1843752630]
+position = Vector2(716, 254)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D7" type="Sprite2D" parent="Field/Fences/Left" unique_id=1762670631]
+position = Vector2(716, 294)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D8" type="Sprite2D" parent="Field/Fences/Left" unique_id=743631888]
+position = Vector2(716, 333)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D9" type="Sprite2D" parent="Field/Fences/Left" unique_id=173835982]
+position = Vector2(716, 372)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D10" type="Sprite2D" parent="Field/Fences/Left" unique_id=916443993]
+position = Vector2(716, 411)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D11" type="Sprite2D" parent="Field/Fences/Left" unique_id=340907539]
+position = Vector2(716, 446)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D12" type="Sprite2D" parent="Field/Fences/Left" unique_id=488376977]
+position = Vector2(716, 476)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 26)
+
+[node name="Bot" type="Node2D" parent="Field/Fences" unique_id=920145609]
+position = Vector2(0, 443)
+
+[node name="Sprite2D" type="Sprite2D" parent="Field/Fences/Bot" unique_id=1470149040]
+texture_repeat = 2
+position = Vector2(282, 48)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Field/Fences/Bot" unique_id=1901564158]
+texture_repeat = 2
+position = Vector2(368, 48)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Field/Fences/Bot" unique_id=1694323674]
+texture_repeat = 2
+position = Vector2(454, 48)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Field/Fences/Bot" unique_id=1895326456]
+texture_repeat = 2
+position = Vector2(540, 48)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D5" type="Sprite2D" parent="Field/Fences/Bot" unique_id=1912283795]
+texture_repeat = 2
+position = Vector2(626, 48)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D6" type="Sprite2D" parent="Field/Fences/Bot" unique_id=1767331564]
+texture_repeat = 2
+position = Vector2(694, 48)
+texture = ExtResource("10_77dp3")
+region_enabled = true
+region_rect = Rect2(42, 71, 52, 12)
+
+[node name="Left" type="CollisionShape2D" parent="Field" unique_id=861827919]
+position = Vector2(231, 270)
+shape = SubResource("RectangleShape2D_5tkv4")
+
+[node name="Right" type="CollisionShape2D" parent="Field" unique_id=227894875]
+position = Vector2(730, 272)
+shape = SubResource("RectangleShape2D_5tkv4")
+
+[node name="Top" type="CollisionShape2D" parent="Field" unique_id=2005024141]
+position = Vector2(481, 39)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_5tkv4")
+
+[node name="Bottom" type="CollisionShape2D" parent="Field" unique_id=1433114867]
+position = Vector2(480, 501)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_5tkv4")
+
+[node name="JumpZones" type="Area2D" parent="Field" unique_id=864431011]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("8_ehkex")
+
+[node name="Left" type="CollisionShape2D" parent="Field/JumpZones" unique_id=927979376]
+position = Vector2(191.5, 268.5)
+shape = SubResource("RectangleShape2D_0m0f1")
+debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
+
+[node name="Right" type="CollisionShape2D" parent="Field/JumpZones" unique_id=121332553]
+position = Vector2(771, 268.5)
+shape = SubResource("RectangleShape2D_0m0f1")
+debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
+
+[node name="Firepeno" parent="." unique_id=1859096370 instance=ExtResource("11_77dp3")]
+position = Vector2(665, 372)
+state = 0
+
+[connection signal="body_entered" from="JumpZones" to="JumpZones" method="_on_body_entered"]
+[connection signal="child_exiting_tree" from="WaveManger" to="WaveManger" method="_on_wave_done"]
+[connection signal="body_entered" from="Field/JumpZones" to="Field/JumpZones" method="_on_body_entered"]

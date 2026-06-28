@@ -1,5 +1,4 @@
-class_name MainGame
-extends Node2D
+class_name MainGame extends Node2D
 
 const SHAKE_AMPLITUDE: float = 1.0
 

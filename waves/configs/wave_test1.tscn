@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dehcp0s7086fg"]
+
+[ext_resource type="Script" uid="uid://xvv42c770em2" path="res://waves/wave.gd" id="1_0gjvu"]
+[ext_resource type="Script" uid="uid://b3hcn4tuvxlld" path="res://waves/spawner.gd" id="2_k463n"]
+[ext_resource type="PackedScene" uid="uid://due6y6601ung" path="res://enemies/chaser.tscn" id="3_g8k4n"]
+
+[node name="Wave" type="Node" unique_id=1813005473]
+script = ExtResource("1_0gjvu")
+
+[node name="Spawner" type="Timer" parent="." unique_id=817475329]
+script = ExtResource("2_k463n")
+to_spawn = ExtResource("3_g8k4n")
+enemy_budget = 3
+
+[connection signal="child_exiting_tree" from="." to="." method="_on_spawner_dying"]
+[connection signal="child_exiting_tree" from="Spawner" to="Spawner" method="_on_enemy_despawn"]
+[connection signal="timeout" from="Spawner" to="Spawner" method="_on_spawn"]

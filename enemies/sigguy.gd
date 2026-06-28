@@ -12,28 +12,31 @@ const MY_PROJ_VELOCITY: float = 128.0
 
 var walk_dir: Vector2 = Vector2.ZERO
 
-func _ready():
-	super._ready()
+func _on_entering():
+	super._on_entering()
 	anim.current_animation = "idle"
 
-func _on_jump():
+func _on_hopping_over():
+	super._on_hopping_over()
 	anim.current_animation = "jump"
 
-func _on_die():
+func _on_knockback():
+	super._on_knockback()
 	anim.current_animation = "hurt"
 	shoot.stop()
 	
-func _on_think_ready():
+func _on_alive():
+	super._on_alive()
 	shoot.start()
 	_shoot()
 
-func _on_think():
+func _think():
 	velocity = WALK_SPEED * walk_dir
 	if bumped_this_frame:
 		walk_dir = walk_dir.rotated(PI / 8.0)
 	velocity = WALK_SPEED * walk_dir
 
-func _on_think_update():
+func _update_think():
 	var dir: Vector2 = (GameEvents.player_pos - position).normalized()
 	var walk_rot: float
 	if not brave:

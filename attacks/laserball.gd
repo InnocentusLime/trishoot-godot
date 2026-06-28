@@ -1,5 +1,4 @@
-class_name Projectile
-extends Area2D
+class_name Projectile extends Area2D
 
 const PARRIED_SPEED: float = 250.0
 

@@ -1,5 +1,4 @@
-class_name ComboShower
-extends Label
+class_name ComboShower extends Label
 
 signal reward_appeared(value: int)
 

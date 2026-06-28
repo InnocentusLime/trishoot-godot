@@ -1,5 +1,4 @@
-class_name HitEnemy
-extends Sprite2D
+class_name HitEnemy extends Sprite2D
 
 @export var be_quiet: bool = false
 
