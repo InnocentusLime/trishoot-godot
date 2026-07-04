@@ -133,6 +133,7 @@ size = Vector2(18, 18)
 
 [node name="Chaser" unique_id=1859096370 instance=ExtResource("1_bjo8h")]
 script = ExtResource("1_ho883")
+think_time = 0.6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4" unique_id=683147072]
 shape = SubResource("CircleShape2D_8yvpk")

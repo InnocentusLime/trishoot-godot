@@ -20,4 +20,4 @@ one_shot = true
 
 [node name="Hop" type="AudioStreamPlayer2D" parent="." unique_id=1818207286]
 stream = ExtResource("1_7k104")
-volume_db = -10.904
+volume_db = -21.807

@@ -8,9 +8,12 @@
 script = ExtResource("1_0gjvu")
 
 [node name="Spawner" type="Timer" parent="." unique_id=817475329]
+wait_time = 0.4
 script = ExtResource("2_k463n")
 to_spawn = ExtResource("3_g8k4n")
-enemy_budget = 3
+enemy_budget = 60
+enemy_cap = 15
+enemy_offsets = Array[Vector2]([Vector2(0, 0), Vector2(16, -24), Vector2(-16, 24)])
 
 [connection signal="child_exiting_tree" from="." to="." method="_on_spawner_dying"]
 [connection signal="child_exiting_tree" from="Spawner" to="Spawner" method="_on_enemy_despawn"]

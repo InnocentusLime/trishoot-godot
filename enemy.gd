@@ -85,7 +85,6 @@ func _on_alive():
 	collision_layer = 0
 	set_collision_layer_value(EnemyLayer.ACTIVE, true)
 	set_collision_mask_value(1, true)
-	set_collision_mask_value(EnemyLayer.ACTIVE, true)
 
 func _on_knockback():
 	velocity = KNOCKBACK_SPEED * knockback_dir
@@ -118,7 +117,6 @@ func _update_think():
 	if state != EnemyState.ALIVE: return
 	var k = 1.0 + 0.5 * randi_range(0, 3)
 	think_tick.start(think_time * k)
-	set_collision_mask_value(EnemyLayer.ACTIVE, randi_range(0, 2) == 2)
 
 func set_state(new_state: EnemyState, force: bool = false) -> bool:
 	if not transition_allowed(new_state, force): return false

@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dehcp0s7086fg" path="res://waves/configs/wave_test1.tscn" id="8_xersf"]
 [ext_resource type="Texture2D" uid="uid://d1gyesxr35ehm" path="res://sprites/field.png" id="9_00tp4"]
 [ext_resource type="Texture2D" uid="uid://dn0eonhbvc677" path="res://sprites/fence.png" id="10_77dp3"]
-[ext_resource type="PackedScene" uid="uid://cg5bh3sgukcl7" path="res://enemies/firepeno.tscn" id="11_77dp3"]
+[ext_resource type="PackedScene" uid="uid://due6y6601ung" path="res://enemies/chaser.tscn" id="11_77dp3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xersf"]
 size = Vector2(43, 547)
@@ -116,7 +116,6 @@ position = Vector2(106, 267)
 gizmo_extents = 40.0
 
 [node name="WaveManger" type="Node" parent="." unique_id=227660351 node_paths=PackedStringArray("spawn_points")]
-process_mode = 4
 script = ExtResource("7_vbegm")
 spawn_points = {
 -1: NodePath("../TestPos")
@@ -408,9 +407,9 @@ position = Vector2(771, 268.5)
 shape = SubResource("RectangleShape2D_0m0f1")
 debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
 
-[node name="Firepeno" parent="." unique_id=1859096370 instance=ExtResource("11_77dp3")]
-position = Vector2(665, 372)
-state = 0
+[node name="Chaser" parent="." unique_id=1859096370 instance=ExtResource("11_77dp3")]
+position = Vector2(402, 262)
+state = 1
 
 [connection signal="body_entered" from="JumpZones" to="JumpZones" method="_on_body_entered"]
 [connection signal="child_exiting_tree" from="WaveManger" to="WaveManger" method="_on_wave_done"]

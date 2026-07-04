@@ -1,4 +1,4 @@
-extends Area2D
+class_name Attack extends Area2D
 
 func _on_attack(hurtbox: Area2D):
 	var to_dmg = hurtbox.get_parent()
