@@ -1,5 +1,6 @@
 extends Node
 
+@export var item_spawn_points: Array[Marker2D]
 @export var spawn_points: Dictionary[Spawner.SpawnPoint, Marker2D]
 @export var waves: Array[PackedScene]
 
@@ -17,6 +18,7 @@ func start_wave():
 	var wave_scene := waves[current_wave]
 	var wave: Wave = wave_scene.instantiate()
 	wave.spawn_points = spawn_points
+	wave.item_spawn_points = item_spawn_points
 	add_child(wave)
 	current_wave += 1
 

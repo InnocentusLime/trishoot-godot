@@ -398,6 +398,7 @@ debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
 
 [node name="Player" parent="." unique_id=1422128146 instance=ExtResource("15_qnjrw")]
 position = Vector2(303, 128)
+combo_scale = Array[Vector2]([Vector2(0.4, 0.6)])
 
 [node name="GunPickup" parent="." unique_id=454315548 instance=ExtResource("16_lcsus")]
 position = Vector2(660, 426)

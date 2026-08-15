@@ -300,30 +300,34 @@ region_rect = Rect2(52, 55, 37, 49)
 visible = false
 position = Vector2(-17, -3)
 
-[node name="DamageHint" type="Polygon2D" parent="Weapon" unique_id=477777513]
-position = Vector2(-38, 0)
-color = Color(1, 0, 0, 0.35686275)
-polygon = PackedVector2Array(2, -6, 2, -1, 1, 21, -13, 34, -98, 50, -98, -55, -13, -45, 2, -27)
-
 [node name="Weapon" type="Sprite2D" parent="Weapon" unique_id=1796983978]
 position = Vector2(-19, 2)
 texture = ExtResource("6_urp6f")
 region_enabled = true
 region_rect = Rect2(1, 24, 38, 14)
 
-[node name="Attack" type="Area2D" parent="Weapon" unique_id=732188289]
-position = Vector2(-42, -1)
+[node name="Muzzle" type="Marker2D" parent="Weapon" unique_id=1242479671]
+position = Vector2(-34, -1)
+
+[node name="AttackPivot" type="Node2D" parent="Weapon" unique_id=385499673]
+position = Vector2(-38, -2)
+scale = Vector2(0.995, 0.995)
+
+[node name="Attack" type="Area2D" parent="Weapon/AttackPivot" unique_id=732188289]
+position = Vector2(-6.030151, 0)
 collision_layer = 0
 collision_mask = 34
 monitorable = false
 script = ExtResource("7_b26j0")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Weapon/Attack" unique_id=137464507]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Weapon/AttackPivot/Attack" unique_id=137464507]
 position = Vector2(4, 0)
 polygon = PackedVector2Array(22, -4, 23, 3, -13, 34, -99, 51, -98, -54, -13, -45)
 
-[node name="Muzzle" type="Marker2D" parent="Weapon" unique_id=1242479671]
-position = Vector2(-34, -1)
+[node name="DamageHint" type="Polygon2D" parent="Weapon/AttackPivot/Attack" unique_id=477777513]
+position = Vector2(4, 1)
+color = Color(1, 0, 0, 0.35686275)
+polygon = PackedVector2Array(2, -6, 2, -1, 1, 21, -13, 34, -98, 50, -98, -55, -13, -45, 2, -27)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1529040987]
 libraries/ = SubResource("AnimationLibrary_dugkq")

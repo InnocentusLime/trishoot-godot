@@ -4,7 +4,9 @@
 [ext_resource type="Script" uid="uid://b3hcn4tuvxlld" path="res://waves/spawner.gd" id="2_k463n"]
 [ext_resource type="PackedScene" uid="uid://due6y6601ung" path="res://enemies/chaser.tscn" id="3_g8k4n"]
 
-[node name="Wave" type="Node" unique_id=1813005473]
+[node name="Wave" type="Timer" unique_id=1575428059]
+wait_time = 0.6
+autostart = true
 script = ExtResource("1_0gjvu")
 
 [node name="Spawner" type="Timer" parent="." unique_id=817475329]
@@ -16,5 +18,6 @@ enemy_cap = 15
 enemy_offsets = Array[Vector2]([Vector2(0, 0), Vector2(16, -24), Vector2(-16, 24)])
 
 [connection signal="child_exiting_tree" from="." to="." method="_on_spawner_dying"]
+[connection signal="timeout" from="." to="." method="_item_spawn_tick"]
 [connection signal="child_exiting_tree" from="Spawner" to="Spawner" method="_on_enemy_despawn"]
 [connection signal="timeout" from="Spawner" to="Spawner" method="_on_spawn"]

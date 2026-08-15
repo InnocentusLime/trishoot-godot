@@ -1,16 +1,18 @@
 [gd_scene format=3 uid="uid://furb5lunk427"]
 
 [ext_resource type="PackedScene" uid="uid://1hng44hn5qdw" path="res://player.tscn" id="1_37kl0"]
+[ext_resource type="Script" uid="uid://g65i5ti34342" path="res://test.gd" id="1_b0q6j"]
 [ext_resource type="Script" uid="uid://c06gjxq87qvnt" path="res://window_manager.gd" id="2_ykrsh"]
 [ext_resource type="Script" uid="uid://cy0665amiaiit" path="res://ui.gd" id="3_g14j6"]
 [ext_resource type="PackedScene" uid="uid://dux3t8ovio4bv" path="res://combo_shower.tscn" id="4_vbegm"]
 [ext_resource type="PackedScene" uid="uid://bceryb2t6c4tb" path="res://wave_start_sign.tscn" id="5_ehkex"]
+[ext_resource type="Script" uid="uid://d2pyev3qirkcv" path="res://progress_bar.gd" id="6_5tkv4"]
+[ext_resource type="Script" uid="uid://be6mnpm7lobbo" path="res://combo_level.gd" id="7_0m0f1"]
 [ext_resource type="Script" uid="uid://clwjojxc4jt3h" path="res://waves/wave_manger.gd" id="7_vbegm"]
 [ext_resource type="Script" uid="uid://bqxu6kytoqvx8" path="res://waves/jump_zones.gd" id="8_ehkex"]
 [ext_resource type="PackedScene" uid="uid://dehcp0s7086fg" path="res://waves/configs/wave_test1.tscn" id="8_xersf"]
 [ext_resource type="Texture2D" uid="uid://d1gyesxr35ehm" path="res://sprites/field.png" id="9_00tp4"]
 [ext_resource type="Texture2D" uid="uid://dn0eonhbvc677" path="res://sprites/fence.png" id="10_77dp3"]
-[ext_resource type="PackedScene" uid="uid://due6y6601ung" path="res://enemies/chaser.tscn" id="11_77dp3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xersf"]
 size = Vector2(43, 547)
@@ -22,12 +24,14 @@ size = Vector2(20, 480)
 size = Vector2(43, 547)
 
 [node name="Test" type="Node2D" unique_id=496192422]
+script = ExtResource("1_b0q6j")
 
 [node name="Player" parent="." unique_id=1422128146 instance=ExtResource("1_37kl0")]
 position = Vector2(434, 293)
 hint_life = 0.0
 hasgun = true
 god = true
+combo_scale = Array[Vector2]([Vector2(0.4, 0.6), Vector2(0.8, 1), Vector2(1.5, 1.2), Vector2(2, 1.6), Vector2(3, 2.7)])
 
 [node name="WindowManager" type="Node" parent="." unique_id=1480704761]
 script = ExtResource("2_ykrsh")
@@ -57,6 +61,27 @@ layout_mode = 2
 [node name="Health" type="Label" parent="Gameplay/UI/HUD/Stack" unique_id=164012571]
 layout_mode = 2
 text = "HP: 0"
+
+[node name="ComboInfo" type="HBoxContainer" parent="Gameplay/UI/HUD/Stack" unique_id=4651911]
+layout_mode = 2
+
+[node name="Elem1" type="CenterContainer" parent="Gameplay/UI/HUD/Stack/ComboInfo" unique_id=1789645960]
+layout_mode = 2
+
+[node name="ComboProgress" type="ProgressBar" parent="Gameplay/UI/HUD/Stack/ComboInfo/Elem1" unique_id=577855046]
+custom_minimum_size = Vector2(180, 10)
+layout_mode = 2
+max_value = 1.0
+show_percentage = false
+script = ExtResource("6_5tkv4")
+
+[node name="Elem2" type="CenterContainer" parent="Gameplay/UI/HUD/Stack/ComboInfo" unique_id=955556203]
+layout_mode = 2
+
+[node name="ComboLevel" type="Label" parent="Gameplay/UI/HUD/Stack/ComboInfo/Elem2" unique_id=1888695682]
+layout_mode = 2
+text = "xCombo"
+script = ExtResource("7_0m0f1")
 
 [node name="Score" type="Control" parent="Gameplay/UI/HUD/Stack" unique_id=234420851]
 layout_mode = 2
@@ -115,8 +140,9 @@ debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
 position = Vector2(106, 267)
 gizmo_extents = 40.0
 
-[node name="WaveManger" type="Node" parent="." unique_id=227660351 node_paths=PackedStringArray("spawn_points")]
+[node name="WaveManger" type="Node" parent="." unique_id=227660351 node_paths=PackedStringArray("item_spawn_points", "spawn_points")]
 script = ExtResource("7_vbegm")
+item_spawn_points = [NodePath("../ItemSpawnPoints/Spawn1"), NodePath("../ItemSpawnPoints/Spawn2"), NodePath("../ItemSpawnPoints/Spawn3"), NodePath("../ItemSpawnPoints/Spawn4")]
 spawn_points = {
 -1: NodePath("../TestPos")
 }
@@ -407,10 +433,22 @@ position = Vector2(771, 268.5)
 shape = SubResource("RectangleShape2D_0m0f1")
 debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
 
-[node name="Chaser" parent="." unique_id=1859096370 instance=ExtResource("11_77dp3")]
-position = Vector2(402, 262)
-state = 1
+[node name="ItemSpawnPoints" type="Node" parent="." unique_id=1125359723]
 
+[node name="Spawn1" type="Marker2D" parent="ItemSpawnPoints" unique_id=789663566]
+position = Vector2(307, 109)
+
+[node name="Spawn2" type="Marker2D" parent="ItemSpawnPoints" unique_id=1441277749]
+position = Vector2(652, 110)
+
+[node name="Spawn3" type="Marker2D" parent="ItemSpawnPoints" unique_id=1413421189]
+position = Vector2(292, 430)
+
+[node name="Spawn4" type="Marker2D" parent="ItemSpawnPoints" unique_id=794755511]
+position = Vector2(649, 423)
+
+[connection signal="combo_level_changed" from="Player" to="Gameplay/UI/HUD/Stack/ComboInfo/Elem2/ComboLevel" method="_on_player_combo_level_changed"]
+[connection signal="combo_life_changed" from="Player" to="Gameplay/UI/HUD/Stack/ComboInfo/Elem1/ComboProgress" method="_on_player_combo_life_change"]
 [connection signal="body_entered" from="JumpZones" to="JumpZones" method="_on_body_entered"]
 [connection signal="child_exiting_tree" from="WaveManger" to="WaveManger" method="_on_wave_done"]
 [connection signal="body_entered" from="Field/JumpZones" to="Field/JumpZones" method="_on_body_entered"]

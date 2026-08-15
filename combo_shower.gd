@@ -27,7 +27,6 @@ func _ready():
 func _process(delta):
 	var time = 1.0 - timer.time_left / timer.wait_time
 	if time <= 1.0:
-		time += delta
 		var t = elastic(time)
 		position.y = orig_y + lerpf(0, end.y - start.y, t)
 
