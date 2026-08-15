@@ -20,7 +20,7 @@ func _on_knockback():
 	super._on_knockback()
 	anim.current_animation = "hurt"
 	# Shut up attack! I am busy dying!
-	attack.process_mode = Node.PROCESS_MODE_DISABLED
+	set_deferred("attack.process_mode", Node.PROCESS_MODE_DISABLED)
 
 func _think():
 	if bumped_this_frame: new_walk_direction()
