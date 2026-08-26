@@ -1,25 +1,25 @@
-[gd_scene format=3 uid="uid://b6fhm7uqsld3o"]
+[gd_scene format=3 uid="uid://kjbddmvj3x50"]
 
-[ext_resource type="Script" uid="uid://58xpxe33qqf4" path="res://score.gd" id="1_fix7m"]
-[ext_resource type="Texture2D" uid="uid://ddexde2kr4oy4" path="res://sprites/heart.png" id="2_t8jp8"]
-[ext_resource type="AudioStream" uid="uid://cki6o1jr5req8" path="res://snd/bonus.wav" id="3_0idmp"]
+[ext_resource type="Script" uid="uid://dcpxt6uup7knq" path="res://score_bonus.gd" id="1_dgdh8"]
+[ext_resource type="Texture2D" uid="uid://ddexde2kr4oy4" path="res://sprites/heart.png" id="2_uix60"]
+[ext_resource type="AudioStream" uid="uid://cki6o1jr5req8" path="res://snd/bonus.wav" id="3_nh16c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b0q6j"]
 
-[node name="Bonus" type="Area2D" unique_id=435279279]
+[node name="ScoreBonus" type="Area2D" unique_id=435279279]
 collision_layer = 0
 collision_mask = 16
 monitorable = false
-script = ExtResource("1_fix7m")
+script = ExtResource("1_dgdh8")
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=977194516]
 shape = SubResource("RectangleShape2D_b0q6j")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=62764278]
-texture = ExtResource("2_t8jp8")
+texture = ExtResource("2_uix60")
 
 [node name="PickupSound" type="AudioStreamPlayer2D" parent="." unique_id=70614371]
-stream = ExtResource("3_0idmp")
+stream = ExtResource("3_nh16c")
 
 [connection signal="body_entered" from="." to="." method="_picked_up"]
 [connection signal="finished" from="PickupSound" to="." method="queue_free"]

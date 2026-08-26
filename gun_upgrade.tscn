@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://b6fhm7uqsld3o"]
+
+[ext_resource type="Script" uid="uid://58xpxe33qqf4" path="res://gun_upgrade.gd" id="1_xttlg"]
+[ext_resource type="Texture2D" uid="uid://ddexde2kr4oy4" path="res://sprites/heart.png" id="2_3k6k5"]
+[ext_resource type="AudioStream" uid="uid://bip4mw50ruc1w" path="res://snd/cock.wav" id="3_xttlg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b0q6j"]
+
+[node name="GunUpgrade" type="Area2D" unique_id=435279279]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+script = ExtResource("1_xttlg")
+
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=977194516]
+shape = SubResource("RectangleShape2D_b0q6j")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=62764278]
+modulate = Color(0, 1, 0.35000014, 1)
+texture = ExtResource("2_3k6k5")
+
+[node name="PickupSound" type="AudioStreamPlayer2D" parent="." unique_id=70614371]
+stream = ExtResource("3_xttlg")
+
+[connection signal="body_entered" from="." to="." method="_picked_up"]
+[connection signal="finished" from="PickupSound" to="." method="queue_free"]
