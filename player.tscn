@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://cg4e3h8rp7fhn" path="res://player_attack.gd" id="7_b26j0"]
 [ext_resource type="Animation" uid="uid://cn1w4deihytdq" path="res://anims/player_idle.res" id="7_bwjto"]
 [ext_resource type="Animation" uid="uid://djxsf110u2rub" path="res://anims/player_running_left.res" id="8_606se"]
+[ext_resource type="AudioStream" uid="uid://bip4mw50ruc1w" path="res://snd/cock.wav" id="10_nvl01"]
+[ext_resource type="AudioStream" uid="uid://cki6o1jr5req8" path="res://snd/bonus.wav" id="11_ivps1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1oj5k"]
 size = Vector2(18, 35)
@@ -346,5 +348,13 @@ debug_color = Color(0.2711291, 0.6329507, 0, 0.41960785)
 [node name="Invince" type="Timer" parent="." unique_id=889144586]
 wait_time = 3.0
 one_shot = true
+
+[node name="BonusSounds" type="Node" parent="." unique_id=517971844]
+
+[node name="GunUpgradePickup" type="AudioStreamPlayer2D" parent="BonusSounds" unique_id=1792997384]
+stream = ExtResource("10_nvl01")
+
+[node name="ScoreBonusPickup" type="AudioStreamPlayer2D" parent="BonusSounds" unique_id=2099508592]
+stream = ExtResource("11_ivps1")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]

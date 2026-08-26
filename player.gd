@@ -23,6 +23,8 @@ const BAR_SIZE = 240
 @onready var attack: PlayerAttack = $Weapon/AttackPivot/Attack
 @onready var damage_hint: Node2D = $Weapon/AttackPivot/Attack/DamageHint
 @onready var body: Sprite2D = $Sprite
+@onready var gun_upgrade_pickup: AudioStreamPlayer2D = $BonusSounds/GunUpgradePickup
+@onready var score_bonus_pickup: AudioStreamPlayer2D = $BonusSounds/ScoreBonusPickup
 
 @export var boom: PackedScene
 @export var hitspark: PackedScene
@@ -69,9 +71,13 @@ class LevelEntry:
 	func shot_cost() -> int: return BAR_SIZE / shots
 	func bonus_cost() -> int: return shot_cost() / bonuses_per_shot
 
-func _on_bonus_pickup(pickup: Node2D):
+func _on_gun_upgrade_pickup(pickup: Node2D):
+	gun_upgrade_pickup.play()
 	var cost := get_bonus_cost()
 	combo_points += cost
+
+func _on_score_bonus_pickup(pickup: Node2D):
+	score_bonus_pickup.play()
 
 func _on_dmg(hitpos: Vector2):
 	if !invince.is_stopped(): return

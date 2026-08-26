@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dcpxt6uup7knq" path="res://score_bonus.gd" id="1_dgdh8"]
 [ext_resource type="Texture2D" uid="uid://ddexde2kr4oy4" path="res://sprites/heart.png" id="2_uix60"]
-[ext_resource type="AudioStream" uid="uid://cki6o1jr5req8" path="res://snd/bonus.wav" id="3_nh16c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b0q6j"]
 
@@ -18,8 +17,4 @@ shape = SubResource("RectangleShape2D_b0q6j")
 [node name="Sprite" type="Sprite2D" parent="." unique_id=62764278]
 texture = ExtResource("2_uix60")
 
-[node name="PickupSound" type="AudioStreamPlayer2D" parent="." unique_id=70614371]
-stream = ExtResource("3_nh16c")
-
 [connection signal="body_entered" from="." to="." method="_picked_up"]
-[connection signal="finished" from="PickupSound" to="." method="queue_free"]
