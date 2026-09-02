@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://djsi813hh4ofy"]
+
+[ext_resource type="Script" uid="uid://dlx7g6v4bhiri" path="res://hazard/mine.gd" id="1_rnreq"]
+[ext_resource type="Texture2D" uid="uid://114unu2t58bl" path="res://sprites/dumbo.png" id="2_1y66r"]
+[ext_resource type="PackedScene" uid="uid://cuooppd3wvyq0" path="res://hazard/explosion.tscn" id="2_2fi1m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1y66r"]
+size = Vector2(35, 18)
+
+[node name="Mine" type="Area2D" unique_id=1950467204]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+script = ExtResource("1_rnreq")
+explosion = ExtResource("2_2fi1m")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1302174834]
+texture = ExtResource("2_1y66r")
+region_enabled = true
+region_rect = Rect2(1, 121, 32, 15)
+
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=852492536]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_1y66r")
+debug_color = Color(0.97, 0, 0.01616642, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_overlap"]

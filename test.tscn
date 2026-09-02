@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dehcp0s7086fg" path="res://waves/configs/wave_test1.tscn" id="8_xersf"]
 [ext_resource type="Texture2D" uid="uid://d1gyesxr35ehm" path="res://sprites/field.png" id="9_00tp4"]
 [ext_resource type="Texture2D" uid="uid://dn0eonhbvc677" path="res://sprites/fence.png" id="10_77dp3"]
+[ext_resource type="PackedScene" uid="uid://djsi813hh4ofy" path="res://hazard/mine.tscn" id="14_b0q6j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xersf"]
 size = Vector2(43, 547)
@@ -446,6 +447,9 @@ position = Vector2(292, 430)
 
 [node name="Spawn4" type="Marker2D" parent="ItemSpawnPoints" unique_id=794755511]
 position = Vector2(649, 423)
+
+[node name="Mine" parent="." unique_id=1950467204 instance=ExtResource("14_b0q6j")]
+position = Vector2(411, 150)
 
 [connection signal="combo_level_changed" from="Player" to="Gameplay/UI/HUD/Stack/ComboInfo/Elem2/ComboLevel" method="_on_player_combo_level_changed"]
 [connection signal="combo_life_changed" from="Player" to="Gameplay/UI/HUD/Stack/ComboInfo/Elem1/ComboProgress" method="_on_player_combo_life_change"]
