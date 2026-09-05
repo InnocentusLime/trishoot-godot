@@ -5,6 +5,7 @@ const MY_PROJ_VELOCITY: float = 160.0
 
 @export var explosion_size: int
 @export var shrapnel: PackedScene
+@export var explosion: PackedScene
 @export var min_player_dist: float = 180 + randi_range(0, 3)*20.0
 @export var explosion_time: float = 2.0 + randi_range(0, 4) * 1.0
 @export var rotate_sign: float = -1.0 if randi_range(0, 1) < 1 else 1.0
@@ -54,5 +55,8 @@ func _on_explode():
 		proj.position = global_position
 		proj.move_vel = Vector2.from_angle(angle) * MY_PROJ_VELOCITY
 		add_sibling(proj)
+	var boom: Node2D = explosion.instantiate()
+	boom.position = global_position
+	add_sibling(boom)
 	queue_free()
 		

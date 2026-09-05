@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://uwataje5pc8s" path="res://attacks/laserball.gd" id="1_p4umi"]
 [ext_resource type="Texture2D" uid="uid://114unu2t58bl" path="res://sprites/dumbo.png" id="2_pvc0g"]
-[ext_resource type="AudioStream" uid="uid://bsdbxbgtl7x4o" path="res://snd/shoot_sigguy.wav" id="3_gxifv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_an1vu"]
 radius = 6.0
@@ -31,11 +30,6 @@ region_rect = Rect2(1, 308, 18, 18)
 wait_time = 3.0
 one_shot = true
 autostart = true
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=349995761]
-stream = ExtResource("3_gxifv")
-volume_db = -12.404
-autoplay = true
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1739175877]
 collision_layer = 32
