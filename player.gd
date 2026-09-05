@@ -53,8 +53,8 @@ var combo_points: int:
 			combo_level_changed.emit(combo_points / BAR_SIZE + 1)
 
 var levels: Array[LevelEntry] = [
-	LevelEntry.new(10, 1),
-	LevelEntry.new(5, 2),
+	LevelEntry.new(3, 1),
+	LevelEntry.new(3, 2),
 	LevelEntry.new(3, 8),
 	LevelEntry.new(1, 15),
 ]
@@ -62,14 +62,14 @@ var max_combo_points: int = levels.size()*BAR_SIZE
 
 class LevelEntry:
 	var shots: int
-	var bonuses_per_shot: int
+	var bonuses_per_level: int
 	
-	func _init(shots, bonuses_per_shot):
+	func _init(shots, bonuses_per_level):
 		self.shots = shots
-		self.bonuses_per_shot = bonuses_per_shot
+		self.bonuses_per_level = bonuses_per_level
 	
 	func shot_cost() -> int: return BAR_SIZE / shots
-	func bonus_cost() -> int: return shot_cost() / bonuses_per_shot
+	func bonus_cost() -> int: return shot_cost() / bonuses_per_level
 
 func _on_gun_upgrade_pickup(pickup: Node2D):
 	gun_upgrade_pickup.play()

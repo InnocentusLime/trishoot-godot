@@ -132,8 +132,12 @@ _data = {
 
 [node name="Firepeno" unique_id=1859096370 instance=ExtResource("1_jpbv3")]
 script = ExtResource("2_krf52")
-laserball = ExtResource("3_u74kb")
+explosion_size = 10
+shrapnel = ExtResource("3_u74kb")
 think_time = 1.1
+
+[node name="ThinkTick" parent="." index="0" unique_id=327157414]
+wait_time = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4" unique_id=1249880394]
 position = Vector2(-3, 1)
@@ -148,10 +152,8 @@ region_rect = Rect2(1, 137, 46, 39)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6" unique_id=1079355286]
 libraries/ = SubResource("AnimationLibrary_25e2v")
 
-[node name="ProjectileSpawn" type="Node2D" parent="." index="7" unique_id=1958068981]
-position = Vector2(-7, 3)
+[node name="ExplodeTimer" type="Timer" parent="." index="7" unique_id=954445319]
+wait_time = 5.0
+one_shot = true
 
-[node name="ChainTimer" type="Timer" parent="." index="8" unique_id=719582504]
-wait_time = 0.1
-
-[connection signal="timeout" from="ChainTimer" to="." method="_shoot"]
+[connection signal="timeout" from="ExplodeTimer" to="." method="_on_explode"]

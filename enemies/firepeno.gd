@@ -1,13 +1,16 @@
 extends Enemy
 
-@export var laserball: PackedScene
+const WALK_SPEED: float = 72.0
+const MY_PROJ_VELOCITY: float = 160.0
 
-@onready var spawnpoint: Node2D = $ProjectileSpawn
-@onready var chaintimer: Timer = $ChainTimer
+@export var explosion_size: int
+@export var shrapnel: PackedScene
+@export var min_player_dist: float = 180 + randi_range(0, 3)*20.0
+@export var explosion_time: float = 2.0 + randi_range(0, 4) * 1.0
+@export var rotate_sign: float = -1.0 if randi_range(0, 1) < 1 else 1.0
+
 @onready var anim: AnimationPlayer = $AnimationPlayer
-
-const WALK_SPEED: float = 42.0
-const MY_PROJ_VELOCITY: float = 200.0
+@onready var explode_timer: Timer = $ExplodeTimer
 
 var walk_dir: Vector2 = Vector2.ZERO
 
@@ -22,29 +25,34 @@ func _on_hopping_over():
 func _on_knockback():
 	super._on_knockback()
 	anim.current_animation = "hurt"
-	chaintimer.stop()
+
+func _on_alive():
+	super._on_alive()
+	explode_timer.start(explosion_time)
 
 func _think():
-	velocity = WALK_SPEED * walk_dir
-	if bumped_this_frame:
-		walk_dir = walk_dir.rotated(PI / 8.0)
+	var to_player := (GameEvents.player_pos - position)
+	var dir_to_player := to_player.normalized()
+	if to_player.length() > min_player_dist:
+		walk_dir = dir_to_player
+	else:
+		var perdir := Vector2(-dir_to_player.y, dir_to_player.x) * rotate_sign
+		walk_dir = perdir
 	velocity = WALK_SPEED * walk_dir
 
 func _update_think():
 	super._update_think()
-	var dir = (GameEvents.player_pos - position).normalized()
-	var increment = randi_range(-4, -4)
-	var walk_rot = float(increment) * PI / 8.0
-	walk_dir = dir.rotated(walk_rot)
-	
-	if chaintimer.is_stopped():
-		chaintimer.start()
-	else:
-		chaintimer.stop()
+	var dir_to_player := (GameEvents.player_pos - position).normalized()
+	var perdir := Vector2(-dir_to_player.y, dir_to_player.x)
+	walk_dir = perdir
+
+func _on_explode():
+	var increment := (2*PI) / float(explosion_size)
+	for i in range(explosion_size):
+		var angle := i * increment
+		var proj: Projectile = shrapnel.instantiate()
+		proj.position = global_position
+		proj.move_vel = Vector2.from_angle(angle) * MY_PROJ_VELOCITY
+		add_sibling(proj)
+	queue_free()
 		
-func _shoot():
-	var dir = (GameEvents.player_pos - position).normalized()
-	var proj: Projectile = laserball.instantiate()
-	proj.position = spawnpoint.global_position
-	proj.move_vel = dir.rotated(randi_range(-2, 2) * PI / 8.0) * MY_PROJ_VELOCITY
-	add_sibling(proj)
