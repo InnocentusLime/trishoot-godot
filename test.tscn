@@ -142,7 +142,6 @@ position = Vector2(106, 267)
 gizmo_extents = 40.0
 
 [node name="WaveManger" type="Node" parent="." unique_id=227660351 node_paths=PackedStringArray("item_spawn_points", "spawn_points")]
-process_mode = 4
 script = ExtResource("7_vbegm")
 item_spawn_points = [NodePath("../ItemSpawnPoints/Spawn1"), NodePath("../ItemSpawnPoints/Spawn2"), NodePath("../ItemSpawnPoints/Spawn3"), NodePath("../ItemSpawnPoints/Spawn4")]
 spawn_points = {

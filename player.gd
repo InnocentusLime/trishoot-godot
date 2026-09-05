@@ -190,7 +190,7 @@ func enter_state(new_state: State, new_face_right: bool, force: bool = false):
 	weaponSprite.flip_v = face_right
 
 func shoot():
-	attack.attack()
+	attack.attack(get_combo_level())
 	var combo_level := get_combo_level()
 	var the_boom: Node2D = boom.instantiate()
 	var weapon_angle: float = aim_angle - PI

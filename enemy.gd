@@ -11,6 +11,7 @@ const ENTER_SPEED: float = 260.0
 const JUMP_VELOCITY: Vector2 = Vector2(200, -300)
 const JUMP_GRAVITY: float = 1000.0
 
+@export var protection_level: int
 @export var think_time: float
 @export var state: EnemyState = EnemyState.ENTERING
 
@@ -48,7 +49,8 @@ func _on_game_over():
 	die_quiet = true
 	_on_dmg(Vector2(480, 282.2), true)
 
-func _on_dmg(attack_pos: Vector2, force: bool = false) -> bool:
+func _on_dmg(attack_pos: Vector2, level: int, force: bool = false) -> bool:
+	if level < protection_level: return false
 	knockback_dir = (position - attack_pos).normalized()
 	return set_state(EnemyState.KNOCKBACK, force)
 
