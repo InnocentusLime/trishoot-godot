@@ -11,6 +11,7 @@ const ENTER_SPEED: float = 260.0
 const JUMP_VELOCITY: Vector2 = Vector2(200, -300)
 const JUMP_GRAVITY: float = 1000.0
 
+@export var jump_when_entering: bool = true
 @export var protection_level: int
 @export var think_time: float
 @export var state: EnemyState = EnemyState.ENTERING
@@ -54,7 +55,11 @@ func _on_dmg(attack_pos: Vector2, level: int, force: bool = false) -> bool:
 	knockback_dir = (position - attack_pos).normalized()
 	return set_state(EnemyState.KNOCKBACK, force)
 
-func _on_jump_zone(): set_state(EnemyState.HOPPINGOVER)
+func _on_jump_zone():
+	if jump_when_entering:
+		set_state(EnemyState.HOPPINGOVER)
+	else:
+		set_state(EnemyState.ALIVE)
 
 func _jump_done(): set_state(EnemyState.ALIVE)
 	

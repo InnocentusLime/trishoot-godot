@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://d1gyesxr35ehm" path="res://sprites/field.png" id="9_00tp4"]
 [ext_resource type="Texture2D" uid="uid://dn0eonhbvc677" path="res://sprites/fence.png" id="10_77dp3"]
 [ext_resource type="PackedScene" uid="uid://djsi813hh4ofy" path="res://hazard/mine.tscn" id="14_b0q6j"]
+[ext_resource type="PackedScene" uid="uid://b6fhm7uqsld3o" path="res://gun_upgrade.tscn" id="15_a3se8"]
+[ext_resource type="PackedScene" uid="uid://blakuum2hob7y" path="res://enemies/pogshot.tscn" id="15_mhym6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xersf"]
 size = Vector2(43, 547)
@@ -451,6 +453,58 @@ position = Vector2(649, 423)
 
 [node name="Mine" parent="." unique_id=1950467204 instance=ExtResource("14_b0q6j")]
 position = Vector2(411, 150)
+
+[node name="FreeUpgrades" type="Node2D" parent="." unique_id=693064122]
+process_mode = 4
+visible = false
+
+[node name="GunUpgrade" parent="FreeUpgrades" unique_id=435279279 instance=ExtResource("15_a3se8")]
+position = Vector2(339, 424)
+
+[node name="GunUpgrade2" parent="FreeUpgrades" unique_id=1528712996 instance=ExtResource("15_a3se8")]
+position = Vector2(392, 424)
+
+[node name="GunUpgrade3" parent="FreeUpgrades" unique_id=1708575214 instance=ExtResource("15_a3se8")]
+position = Vector2(460, 431)
+
+[node name="GunUpgrade4" parent="FreeUpgrades" unique_id=706288284 instance=ExtResource("15_a3se8")]
+position = Vector2(571, 429)
+
+[node name="GunUpgrade5" parent="FreeUpgrades" unique_id=1420791938 instance=ExtResource("15_a3se8")]
+position = Vector2(519, 458)
+
+[node name="GunUpgrade6" parent="FreeUpgrades" unique_id=532464158 instance=ExtResource("15_a3se8")]
+position = Vector2(518, 398)
+
+[node name="GunUpgrade7" parent="FreeUpgrades" unique_id=1180668258 instance=ExtResource("15_a3se8")]
+position = Vector2(578, 392)
+
+[node name="GunUpgrade8" parent="FreeUpgrades" unique_id=1845186544 instance=ExtResource("15_a3se8")]
+position = Vector2(678, 393)
+
+[node name="GunUpgrade9" parent="FreeUpgrades" unique_id=1608356390 instance=ExtResource("15_a3se8")]
+position = Vector2(654, 420)
+
+[node name="GunUpgrade10" parent="FreeUpgrades" unique_id=1892927399 instance=ExtResource("15_a3se8")]
+position = Vector2(612, 448)
+
+[node name="GunUpgrade11" parent="FreeUpgrades" unique_id=583715540 instance=ExtResource("15_a3se8")]
+position = Vector2(625, 380)
+
+[node name="GunUpgrade12" parent="FreeUpgrades" unique_id=11778515 instance=ExtResource("15_a3se8")]
+position = Vector2(464, 382)
+
+[node name="GunUpgrade13" parent="FreeUpgrades" unique_id=1803510052 instance=ExtResource("15_a3se8")]
+position = Vector2(360, 398)
+
+[node name="GunUpgrade14" parent="FreeUpgrades" unique_id=457380583 instance=ExtResource("15_a3se8")]
+position = Vector2(300, 456)
+
+[node name="GunUpgrade15" parent="FreeUpgrades" unique_id=2133521441 instance=ExtResource("15_a3se8")]
+position = Vector2(289, 427)
+
+[node name="Pogshot" parent="." unique_id=1859096370 instance=ExtResource("15_mhym6")]
+position = Vector2(26, 265)
 
 [connection signal="combo_level_changed" from="Player" to="Gameplay/UI/HUD/Stack/ComboInfo/Elem2/ComboLevel" method="_on_player_combo_level_changed"]
 [connection signal="combo_life_changed" from="Player" to="Gameplay/UI/HUD/Stack/ComboInfo/Elem1/ComboProgress" method="_on_player_combo_life_change"]

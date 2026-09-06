@@ -133,6 +133,10 @@ _data = {
 [node name="Pogshot" unique_id=1859096370 instance=ExtResource("1_nf6dj")]
 script = ExtResource("1_twup2")
 laserball = ExtResource("2_eveg3")
+down_time = 1.0
+shoot_time = 2.0
+jump_when_entering = false
+protection_level = 3
 think_time = 1.2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4" unique_id=1524980344]
@@ -150,3 +154,8 @@ libraries/ = SubResource("AnimationLibrary_0nknu")
 
 [node name="ProjectileSpawn" type="Node2D" parent="." index="7" unique_id=1808379949]
 position = Vector2(11, 6)
+
+[node name="ChainTimer" type="Timer" parent="." index="8" unique_id=2010035823]
+wait_time = 0.3
+
+[connection signal="timeout" from="ChainTimer" to="." method="_shoot"]
