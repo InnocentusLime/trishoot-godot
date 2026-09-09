@@ -31,3 +31,4 @@ func _land_shake():
 func _process(delta):
 	if state == State.FLYING:
 		position.y -= FLY_SPEED * delta
+	$FlySpr.visible = true

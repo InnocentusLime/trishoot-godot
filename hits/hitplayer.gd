@@ -5,11 +5,22 @@ const MAX_SCALE: float = 2.0
 const SHAKE_AMPLITUDE: float  = 16.0
 const APPEAR_TIME: float = 0.16
 
+@export var showspark: bool
+
 var fatal: bool = false
 var t: float = 0.0
 @onready var pain: AudioStreamPlayer2D = $Pain
 
 func _enter_tree():
+	if showspark:
+		region_rect.position = Vector2(1.0, 216.0)
+		region_rect.size = Vector2(107.0, 95.0)
+		offset = Vector2.ZERO
+	else:
+		region_rect.position = Vector2(1.0, 313.0)
+		region_rect.size = Vector2(86.0, 56.0)
+		offset = Vector2(7.0, 0.0)
+		
 	if fatal: $Visibility.wait_time = 1.
 	get_tree().paused = true
 

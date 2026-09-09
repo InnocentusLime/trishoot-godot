@@ -79,12 +79,12 @@ func _on_gun_upgrade_pickup(pickup: Node2D):
 func _on_score_bonus_pickup(pickup: Node2D):
 	score_bonus_pickup.play()
 
-func _on_dmg(hitpos: Vector2):
+func _on_dmg(hitpos: Vector2, explosion: bool = false, instakill: bool = false):
 	if !invince.is_stopped(): return
 	invince.start()
 	
 	if not god: hp -= 1
-	if hp <= 0: 
+	if hp <= 0 or instakill: 
 		GameEvents.game_over.emit()
 		queue_free()
 	
@@ -92,7 +92,8 @@ func _on_dmg(hitpos: Vector2):
 	GameEvents.shake.emit(10.0, true)
 	
 	var hit: PlayerHit = hitspark.instantiate()
-	hit.fatal = hp <= 0
+	hit.showspark = not explosion
+	hit.fatal = hp <= 0 or instakill
 	hit.position = position
 	add_sibling(hit)
 

@@ -200,6 +200,7 @@ texture = ExtResource("1_nfwpo")
 region_enabled = true
 
 [node name="FlySpr" type="Sprite2D" parent="." unique_id=2145358618]
+visible = false
 texture = ExtResource("1_nfwpo")
 region_enabled = true
 region_rect = Rect2(1, 312, 88, 58)
