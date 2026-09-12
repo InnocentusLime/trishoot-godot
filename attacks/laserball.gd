@@ -4,10 +4,11 @@ const PARRIED_SPEED: float = 250.0
 
 @export var move_vel: Vector2 = Vector2(-15.0, 0.0)
 
-func _on_dmg(dmg_pos: Vector2):
+func _on_dmg(dmg_pos: Vector2, lvl: int) -> bool:
 	var move_abs: float = move_vel.length()
 	var move_dir = (position - GameEvents.player_pos).normalized()
 	move_vel = move_dir * PARRIED_SPEED
+	return true
 
 func _ready():
 	GameEvents.game_over.connect(queue_free)

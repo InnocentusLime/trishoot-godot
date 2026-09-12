@@ -21,7 +21,8 @@ func attack(level: int):
 		var parent: Node2D = to_dmg.get_parent()
 		if parent == null: continue
 		if parent.has_method("_on_dmg"):
-				parent.call("_on_dmg", global_position)
+				if not parent.call("_on_dmg", global_position, level):
+					blocked += 1
 				
 	if blocked > 0:
 		block_sound.play()
