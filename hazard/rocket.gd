@@ -28,13 +28,16 @@ func _physics_process(delta):
 	for node in get_overlapping_bodies():
 		if node is Enemy and parried:
 			node._on_dmg(position, 999)
+			explode()
 
 func _on_collision(player_hurtbox: Area2D):
 	var parent := player_hurtbox.get_parent()
 	if parent == null: return
 	if parent is Player:
 		parent._on_dmg(position, true)
-		var the_explosion: Node2D = explosion.instantiate()
-		the_explosion.position = position
-		add_sibling(the_explosion)
-		queue_free()
+		explode()
+		
+func explode():
+	var the_explosion: Node2D = explosion.instantiate()
+	the_explosion.position = position
+	add_sibling(the_explosion)
