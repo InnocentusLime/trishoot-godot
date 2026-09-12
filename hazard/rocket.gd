@@ -41,3 +41,4 @@ func explode():
 	var the_explosion: Node2D = explosion.instantiate()
 	the_explosion.position = position
 	add_sibling(the_explosion)
+	queue_free()
