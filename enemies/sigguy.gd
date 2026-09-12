@@ -48,7 +48,7 @@ func _update_think():
 	walk_dir = dir.rotated(walk_rot)
 	
 func _shoot():
-	var proj: Projectile = laserball.instantiate()
+	var proj: Rocket = laserball.instantiate()
 	proj.position = spawnpoint.global_position
-	proj.move_vel = (GameEvents.player_pos - position).normalized() * MY_PROJ_VELOCITY
+	proj.move_dir = (GameEvents.player_pos - position).normalized()
 	add_sibling(proj)

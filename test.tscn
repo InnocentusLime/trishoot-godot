@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dn0eonhbvc677" path="res://sprites/fence.png" id="10_77dp3"]
 [ext_resource type="PackedScene" uid="uid://djsi813hh4ofy" path="res://hazard/mine.tscn" id="14_b0q6j"]
 [ext_resource type="PackedScene" uid="uid://b6fhm7uqsld3o" path="res://gun_upgrade.tscn" id="15_a3se8"]
-[ext_resource type="PackedScene" uid="uid://blf0u77i5jull" path="res://hazard/rocket.tscn" id="16_a3se8"]
+[ext_resource type="PackedScene" uid="uid://b12cng6sqw7n5" path="res://enemies/sigguy.tscn" id="17_uty7l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xersf"]
 size = Vector2(43, 547)
@@ -501,8 +501,9 @@ position = Vector2(300, 456)
 [node name="GunUpgrade15" parent="FreeUpgrades" unique_id=2133521441 instance=ExtResource("15_a3se8")]
 position = Vector2(289, 427)
 
-[node name="Rocket" parent="." unique_id=1263828667 instance=ExtResource("16_a3se8")]
-position = Vector2(665, 118)
+[node name="Sigguy" parent="." unique_id=1859096370 instance=ExtResource("17_uty7l")]
+position = Vector2(291, 145)
+state = 0
 
 [connection signal="combo_level_changed" from="Player" to="Gameplay/UI/HUD/Stack/ComboInfo/Elem2/ComboLevel" method="_on_player_combo_level_changed"]
 [connection signal="combo_life_changed" from="Player" to="Gameplay/UI/HUD/Stack/ComboInfo/Elem1/ComboProgress" method="_on_player_combo_life_change"]

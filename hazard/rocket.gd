@@ -1,3 +1,4 @@
+class_name Rocket
 extends Area2D
 
 const PARRIED_SPEED: float = 400.0
@@ -23,6 +24,10 @@ func _physics_process(delta):
 		move_dir = move_dir.lerp(player_dir, rot_weight*delta)
 	position += move_dir*move_vel*delta
 	rotation = move_dir.angle()
+	
+	for node in get_overlapping_bodies():
+		if node is Enemy and parried:
+			node._on_dmg(position, 999)
 
 func _on_collision(player_hurtbox: Area2D):
 	var parent := player_hurtbox.get_parent()
