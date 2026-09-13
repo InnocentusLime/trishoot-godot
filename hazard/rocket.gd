@@ -52,7 +52,7 @@ func _on_collision(player_hurtbox: Area2D):
 	var parent := player_hurtbox.get_parent()
 	if parent == null: return
 	if parent is Player:
-		parent._on_dmg(position, true)
+		parent._on_dmg(position, true, true)
 		explode(false)
 		
 func explode(quiet: bool = true):
