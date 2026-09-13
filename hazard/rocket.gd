@@ -32,7 +32,6 @@ func _on_dmg(dmg_pos: Vector2, level: int) -> bool:
 			closest_reachable_rocketer_dir = dr_to_rocketer.normalized()
 			closest_reachable_rocketer_dist = dr_to_rocketer.length()
 	if closest_reachable_rocketer_dist < INF:
-		print("redirecting")
 		move_dir = closest_reachable_rocketer_dir
 	
 	return true
@@ -47,17 +46,18 @@ func _physics_process(delta):
 	for node in get_overlapping_bodies():
 		if node is Enemy and parried:
 			node._on_dmg(position, 999)
-			explode()
+			explode(false)
 
 func _on_collision(player_hurtbox: Area2D):
 	var parent := player_hurtbox.get_parent()
 	if parent == null: return
 	if parent is Player:
 		parent._on_dmg(position, true)
-		explode()
+		explode(false)
 		
-func explode():
-	var the_explosion: Node2D = explosion.instantiate()
+func explode(quiet: bool = true):
+	var the_explosion: Explosion = explosion.instantiate()
 	the_explosion.position = position
+	the_explosion.quiet = quiet
 	add_sibling(the_explosion)
 	queue_free()
