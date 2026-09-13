@@ -2,7 +2,7 @@
 
 [ext_resource type="AudioStream" uid="uid://rbsruhvkjoxq" path="res://snd/hop.wav" id="1_7k104"]
 
-[node name="Enemy" type="CharacterBody2D" unique_id=1859096370]
+[node name="Enemy" type="CharacterBody2D" unique_id=1859096370 groups=["enemies"]]
 collision_layer = 2
 collision_mask = 0
 motion_mode = 1

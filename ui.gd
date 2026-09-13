@@ -16,7 +16,6 @@ var score_distort = 1.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameEvents.score_changed.connect(_on_score_changed)
-	GameEvents.game_over.connect(_on_game_over)
 	GameEvents.demo_over.connect(_on_demo_over)
 	score_label.text = "Score: %d" % current_score
 	
@@ -24,7 +23,7 @@ func _on_demo_over():
 	get_tree().create_tween()\
 		.tween_property($DemoOver, "modulate", Color.WHITE, 3.0)
 	
-func _on_game_over():
+func _on_player_dead():
 	$HUD.visible = false
 
 func _on_wave_complete():

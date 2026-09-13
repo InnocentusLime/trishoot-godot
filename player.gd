@@ -3,6 +3,7 @@ class_name Player extends CharacterBody2D
 signal player_hp_change(new_val: int)
 signal combo_life_changed(new_val: float)
 signal combo_level_changed(new_val: int)
+signal player_died()
 
 enum State {IDLE=0, RUNNING=1, SHOOTING=2}
 
@@ -85,7 +86,7 @@ func _on_dmg(hitpos: Vector2, explosion: bool = false, instakill: bool = false):
 	
 	if not god: hp -= 1
 	if hp <= 0 or instakill: 
-		GameEvents.game_over.emit()
+		player_died.emit()
 		queue_free()
 	
 	player_hp_change.emit(hp)
@@ -113,7 +114,7 @@ func _physics_process(delta):
 	var h_dir = Input.get_axis("move_left", "move_right")
 	var v_dir = Input.get_axis("move_up", "move_down")
 	var move_vel = Vector2(h_dir, v_dir).normalized() * SPEED
-	
+
 	velocity = Vector2.ZERO
 	if state == State.SHOOTING and recoil_acc >= 0.00001:
 		var knock_dir = -Vector2.from_angle(aim_angle)

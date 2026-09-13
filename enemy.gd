@@ -35,7 +35,6 @@ func _ready():
 	think_tick.connect("timeout", _update_think)
 	delete_timer.connect("timeout", queue_free)
 	jump_timer.connect("timeout", _jump_done)
-	GameEvents.game_over.connect(_on_game_over)
 	
 	set_state(state, true)
 	
@@ -45,13 +44,10 @@ func _physics_process(delta):
 		EnemyState.ALIVE: _think()
 		EnemyState.HOPPINGOVER: velocity.y += JUMP_GRAVITY * delta
 		EnemyState.KNOCKBACK when bumped_this_frame: set_state(EnemyState.OFFSCREEN)
-	
-func _on_game_over():
-	die_quiet = true
-	_on_dmg(Vector2(480, 282.2), true)
 
 func _on_dmg(attack_pos: Vector2, level: int, force: bool = false) -> bool:
-	if level < protection_level: return false
+	if force: die_quiet = true
+	if level < protection_level and not force: return false
 	knockback_dir = (position - attack_pos).normalized()
 	return set_state(EnemyState.KNOCKBACK, force)
 

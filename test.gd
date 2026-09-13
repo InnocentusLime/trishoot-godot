@@ -12,6 +12,9 @@ var restart_locked: bool
 
 func _ready():
 	GameEvents.shake.connect(_on_shake)
+
+func _on_player_death():
+	get_tree().call_group("enemies", "_on_dmg", Vector2(480, 282.2), 9999, true)
 	
 func _on_shake(acc: float, setter: bool):
 	if setter: shake_koeff = acc
