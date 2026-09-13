@@ -130,7 +130,7 @@ _data = {
 &"jump": SubResource("Animation_i28le")
 }
 
-[node name="Sigguy" unique_id=1859096370 instance=ExtResource("1_dbs2y")]
+[node name="Sigguy" unique_id=1859096370 groups=["rocketers"] instance=ExtResource("1_dbs2y")]
 script = ExtResource("5_abnyj")
 laserball = ExtResource("3_t1w7k")
 protection_level = 999

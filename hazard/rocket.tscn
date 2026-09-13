@@ -16,6 +16,7 @@ collision_layer = 0
 collision_mask = 10
 monitorable = false
 script = ExtResource("1_kdrfa")
+assist_angle = 25.0
 rot_weight = 0.5
 move_vel = 100.0
 explosion = ExtResource("2_e6m6b")
