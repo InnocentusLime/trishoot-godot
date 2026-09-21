@@ -132,9 +132,12 @@ _data = {
 
 [node name="Sigguy" unique_id=1859096370 groups=["rocketers"] instance=ExtResource("1_dbs2y")]
 script = ExtResource("5_abnyj")
+player_see_range = 45.0
+player_distance_min = 64.0
+min_wall_dist = 60.0
 laserball = ExtResource("3_t1w7k")
 protection_level = 999
-think_time = 1.0
+think_time = 1.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4" unique_id=588914182]
 position = Vector2(-3, 1)
@@ -151,8 +154,3 @@ libraries/ = SubResource("AnimationLibrary_t1w7k")
 
 [node name="ProjectileSpawn" type="Node2D" parent="." index="7" unique_id=1533560976]
 position = Vector2(8, -18)
-
-[node name="Shoot" type="Timer" parent="." index="8" unique_id=202259365]
-wait_time = 3.0
-
-[connection signal="timeout" from="Shoot" to="." method="_shoot"]

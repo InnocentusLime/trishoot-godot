@@ -1,19 +1,22 @@
 class_name Rocket
 extends Area2D
 
+const BOOST_PERCENTAGE: float = 3.25
 const PARRIED_SPEED: float = 400.0
 
 @export var assist_angle: float
-@export var rot_weight: float
+@export var rot_speed: float
 @export var move_vel: float
 @export var move_dir: Vector2
 @export var explosion: PackedScene
 @export var level_to_parry: int
 
+@onready var speed_timer: Timer = $SpeedTimer
+
 var parried: bool = false
 
 func _on_dmg(dmg_pos: Vector2, level: int) -> bool:
-	if parried: return false
+	if parried or not speed_timer.is_stopped(): return false
 	if level < level_to_parry: return false
 	move_vel = PARRIED_SPEED
 	parried = true
@@ -36,11 +39,18 @@ func _on_dmg(dmg_pos: Vector2, level: int) -> bool:
 	
 	return true
 
-func _physics_process(delta):
+func _physics_process(delta: float):
+	var k := speed_timer.time_left/speed_timer.wait_time
 	var player_dir := (GameEvents.player_pos - position).normalized()
 	if not parried:
-		move_dir = move_dir.lerp(player_dir, rot_weight*delta)
-	position += move_dir*move_vel*delta
+		var angle_to_player := move_dir.angle_to(player_dir)
+		var rot_delta := deg_to_rad(rot_speed)*pow((1-k), 2.0)*delta
+		var act_rot_abs := minf(absf(angle_to_player), rot_delta)
+		var act_rot := signf(angle_to_player)*act_rot_abs
+		move_dir = move_dir.rotated(act_rot)
+	
+	var vel := move_vel + (move_vel * BOOST_PERCENTAGE) * k
+	position += move_dir*vel*delta
 	rotation = move_dir.angle()
 	
 	for node in get_overlapping_bodies():

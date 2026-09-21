@@ -74,9 +74,6 @@ func start_wave():
 	for idx in range(lookup.size()):
 		max_weight += probabilities[idx]
 		weights.append(max_weight)
-
-func _ready(): 
-	GameEvents.game_over.connect(_on_game_over)
 	
 func _on_enemy_dead():
 	enemies_killed += 1

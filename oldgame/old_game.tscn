@@ -414,6 +414,8 @@ state = 0
 
 [connection signal="timeout" from="WaveManager/SpawnTimer" to="WaveManager" method="_on_do_spawn"]
 [connection signal="body_entered" from="Field/JumpZones" to="Field/JumpZones" method="_on_body_entered"]
+[connection signal="player_died" from="Player" to="." method="_on_game_over"]
+[connection signal="player_died" from="Player" to="WaveManager" method="_on_game_over"]
 [connection signal="player_hp_change" from="Player" to="Gameplay/UI" method="_on_player_hp_change"]
 [connection signal="body_entered" from="GunPickup" to="Player" method="_on_gun_pickup"]
 [connection signal="body_entered" from="GunPickup" to="SignBot" method="_on_gun_pickup"]

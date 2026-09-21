@@ -118,8 +118,7 @@ func _on_offscreen():
 
 func _update_think():
 	if state != EnemyState.ALIVE: return
-	var k = 1.0 + 0.5 * randi_range(0, 3)
-	think_tick.start(think_time * k)
+	think_tick.start(think_time)
 
 func set_state(new_state: EnemyState, force: bool = false) -> bool:
 	if not transition_allowed(new_state, force): return false

@@ -17,8 +17,8 @@ collision_mask = 10
 monitorable = false
 script = ExtResource("1_kdrfa")
 assist_angle = 8.0
-rot_weight = 0.5
-move_vel = 100.0
+rot_speed = 60.0
+move_vel = 200.0
 explosion = ExtResource("2_e6m6b")
 level_to_parry = 2
 
@@ -34,7 +34,7 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_e6m6b")
 debug_color = Color(0.7, 0, 0.011666489, 0.41960785)
 
-[node name="Timer" type="Timer" parent="." unique_id=261846768]
+[node name="Lifetime" type="Timer" parent="." unique_id=261846768]
 wait_time = 10.0
 autostart = true
 
@@ -47,5 +47,10 @@ monitoring = false
 position = Vector2(8, 0)
 shape = SubResource("RectangleShape2D_o8hbi")
 
+[node name="SpeedTimer" type="Timer" parent="." unique_id=1262387015]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
 [connection signal="area_entered" from="." to="." method="_on_collision"]
-[connection signal="timeout" from="Timer" to="." method="explode"]
+[connection signal="timeout" from="Lifetime" to="." method="explode"]
