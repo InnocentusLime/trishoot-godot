@@ -136,6 +136,7 @@ script = ExtResource("2_krf52")
 explosion_size = 10
 shrapnel = ExtResource("3_u74kb")
 explosion = ExtResource("4_6yvan")
+protection_level = 4
 think_time = 1.1
 
 [node name="ThinkTick" parent="." index="0" unique_id=327157414]

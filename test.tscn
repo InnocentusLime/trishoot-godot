@@ -454,6 +454,8 @@ position = Vector2(649, 423)
 position = Vector2(411, 150)
 
 [node name="FreeUpgrades" type="Node2D" parent="." unique_id=693064122]
+process_mode = 4
+visible = false
 
 [node name="GunUpgrade" parent="FreeUpgrades" unique_id=435279279 instance=ExtResource("15_a3se8")]
 position = Vector2(339, 424)

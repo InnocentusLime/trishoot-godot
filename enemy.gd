@@ -15,6 +15,7 @@ const JUMP_GRAVITY: float = 1000.0
 @export var protection_level: int
 @export var think_time: float
 @export var state: EnemyState = EnemyState.ENTERING
+@export var jumps_on_left: bool = true
 
 @onready var hop: AudioStreamPlayer2D = $Hop
 @onready var think_tick: Timer = $ThinkTick
@@ -24,7 +25,7 @@ const JUMP_GRAVITY: float = 1000.0
 @onready var hitspark: PackedScene = preload("res://hits/hitenemy.tscn")
 
 
-var jumps_on_left: bool = true
+
 var die_quiet: bool
 var knockback_dir: Vector2 = Vector2.ZERO
 var bumped_this_frame: bool = false

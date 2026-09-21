@@ -10,9 +10,6 @@ func _on_dmg(dmg_pos: Vector2, lvl: int) -> bool:
 	move_vel = move_dir * PARRIED_SPEED
 	return true
 
-func _ready():
-	GameEvents.game_over.connect(queue_free)
-
 func _on_attack(hurtbox: Node2D):
 	queue_free()
 	var to_dmg = hurtbox.get_parent()
