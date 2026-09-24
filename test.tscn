@@ -33,7 +33,7 @@ position = Vector2(359, 333)
 hint_life = 0.0
 hasgun = true
 god = true
-combo_scale = Array[Vector2]([Vector2(0.4, 0.6), Vector2(0.8, 1), Vector2(1.5, 1.2), Vector2(2, 1.6), Vector2(3, 2.7)])
+attack_scale = Array[Vector2]([Vector2(0.4, 0.6), Vector2(0.8, 1), Vector2(1.5, 1.2), Vector2(2, 1.6), Vector2(3, 2.7)])
 
 [node name="WindowManager" type="Node" parent="." unique_id=1480704761]
 script = ExtResource("2_ykrsh")
@@ -64,25 +64,25 @@ layout_mode = 2
 layout_mode = 2
 text = "HP: 0"
 
-[node name="ComboInfo" type="HBoxContainer" parent="Gameplay/UI/HUD/Stack" unique_id=4651911]
+[node name="WeaponLevel" type="HBoxContainer" parent="Gameplay/UI/HUD/Stack" unique_id=4651911]
 layout_mode = 2
 
-[node name="Elem1" type="CenterContainer" parent="Gameplay/UI/HUD/Stack/ComboInfo" unique_id=1789645960]
+[node name="ProgressContainer" type="CenterContainer" parent="Gameplay/UI/HUD/Stack/WeaponLevel" unique_id=1789645960]
 layout_mode = 2
 
-[node name="ComboProgress" type="ProgressBar" parent="Gameplay/UI/HUD/Stack/ComboInfo/Elem1" unique_id=577855046]
+[node name="WeaponLvlProgress" type="ProgressBar" parent="Gameplay/UI/HUD/Stack/WeaponLevel/ProgressContainer" unique_id=577855046]
 custom_minimum_size = Vector2(180, 10)
 layout_mode = 2
 max_value = 1.0
 show_percentage = false
 script = ExtResource("6_5tkv4")
 
-[node name="Elem2" type="CenterContainer" parent="Gameplay/UI/HUD/Stack/ComboInfo" unique_id=955556203]
+[node name="LvlContainer" type="CenterContainer" parent="Gameplay/UI/HUD/Stack/WeaponLevel" unique_id=955556203]
 layout_mode = 2
 
-[node name="ComboLevel" type="Label" parent="Gameplay/UI/HUD/Stack/ComboInfo/Elem2" unique_id=1888695682]
+[node name="WeaponLvl" type="Label" parent="Gameplay/UI/HUD/Stack/WeaponLevel/LvlContainer" unique_id=1888695682]
 layout_mode = 2
-text = "xCombo"
+text = "P1"
 script = ExtResource("7_0m0f1")
 
 [node name="Score" type="Control" parent="Gameplay/UI/HUD/Stack" unique_id=234420851]
@@ -454,8 +454,6 @@ position = Vector2(649, 423)
 position = Vector2(411, 150)
 
 [node name="FreeUpgrades" type="Node2D" parent="." unique_id=693064122]
-process_mode = 4
-visible = false
 
 [node name="GunUpgrade" parent="FreeUpgrades" unique_id=435279279 instance=ExtResource("15_a3se8")]
 position = Vector2(339, 424)
@@ -502,10 +500,10 @@ position = Vector2(300, 456)
 [node name="GunUpgrade15" parent="FreeUpgrades" unique_id=2133521441 instance=ExtResource("15_a3se8")]
 position = Vector2(289, 427)
 
-[connection signal="combo_level_changed" from="Player" to="Gameplay/UI/HUD/Stack/ComboInfo/Elem2/ComboLevel" method="_on_player_combo_level_changed"]
-[connection signal="combo_life_changed" from="Player" to="Gameplay/UI/HUD/Stack/ComboInfo/Elem1/ComboProgress" method="_on_player_combo_life_change"]
 [connection signal="player_died" from="Player" to="." method="_on_player_death"]
 [connection signal="player_died" from="Player" to="Gameplay/UI" method="_on_player_dead"]
+[connection signal="weapon_lvl_changed" from="Player" to="Gameplay/UI/HUD/Stack/WeaponLevel/LvlContainer/WeaponLvl" method="_on_player_weapon_lvl_changed"]
+[connection signal="weapon_lvl_progress_changed" from="Player" to="Gameplay/UI/HUD/Stack/WeaponLevel/ProgressContainer/WeaponLvlProgress" method="_on_player_weapon_lvl_progress_change"]
 [connection signal="body_entered" from="JumpZones" to="JumpZones" method="_on_body_entered"]
 [connection signal="child_exiting_tree" from="WaveManger" to="WaveManger" method="_on_wave_done"]
 [connection signal="body_entered" from="Field/JumpZones" to="Field/JumpZones" method="_on_body_entered"]

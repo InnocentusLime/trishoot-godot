@@ -1,8 +1,8 @@
 class_name Player extends CharacterBody2D
 
 signal player_hp_change(new_val: int)
-signal combo_life_changed(new_val: float)
-signal combo_level_changed(new_val: int)
+signal weapon_lvl_progress_changed(new_val: float)
+signal weapon_lvl_changed(new_val: int)
 signal player_died()
 
 enum State {IDLE=0, RUNNING=1, SHOOTING=2}
@@ -36,8 +36,8 @@ const BAR_SIZE = 240
 @export var hasgun: bool = false
 @export var god: bool = false
 @export var shot_cost: float = 1.0
-@export var bonus_cost: float = 1.0
-@export var combo_scale: Array[Vector2]
+@export var upgrade_cost: float = 1.0
+@export var attack_scale: Array[Vector2]
 
 var state: State = State.IDLE
 var hp: int = 3
@@ -47,14 +47,14 @@ var walk_time: float = 0.0
 var combo_points: int:
 	set(val):
 		combo_points = clamp(val, 0, max_combo_points)
-		combo_life_changed.emit(float(combo_points % BAR_SIZE) / float(BAR_SIZE))
+		weapon_lvl_progress_changed.emit(float(combo_points % BAR_SIZE) / float(BAR_SIZE))
 		if combo_points == 0:
-			combo_level_changed.emit(0)
+			weapon_lvl_changed.emit(0)
 		else:
-			combo_level_changed.emit(combo_points / BAR_SIZE + 1)
+			weapon_lvl_changed.emit(combo_points / BAR_SIZE + 1)
 
 var levels: Array[LevelEntry] = [
-	LevelEntry.new(3, 1),
+	 LevelEntry.new(3, 1),
 	LevelEntry.new(3, 2),
 	LevelEntry.new(3, 8),
 	LevelEntry.new(1, 15),
@@ -70,11 +70,11 @@ class LevelEntry:
 		self.bonuses_per_level = bonuses_per_level
 	
 	func shot_cost() -> int: return BAR_SIZE / shots
-	func bonus_cost() -> int: return shot_cost() / bonuses_per_level
+	func upgrade_cost() -> int: return shot_cost() / bonuses_per_level
 
 func _on_gun_upgrade_pickup(pickup: Node2D):
 	gun_upgrade_pickup.play()
-	var cost := get_bonus_cost()
+	var cost := get_upgrade_cost()
 	combo_points += cost
 
 func _on_score_bonus_pickup(pickup: Node2D):
@@ -101,8 +101,8 @@ func _on_dmg(hitpos: Vector2, explosion: bool = false, instakill: bool = false):
 func _ready():
 	$AnimationPlayer.current_animation = "idle_left"
 	player_hp_change.emit(hp)
-	combo_level_changed.emit(0)
-	combo_life_changed.emit(0)
+	weapon_lvl_changed.emit(0)
+	weapon_lvl_progress_changed.emit(0)
 	if hasgun: weapon.visible = true
 
 func _on_gun_pickup(_body: Node2D):
@@ -121,8 +121,10 @@ func _physics_process(delta):
 		move_vel *= (1 - recoil_acc) * 0.8
 		var dot = move_vel.dot(knock_dir)
 		if dot > 0.0: move_vel -= dot * knock_dir
-		var combo_level := get_combo_level()
-		velocity += knock_dir * KNOCKBACK_SPEED * (recoil_acc * (combo_level*0.5 + 0.5))
+		var combo_level := get_weapon_level()
+		var scale := attack_scale[combo_level]
+		var boost := scale.x
+		velocity += knock_dir * KNOCKBACK_SPEED * (recoil_acc * boost)
 	elif state == State.SHOOTING:
 		move_vel *= 0.8
 	velocity += move_vel
@@ -133,7 +135,7 @@ func _process(delta: float):
 	GameEvents.player_pos = position
 	damage_hint.visible = hasgun and state != State.SHOOTING
 	
-	attack_pivot.scale = combo_scale[get_combo_level()]
+	attack_pivot.scale = attack_scale[get_weapon_level()]
 	
 	if state == State.RUNNING: walk_time += delta
 	if walk_time >= hint_life: walk_hints.visible = false
@@ -192,30 +194,29 @@ func enter_state(new_state: State, new_face_right: bool, force: bool = false):
 	weaponSprite.flip_v = face_right
 
 func shoot():
-	attack.attack(get_combo_level())
-	var combo_level := get_combo_level()
+	attack.attack(get_weapon_level())
+	var combo_level := get_weapon_level()
 	var the_boom: Node2D = boom.instantiate()
 	var weapon_angle: float = aim_angle - PI
 	the_boom.position = weapon_muzzle.global_position
 	the_boom.rotation = weapon_angle
-	the_boom.scale = combo_scale[combo_level]
-	#weapon.add_child(the_boom)
+	the_boom.scale = attack_scale[combo_level]
 	add_sibling(the_boom)
 	GameEvents.shake.emit(combo_level+1, false)
 	
 	combo_points -= get_shot_cost()
 
-func get_bonus_cost() -> int:
-	var level := get_combo_level()
-	if level == 0: return levels[0].bonus_cost()
-	return levels[level-1].bonus_cost()
+func get_upgrade_cost() -> int:
+	var level := get_weapon_level()
+	if level == 0: return levels[0].upgrade_cost()
+	return levels[level-1].upgrade_cost()
 
 func get_shot_cost() -> int:
-	var level := get_combo_level()
+	var level := get_weapon_level()
 	if level == 0: return 0
 	return levels[level-1].shot_cost()
 
-func get_combo_level() -> int:
+func get_weapon_level() -> int:
 	if combo_points == 0: return 0
 	return (combo_points / BAR_SIZE) + 1
 

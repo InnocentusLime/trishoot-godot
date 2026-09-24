@@ -30,15 +30,12 @@ func attack(level: int):
 	var score_delta: int = PUNISH
 	var score_comment: String = "You suck"
 	if damaged != 0:
-		score_delta = get_score(damaged)
+		score_delta = damaged * BASE_SCORE
 		score_comment = get_comment(damaged)
+		GameEvents.combo.emit(damaged)
 	elif to_dmg_list2.size() > 0: # Grace for the projectile parrying
 		score_delta /= 2 
 	GameEvents.score_changed.emit(score_delta, "%s %d" % [score_comment, score_delta])
-
-func get_score(n: int) -> int:
-	var mult: float = floor(exp(floor(n + 1) / 2.0)) 
-	return BASE_SCORE * int(mult)
 	
 func get_comment(n: int) -> String:
 	n = min(n, comments.size() - 1)
