@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://dehcp0s7086fg" path="res://waves/configs/wave_test1.tscn" id="8_xersf"]
 [ext_resource type="Texture2D" uid="uid://d1gyesxr35ehm" path="res://sprites/field.png" id="9_00tp4"]
 [ext_resource type="Texture2D" uid="uid://dn0eonhbvc677" path="res://sprites/fence.png" id="10_77dp3"]
-[ext_resource type="PackedScene" uid="uid://djsi813hh4ofy" path="res://hazard/mine.tscn" id="14_b0q6j"]
 [ext_resource type="PackedScene" uid="uid://b6fhm7uqsld3o" path="res://gun_upgrade.tscn" id="15_a3se8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xersf"]
@@ -143,7 +142,6 @@ position = Vector2(106, 267)
 gizmo_extents = 40.0
 
 [node name="WaveManger" type="Node" parent="." unique_id=227660351 node_paths=PackedStringArray("item_spawn_points", "spawn_points")]
-process_mode = 4
 script = ExtResource("7_vbegm")
 item_spawn_points = [NodePath("../ItemSpawnPoints/Spawn1"), NodePath("../ItemSpawnPoints/Spawn2"), NodePath("../ItemSpawnPoints/Spawn3"), NodePath("../ItemSpawnPoints/Spawn4")]
 spawn_points = {
@@ -449,9 +447,6 @@ position = Vector2(292, 430)
 
 [node name="Spawn4" type="Marker2D" parent="ItemSpawnPoints" unique_id=794755511]
 position = Vector2(649, 423)
-
-[node name="Mine" parent="." unique_id=1950467204 instance=ExtResource("14_b0q6j")]
-position = Vector2(411, 150)
 
 [node name="FreeUpgrades" type="Node2D" parent="." unique_id=693064122]
 

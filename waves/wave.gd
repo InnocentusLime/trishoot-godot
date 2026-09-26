@@ -6,6 +6,8 @@ const BONUS_OFFSET_INCREMENT: float = 7.0
 @onready var upgrade: PackedScene = preload("res://gun_upgrade.tscn")
 @onready var bonus: PackedScene = preload("res://score_bonus.tscn")
 
+@export var mines: Node2D
+
 @export var upgrades_per_spawner: int = 3
 @export var total_upgrades_limit: int = 6
 @export var ticks_to_spawn_upgrade: int =  3
@@ -18,6 +20,9 @@ const BONUS_OFFSET_INCREMENT: float = 7.0
 var spawn_points: Dictionary[Spawner.SpawnPoint, Marker2D]
 var item_spawn_points: Array[Marker2D]
 var tick: int = 0
+
+func _ready():
+	$Fieldguide.queue_free()
 
 func _item_spawn_tick():
 	tick += 1
@@ -68,10 +73,10 @@ func spawn_upgrade():
 
 func _enter_tree():
 	for child in get_children():
-		var spawner := child as Spawner
-		var spawn_point := spawner.spawn_point
-		assert(spawn_points.has(spawn_point), "no spawn point: %d" % spawn_point)
-		spawner.spawn_pos = spawn_points[spawn_point].position
+		if child is Spawner:
+			var spawn_point: Spawner.SpawnPoint = child.spawn_point
+			assert(spawn_points.has(spawn_point), "no spawn point: %d" % spawn_point)
+			child.spawn_pos = spawn_points[spawn_point].position
 
 func _on_spawner_dying(spawner: Node):
 	if get_child_count() > 1: return

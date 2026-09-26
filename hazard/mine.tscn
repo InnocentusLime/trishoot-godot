@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dlx7g6v4bhiri" path="res://hazard/mine.gd" id="1_rnreq"]
 [ext_resource type="Texture2D" uid="uid://114unu2t58bl" path="res://sprites/dumbo.png" id="2_1y66r"]
 [ext_resource type="PackedScene" uid="uid://cuooppd3wvyq0" path="res://hazard/explosion.tscn" id="2_2fi1m"]
+[ext_resource type="AudioStream" uid="uid://bip4mw50ruc1w" path="res://snd/cock.wav" id="4_8kbsh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1y66r"]
 size = Vector2(35, 18)
@@ -14,7 +15,8 @@ monitorable = false
 script = ExtResource("1_rnreq")
 explosion = ExtResource("2_2fi1m")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1302174834]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1302174834]
+position = Vector2(0, -765)
 texture = ExtResource("2_1y66r")
 region_enabled = true
 region_rect = Rect2(1, 121, 32, 15)
@@ -22,6 +24,21 @@ region_rect = Rect2(1, 121, 32, 15)
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=852492536]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_1y66r")
+disabled = true
 debug_color = Color(0.97, 0, 0.01616642, 0.41960785)
 
+[node name="ArmTimer" type="Timer" parent="." unique_id=895452733]
+one_shot = true
+
+[node name="Warning" type="Sprite2D" parent="." unique_id=208783924]
+texture = ExtResource("2_1y66r")
+region_enabled = true
+region_rect = Rect2(1, 498, 28, 15)
+
+[node name="Land" type="AudioStreamPlayer2D" parent="." unique_id=76963612]
+stream = ExtResource("4_8kbsh")
+volume_db = -29.525
+pitch_scale = 1.8
+
 [connection signal="body_entered" from="." to="." method="_on_overlap"]
+[connection signal="timeout" from="ArmTimer" to="." method="_on_arm"]
