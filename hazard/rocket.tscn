@@ -20,6 +20,7 @@ assist_angle = 8.0
 rot_speed = 60.0
 move_vel = 200.0
 explosion = ExtResource("2_e6m6b")
+level_to_parry = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1941363504]
 rotation = -1.5707964

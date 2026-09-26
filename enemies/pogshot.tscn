@@ -136,6 +136,7 @@ laserball = ExtResource("2_eveg3")
 down_time = 1.0
 shoot_time = 2.0
 jump_when_entering = false
+protection_level = 2
 think_time = 1.2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4" unique_id=1524980344]
