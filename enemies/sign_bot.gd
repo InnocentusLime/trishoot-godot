@@ -8,6 +8,7 @@ var walk_dir: Vector2 = Vector2.ZERO
 var walk_rot: float = 0.0
 
 func _on_gun_pickup(body: Node2D):
+	process_mode = Node.PROCESS_MODE_INHERIT
 	set_state(EnemyState.ENTERING, true)
 
 func _on_entering():

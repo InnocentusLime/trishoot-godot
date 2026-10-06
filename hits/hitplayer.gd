@@ -6,6 +6,7 @@ const SHAKE_AMPLITUDE: float  = 16.0
 const APPEAR_TIME: float = 0.16
 
 @export var showspark: bool
+@export var dead: PackedScene
 
 var fatal: bool = false
 var t: float = 0.0
@@ -35,9 +36,14 @@ func _process(delta):
 	if fatal: ampl = SHAKE_AMPLITUDE * (1.0 - 0.8*k)
 	offset = Vector2.from_angle(shake_angle) * ampl 
 	
-func _sound_done(): if not fatal: queue_free()
+func _sound_done(): 
+	if not fatal: queue_free()
 	
 func _hide():
 	visible = false
 	get_tree().paused = false
-	if fatal: queue_free()
+	if fatal: 
+		var dead_obj: Node2D = dead.instantiate()
+		dead_obj.position = position
+		add_sibling(dead_obj)
+		queue_free()

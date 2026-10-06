@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://diui5tnc60xje" path="res://hits/hitplayer.gd" id="2_1d8av"]
 [ext_resource type="AudioStream" uid="uid://bwb4hrhnm2cg5" path="res://snd/oldhit.wav" id="3_dx6ai"]
 [ext_resource type="Texture2D" uid="uid://rrecam8ni4kg" path="res://sprites/john.png" id="3_e21xx"]
+[ext_resource type="PackedScene" uid="uid://b5r4j1xmhu0vl" path="res://hits/playerdead.tscn" id="3_kogi8"]
 
 [node name="hitspark" type="Sprite2D" unique_id=1628699677]
 process_mode = 3
@@ -11,6 +12,7 @@ texture = ExtResource("3_e21xx")
 region_enabled = true
 region_rect = Rect2(1, 313, 86, 56)
 script = ExtResource("2_1d8av")
+dead = ExtResource("3_kogi8")
 
 [node name="Visibility" type="Timer" parent="." unique_id=1523589603]
 wait_time = 0.25

@@ -8,9 +8,6 @@ var mines: Node2D
 
 var current_wave: int = 0
 
-func _ready():
-	start_wave()
-
 func start_wave():
 	if mines != null:
 		mines.queue_free()

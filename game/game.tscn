@@ -1,20 +1,21 @@
-[gd_scene format=3 uid="uid://furb5lunk427"]
+[gd_scene format=3 uid="uid://cts03l14a20ro"]
 
-[ext_resource type="PackedScene" uid="uid://1hng44hn5qdw" path="res://player.tscn" id="1_37kl0"]
-[ext_resource type="Script" uid="uid://g65i5ti34342" path="res://test.gd" id="1_b0q6j"]
-[ext_resource type="Script" uid="uid://c06gjxq87qvnt" path="res://window_manager.gd" id="2_ykrsh"]
-[ext_resource type="Script" uid="uid://cy0665amiaiit" path="res://ui.gd" id="3_g14j6"]
-[ext_resource type="PackedScene" uid="uid://dux3t8ovio4bv" path="res://combo_shower.tscn" id="4_vbegm"]
-[ext_resource type="PackedScene" uid="uid://bceryb2t6c4tb" path="res://wave_start_sign.tscn" id="5_ehkex"]
-[ext_resource type="Script" uid="uid://d2pyev3qirkcv" path="res://progress_bar.gd" id="6_5tkv4"]
-[ext_resource type="Script" uid="uid://be6mnpm7lobbo" path="res://combo_level.gd" id="7_0m0f1"]
-[ext_resource type="Script" uid="uid://clwjojxc4jt3h" path="res://waves/wave_manger.gd" id="7_vbegm"]
-[ext_resource type="Script" uid="uid://bqxu6kytoqvx8" path="res://waves/jump_zones.gd" id="8_ehkex"]
-[ext_resource type="PackedScene" uid="uid://dehcp0s7086fg" path="res://waves/configs/wave_test1.tscn" id="8_xersf"]
-[ext_resource type="Texture2D" uid="uid://d1gyesxr35ehm" path="res://sprites/field.png" id="9_00tp4"]
-[ext_resource type="Texture2D" uid="uid://dn0eonhbvc677" path="res://sprites/fence.png" id="10_77dp3"]
-[ext_resource type="PackedScene" uid="uid://b6fhm7uqsld3o" path="res://gun_upgrade.tscn" id="15_a3se8"]
-[ext_resource type="PackedScene" uid="uid://blakuum2hob7y" path="res://enemies/pogshot.tscn" id="16_a3se8"]
+[ext_resource type="Script" uid="uid://b2daktmcfuboi" path="res://game/game.gd" id="1_hb504"]
+[ext_resource type="PackedScene" uid="uid://1hng44hn5qdw" path="res://player.tscn" id="2_ee6o4"]
+[ext_resource type="Script" uid="uid://c06gjxq87qvnt" path="res://window_manager.gd" id="3_4cobl"]
+[ext_resource type="Script" uid="uid://rakg41k8k65" path="res://game/main_camera.gd" id="4_ee6o4"]
+[ext_resource type="Script" uid="uid://cy0665amiaiit" path="res://ui.gd" id="4_ln7ps"]
+[ext_resource type="PackedScene" uid="uid://dux3t8ovio4bv" path="res://combo_shower.tscn" id="5_pxxsx"]
+[ext_resource type="PackedScene" uid="uid://bceryb2t6c4tb" path="res://wave_start_sign.tscn" id="6_u8s88"]
+[ext_resource type="Script" uid="uid://d2pyev3qirkcv" path="res://progress_bar.gd" id="7_dxwpq"]
+[ext_resource type="Script" uid="uid://be6mnpm7lobbo" path="res://combo_level.gd" id="8_mhvfb"]
+[ext_resource type="Script" uid="uid://bqxu6kytoqvx8" path="res://waves/jump_zones.gd" id="9_5e03w"]
+[ext_resource type="Script" uid="uid://clwjojxc4jt3h" path="res://waves/wave_manger.gd" id="10_leid8"]
+[ext_resource type="PackedScene" uid="uid://dehcp0s7086fg" path="res://waves/configs/wave_test1.tscn" id="11_8bboj"]
+[ext_resource type="Texture2D" uid="uid://d1gyesxr35ehm" path="res://sprites/field.png" id="12_q52ks"]
+[ext_resource type="Texture2D" uid="uid://dn0eonhbvc677" path="res://sprites/fence.png" id="13_jucfl"]
+[ext_resource type="PackedScene" uid="uid://yspcymd65km7" path="res://gun_pickup.tscn" id="14_b686c"]
+[ext_resource type="PackedScene" uid="uid://beax458iexlun" path="res://enemies/sign_bot.tscn" id="16_ee6o4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xersf"]
 size = Vector2(43, 547)
@@ -25,28 +26,63 @@ size = Vector2(20, 480)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0m0f1"]
 size = Vector2(43, 547)
 
-[node name="Test" type="Node2D" unique_id=496192422]
-script = ExtResource("1_b0q6j")
-
-[node name="Player" parent="." unique_id=1422128146 instance=ExtResource("1_37kl0")]
-position = Vector2(359, 333)
-hint_life = 0.0
-hasgun = true
-god = true
-attack_scale = Array[Vector2]([Vector2(0.4, 0.6), Vector2(0.8, 1), Vector2(1.5, 1.2), Vector2(2, 1.6), Vector2(3, 2.7)])
+[node name="Game" type="Node" unique_id=11082511]
+script = ExtResource("1_hb504")
 
 [node name="WindowManager" type="Node" parent="." unique_id=1480704761]
-script = ExtResource("2_ykrsh")
+script = ExtResource("3_4cobl")
 
-[node name="Gameplay" type="Camera2D" parent="." unique_id=928942338]
+[node name="ItemSpawnPoints" type="Node" parent="." unique_id=1125359723]
+
+[node name="Spawn1" type="Marker2D" parent="ItemSpawnPoints" unique_id=789663566]
+position = Vector2(307, 109)
+
+[node name="Spawn2" type="Marker2D" parent="ItemSpawnPoints" unique_id=1441277749]
+position = Vector2(652, 110)
+
+[node name="Spawn3" type="Marker2D" parent="ItemSpawnPoints" unique_id=1413421189]
+position = Vector2(292, 430)
+
+[node name="Spawn4" type="Marker2D" parent="ItemSpawnPoints" unique_id=794755511]
+position = Vector2(649, 423)
+
+[node name="EnemySpawns" type="Node" parent="." unique_id=1836450404]
+
+[node name="TestPos" type="Marker2D" parent="EnemySpawns" unique_id=329063834]
+position = Vector2(65, 84)
+gizmo_extents = 40.0
+
+[node name="LeftStorm" type="Marker2D" parent="EnemySpawns" unique_id=1917939504]
+position = Vector2(-75, 269)
+gizmo_extents = 139.8
+
+[node name="RightStorm" type="Marker2D" parent="EnemySpawns" unique_id=703074066]
+position = Vector2(1027, 270)
+gizmo_extents = 139.8
+
+[node name="WaveManger" type="Node" parent="." unique_id=227660351 node_paths=PackedStringArray("item_spawn_points", "spawn_points")]
+script = ExtResource("10_leid8")
+item_spawn_points = [NodePath("../ItemSpawnPoints/Spawn1"), NodePath("../ItemSpawnPoints/Spawn2"), NodePath("../ItemSpawnPoints/Spawn3"), NodePath("../ItemSpawnPoints/Spawn4")]
+spawn_points = {
+-1: NodePath("../EnemySpawns/TestPos")
+}
+waves = Array[PackedScene]([ExtResource("11_8bboj"), ExtResource("11_8bboj"), ExtResource("11_8bboj")])
+
+[node name="MainCamera" type="Camera2D" parent="." unique_id=928942338]
 position = Vector2(480, 270)
+script = ExtResource("4_ee6o4")
 
-[node name="UI" type="CanvasLayer" parent="Gameplay" unique_id=1692524302]
-script = ExtResource("3_g14j6")
-combo_widget = ExtResource("4_vbegm")
-wave_start_widget = ExtResource("5_ehkex")
+[node name="UI" type="CanvasLayer" parent="MainCamera" unique_id=1692524302 node_paths=PackedStringArray("score", "score_label", "hp", "comboer", "wave_start")]
+script = ExtResource("4_ln7ps")
+score = NodePath("HUD/Stack/Score")
+score_label = NodePath("HUD/Stack/Score/Label")
+hp = NodePath("HUD/Stack/Health")
+comboer = NodePath("HUD/Stack/Comboer")
+wave_start = NodePath("WaveCompPort/WaveStart")
+combo_widget = ExtResource("5_pxxsx")
+wave_start_widget = ExtResource("6_u8s88")
 
-[node name="HUD" type="MarginContainer" parent="Gameplay/UI" unique_id=346843339]
+[node name="HUD" type="MarginContainer" parent="MainCamera/UI" unique_id=346843339]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -57,49 +93,49 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Stack" type="VBoxContainer" parent="Gameplay/UI/HUD" unique_id=1557695383]
+[node name="Stack" type="VBoxContainer" parent="MainCamera/UI/HUD" unique_id=1557695383]
 layout_mode = 2
 
-[node name="Health" type="Label" parent="Gameplay/UI/HUD/Stack" unique_id=164012571]
+[node name="Health" type="Label" parent="MainCamera/UI/HUD/Stack" unique_id=164012571]
 layout_mode = 2
 text = "HP: 0"
 
-[node name="WeaponLevel" type="HBoxContainer" parent="Gameplay/UI/HUD/Stack" unique_id=4651911]
+[node name="WeaponLevel" type="HBoxContainer" parent="MainCamera/UI/HUD/Stack" unique_id=4651911]
 layout_mode = 2
 
-[node name="ProgressContainer" type="CenterContainer" parent="Gameplay/UI/HUD/Stack/WeaponLevel" unique_id=1789645960]
+[node name="ProgressContainer" type="CenterContainer" parent="MainCamera/UI/HUD/Stack/WeaponLevel" unique_id=1789645960]
 layout_mode = 2
 
-[node name="WeaponLvlProgress" type="ProgressBar" parent="Gameplay/UI/HUD/Stack/WeaponLevel/ProgressContainer" unique_id=577855046]
+[node name="WeaponLvlProgress" type="ProgressBar" parent="MainCamera/UI/HUD/Stack/WeaponLevel/ProgressContainer" unique_id=577855046]
 custom_minimum_size = Vector2(180, 10)
 layout_mode = 2
 max_value = 1.0
 show_percentage = false
-script = ExtResource("6_5tkv4")
+script = ExtResource("7_dxwpq")
 
-[node name="LvlContainer" type="CenterContainer" parent="Gameplay/UI/HUD/Stack/WeaponLevel" unique_id=955556203]
+[node name="LvlContainer" type="CenterContainer" parent="MainCamera/UI/HUD/Stack/WeaponLevel" unique_id=955556203]
 layout_mode = 2
 
-[node name="WeaponLvl" type="Label" parent="Gameplay/UI/HUD/Stack/WeaponLevel/LvlContainer" unique_id=1888695682]
+[node name="WeaponLvl" type="Label" parent="MainCamera/UI/HUD/Stack/WeaponLevel/LvlContainer" unique_id=1888695682]
 layout_mode = 2
 text = "P1"
-script = ExtResource("7_0m0f1")
+script = ExtResource("8_mhvfb")
 
-[node name="Score" type="Control" parent="Gameplay/UI/HUD/Stack" unique_id=234420851]
+[node name="Score" type="Control" parent="MainCamera/UI/HUD/Stack" unique_id=234420851]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Gameplay/UI/HUD/Stack/Score" unique_id=1585576493]
+[node name="Label" type="Label" parent="MainCamera/UI/HUD/Stack/Score" unique_id=1585576493]
 layout_mode = 0
 offset_right = 960.0
 offset_bottom = 23.0
 pivot_offset = Vector2(30, 12)
 text = "Score: 0"
 
-[node name="Comboer" type="Control" parent="Gameplay/UI/HUD/Stack" unique_id=1806035220]
+[node name="Comboer" type="Control" parent="MainCamera/UI/HUD/Stack" unique_id=1806035220]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="WaveCompPort" type="VBoxContainer" parent="Gameplay/UI" unique_id=2063549560]
+[node name="WaveCompPort" type="VBoxContainer" parent="MainCamera/UI" unique_id=2063549560]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -107,10 +143,10 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="WaveStart" type="Control" parent="Gameplay/UI/WaveCompPort" unique_id=309278961]
+[node name="WaveStart" type="Control" parent="MainCamera/UI/WaveCompPort" unique_id=309278961]
 layout_mode = 2
 
-[node name="DemoOver" type="Label" parent="Gameplay/UI" unique_id=34950317]
+[node name="DemoOver" type="Label" parent="MainCamera/UI" unique_id=34950317]
 modulate = Color(1, 1, 1, 0)
 offset_left = 411.0
 offset_top = 85.0
@@ -126,7 +162,7 @@ horizontal_alignment = 1
 collision_layer = 0
 collision_mask = 2
 monitorable = false
-script = ExtResource("8_ehkex")
+script = ExtResource("9_5e03w")
 
 [node name="Left" type="CollisionShape2D" parent="JumpZones" unique_id=1043408591]
 position = Vector2(191.5, 268.5)
@@ -138,25 +174,12 @@ position = Vector2(771, 268.5)
 shape = SubResource("RectangleShape2D_xersf")
 debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
 
-[node name="TestPos" type="Marker2D" parent="." unique_id=329063834]
-position = Vector2(106, 267)
-gizmo_extents = 40.0
-
-[node name="WaveManger" type="Node" parent="." unique_id=227660351 node_paths=PackedStringArray("item_spawn_points", "spawn_points")]
-process_mode = 4
-script = ExtResource("7_vbegm")
-item_spawn_points = [NodePath("../ItemSpawnPoints/Spawn1"), NodePath("../ItemSpawnPoints/Spawn2"), NodePath("../ItemSpawnPoints/Spawn3"), NodePath("../ItemSpawnPoints/Spawn4")]
-spawn_points = {
--1: NodePath("../TestPos")
-}
-waves = Array[PackedScene]([ExtResource("8_xersf"), ExtResource("8_xersf"), ExtResource("8_xersf")])
-
 [node name="Field" type="AnimatableBody2D" parent="." unique_id=1148295311]
 z_index = -1
 
 [node name="Field" type="Sprite2D" parent="Field" unique_id=1855787950]
 position = Vector2(240, 49)
-texture = ExtResource("9_00tp4")
+texture = ExtResource("12_q52ks")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 40, 480, 440)
@@ -168,42 +191,42 @@ region_rect = Rect2(0, 40, 480, 440)
 [node name="Sprite2D" type="Sprite2D" parent="Field/Fences/Top" unique_id=2077331863]
 texture_repeat = 2
 position = Vector2(282, 48)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(42, 71, 86, 12)
 
 [node name="Sprite2D2" type="Sprite2D" parent="Field/Fences/Top" unique_id=1492167400]
 texture_repeat = 2
 position = Vector2(368, 48)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(42, 71, 86, 12)
 
 [node name="Sprite2D3" type="Sprite2D" parent="Field/Fences/Top" unique_id=1296240055]
 texture_repeat = 2
 position = Vector2(454, 48)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(42, 71, 86, 12)
 
 [node name="Sprite2D4" type="Sprite2D" parent="Field/Fences/Top" unique_id=1056903056]
 texture_repeat = 2
 position = Vector2(540, 48)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(42, 71, 86, 12)
 
 [node name="Sprite2D5" type="Sprite2D" parent="Field/Fences/Top" unique_id=1440968781]
 texture_repeat = 2
 position = Vector2(626, 48)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(42, 71, 86, 12)
 
 [node name="Sprite2D6" type="Sprite2D" parent="Field/Fences/Top" unique_id=1677604268]
 texture_repeat = 2
 position = Vector2(694, 48)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(42, 71, 52, 12)
 
@@ -212,73 +235,73 @@ position = Vector2(2, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Field/Fences/Right" unique_id=1847473245]
 position = Vector2(716, 64)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D2" type="Sprite2D" parent="Field/Fences/Right" unique_id=198112144]
 position = Vector2(716, 101)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D3" type="Sprite2D" parent="Field/Fences/Right" unique_id=1282160653]
 position = Vector2(716, 139)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D4" type="Sprite2D" parent="Field/Fences/Right" unique_id=752208757]
 position = Vector2(716, 178)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D5" type="Sprite2D" parent="Field/Fences/Right" unique_id=930564237]
 position = Vector2(716, 216)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D6" type="Sprite2D" parent="Field/Fences/Right" unique_id=2141535616]
 position = Vector2(716, 254)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D7" type="Sprite2D" parent="Field/Fences/Right" unique_id=1098609447]
 position = Vector2(716, 294)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D8" type="Sprite2D" parent="Field/Fences/Right" unique_id=1876584083]
 position = Vector2(716, 333)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D9" type="Sprite2D" parent="Field/Fences/Right" unique_id=1622134109]
 position = Vector2(716, 372)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D10" type="Sprite2D" parent="Field/Fences/Right" unique_id=1382428459]
 position = Vector2(716, 411)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D11" type="Sprite2D" parent="Field/Fences/Right" unique_id=711000954]
 position = Vector2(716, 446)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D12" type="Sprite2D" parent="Field/Fences/Right" unique_id=473050590]
 position = Vector2(716, 476)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 26)
 
@@ -287,73 +310,73 @@ position = Vector2(-476, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Field/Fences/Left" unique_id=228612819]
 position = Vector2(716, 64)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D2" type="Sprite2D" parent="Field/Fences/Left" unique_id=477560554]
 position = Vector2(716, 101)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D3" type="Sprite2D" parent="Field/Fences/Left" unique_id=821302088]
 position = Vector2(716, 139)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D4" type="Sprite2D" parent="Field/Fences/Left" unique_id=2008293855]
 position = Vector2(716, 178)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D5" type="Sprite2D" parent="Field/Fences/Left" unique_id=776812644]
 position = Vector2(716, 216)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D6" type="Sprite2D" parent="Field/Fences/Left" unique_id=1843752630]
 position = Vector2(716, 254)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D7" type="Sprite2D" parent="Field/Fences/Left" unique_id=1762670631]
 position = Vector2(716, 294)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D8" type="Sprite2D" parent="Field/Fences/Left" unique_id=743631888]
 position = Vector2(716, 333)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D9" type="Sprite2D" parent="Field/Fences/Left" unique_id=173835982]
 position = Vector2(716, 372)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D10" type="Sprite2D" parent="Field/Fences/Left" unique_id=916443993]
 position = Vector2(716, 411)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D11" type="Sprite2D" parent="Field/Fences/Left" unique_id=340907539]
 position = Vector2(716, 446)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 41)
 
 [node name="Sprite2D12" type="Sprite2D" parent="Field/Fences/Left" unique_id=488376977]
 position = Vector2(716, 476)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(119, 87, 7, 26)
 
@@ -363,42 +386,42 @@ position = Vector2(0, 443)
 [node name="Sprite2D" type="Sprite2D" parent="Field/Fences/Bot" unique_id=1470149040]
 texture_repeat = 2
 position = Vector2(282, 48)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(42, 71, 86, 12)
 
 [node name="Sprite2D2" type="Sprite2D" parent="Field/Fences/Bot" unique_id=1901564158]
 texture_repeat = 2
 position = Vector2(368, 48)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(42, 71, 86, 12)
 
 [node name="Sprite2D3" type="Sprite2D" parent="Field/Fences/Bot" unique_id=1694323674]
 texture_repeat = 2
 position = Vector2(454, 48)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(42, 71, 86, 12)
 
 [node name="Sprite2D4" type="Sprite2D" parent="Field/Fences/Bot" unique_id=1895326456]
 texture_repeat = 2
 position = Vector2(540, 48)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(42, 71, 86, 12)
 
 [node name="Sprite2D5" type="Sprite2D" parent="Field/Fences/Bot" unique_id=1912283795]
 texture_repeat = 2
 position = Vector2(626, 48)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(42, 71, 86, 12)
 
 [node name="Sprite2D6" type="Sprite2D" parent="Field/Fences/Bot" unique_id=1767331564]
 texture_repeat = 2
 position = Vector2(694, 48)
-texture = ExtResource("10_77dp3")
+texture = ExtResource("13_jucfl")
 region_enabled = true
 region_rect = Rect2(42, 71, 52, 12)
 
@@ -424,7 +447,7 @@ shape = SubResource("RectangleShape2D_5tkv4")
 collision_layer = 0
 collision_mask = 2
 monitorable = false
-script = ExtResource("8_ehkex")
+script = ExtResource("9_5e03w")
 
 [node name="Left" type="CollisionShape2D" parent="Field/JumpZones" unique_id=927979376]
 position = Vector2(191.5, 268.5)
@@ -436,74 +459,25 @@ position = Vector2(771, 268.5)
 shape = SubResource("RectangleShape2D_0m0f1")
 debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
 
-[node name="ItemSpawnPoints" type="Node" parent="." unique_id=1125359723]
+[node name="Player" parent="." unique_id=1422128146 instance=ExtResource("2_ee6o4")]
+position = Vector2(295, 280)
+hint_life = 0.0
+attack_scale = Array[Vector2]([Vector2(0.4, 0.6), Vector2(0.8, 1), Vector2(1.5, 1.2), Vector2(2, 1.6), Vector2(3, 2.7)])
 
-[node name="Spawn1" type="Marker2D" parent="ItemSpawnPoints" unique_id=789663566]
-position = Vector2(307, 109)
+[node name="GunPickup" parent="." unique_id=454315548 instance=ExtResource("14_b686c")]
+position = Vector2(659, 276)
 
-[node name="Spawn2" type="Marker2D" parent="ItemSpawnPoints" unique_id=1441277749]
-position = Vector2(652, 110)
+[node name="SignBot" parent="." unique_id=1859096370 instance=ExtResource("16_ee6o4")]
+process_mode = 4
+position = Vector2(-142, 269)
 
-[node name="Spawn3" type="Marker2D" parent="ItemSpawnPoints" unique_id=1413421189]
-position = Vector2(292, 430)
-
-[node name="Spawn4" type="Marker2D" parent="ItemSpawnPoints" unique_id=794755511]
-position = Vector2(649, 423)
-
-[node name="FreeUpgrades" type="Node2D" parent="." unique_id=693064122]
-
-[node name="GunUpgrade" parent="FreeUpgrades" unique_id=435279279 instance=ExtResource("15_a3se8")]
-position = Vector2(339, 424)
-
-[node name="GunUpgrade2" parent="FreeUpgrades" unique_id=1528712996 instance=ExtResource("15_a3se8")]
-position = Vector2(392, 424)
-
-[node name="GunUpgrade3" parent="FreeUpgrades" unique_id=1708575214 instance=ExtResource("15_a3se8")]
-position = Vector2(460, 431)
-
-[node name="GunUpgrade4" parent="FreeUpgrades" unique_id=706288284 instance=ExtResource("15_a3se8")]
-position = Vector2(571, 429)
-
-[node name="GunUpgrade5" parent="FreeUpgrades" unique_id=1420791938 instance=ExtResource("15_a3se8")]
-position = Vector2(519, 458)
-
-[node name="GunUpgrade6" parent="FreeUpgrades" unique_id=532464158 instance=ExtResource("15_a3se8")]
-position = Vector2(518, 398)
-
-[node name="GunUpgrade7" parent="FreeUpgrades" unique_id=1180668258 instance=ExtResource("15_a3se8")]
-position = Vector2(578, 392)
-
-[node name="GunUpgrade8" parent="FreeUpgrades" unique_id=1845186544 instance=ExtResource("15_a3se8")]
-position = Vector2(678, 393)
-
-[node name="GunUpgrade9" parent="FreeUpgrades" unique_id=1608356390 instance=ExtResource("15_a3se8")]
-position = Vector2(654, 420)
-
-[node name="GunUpgrade10" parent="FreeUpgrades" unique_id=1892927399 instance=ExtResource("15_a3se8")]
-position = Vector2(612, 448)
-
-[node name="GunUpgrade11" parent="FreeUpgrades" unique_id=583715540 instance=ExtResource("15_a3se8")]
-position = Vector2(625, 380)
-
-[node name="GunUpgrade12" parent="FreeUpgrades" unique_id=11778515 instance=ExtResource("15_a3se8")]
-position = Vector2(464, 382)
-
-[node name="GunUpgrade13" parent="FreeUpgrades" unique_id=1803510052 instance=ExtResource("15_a3se8")]
-position = Vector2(360, 398)
-
-[node name="GunUpgrade14" parent="FreeUpgrades" unique_id=457380583 instance=ExtResource("15_a3se8")]
-position = Vector2(300, 456)
-
-[node name="GunUpgrade15" parent="FreeUpgrades" unique_id=2133521441 instance=ExtResource("15_a3se8")]
-position = Vector2(289, 427)
-
-[node name="Pogshot" parent="." unique_id=1859096370 instance=ExtResource("16_a3se8")]
-position = Vector2(26, 274)
-
-[connection signal="player_died" from="Player" to="." method="_on_player_death"]
-[connection signal="player_died" from="Player" to="Gameplay/UI" method="_on_player_dead"]
-[connection signal="weapon_lvl_changed" from="Player" to="Gameplay/UI/HUD/Stack/WeaponLevel/LvlContainer/WeaponLvl" method="_on_player_weapon_lvl_changed"]
-[connection signal="weapon_lvl_progress_changed" from="Player" to="Gameplay/UI/HUD/Stack/WeaponLevel/ProgressContainer/WeaponLvlProgress" method="_on_player_weapon_lvl_progress_change"]
-[connection signal="body_entered" from="JumpZones" to="JumpZones" method="_on_body_entered"]
 [connection signal="child_exiting_tree" from="WaveManger" to="WaveManger" method="_on_wave_done"]
+[connection signal="body_entered" from="JumpZones" to="JumpZones" method="_on_body_entered"]
 [connection signal="body_entered" from="Field/JumpZones" to="Field/JumpZones" method="_on_body_entered"]
+[connection signal="player_died" from="Player" to="MainCamera/UI" method="_on_player_dead"]
+[connection signal="player_hp_change" from="Player" to="MainCamera/UI" method="_on_player_hp_change"]
+[connection signal="weapon_lvl_changed" from="Player" to="MainCamera/UI/HUD/Stack/WeaponLevel/LvlContainer/WeaponLvl" method="_on_player_weapon_lvl_changed"]
+[connection signal="weapon_lvl_progress_changed" from="Player" to="MainCamera/UI/HUD/Stack/WeaponLevel/ProgressContainer/WeaponLvlProgress" method="_on_player_weapon_lvl_progress_change"]
+[connection signal="body_entered" from="GunPickup" to="Player" method="_on_gun_pickup"]
+[connection signal="body_entered" from="GunPickup" to="SignBot" method="_on_gun_pickup"]
+[connection signal="killed" from="SignBot" to="." method="_on_signbot_killed"]

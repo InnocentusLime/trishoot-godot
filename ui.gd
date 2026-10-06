@@ -1,10 +1,10 @@
 extends CanvasLayer
 
-@onready var score: Control = $HUD/Stack/Score
-@onready var score_label: Label = $HUD/Stack/Score/Label
-@onready var hp: Label = $HUD/Stack/Health
-@onready var comboer: Control = $HUD/Stack/Comboer
-@onready var wave_start: Control = $WaveCompPort/WaveStart
+@export var score: Control
+@export var score_label: Label
+@export var hp: Label
+@export var comboer: Control
+@export var wave_start: Control
 
 @export var combo_widget: PackedScene
 @export var wave_start_widget: PackedScene
