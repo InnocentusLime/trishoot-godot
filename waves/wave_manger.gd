@@ -1,7 +1,8 @@
-extends Node
+class_name WaveManager extends Node
+
 
 @export var item_spawn_points: Array[Marker2D]
-@export var spawn_points: Dictionary[Spawner.SpawnPoint, Marker2D]
+@export var spawn_points: Dictionary[WaveTypes.SpawnPoint, Marker2D]
 @export var waves: Array[PackedScene]
 
 var mines: Node2D

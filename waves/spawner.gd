@@ -3,11 +3,9 @@
 # Oneshot: false
 class_name Spawner extends Timer
 
-enum SpawnPoint {TEST=-1}
-
 const CENTER_X: float = 450
 
-@export var spawn_point: SpawnPoint = SpawnPoint.TEST
+@export var spawn_point: WaveTypes.SpawnPoint = WaveTypes.SpawnPoint.TEST
 @export var to_spawn: PackedScene
 @export var enemy_budget: int = 1
 @export var enemy_cap: int = 1

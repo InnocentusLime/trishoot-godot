@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://be6mnpm7lobbo" path="res://combo_level.gd" id="8_mhvfb"]
 [ext_resource type="Script" uid="uid://bqxu6kytoqvx8" path="res://waves/jump_zones.gd" id="9_5e03w"]
 [ext_resource type="Script" uid="uid://clwjojxc4jt3h" path="res://waves/wave_manger.gd" id="10_leid8"]
-[ext_resource type="PackedScene" uid="uid://dehcp0s7086fg" path="res://waves/configs/wave_test1.tscn" id="11_8bboj"]
 [ext_resource type="Texture2D" uid="uid://d1gyesxr35ehm" path="res://sprites/field.png" id="12_q52ks"]
 [ext_resource type="Texture2D" uid="uid://dn0eonhbvc677" path="res://sprites/fence.png" id="13_jucfl"]
 [ext_resource type="PackedScene" uid="uid://yspcymd65km7" path="res://gun_pickup.tscn" id="14_b686c"]
@@ -52,21 +51,23 @@ position = Vector2(649, 423)
 position = Vector2(65, 84)
 gizmo_extents = 40.0
 
-[node name="LeftStorm" type="Marker2D" parent="EnemySpawns" unique_id=1917939504]
+[node name="Storm" type="Node" parent="EnemySpawns" unique_id=667495506]
+
+[node name="Left" type="Marker2D" parent="EnemySpawns/Storm" unique_id=1917939504]
 position = Vector2(-75, 269)
 gizmo_extents = 139.8
 
-[node name="RightStorm" type="Marker2D" parent="EnemySpawns" unique_id=703074066]
+[node name="Right" type="Marker2D" parent="EnemySpawns/Storm" unique_id=703074066]
 position = Vector2(1027, 270)
 gizmo_extents = 139.8
 
-[node name="WaveManger" type="Node" parent="." unique_id=227660351 node_paths=PackedStringArray("item_spawn_points", "spawn_points")]
+[node name="WaveManger" type="Node" parent="." unique_id=227660351 node_paths=PackedStringArray("spawn_points")]
 script = ExtResource("10_leid8")
-item_spawn_points = [NodePath("../ItemSpawnPoints/Spawn1"), NodePath("../ItemSpawnPoints/Spawn2"), NodePath("../ItemSpawnPoints/Spawn3"), NodePath("../ItemSpawnPoints/Spawn4")]
 spawn_points = {
--1: NodePath("../EnemySpawns/TestPos")
+-1: NodePath("../EnemySpawns/TestPos"),
+0: NodePath("../EnemySpawns/Storm/Left"),
+1: NodePath("../EnemySpawns/Storm/Right")
 }
-waves = Array[PackedScene]([ExtResource("11_8bboj"), ExtResource("11_8bboj"), ExtResource("11_8bboj")])
 
 [node name="MainCamera" type="Camera2D" parent="." unique_id=928942338]
 position = Vector2(480, 270)
