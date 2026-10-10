@@ -463,7 +463,7 @@ debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
 [node name="Player" parent="." unique_id=1422128146 instance=ExtResource("2_ee6o4")]
 position = Vector2(295, 280)
 hint_life = 0.0
-attack_scale = Array[Vector2]([Vector2(0.4, 0.6), Vector2(0.8, 1), Vector2(1.5, 1.2), Vector2(2, 1.6), Vector2(3, 2.7)])
+attack_scale = Array[Vector2]([Vector2(0, 0), Vector2(0.4, 0.6), Vector2(1.5, 1.2), Vector2(4, 3.2)])
 
 [node name="GunPickup" parent="." unique_id=454315548 instance=ExtResource("14_b686c")]
 position = Vector2(659, 276)

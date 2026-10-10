@@ -55,12 +55,12 @@ var combo_points: int:
 			weapon_lvl_changed.emit(combo_points / BAR_SIZE + 1)
 
 var levels: Array[LevelEntry] = [
-	 LevelEntry.new(3, 1),
-	LevelEntry.new(3, 2),
+	LevelEntry.new(3, 1),
 	LevelEntry.new(3, 8),
 	LevelEntry.new(1, 15),
 ]
-var max_combo_points: int = levels.size()*BAR_SIZE
+var max_combo_points: int = (levels.size()-1)*BAR_SIZE
+var shot_level: int
 
 class LevelEntry:
 	var shots: int
@@ -123,9 +123,8 @@ func _physics_process(delta):
 		move_vel *= (1 - recoil_acc) * 0.8
 		var dot = move_vel.dot(knock_dir)
 		if dot > 0.0: move_vel -= dot * knock_dir
-		var combo_level := get_weapon_level()
-		var scale := attack_scale[combo_level]
-		var boost := scale.x
+		var boom_scale := attack_scale[shot_level]
+		var boost := boom_scale.x
 		velocity += knock_dir * KNOCKBACK_SPEED * (recoil_acc * boost)
 	elif state == State.SHOOTING:
 		move_vel *= 0.8
@@ -196,15 +195,15 @@ func enter_state(new_state: State, new_face_right: bool, force: bool = false):
 	weaponSprite.flip_v = face_right
 
 func shoot():
-	attack.attack(get_weapon_level())
-	var combo_level := get_weapon_level()
+	shot_level = get_weapon_level()
+	attack.attack(shot_level)
 	var the_boom: Node2D = boom.instantiate()
 	var weapon_angle: float = aim_angle - PI
 	the_boom.position = weapon_muzzle.global_position
 	the_boom.rotation = weapon_angle
-	the_boom.scale = attack_scale[combo_level]
+	the_boom.scale = attack_scale[shot_level]
 	add_sibling(the_boom)
-	GameEvents.shake.emit(combo_level+1, false)
+	GameEvents.shake.emit(shot_level+1, false)
 	
 	combo_points -= get_shot_cost()
 
@@ -220,7 +219,7 @@ func get_shot_cost() -> int:
 
 func get_weapon_level() -> int:
 	if combo_points == 0: return 0
-	return (combo_points / BAR_SIZE) + 1
+	return min((combo_points / BAR_SIZE) + 1, len(attack_scale)-1)
 
 func set_color(c: Color):
 	body.modulate = c
