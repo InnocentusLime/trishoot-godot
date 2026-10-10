@@ -361,4 +361,8 @@ stream = ExtResource("10_nvl01")
 [node name="ScoreBonusPickup" type="AudioStreamPlayer2D" parent="BonusSounds" unique_id=2099508592]
 stream = ExtResource("11_ivps1")
 
+[node name="Charge" type="Timer" parent="." unique_id=360029481]
+wait_time = 0.65
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
+[connection signal="timeout" from="Charge" to="." method="_on_gun_charge_tick"]

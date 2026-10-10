@@ -17,6 +17,7 @@ const BAR_SIZE = 240
 @onready var weapon: Node2D = $Weapon
 @onready var weaponSprite: Sprite2D = $Weapon/Weapon
 @onready var invince: Timer = $Invince
+@onready var charge: Timer = $Charge
 @onready var anims: AnimationPlayer = $AnimationPlayer
 @onready var walk_hints: Sprite2D = $Hints
 @onready var weapon_muzzle: Node2D = $Weapon/Muzzle
@@ -72,8 +73,8 @@ class LevelEntry:
 	func shot_cost() -> int: return BAR_SIZE / shots
 	func upgrade_cost() -> int: return shot_cost() / bonuses_per_level
 
-func _on_gun_upgrade_pickup(pickup: Node2D):
-	gun_upgrade_pickup.play()
+func _on_gun_charge_tick():
+	#gun_upgrade_pickup.play()
 	var cost := get_upgrade_cost()
 	combo_points += cost
 
@@ -109,6 +110,7 @@ func _on_gun_pickup(_body: Node2D):
 	walk_hints.visible = false
 	weapon.visible = true
 	hasgun = true
+	charge.start()
 
 func _physics_process(delta):
 	var h_dir = Input.get_axis("move_left", "move_right")
