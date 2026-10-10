@@ -3,8 +3,10 @@
 [ext_resource type="Script" uid="uid://b2daktmcfuboi" path="res://game/game.gd" id="1_hb504"]
 [ext_resource type="PackedScene" uid="uid://1hng44hn5qdw" path="res://player.tscn" id="2_ee6o4"]
 [ext_resource type="Script" uid="uid://c06gjxq87qvnt" path="res://window_manager.gd" id="3_4cobl"]
+[ext_resource type="PackedScene" uid="uid://pk85sjbw4i8" path="res://waves/configs/wave1_minor_storm.tscn" id="4_4cobl"]
 [ext_resource type="Script" uid="uid://rakg41k8k65" path="res://game/main_camera.gd" id="4_ee6o4"]
 [ext_resource type="Script" uid="uid://cy0665amiaiit" path="res://ui.gd" id="4_ln7ps"]
+[ext_resource type="PackedScene" uid="uid://cupik7j1i7cl3" path="res://waves/configs/wave2_major_storm.tscn" id="5_ln7ps"]
 [ext_resource type="PackedScene" uid="uid://dux3t8ovio4bv" path="res://combo_shower.tscn" id="5_pxxsx"]
 [ext_resource type="PackedScene" uid="uid://bceryb2t6c4tb" path="res://wave_start_sign.tscn" id="6_u8s88"]
 [ext_resource type="Script" uid="uid://d2pyev3qirkcv" path="res://progress_bar.gd" id="7_dxwpq"]
@@ -61,13 +63,15 @@ gizmo_extents = 139.8
 position = Vector2(1027, 270)
 gizmo_extents = 139.8
 
-[node name="WaveManger" type="Node" parent="." unique_id=227660351 node_paths=PackedStringArray("spawn_points")]
+[node name="WaveManger" type="Node" parent="." unique_id=227660351 node_paths=PackedStringArray("item_spawn_points", "spawn_points")]
 script = ExtResource("10_leid8")
+item_spawn_points = [NodePath("../ItemSpawnPoints/Spawn1"), NodePath("../ItemSpawnPoints/Spawn2"), NodePath("../ItemSpawnPoints/Spawn3"), NodePath("../ItemSpawnPoints/Spawn4")]
 spawn_points = {
 -1: NodePath("../EnemySpawns/TestPos"),
 0: NodePath("../EnemySpawns/Storm/Left"),
 1: NodePath("../EnemySpawns/Storm/Right")
 }
+waves = Array[PackedScene]([ExtResource("4_4cobl"), ExtResource("5_ln7ps")])
 
 [node name="MainCamera" type="Camera2D" parent="." unique_id=928942338]
 position = Vector2(480, 270)
@@ -475,6 +479,7 @@ position = Vector2(-142, 269)
 [connection signal="child_exiting_tree" from="WaveManger" to="WaveManger" method="_on_wave_done"]
 [connection signal="body_entered" from="JumpZones" to="JumpZones" method="_on_body_entered"]
 [connection signal="body_entered" from="Field/JumpZones" to="Field/JumpZones" method="_on_body_entered"]
+[connection signal="player_died" from="Player" to="." method="_on_player_die"]
 [connection signal="player_died" from="Player" to="MainCamera/UI" method="_on_player_dead"]
 [connection signal="player_hp_change" from="Player" to="MainCamera/UI" method="_on_player_hp_change"]
 [connection signal="weapon_lvl_changed" from="Player" to="MainCamera/UI/HUD/Stack/WeaponLevel/LvlContainer/WeaponLvl" method="_on_player_weapon_lvl_changed"]

@@ -6,7 +6,6 @@ const BASE_SCORE: int = 10
 const PUNISH: int = -100
 
 func attack(level: int):
-	print("attack: ", level)
 	var damaged := 0
 	var blocked := 0
 	var to_dmg_list: Array[Node2D] = get_overlapping_bodies()

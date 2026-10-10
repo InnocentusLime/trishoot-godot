@@ -7,7 +7,7 @@ enum EnemyState {ENTERING=-2, HOPPINGOVER=-1, ALIVE = 0, KNOCKBACK=1, OFFSCREEN=
 
 const KNOCKBACK_SPEED: float = 999.0
 const OFFSCREEN_DELTA: float = PI / 5
-const ENTER_SPEED: float = 260.0
+const ENTER_SPEED: float = 400.0
 const JUMP_VELOCITY: Vector2 = Vector2(200, -300)
 const JUMP_GRAVITY: float = 1000.0
 

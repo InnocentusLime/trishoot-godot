@@ -29,7 +29,8 @@ func spawn_enemy(off: Vector2):
 	enemy.position = spawn_pos + off
 	enemy.jumps_on_left = spawn_pos.x < CENTER_X
 	enemy.killed.connect(_on_enemy_die)
-	add_child(enemy)
+	enemy.tree_exiting.connect(_on_enemy_despawn)
+	get_tree().root.add_child(enemy)
 	alive_enemies += 1
 	enemy_budget -= 1
 	
@@ -40,10 +41,7 @@ func _on_enemy_die():
 	alive_enemies -= 1
 	if enemy_budget > 0 and is_stopped(): start()
 
-func _on_enemy_despawn(enemy: Node):
-	# No children, no budget. Kill ourselves
-	# NOTE: take children count into account. Otherwise we will kill ourselves
-	#       too early.
-	if alive_enemies <= 0 and enemy_budget <= 0 and get_child_count() <= 1: 
+func _on_enemy_despawn():
+	if alive_enemies <= 0 and enemy_budget <= 0: 
 		queue_free()
 		print("No active enemies and empty budget. Depsawning: ", self)
