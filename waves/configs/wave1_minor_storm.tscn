@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://xvv42c770em2" path="res://waves/wave.gd" id="1_m6wb7"]
 [ext_resource type="Script" uid="uid://b3hcn4tuvxlld" path="res://waves/spawner.gd" id="2_b6i06"]
 [ext_resource type="PackedScene" uid="uid://due6y6601ung" path="res://enemies/chaser.tscn" id="3_ql7u3"]
+[ext_resource type="PackedScene" uid="uid://djsi813hh4ofy" path="res://hazard/mine.tscn" id="4_pevnl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0gjvu"]
 size = Vector2(479, 442)
@@ -33,6 +34,9 @@ enemy_offsets = Array[Vector2]([Vector2(0, 0), Vector2(16, -24), Vector2(-16, 24
 
 [node name="Mines" type="Node2D" parent="." unique_id=102858444]
 position = Vector2(240, 49)
+
+[node name="Mine" parent="Mines" unique_id=1950467204 instance=ExtResource("4_pevnl")]
+position = Vector2(242, 221)
 
 [node name="Fieldguide" type="CollisionShape2D" parent="." unique_id=566441336]
 position = Vector2(480, 271)

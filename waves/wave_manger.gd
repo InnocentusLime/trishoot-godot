@@ -8,6 +8,13 @@ class_name WaveManager extends Node
 var mines: Node2D
 
 var current_wave: int = 0
+var stopped: bool 
+
+func stop_wave():
+	stopped = true
+	for child in get_children():
+		if child is Wave:
+			child.queue_free()
 
 func start_wave():
 	if mines != null:
@@ -31,6 +38,7 @@ func start_wave():
 
 func _on_wave_done(child: Node):
 	if not child is Wave: return
+	if stopped: return
 	print("wave done")
 	# The engine is busy killing my child. Please call later
 	start_wave.call_deferred()
