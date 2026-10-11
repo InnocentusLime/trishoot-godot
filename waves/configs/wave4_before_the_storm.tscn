@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://lhtti76lwwa1"]
+
+[ext_resource type="Script" uid="uid://xvv42c770em2" path="res://waves/wave.gd" id="1_xv8ba"]
+[ext_resource type="Script" uid="uid://b3hcn4tuvxlld" path="res://waves/spawner.gd" id="2_p40rp"]
+[ext_resource type="PackedScene" uid="uid://cg5bh3sgukcl7" path="res://enemies/firepeno.tscn" id="3_rm1t0"]
+[ext_resource type="PackedScene" uid="uid://due6y6601ung" path="res://enemies/chaser.tscn" id="4_2o7l6"]
+[ext_resource type="PackedScene" uid="uid://djsi813hh4ofy" path="res://hazard/mine.tscn" id="5_p40rp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gjvu"]
+size = Vector2(479, 442)
+
+[node name="Wave" type="Timer" unique_id=1575428059 node_paths=PackedStringArray("mines")]
+wait_time = 0.6
+autostart = true
+script = ExtResource("1_xv8ba")
+mines = NodePath("Mines")
+
+[node name="LeftShrapnel" type="Timer" parent="." unique_id=1197638989]
+wait_time = 0.8
+script = ExtResource("2_p40rp")
+spawn_point = 0
+to_spawn = ExtResource("3_rm1t0")
+enemy_budget = 6
+enemy_offsets = Array[Vector2]([Vector2(-32, 0), Vector2(0, 0)])
+
+[node name="RightShrapnel" type="Timer" parent="." unique_id=348521830]
+wait_time = 1.5999999999999999
+script = ExtResource("2_p40rp")
+spawn_point = 1
+to_spawn = ExtResource("3_rm1t0")
+enemy_budget = 6
+enemy_offsets = Array[Vector2]([Vector2(-32, 0), Vector2(0, 0)])
+
+[node name="LeftSwarm" type="Timer" parent="." unique_id=817475329]
+wait_time = 0.45
+script = ExtResource("2_p40rp")
+spawn_point = 0
+to_spawn = ExtResource("4_2o7l6")
+enemy_budget = 50
+enemy_cap = 9
+enemy_offsets = Array[Vector2]([Vector2(0, 0), Vector2(16, -24), Vector2(-16, 24)])
+
+[node name="RightSwarm" type="Timer" parent="." unique_id=230679068]
+wait_time = 0.45
+script = ExtResource("2_p40rp")
+spawn_point = 1
+to_spawn = ExtResource("4_2o7l6")
+enemy_budget = 50
+enemy_cap = 9
+enemy_offsets = Array[Vector2]([Vector2(0, 0), Vector2(16, -24), Vector2(-16, 24)])
+
+[node name="Mines" type="Node2D" parent="." unique_id=102858444]
+position = Vector2(240, 49)
+
+[node name="Mine" parent="Mines" unique_id=1950467204 instance=ExtResource("5_p40rp")]
+position = Vector2(130, 114)
+
+[node name="Mine2" parent="Mines" unique_id=279597467 instance=ExtResource("5_p40rp")]
+position = Vector2(181, 56)
+
+[node name="Mine5" parent="Mines" unique_id=547910118 instance=ExtResource("5_p40rp")]
+position = Vector2(305, 57)
+
+[node name="Mine6" parent="Mines" unique_id=1520294753 instance=ExtResource("5_p40rp")]
+position = Vector2(245, 25)
+
+[node name="Mine11" parent="Mines" unique_id=517256111 instance=ExtResource("5_p40rp")]
+position = Vector2(23, 16)
+
+[node name="Mine12" parent="Mines" unique_id=1493498151 instance=ExtResource("5_p40rp")]
+position = Vector2(450, 17)
+
+[node name="Mine13" parent="Mines" unique_id=1874643084 instance=ExtResource("5_p40rp")]
+position = Vector2(453, 424)
+
+[node name="Mine14" parent="Mines" unique_id=147602324 instance=ExtResource("5_p40rp")]
+position = Vector2(26, 425)
+
+[node name="Mine7" parent="Mines" unique_id=1653226628 instance=ExtResource("5_p40rp")]
+position = Vector2(186, 368)
+
+[node name="Mine8" parent="Mines" unique_id=20382164 instance=ExtResource("5_p40rp")]
+position = Vector2(284, 368)
+
+[node name="Mine10" parent="Mines" unique_id=939049408 instance=ExtResource("5_p40rp")]
+position = Vector2(237, 400)
+
+[node name="Mine3" parent="Mines" unique_id=1849949921 instance=ExtResource("5_p40rp")]
+position = Vector2(131, 323)
+
+[node name="Mine4" parent="Mines" unique_id=580855181 instance=ExtResource("5_p40rp")]
+position = Vector2(345, 322)
+
+[node name="Mine9" parent="Mines" unique_id=1020632449 instance=ExtResource("5_p40rp")]
+position = Vector2(358, 119)
+
+[node name="Fieldguide" type="CollisionShape2D" parent="." unique_id=566441336]
+position = Vector2(480, 271)
+shape = SubResource("RectangleShape2D_0gjvu")
+disabled = true
+
+[connection signal="child_exiting_tree" from="." to="." method="_on_spawner_dying"]
+[connection signal="timeout" from="." to="." method="_item_spawn_tick"]
+[connection signal="child_exiting_tree" from="LeftShrapnel" to="LeftShrapnel" method="_on_enemy_despawn"]
+[connection signal="timeout" from="LeftShrapnel" to="LeftShrapnel" method="_on_spawn"]
+[connection signal="child_exiting_tree" from="RightShrapnel" to="RightShrapnel" method="_on_enemy_despawn"]
+[connection signal="timeout" from="RightShrapnel" to="RightShrapnel" method="_on_spawn"]
+[connection signal="child_exiting_tree" from="LeftSwarm" to="LeftSwarm" method="_on_enemy_despawn"]
+[connection signal="timeout" from="LeftSwarm" to="LeftSwarm" method="_on_spawn"]
+[connection signal="child_exiting_tree" from="RightSwarm" to="RightSwarm" method="_on_enemy_despawn"]
+[connection signal="timeout" from="RightSwarm" to="RightSwarm" method="_on_spawn"]

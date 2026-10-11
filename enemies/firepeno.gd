@@ -7,7 +7,7 @@ const MY_PROJ_VELOCITY: float = 160.0
 @export var shrapnel: PackedScene
 @export var explosion: PackedScene
 @export var min_player_dist: float = 180 + randi_range(0, 3)*20.0
-@export var explosion_time: float = 2.0 + randi_range(0, 4) * 1.0
+@export var explosion_time: float = 1.3 + randi_range(0, 2) * 0.3
 @export var rotate_sign: float = -1.0 if randi_range(0, 1) < 1 else 1.0
 
 @onready var anim: AnimationPlayer = $AnimationPlayer
@@ -48,6 +48,7 @@ func _update_think():
 	walk_dir = perdir
 
 func _on_explode():
+	killed.emit()
 	var increment := (2*PI) / float(explosion_size)
 	for i in range(explosion_size):
 		var angle := i * increment

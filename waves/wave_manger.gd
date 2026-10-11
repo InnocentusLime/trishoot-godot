@@ -4,10 +4,10 @@ class_name WaveManager extends Node
 @export var item_spawn_points: Array[Marker2D]
 @export var spawn_points: Dictionary[WaveTypes.SpawnPoint, Marker2D]
 @export var waves: Array[PackedScene]
+@export var current_wave: int = 0
 
 var mines: Node2D
 
-var current_wave: int = 0
 var stopped: bool 
 
 func stop_wave():
