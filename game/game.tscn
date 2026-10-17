@@ -480,6 +480,7 @@ position = Vector2(659, 276)
 [node name="SignBot" parent="." unique_id=1859096370 instance=ExtResource("16_ee6o4")]
 process_mode = 4
 position = Vector2(-142, 269)
+enter_dir = Vector2(1, 0)
 
 [connection signal="child_exiting_tree" from="WaveManger" to="WaveManger" method="_on_wave_done"]
 [connection signal="body_entered" from="JumpZones" to="JumpZones" method="_on_body_entered"]

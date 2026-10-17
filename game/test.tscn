@@ -13,8 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://dehcp0s7086fg" path="res://waves/configs/wave_test1.tscn" id="8_xersf"]
 [ext_resource type="Texture2D" uid="uid://d1gyesxr35ehm" path="res://sprites/field.png" id="9_00tp4"]
 [ext_resource type="Texture2D" uid="uid://dn0eonhbvc677" path="res://sprites/fence.png" id="10_77dp3"]
+[ext_resource type="PackedScene" uid="uid://due6y6601ung" path="res://enemies/chaser.tscn" id="15_1ss2l"]
 [ext_resource type="PackedScene" uid="uid://b6fhm7uqsld3o" path="res://gun_upgrade.tscn" id="15_a3se8"]
-[ext_resource type="PackedScene" uid="uid://blakuum2hob7y" path="res://enemies/pogshot.tscn" id="16_a3se8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xersf"]
 size = Vector2(43, 547)
@@ -24,6 +24,9 @@ size = Vector2(20, 480)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0m0f1"]
 size = Vector2(43, 547)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ss2l"]
+size = Vector2(552.25, 35.25)
 
 [node name="Test" type="Node2D" unique_id=496192422]
 script = ExtResource("1_b0q6j")
@@ -41,8 +44,13 @@ script = ExtResource("2_ykrsh")
 [node name="Gameplay" type="Camera2D" parent="." unique_id=928942338]
 position = Vector2(480, 270)
 
-[node name="UI" type="CanvasLayer" parent="Gameplay" unique_id=1692524302]
+[node name="UI" type="CanvasLayer" parent="Gameplay" unique_id=1692524302 node_paths=PackedStringArray("score", "score_label", "hp", "comboer", "wave_start")]
 script = ExtResource("3_g14j6")
+score = NodePath("HUD/Stack/Score")
+score_label = NodePath("HUD/Stack/Score/Label")
+hp = NodePath("HUD/Stack/Health")
+comboer = NodePath("HUD/Stack/Comboer")
+wave_start = NodePath("WaveCompPort/WaveStart")
 combo_widget = ExtResource("4_vbegm")
 wave_start_widget = ExtResource("5_ehkex")
 
@@ -436,6 +444,16 @@ position = Vector2(771, 268.5)
 shape = SubResource("RectangleShape2D_0m0f1")
 debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
 
+[node name="Top" type="CollisionShape2D" parent="Field/JumpZones" unique_id=1047176003]
+position = Vector2(482.125, 23.375)
+shape = SubResource("RectangleShape2D_1ss2l")
+debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
+
+[node name="Bot" type="CollisionShape2D" parent="Field/JumpZones" unique_id=1422060781]
+position = Vector2(476, 531)
+shape = SubResource("RectangleShape2D_1ss2l")
+debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
+
 [node name="ItemSpawnPoints" type="Node" parent="." unique_id=1125359723]
 
 [node name="Spawn1" type="Marker2D" parent="ItemSpawnPoints" unique_id=789663566]
@@ -497,8 +515,9 @@ position = Vector2(300, 456)
 [node name="GunUpgrade15" parent="FreeUpgrades" unique_id=2133521441 instance=ExtResource("15_a3se8")]
 position = Vector2(289, 427)
 
-[node name="Pogshot" parent="." unique_id=1859096370 instance=ExtResource("16_a3se8")]
-position = Vector2(26, 274)
+[node name="Chaser" parent="." unique_id=1859096370 instance=ExtResource("15_1ss2l")]
+position = Vector2(483, -156)
+enter_dir = Vector2(0, 1)
 
 [connection signal="player_died" from="Player" to="." method="_on_player_death"]
 [connection signal="player_died" from="Player" to="Gameplay/UI" method="_on_player_dead"]

@@ -27,7 +27,10 @@ func spawn_enemy(off: Vector2):
 
 	var enemy: Enemy = to_spawn.instantiate()
 	enemy.position = spawn_pos + off
-	enemy.jumps_on_left = spawn_pos.x < CENTER_X
+	if spawn_pos.x < CENTER_X:
+		enemy.enter_dir = Vector2.RIGHT
+	else:
+		enemy.enter_dir = Vector2.LEFT
 	enemy.killed.connect(_on_enemy_die)
 	enemy.tree_exiting.connect(_on_enemy_despawn)
 	get_tree().root.add_child(enemy)
