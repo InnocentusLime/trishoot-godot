@@ -14,7 +14,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/path = NodePath("Body:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -26,7 +26,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:offset")
+tracks/1/path = NodePath("Body:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -38,7 +38,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/path = NodePath("Body:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -55,7 +55,7 @@ step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/path = NodePath("Body:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -72,7 +72,7 @@ step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/path = NodePath("Body:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -89,7 +89,7 @@ step = 0.041666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/path = NodePath("Body:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -101,7 +101,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:offset")
+tracks/1/path = NodePath("Body:offset")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -113,7 +113,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/path = NodePath("Body:scale")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -131,13 +131,15 @@ _data = {
 &"jump": SubResource("Animation_6yvan")
 }
 
-[node name="Firepeno" unique_id=1859096370 instance=ExtResource("1_jpbv3")]
+[node name="Firepeno" unique_id=1859096370 node_paths=PackedStringArray("body_node", "shadow_node") instance=ExtResource("1_jpbv3")]
 script = ExtResource("2_krf52")
 explosion_size = 10
 shrapnel = ExtResource("3_u74kb")
 explosion = ExtResource("4_6yvan")
 protection_level = 4
 think_time = 1.1
+body_node = NodePath("Body")
+shadow_node = NodePath("Shadow")
 
 [node name="ThinkTick" parent="." index="0" unique_id=327157414]
 wait_time = 2.0
@@ -146,7 +148,7 @@ wait_time = 2.0
 position = Vector2(-3, 1)
 shape = SubResource("CircleShape2D_krf52")
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="5" unique_id=2043434460]
+[node name="Body" type="Sprite2D" parent="." index="5" unique_id=2043434460]
 position = Vector2(-2, -4)
 texture = ExtResource("2_qh3t2")
 region_enabled = true
@@ -158,5 +160,14 @@ libraries/ = SubResource("AnimationLibrary_25e2v")
 [node name="ExplodeTimer" type="Timer" parent="." index="7" unique_id=954445319]
 wait_time = 5.0
 one_shot = true
+
+[node name="Shadow" type="Sprite2D" parent="." index="8" unique_id=264626348]
+self_modulate = Color(1, 1, 1, 0.40784314)
+z_index = -1
+z_as_relative = false
+position = Vector2(-5, 14)
+texture = ExtResource("2_qh3t2")
+region_enabled = true
+region_rect = Rect2(0, 514, 22, 9)
 
 [connection signal="timeout" from="ExplodeTimer" to="." method="_on_explode"]

@@ -43,13 +43,16 @@ func _physics_process(delta):
 	bumped_this_frame = move_and_slide()
 	match state:
 		EnemyState.ALIVE: _think()
-		EnemyState.HOPPINGOVER: 
-			var t := 1.0 - jump_timer.time_left/jump_timer.wait_time
-			t = -4.0 * t * (t - 1)
-			t = ease(t, -0.8)
-			body_node.position.y = -80 * t
-			shadow_node.scale = Vector2(1.0 - t*0.65, 1.0 - t*0.65)
+		EnemyState.HOPPINGOVER: pass
 		EnemyState.KNOCKBACK when bumped_this_frame: set_state(EnemyState.OFFSCREEN)
+
+func _process(delta):
+	if state != EnemyState.HOPPINGOVER: return
+	var t := 1.0 - jump_timer.time_left/jump_timer.wait_time
+	t = -4.0 * t * (t - 0.97)
+	t = ease(t, -0.8)
+	body_node.position.y = -80 * t
+	shadow_node.scale = Vector2(1.0 - t*0.65, 1.0 - t*0.65)
 
 func _on_dmg(attack_pos: Vector2, level: int, force: bool = false) -> bool:
 	if force: die_quiet = true
@@ -63,7 +66,9 @@ func _on_jump_zone():
 	else:
 		set_state(EnemyState.ALIVE)
 
-func _jump_done(): set_state(EnemyState.ALIVE)
+func _jump_done(): 
+	body_node.position.y = 0 # To make sure we don't desync
+	set_state(EnemyState.ALIVE)
 	
 func _on_entering():
 	velocity = ENTER_SPEED * enter_dir

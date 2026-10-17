@@ -13,7 +13,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/path = NodePath("Body:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -25,7 +25,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:offset")
+tracks/1/path = NodePath("Body:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -37,7 +37,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/path = NodePath("Body:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -54,7 +54,7 @@ step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/path = NodePath("Body:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -71,7 +71,7 @@ step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/path = NodePath("Body:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -88,7 +88,7 @@ step = 0.041666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/path = NodePath("Body:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -100,7 +100,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:offset")
+tracks/1/path = NodePath("Body:offset")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -112,7 +112,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/path = NodePath("Body:scale")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -130,7 +130,7 @@ _data = {
 &"jump": SubResource("Animation_i28le")
 }
 
-[node name="Sigguy" unique_id=1859096370 groups=["rocketers"] instance=ExtResource("1_dbs2y")]
+[node name="Sigguy" unique_id=1859096370 node_paths=PackedStringArray("body_node", "shadow_node") groups=["rocketers"] instance=ExtResource("1_dbs2y")]
 script = ExtResource("5_abnyj")
 player_see_range = 45.0
 player_distance_min = 64.0
@@ -138,12 +138,14 @@ min_wall_dist = 60.0
 laserball = ExtResource("3_t1w7k")
 protection_level = 999
 think_time = 1.5
+body_node = NodePath("Body")
+shadow_node = NodePath("Shadow")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4" unique_id=588914182]
 position = Vector2(-3, 1)
 shape = SubResource("CircleShape2D_ajknx")
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="5" unique_id=1689669079]
+[node name="Body" type="Sprite2D" parent="." index="5" unique_id=1689669079]
 position = Vector2(0, -7)
 texture = ExtResource("4_tyje4")
 region_enabled = true
@@ -154,3 +156,12 @@ libraries/ = SubResource("AnimationLibrary_t1w7k")
 
 [node name="ProjectileSpawn" type="Node2D" parent="." index="7" unique_id=1533560976]
 position = Vector2(8, -18)
+
+[node name="Shadow" type="Sprite2D" parent="." index="8" unique_id=1284912475]
+self_modulate = Color(1, 1, 1, 0.40784314)
+z_index = -1
+z_as_relative = false
+position = Vector2(0, 15)
+texture = ExtResource("4_tyje4")
+region_enabled = true
+region_rect = Rect2(0, 514, 22, 9)
