@@ -16,6 +16,8 @@ const JUMP_GRAVITY: float = 1000.0
 @export var think_time: float
 @export var state: EnemyState = EnemyState.ENTERING
 @export var enter_dir: Vector2
+@export var body_node: Node2D
+@export var shadow_node: Node2D
 
 @onready var hop: AudioStreamPlayer2D = $Hop
 @onready var think_tick: Timer = $ThinkTick
@@ -42,9 +44,11 @@ func _physics_process(delta):
 	match state:
 		EnemyState.ALIVE: _think()
 		EnemyState.HOPPINGOVER: 
-			var k := 1.0
-			if absf(enter_dir.y) > 0.1: k *= 0.5
-			velocity.y += JUMP_GRAVITY * delta * k
+			var t := 1.0 - jump_timer.time_left/jump_timer.wait_time
+			t = -4.0 * t * (t - 1)
+			t = ease(t, -0.8)
+			body_node.position.y = -80 * t
+			shadow_node.scale = Vector2(1.0 - t*0.65, 1.0 - t*0.65)
 		EnemyState.KNOCKBACK when bumped_this_frame: set_state(EnemyState.OFFSCREEN)
 
 func _on_dmg(attack_pos: Vector2, level: int, force: bool = false) -> bool:
@@ -70,9 +74,10 @@ func _on_entering():
 	set_collision_layer_value(EnemyLayer.ACTIVE, true)
 	
 func _on_hopping_over():
-	var speed_x_sign: float = enter_dir.dot(Vector2.RIGHT)
-	var speed_y_sign: float = 1.0
-	velocity = JUMP_VELOCITY * Vector2(speed_x_sign, speed_y_sign)
+	#var speed_x_sign: float = enter_dir.dot(Vector2.RIGHT)
+	#var speed_y_sign: float = 1.0
+	#velocity = JUMP_VELOCITY * Vector2(speed_x_sign, speed_y_sign)
+	velocity = enter_dir * JUMP_VELOCITY.x
 	jump_timer.start()
 	hop.play()
 	
@@ -92,6 +97,7 @@ func _on_alive():
 	set_collision_mask_value(1, true)
 
 func _on_knockback():
+	shadow_node.visible = false
 	velocity = KNOCKBACK_SPEED * knockback_dir
 	delete_timer.start()
 	think_tick.stop()

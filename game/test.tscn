@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://g65i5ti34342" path="res://game/test.gd" id="1_b0q6j"]
 [ext_resource type="Script" uid="uid://c06gjxq87qvnt" path="res://window_manager.gd" id="2_ykrsh"]
 [ext_resource type="Script" uid="uid://cy0665amiaiit" path="res://ui.gd" id="3_g14j6"]
+[ext_resource type="Script" uid="uid://rakg41k8k65" path="res://game/main_camera.gd" id="4_l0bkv"]
 [ext_resource type="PackedScene" uid="uid://dux3t8ovio4bv" path="res://combo_shower.tscn" id="4_vbegm"]
 [ext_resource type="PackedScene" uid="uid://bceryb2t6c4tb" path="res://wave_start_sign.tscn" id="5_ehkex"]
 [ext_resource type="Script" uid="uid://d2pyev3qirkcv" path="res://progress_bar.gd" id="6_5tkv4"]
@@ -14,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://d1gyesxr35ehm" path="res://sprites/field.png" id="9_00tp4"]
 [ext_resource type="Texture2D" uid="uid://dn0eonhbvc677" path="res://sprites/fence.png" id="10_77dp3"]
 [ext_resource type="PackedScene" uid="uid://due6y6601ung" path="res://enemies/chaser.tscn" id="15_1ss2l"]
-[ext_resource type="PackedScene" uid="uid://b6fhm7uqsld3o" path="res://gun_upgrade.tscn" id="15_a3se8"]
+[ext_resource type="PackedScene" uid="uid://yspcymd65km7" path="res://gun_pickup.tscn" id="15_l0bkv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xersf"]
 size = Vector2(43, 547)
@@ -26,15 +27,14 @@ size = Vector2(20, 480)
 size = Vector2(43, 547)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ss2l"]
-size = Vector2(552.25, 35.25)
+size = Vector2(552.25, 23.1875)
 
-[node name="Test" type="Node2D" unique_id=496192422]
+[node name="Test" type="Node" unique_id=923643158]
 script = ExtResource("1_b0q6j")
 
 [node name="Player" parent="." unique_id=1422128146 instance=ExtResource("1_37kl0")]
 position = Vector2(359, 333)
 hint_life = 0.0
-hasgun = true
 god = true
 attack_scale = Array[Vector2]([Vector2(0.4, 0.6), Vector2(0.8, 1), Vector2(1.5, 1.2), Vector2(2, 1.6), Vector2(3, 2.7)])
 
@@ -43,6 +43,7 @@ script = ExtResource("2_ykrsh")
 
 [node name="Gameplay" type="Camera2D" parent="." unique_id=928942338]
 position = Vector2(480, 270)
+script = ExtResource("4_l0bkv")
 
 [node name="UI" type="CanvasLayer" parent="Gameplay" unique_id=1692524302 node_paths=PackedStringArray("score", "score_label", "hp", "comboer", "wave_start")]
 script = ExtResource("3_g14j6")
@@ -419,12 +420,12 @@ position = Vector2(730, 272)
 shape = SubResource("RectangleShape2D_5tkv4")
 
 [node name="Top" type="CollisionShape2D" parent="Field" unique_id=2005024141]
-position = Vector2(481, 39)
+position = Vector2(468, 59)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_5tkv4")
 
 [node name="Bottom" type="CollisionShape2D" parent="Field" unique_id=1433114867]
-position = Vector2(480, 501)
+position = Vector2(478, 487)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_5tkv4")
 
@@ -445,12 +446,12 @@ shape = SubResource("RectangleShape2D_0m0f1")
 debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
 
 [node name="Top" type="CollisionShape2D" parent="Field/JumpZones" unique_id=1047176003]
-position = Vector2(482.125, 23.375)
+position = Vector2(473, 51)
 shape = SubResource("RectangleShape2D_1ss2l")
 debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
 
 [node name="Bot" type="CollisionShape2D" parent="Field/JumpZones" unique_id=1422060781]
-position = Vector2(476, 531)
+position = Vector2(474, 481)
 shape = SubResource("RectangleShape2D_1ss2l")
 debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
 
@@ -468,61 +469,18 @@ position = Vector2(292, 430)
 [node name="Spawn4" type="Marker2D" parent="ItemSpawnPoints" unique_id=794755511]
 position = Vector2(649, 423)
 
-[node name="FreeUpgrades" type="Node2D" parent="." unique_id=693064122]
-
-[node name="GunUpgrade" parent="FreeUpgrades" unique_id=435279279 instance=ExtResource("15_a3se8")]
-position = Vector2(339, 424)
-
-[node name="GunUpgrade2" parent="FreeUpgrades" unique_id=1528712996 instance=ExtResource("15_a3se8")]
-position = Vector2(392, 424)
-
-[node name="GunUpgrade3" parent="FreeUpgrades" unique_id=1708575214 instance=ExtResource("15_a3se8")]
-position = Vector2(460, 431)
-
-[node name="GunUpgrade4" parent="FreeUpgrades" unique_id=706288284 instance=ExtResource("15_a3se8")]
-position = Vector2(571, 429)
-
-[node name="GunUpgrade5" parent="FreeUpgrades" unique_id=1420791938 instance=ExtResource("15_a3se8")]
-position = Vector2(519, 458)
-
-[node name="GunUpgrade6" parent="FreeUpgrades" unique_id=532464158 instance=ExtResource("15_a3se8")]
-position = Vector2(518, 398)
-
-[node name="GunUpgrade7" parent="FreeUpgrades" unique_id=1180668258 instance=ExtResource("15_a3se8")]
-position = Vector2(578, 392)
-
-[node name="GunUpgrade8" parent="FreeUpgrades" unique_id=1845186544 instance=ExtResource("15_a3se8")]
-position = Vector2(678, 393)
-
-[node name="GunUpgrade9" parent="FreeUpgrades" unique_id=1608356390 instance=ExtResource("15_a3se8")]
-position = Vector2(654, 420)
-
-[node name="GunUpgrade10" parent="FreeUpgrades" unique_id=1892927399 instance=ExtResource("15_a3se8")]
-position = Vector2(612, 448)
-
-[node name="GunUpgrade11" parent="FreeUpgrades" unique_id=583715540 instance=ExtResource("15_a3se8")]
-position = Vector2(625, 380)
-
-[node name="GunUpgrade12" parent="FreeUpgrades" unique_id=11778515 instance=ExtResource("15_a3se8")]
-position = Vector2(464, 382)
-
-[node name="GunUpgrade13" parent="FreeUpgrades" unique_id=1803510052 instance=ExtResource("15_a3se8")]
-position = Vector2(360, 398)
-
-[node name="GunUpgrade14" parent="FreeUpgrades" unique_id=457380583 instance=ExtResource("15_a3se8")]
-position = Vector2(300, 456)
-
-[node name="GunUpgrade15" parent="FreeUpgrades" unique_id=2133521441 instance=ExtResource("15_a3se8")]
-position = Vector2(289, 427)
-
 [node name="Chaser" parent="." unique_id=1859096370 instance=ExtResource("15_1ss2l")]
-position = Vector2(483, -156)
-enter_dir = Vector2(0, 1)
+position = Vector2(488, 669)
+enter_dir = Vector2(0, -1)
 
-[connection signal="player_died" from="Player" to="." method="_on_player_death"]
+[node name="GunPickup" parent="." unique_id=454315548 instance=ExtResource("15_l0bkv")]
+position = Vector2(549, 286)
+
 [connection signal="player_died" from="Player" to="Gameplay/UI" method="_on_player_dead"]
+[connection signal="player_died" from="Player" to="." method="_on_player_death"]
 [connection signal="weapon_lvl_changed" from="Player" to="Gameplay/UI/HUD/Stack/WeaponLevel/LvlContainer/WeaponLvl" method="_on_player_weapon_lvl_changed"]
 [connection signal="weapon_lvl_progress_changed" from="Player" to="Gameplay/UI/HUD/Stack/WeaponLevel/ProgressContainer/WeaponLvlProgress" method="_on_player_weapon_lvl_progress_change"]
 [connection signal="body_entered" from="JumpZones" to="JumpZones" method="_on_body_entered"]
 [connection signal="child_exiting_tree" from="WaveManger" to="WaveManger" method="_on_wave_done"]
 [connection signal="body_entered" from="Field/JumpZones" to="Field/JumpZones" method="_on_body_entered"]
+[connection signal="body_entered" from="GunPickup" to="Player" method="_on_gun_pickup"]

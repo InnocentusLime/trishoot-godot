@@ -12,7 +12,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/path = NodePath("Body:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -24,7 +24,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:offset")
+tracks/1/path = NodePath("Body:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -36,7 +36,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/path = NodePath("Body:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -53,7 +53,7 @@ step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/path = NodePath("Body:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -70,7 +70,7 @@ step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/path = NodePath("Body:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -86,7 +86,7 @@ step = 0.041666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/path = NodePath("Body:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -98,11 +98,11 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:offset")
+tracks/1/path = NodePath("Body:offset")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.083333336, 0.25),
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334),
 "transitions": PackedFloat32Array(1, 2, 0.5),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 15.415), Vector2(0, 0)]
@@ -110,11 +110,11 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/path = NodePath("Body:scale")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.083333336, 0.25),
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334),
 "transitions": PackedFloat32Array(1, 2, 0.5),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.24, 0.505), Vector2(1, 1)]
@@ -131,23 +131,34 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3pmxh"]
 size = Vector2(18, 18)
 
-[node name="Chaser" unique_id=1859096370 instance=ExtResource("1_bjo8h")]
+[node name="Chaser" unique_id=1859096370 node_paths=PackedStringArray("body_node", "shadow_node") instance=ExtResource("1_bjo8h")]
 script = ExtResource("1_ho883")
 think_time = 0.6
+body_node = NodePath("Body")
+shadow_node = NodePath("Shadow")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4" unique_id=683147072]
 shape = SubResource("CircleShape2D_8yvpk")
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="5" unique_id=327473172]
+[node name="Shadow" type="Sprite2D" parent="." index="5" unique_id=227586226]
+self_modulate = Color(1, 1, 1, 0.40784314)
+z_index = -1
+z_as_relative = false
+position = Vector2(2, 10)
+texture = ExtResource("2_bjo8h")
+region_enabled = true
+region_rect = Rect2(0, 514, 22, 9)
+
+[node name="Body" type="Sprite2D" parent="." index="6" unique_id=327473172]
 position = Vector2(0, -7)
 texture = ExtResource("2_bjo8h")
 region_enabled = true
 region_rect = Rect2(1, 1, 31, 36)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6" unique_id=1194103526]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7" unique_id=1194103526]
 libraries/ = SubResource("AnimationLibrary_fqjub")
 
-[node name="Attack" type="Area2D" parent="." index="7" unique_id=1155434912]
+[node name="Attack" type="Area2D" parent="." index="8" unique_id=1155434912]
 collision_mask = 8
 monitorable = false
 script = ExtResource("3_8yvpk")

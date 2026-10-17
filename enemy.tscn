@@ -15,7 +15,7 @@ wait_time = 0.8
 one_shot = true
 
 [node name="JumpTimer" type="Timer" parent="." unique_id=62309463]
-wait_time = 0.75
+wait_time = 0.56
 one_shot = true
 
 [node name="Hop" type="AudioStreamPlayer2D" parent="." unique_id=1818207286]

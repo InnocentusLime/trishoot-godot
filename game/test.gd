@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 const SHAKE_AMPLITUDE: float = 1.0
 
