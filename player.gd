@@ -82,7 +82,7 @@ func _on_score_bonus_pickup(pickup: Node2D):
 	score_bonus_pickup.play()
 
 func _on_dmg(hitpos: Vector2, explosion: bool = false, instakill: bool = false):
-	if !invince.is_stopped(): return
+	if !invince.is_stopped() and not instakill: return
 	invince.start()
 	
 	if not god: hp -= 1
