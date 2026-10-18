@@ -156,6 +156,7 @@ libraries/ = SubResource("AnimationLibrary_fqjub")
 collision_mask = 8
 monitorable = false
 script = ExtResource("3_8yvpk")
+enabled = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack" index="0" unique_id=1997354394]
 shape = SubResource("RectangleShape2D_3pmxh")

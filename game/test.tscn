@@ -14,8 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://dehcp0s7086fg" path="res://waves/configs/wave_test1.tscn" id="8_xersf"]
 [ext_resource type="Texture2D" uid="uid://d1gyesxr35ehm" path="res://sprites/field.png" id="9_00tp4"]
 [ext_resource type="Texture2D" uid="uid://dn0eonhbvc677" path="res://sprites/fence.png" id="10_77dp3"]
-[ext_resource type="PackedScene" uid="uid://due6y6601ung" path="res://enemies/chaser.tscn" id="15_1ss2l"]
 [ext_resource type="PackedScene" uid="uid://yspcymd65km7" path="res://gun_pickup.tscn" id="15_l0bkv"]
+[ext_resource type="PackedScene" uid="uid://b12cng6sqw7n5" path="res://enemies/sigguy.tscn" id="16_l0bkv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xersf"]
 size = Vector2(43, 547)
@@ -469,15 +469,15 @@ position = Vector2(292, 430)
 [node name="Spawn4" type="Marker2D" parent="ItemSpawnPoints" unique_id=794755511]
 position = Vector2(649, 423)
 
-[node name="Chaser" parent="." unique_id=1859096370 instance=ExtResource("15_1ss2l")]
-position = Vector2(488, 669)
-enter_dir = Vector2(0, -1)
-
 [node name="GunPickup" parent="." unique_id=454315548 instance=ExtResource("15_l0bkv")]
 position = Vector2(549, 286)
 
-[connection signal="player_died" from="Player" to="Gameplay/UI" method="_on_player_dead"]
+[node name="Sigguy" parent="." unique_id=1859096370 instance=ExtResource("16_l0bkv")]
+position = Vector2(-90, 322)
+enter_dir = Vector2(1, 0)
+
 [connection signal="player_died" from="Player" to="." method="_on_player_death"]
+[connection signal="player_died" from="Player" to="Gameplay/UI" method="_on_player_dead"]
 [connection signal="weapon_lvl_changed" from="Player" to="Gameplay/UI/HUD/Stack/WeaponLevel/LvlContainer/WeaponLvl" method="_on_player_weapon_lvl_changed"]
 [connection signal="weapon_lvl_progress_changed" from="Player" to="Gameplay/UI/HUD/Stack/WeaponLevel/ProgressContainer/WeaponLvlProgress" method="_on_player_weapon_lvl_progress_change"]
 [connection signal="body_entered" from="JumpZones" to="JumpZones" method="_on_body_entered"]

@@ -29,6 +29,25 @@ to_spawn = ExtResource("3_rueri")
 enemy_budget = 3
 enemy_offsets = Array[Vector2]([Vector2(0, 0), Vector2(16, -24), Vector2(-16, 24)])
 
+[node name="TopShrapnel" type="Timer" parent="." unique_id=1616218254 node_paths=PackedStringArray("to_track")]
+script = ExtResource("2_yrenl")
+spawn_point = 2
+to_spawn = ExtResource("3_rueri")
+enemy_budget = 2
+enemy_offsets = Array[Vector2]([Vector2(0, 0), Vector2(16, -24), Vector2(-16, 24)])
+to_track = NodePath("../RightShrapnel")
+enable_on_budget = 1
+
+[node name="BottomShrapnel" type="Timer" parent="." unique_id=98080075 node_paths=PackedStringArray("to_track")]
+wait_time = 2.0
+script = ExtResource("2_yrenl")
+spawn_point = 3
+to_spawn = ExtResource("3_rueri")
+enemy_budget = 2
+enemy_offsets = Array[Vector2]([Vector2(0, 0), Vector2(16, -24), Vector2(-16, 24)])
+to_track = NodePath("../LeftShrapnel")
+enable_on_budget = 1
+
 [node name="LeftSwarm" type="Timer" parent="." unique_id=817475329]
 wait_time = 0.7
 script = ExtResource("2_yrenl")
@@ -61,6 +80,10 @@ disabled = true
 [connection signal="timeout" from="LeftShrapnel" to="LeftShrapnel" method="_on_spawn"]
 [connection signal="child_exiting_tree" from="RightShrapnel" to="RightShrapnel" method="_on_enemy_despawn"]
 [connection signal="timeout" from="RightShrapnel" to="RightShrapnel" method="_on_spawn"]
+[connection signal="child_exiting_tree" from="TopShrapnel" to="TopShrapnel" method="_on_enemy_despawn"]
+[connection signal="timeout" from="TopShrapnel" to="TopShrapnel" method="_on_spawn"]
+[connection signal="child_exiting_tree" from="BottomShrapnel" to="BottomShrapnel" method="_on_enemy_despawn"]
+[connection signal="timeout" from="BottomShrapnel" to="BottomShrapnel" method="_on_spawn"]
 [connection signal="child_exiting_tree" from="LeftSwarm" to="LeftSwarm" method="_on_enemy_despawn"]
 [connection signal="timeout" from="LeftSwarm" to="LeftSwarm" method="_on_spawn"]
 [connection signal="child_exiting_tree" from="RightSwarm" to="RightSwarm" method="_on_enemy_despawn"]

@@ -12,7 +12,7 @@ const BONUS_OFFSET_INCREMENT: float = 7.0
 @export var ticks_to_spawn_score_bonus: int =  5
 
 
-var spawn_points: Dictionary[WaveTypes.SpawnPoint, Marker2D]
+var spawn_points: Dictionary[WaveTypes.SpawnPoint, EnemySpawnPoint]
 var item_spawn_points: Array[Marker2D]
 var tick: int = 0
 
@@ -50,6 +50,7 @@ func _enter_tree():
 			var spawn_point: WaveTypes.SpawnPoint = child.spawn_point
 			assert(spawn_points.has(spawn_point), "no spawn point: %d" % spawn_point)
 			child.spawn_pos = spawn_points[spawn_point].position
+			child.enter_dir = spawn_points[spawn_point].enter_direction
 
 func _on_spawner_dying(spawner: Node):
 	if get_child_count() > 1: return

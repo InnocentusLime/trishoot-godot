@@ -16,6 +16,10 @@ func _on_hopping_over():
 	super._on_hopping_over()
 	anim.current_animation = "jump"
 
+func _on_alive():
+	super._on_alive()
+	attack.enabled = true
+
 func _on_knockback():
 	super._on_knockback()
 	anim.current_animation = "hurt"

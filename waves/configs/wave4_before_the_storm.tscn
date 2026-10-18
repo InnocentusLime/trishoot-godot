@@ -36,7 +36,7 @@ wait_time = 0.45
 script = ExtResource("2_p40rp")
 spawn_point = 0
 to_spawn = ExtResource("4_2o7l6")
-enemy_budget = 50
+enemy_budget = 35
 enemy_cap = 9
 enemy_offsets = Array[Vector2]([Vector2(0, 0), Vector2(16, -24), Vector2(-16, 24)])
 
@@ -45,7 +45,7 @@ wait_time = 0.45
 script = ExtResource("2_p40rp")
 spawn_point = 1
 to_spawn = ExtResource("4_2o7l6")
-enemy_budget = 50
+enemy_budget = 35
 enemy_cap = 9
 enemy_offsets = Array[Vector2]([Vector2(0, 0), Vector2(16, -24), Vector2(-16, 24)])
 

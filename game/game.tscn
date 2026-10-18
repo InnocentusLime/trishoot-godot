@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b2daktmcfuboi" path="res://game/game.gd" id="1_hb504"]
 [ext_resource type="PackedScene" uid="uid://1hng44hn5qdw" path="res://player.tscn" id="2_ee6o4"]
 [ext_resource type="Script" uid="uid://c06gjxq87qvnt" path="res://window_manager.gd" id="3_4cobl"]
+[ext_resource type="Script" uid="uid://domu7nj45ls0p" path="res://waves/enemy_spawnpoint.gd" id="3_mhvfb"]
 [ext_resource type="PackedScene" uid="uid://pk85sjbw4i8" path="res://waves/configs/wave1_minor_storm.tscn" id="4_4cobl"]
 [ext_resource type="Script" uid="uid://rakg41k8k65" path="res://game/main_camera.gd" id="4_ee6o4"]
 [ext_resource type="Script" uid="uid://cy0665amiaiit" path="res://ui.gd" id="4_ln7ps"]
@@ -25,11 +26,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xersf"]
 size = Vector2(43, 547)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mhvfb"]
+size = Vector2(552.25, 23.1875)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5tkv4"]
 size = Vector2(20, 480)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0m0f1"]
-size = Vector2(43, 547)
 
 [node name="Game" type="Node" unique_id=11082511]
 script = ExtResource("1_hb504")
@@ -53,30 +54,43 @@ position = Vector2(649, 423)
 
 [node name="EnemySpawns" type="Node" parent="." unique_id=1836450404]
 
-[node name="TestPos" type="Marker2D" parent="EnemySpawns" unique_id=329063834]
-position = Vector2(65, 84)
-gizmo_extents = 40.0
-
 [node name="Storm" type="Node" parent="EnemySpawns" unique_id=667495506]
 
 [node name="Left" type="Marker2D" parent="EnemySpawns/Storm" unique_id=1917939504]
 position = Vector2(-75, 269)
 gizmo_extents = 139.8
+script = ExtResource("3_mhvfb")
+enter_direction = Vector2(1, 0)
+
+[node name="Top" type="Marker2D" parent="EnemySpawns/Storm" unique_id=1484475014]
+position = Vector2(481, -145)
+gizmo_extents = 139.8
+script = ExtResource("3_mhvfb")
+enter_direction = Vector2(0, 1)
+
+[node name="Bottom" type="Marker2D" parent="EnemySpawns/Storm" unique_id=1928329946]
+position = Vector2(479, 735)
+gizmo_extents = 139.8
+script = ExtResource("3_mhvfb")
+enter_direction = Vector2(0, -1)
 
 [node name="Right" type="Marker2D" parent="EnemySpawns/Storm" unique_id=703074066]
 position = Vector2(1027, 270)
 gizmo_extents = 139.8
+script = ExtResource("3_mhvfb")
+enter_direction = Vector2(-1, 0)
 
 [node name="WaveManger" type="Node" parent="." unique_id=227660351 node_paths=PackedStringArray("item_spawn_points", "spawn_points")]
 script = ExtResource("10_leid8")
 item_spawn_points = [NodePath("../ItemSpawnPoints/Spawn1"), NodePath("../ItemSpawnPoints/Spawn2"), NodePath("../ItemSpawnPoints/Spawn3"), NodePath("../ItemSpawnPoints/Spawn4")]
 spawn_points = {
--1: NodePath("../EnemySpawns/TestPos"),
 0: NodePath("../EnemySpawns/Storm/Left"),
-1: NodePath("../EnemySpawns/Storm/Right")
+1: NodePath("../EnemySpawns/Storm/Right"),
+2: NodePath("../EnemySpawns/Storm/Top"),
+3: NodePath("../EnemySpawns/Storm/Bottom")
 }
 waves = Array[PackedScene]([ExtResource("4_4cobl"), ExtResource("5_ln7ps"), ExtResource("6_ln7ps"), ExtResource("7_pxxsx"), ExtResource("8_u8s88"), ExtResource("9_dxwpq")])
-current_wave = 3
+current_wave = null
 
 [node name="MainCamera" type="Camera2D" parent="." unique_id=928942338]
 position = Vector2(480, 270)
@@ -182,6 +196,16 @@ debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
 [node name="Right" type="CollisionShape2D" parent="JumpZones" unique_id=1993226629]
 position = Vector2(771, 268.5)
 shape = SubResource("RectangleShape2D_xersf")
+debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
+
+[node name="Top" type="CollisionShape2D" parent="JumpZones" unique_id=395213772]
+position = Vector2(474, 27)
+shape = SubResource("RectangleShape2D_mhvfb")
+debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
+
+[node name="Bot" type="CollisionShape2D" parent="JumpZones" unique_id=804363970]
+position = Vector2(472, 504)
+shape = SubResource("RectangleShape2D_mhvfb")
 debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
 
 [node name="Field" type="AnimatableBody2D" parent="." unique_id=1148295311]
@@ -449,25 +473,9 @@ rotation = 1.5707964
 shape = SubResource("RectangleShape2D_5tkv4")
 
 [node name="Bottom" type="CollisionShape2D" parent="Field" unique_id=1433114867]
-position = Vector2(480, 501)
+position = Vector2(477, 491)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_5tkv4")
-
-[node name="JumpZones" type="Area2D" parent="Field" unique_id=864431011]
-collision_layer = 0
-collision_mask = 2
-monitorable = false
-script = ExtResource("9_5e03w")
-
-[node name="Left" type="CollisionShape2D" parent="Field/JumpZones" unique_id=927979376]
-position = Vector2(191.5, 268.5)
-shape = SubResource("RectangleShape2D_0m0f1")
-debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
-
-[node name="Right" type="CollisionShape2D" parent="Field/JumpZones" unique_id=121332553]
-position = Vector2(771, 268.5)
-shape = SubResource("RectangleShape2D_0m0f1")
-debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
 
 [node name="Player" parent="." unique_id=1422128146 instance=ExtResource("2_ee6o4")]
 position = Vector2(295, 280)
@@ -484,7 +492,6 @@ enter_dir = Vector2(1, 0)
 
 [connection signal="child_exiting_tree" from="WaveManger" to="WaveManger" method="_on_wave_done"]
 [connection signal="body_entered" from="JumpZones" to="JumpZones" method="_on_body_entered"]
-[connection signal="body_entered" from="Field/JumpZones" to="Field/JumpZones" method="_on_body_entered"]
 [connection signal="player_died" from="Player" to="." method="_on_player_die"]
 [connection signal="player_died" from="Player" to="MainCamera/UI" method="_on_player_dead"]
 [connection signal="player_hp_change" from="Player" to="MainCamera/UI" method="_on_player_hp_change"]

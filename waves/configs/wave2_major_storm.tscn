@@ -32,11 +32,35 @@ enemy_budget = 60
 enemy_cap = 15
 enemy_offsets = Array[Vector2]([Vector2(0, 0), Vector2(16, -24), Vector2(-16, 24)])
 
+[node name="TopSwarm" type="Timer" parent="." unique_id=848651210 node_paths=PackedStringArray("to_track")]
+wait_time = 0.4
+script = ExtResource("2_84q54")
+spawn_point = 2
+to_spawn = ExtResource("3_s5c6j")
+enemy_budget = 15
+enemy_cap = 5
+enemy_offsets = Array[Vector2]([Vector2(0, 0), Vector2(16, -24), Vector2(-16, 24)])
+to_track = NodePath("../LeftSwarm")
+enable_on_budget = 30
+
+[node name="BottomSwarm" type="Timer" parent="." unique_id=1067374033 node_paths=PackedStringArray("to_track")]
+wait_time = 0.4
+script = ExtResource("2_84q54")
+spawn_point = 3
+to_spawn = ExtResource("3_s5c6j")
+enemy_budget = 15
+enemy_cap = 5
+enemy_offsets = Array[Vector2]([Vector2(0, 0), Vector2(16, -24), Vector2(-16, 24)])
+to_track = NodePath("../RightSwarm")
+enable_on_budget = 30
+
+[node name="Fieldguide" type="CollisionShape2D" parent="." unique_id=566441336]
+position = Vector2(480, 271)
+shape = SubResource("RectangleShape2D_0gjvu")
+disabled = true
+
 [node name="Mines" type="Node2D" parent="." unique_id=102858444]
 position = Vector2(240, 49)
-
-[node name="Mine" parent="Mines" unique_id=1950467204 instance=ExtResource("4_84q54")]
-position = Vector2(130, 114)
 
 [node name="Mine6" parent="Mines" unique_id=1714594275 instance=ExtResource("4_84q54")]
 position = Vector2(25, 16)
@@ -44,28 +68,38 @@ position = Vector2(25, 16)
 [node name="Mine2" parent="Mines" unique_id=293883617 instance=ExtResource("4_84q54")]
 position = Vector2(242, 221)
 
-[node name="Mine3" parent="Mines" unique_id=1253304460 instance=ExtResource("4_84q54")]
-position = Vector2(131, 323)
+[node name="Mine3" parent="Mines" unique_id=1950467204 instance=ExtResource("4_84q54")]
+position = Vector2(193, 255)
+
+[node name="Mine4" parent="Mines" unique_id=1307540594 instance=ExtResource("4_84q54")]
+position = Vector2(242, 257)
+
+[node name="Mine9" parent="Mines" unique_id=1560095794 instance=ExtResource("4_84q54")]
+position = Vector2(294, 257)
+
+[node name="Mine10" parent="Mines" unique_id=1920331317 instance=ExtResource("4_84q54")]
+position = Vector2(292, 221)
+
+[node name="Mine11" parent="Mines" unique_id=705296520 instance=ExtResource("4_84q54")]
+position = Vector2(290, 178)
+
+[node name="Mine12" parent="Mines" unique_id=457318436 instance=ExtResource("4_84q54")]
+position = Vector2(243, 179)
+
+[node name="Mine13" parent="Mines" unique_id=736570004 instance=ExtResource("4_84q54")]
+position = Vector2(194, 179)
+
+[node name="Mine14" parent="Mines" unique_id=1873565917 instance=ExtResource("4_84q54")]
+position = Vector2(196, 218)
 
 [node name="Mine7" parent="Mines" unique_id=471898445 instance=ExtResource("4_84q54")]
 position = Vector2(30, 414)
-
-[node name="Mine4" parent="Mines" unique_id=983206193 instance=ExtResource("4_84q54")]
-position = Vector2(345, 322)
 
 [node name="Mine8" parent="Mines" unique_id=761367414 instance=ExtResource("4_84q54")]
 position = Vector2(455, 427)
 
 [node name="Mine5" parent="Mines" unique_id=786837150 instance=ExtResource("4_84q54")]
-position = Vector2(426, 43)
-
-[node name="Mine9" parent="Mines" unique_id=1367499571 instance=ExtResource("4_84q54")]
-position = Vector2(358, 119)
-
-[node name="Fieldguide" type="CollisionShape2D" parent="." unique_id=566441336]
-position = Vector2(480, 271)
-shape = SubResource("RectangleShape2D_0gjvu")
-disabled = true
+position = Vector2(445, 18)
 
 [connection signal="child_exiting_tree" from="." to="." method="_on_spawner_dying"]
 [connection signal="timeout" from="." to="." method="_item_spawn_tick"]
@@ -73,3 +107,7 @@ disabled = true
 [connection signal="timeout" from="LeftSwarm" to="LeftSwarm" method="_on_spawn"]
 [connection signal="child_exiting_tree" from="RightSwarm" to="RightSwarm" method="_on_enemy_despawn"]
 [connection signal="timeout" from="RightSwarm" to="RightSwarm" method="_on_spawn"]
+[connection signal="child_exiting_tree" from="TopSwarm" to="TopSwarm" method="_on_enemy_despawn"]
+[connection signal="timeout" from="TopSwarm" to="TopSwarm" method="_on_spawn"]
+[connection signal="child_exiting_tree" from="BottomSwarm" to="BottomSwarm" method="_on_enemy_despawn"]
+[connection signal="timeout" from="BottomSwarm" to="BottomSwarm" method="_on_spawn"]

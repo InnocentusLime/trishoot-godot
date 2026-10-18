@@ -8,7 +8,7 @@ signal player_died()
 enum State {IDLE=0, RUNNING=1, SHOOTING=2}
 
 const SPEED = 164.0
-const KNOCKBACK_SPEED = 666.0
+const KNOCKBACK_SPEED = 789.0
 const WEAPON_DIST = 8.0
 const BOOM_DIST = 24.0
 const FLICKER_SPEED = 20.0 / 1.0 # flick / s
@@ -100,7 +100,7 @@ func _on_dmg(hitpos: Vector2, explosion: bool = false, instakill: bool = false):
 	add_sibling(hit)
 
 func _ready():
-	$AnimationPlayer.current_animation = "idle_left"
+	$AnimationPlayer.play("idle_left")
 	player_hp_change.emit(hp)
 	weapon_lvl_changed.emit(0)
 	weapon_lvl_progress_changed.emit(0)
@@ -179,15 +179,18 @@ func enter_state(new_state: State, new_face_right: bool, force: bool = false):
 	if state == State.SHOOTING and not force: return
 	if state == new_state and new_face_right == face_right: return
 	
-	var animation: StringName
 	match new_state:
-		State.IDLE when new_face_right: animation = "idle_right"
-		State.IDLE: animation = "idle_left"
-		State.RUNNING when new_face_right: animation = "running_right"
-		State.RUNNING: animation = "running_left"
-		State.SHOOTING: animation = "shoot_left"
+		State.IDLE when new_face_right: 
+			anims.play("idle_right")
+		State.IDLE: 
+			anims.play("idle_left")
+		State.RUNNING when new_face_right: 
+			anims.play("running_right")
+		State.RUNNING: 
+			anims.play("running_left")
+		State.SHOOTING: 
+			anims.play("shoot_left", -1, 1.3)
 	state = new_state
-	anims.current_animation = animation
 	face_right = new_face_right
 	
 	if face_right: weaponSprite.offset = Vector2i(0, -4)

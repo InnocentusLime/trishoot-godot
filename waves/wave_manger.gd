@@ -2,7 +2,7 @@ class_name WaveManager extends Node
 
 
 @export var item_spawn_points: Array[Marker2D]
-@export var spawn_points: Dictionary[WaveTypes.SpawnPoint, Marker2D]
+@export var spawn_points: Dictionary[WaveTypes.SpawnPoint, EnemySpawnPoint]
 @export var waves: Array[PackedScene]
 @export var current_wave: int = 0
 
