@@ -20,15 +20,15 @@ wait_time = 0.8
 script = ExtResource("2_p40rp")
 spawn_point = 0
 to_spawn = ExtResource("3_rm1t0")
-enemy_budget = 6
+enemy_budget = 4
 enemy_offsets = Array[Vector2]([Vector2(-32, 0), Vector2(0, 0)])
 
 [node name="RightShrapnel" type="Timer" parent="." unique_id=348521830]
-wait_time = 1.5999999999999999
+wait_time = 1.6
 script = ExtResource("2_p40rp")
 spawn_point = 1
 to_spawn = ExtResource("3_rm1t0")
-enemy_budget = 6
+enemy_budget = 4
 enemy_offsets = Array[Vector2]([Vector2(-32, 0), Vector2(0, 0)])
 
 [node name="LeftSwarm" type="Timer" parent="." unique_id=817475329]
@@ -49,20 +49,25 @@ enemy_budget = 50
 enemy_cap = 9
 enemy_offsets = Array[Vector2]([Vector2(0, 0), Vector2(16, -24), Vector2(-16, 24)])
 
+[node name="Fieldguide" type="CollisionShape2D" parent="." unique_id=566441336]
+position = Vector2(480, 271)
+shape = SubResource("RectangleShape2D_0gjvu")
+disabled = true
+
 [node name="Mines" type="Node2D" parent="." unique_id=102858444]
 position = Vector2(240, 49)
 
 [node name="Mine" parent="Mines" unique_id=1950467204 instance=ExtResource("5_p40rp")]
-position = Vector2(130, 114)
+position = Vector2(130, 97)
 
 [node name="Mine2" parent="Mines" unique_id=279597467 instance=ExtResource("5_p40rp")]
 position = Vector2(181, 56)
 
 [node name="Mine5" parent="Mines" unique_id=547910118 instance=ExtResource("5_p40rp")]
-position = Vector2(305, 57)
+position = Vector2(304, 54)
 
 [node name="Mine6" parent="Mines" unique_id=1520294753 instance=ExtResource("5_p40rp")]
-position = Vector2(245, 25)
+position = Vector2(245, 17)
 
 [node name="Mine11" parent="Mines" unique_id=517256111 instance=ExtResource("5_p40rp")]
 position = Vector2(23, 16)
@@ -77,27 +82,22 @@ position = Vector2(453, 424)
 position = Vector2(26, 425)
 
 [node name="Mine7" parent="Mines" unique_id=1653226628 instance=ExtResource("5_p40rp")]
-position = Vector2(186, 368)
+position = Vector2(178, 375)
 
 [node name="Mine8" parent="Mines" unique_id=20382164 instance=ExtResource("5_p40rp")]
-position = Vector2(284, 368)
+position = Vector2(295, 377)
 
 [node name="Mine10" parent="Mines" unique_id=939049408 instance=ExtResource("5_p40rp")]
-position = Vector2(237, 400)
+position = Vector2(236, 415)
 
 [node name="Mine3" parent="Mines" unique_id=1849949921 instance=ExtResource("5_p40rp")]
-position = Vector2(131, 323)
+position = Vector2(128, 338)
 
 [node name="Mine4" parent="Mines" unique_id=580855181 instance=ExtResource("5_p40rp")]
-position = Vector2(345, 322)
+position = Vector2(343, 337)
 
 [node name="Mine9" parent="Mines" unique_id=1020632449 instance=ExtResource("5_p40rp")]
-position = Vector2(358, 119)
-
-[node name="Fieldguide" type="CollisionShape2D" parent="." unique_id=566441336]
-position = Vector2(480, 271)
-shape = SubResource("RectangleShape2D_0gjvu")
-disabled = true
+position = Vector2(348, 91)
 
 [connection signal="child_exiting_tree" from="." to="." method="_on_spawner_dying"]
 [connection signal="timeout" from="." to="." method="_item_spawn_tick"]
