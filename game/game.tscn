@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://be6mnpm7lobbo" path="res://combo_level.gd" id="8_mhvfb"]
 [ext_resource type="PackedScene" uid="uid://bijsehwp82jsm" path="res://waves/configs/wave5_the_storm.tscn" id="8_u8s88"]
 [ext_resource type="Script" uid="uid://bqxu6kytoqvx8" path="res://waves/jump_zones.gd" id="9_5e03w"]
-[ext_resource type="PackedScene" uid="uid://c3prliepsogua" path="res://waves/configs/wave6_the_storm.tscn" id="9_dxwpq"]
+[ext_resource type="PackedScene" uid="uid://c3prliepsogua" path="res://waves/configs/wave6_shooters.tscn" id="9_dxwpq"]
 [ext_resource type="Script" uid="uid://clwjojxc4jt3h" path="res://waves/wave_manger.gd" id="10_leid8"]
 [ext_resource type="Texture2D" uid="uid://d1gyesxr35ehm" path="res://sprites/field.png" id="12_q52ks"]
 [ext_resource type="Texture2D" uid="uid://dn0eonhbvc677" path="res://sprites/fence.png" id="13_jucfl"]
@@ -90,7 +90,7 @@ spawn_points = {
 3: NodePath("../EnemySpawns/Storm/Bottom")
 }
 waves = Array[PackedScene]([ExtResource("4_4cobl"), ExtResource("5_ln7ps"), ExtResource("6_ln7ps"), ExtResource("7_pxxsx"), ExtResource("8_u8s88"), ExtResource("9_dxwpq")])
-current_wave = null
+current_wave = 5
 
 [node name="MainCamera" type="Camera2D" parent="." unique_id=928942338]
 position = Vector2(480, 270)
