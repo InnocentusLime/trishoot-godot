@@ -37,7 +37,7 @@ func spawn_enemy(off: Vector2):
 	enemy.enter_dir = enter_dir
 	enemy.killed.connect(_on_enemy_die)
 	enemy.tree_exiting.connect(_on_enemy_despawn)
-	get_tree().root.add_child(enemy)
+	get_tree().current_scene.add_child(enemy)
 	alive_enemies += 1
 	enemy_budget -= 1
 	
