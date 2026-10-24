@@ -140,7 +140,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.70000005),
 "transitions": PackedFloat32Array(13.45432, 13.928785),
 "update": 0,
-"values": [Vector2(488, -64), Vector2(488, 282)]
+"values": [Vector2(488, -128), Vector2(488, 282)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -178,7 +178,7 @@ _data = {
 }
 
 [node name="Playerdead" type="Node2D" unique_id=1574253827]
-position = Vector2(488, -64)
+position = Vector2(488, -128)
 script = ExtResource("2_n4coa")
 
 [node name="FlyTime" type="Timer" parent="." unique_id=1756005505]
