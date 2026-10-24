@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://6v1xef3wawo0"]
+
+[ext_resource type="Script" uid="uid://xvv42c770em2" path="res://waves/wave.gd" id="1_4n6ne"]
+[ext_resource type="Script" uid="uid://b3hcn4tuvxlld" path="res://waves/spawner.gd" id="2_jhcad"]
+[ext_resource type="PackedScene" uid="uid://due6y6601ung" path="res://enemies/chaser.tscn" id="3_r4e85"]
+[ext_resource type="PackedScene" uid="uid://b12cng6sqw7n5" path="res://enemies/sigguy.tscn" id="4_4n6ne"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gjvu"]
+size = Vector2(479, 442)
+
+[node name="Wave" type="Timer" unique_id=1575428059 node_paths=PackedStringArray("mines")]
+wait_time = 0.6
+autostart = true
+script = ExtResource("1_4n6ne")
+mines = NodePath("Mines")
+
+[node name="TopSwarm" type="Timer" parent="." unique_id=219753326 node_paths=PackedStringArray("to_track")]
+wait_time = 0.4
+script = ExtResource("2_jhcad")
+spawn_point = 2
+to_spawn = ExtResource("3_r4e85")
+enemy_budget = 10
+enemy_cap = 10
+enemy_offsets = Array[Vector2]([Vector2(0, 0), Vector2(32, -24), Vector2(-32, 24)])
+to_track = NodePath("../Parry")
+
+[node name="BotSwarm" type="Timer" parent="." unique_id=787018021 node_paths=PackedStringArray("to_track")]
+wait_time = 0.4
+script = ExtResource("2_jhcad")
+spawn_point = 3
+to_spawn = ExtResource("3_r4e85")
+enemy_budget = 10
+enemy_cap = 10
+enemy_offsets = Array[Vector2]([Vector2(0, 0), Vector2(32, -24), Vector2(-32, 24)])
+to_track = NodePath("../Parry")
+
+[node name="Parry" type="Timer" parent="." unique_id=786249271]
+script = ExtResource("2_jhcad")
+spawn_point = 3
+to_spawn = ExtResource("4_4n6ne")
+enemy_budget = 2
+enemy_offsets = Array[Vector2]([Vector2(0, 0), Vector2(16, -24), Vector2(-16, 24)])
+
+[node name="Fieldguide" type="CollisionShape2D" parent="." unique_id=566441336]
+position = Vector2(480, 271)
+shape = SubResource("RectangleShape2D_0gjvu")
+disabled = true
+
+[node name="Mines" type="Node2D" parent="." unique_id=102858444]
+position = Vector2(240, 49)
+
+[connection signal="child_exiting_tree" from="." to="." method="_on_spawner_dying"]
+[connection signal="timeout" from="." to="." method="_item_spawn_tick"]
+[connection signal="child_exiting_tree" from="TopSwarm" to="TopSwarm" method="_on_enemy_despawn"]
+[connection signal="timeout" from="TopSwarm" to="TopSwarm" method="_on_spawn"]
+[connection signal="child_exiting_tree" from="BotSwarm" to="BotSwarm" method="_on_enemy_despawn"]
+[connection signal="timeout" from="BotSwarm" to="BotSwarm" method="_on_spawn"]
+[connection signal="child_exiting_tree" from="Parry" to="Parry" method="_on_enemy_despawn"]
+[connection signal="timeout" from="Parry" to="Parry" method="_on_spawn"]

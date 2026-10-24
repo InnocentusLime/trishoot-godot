@@ -44,7 +44,8 @@ func _physics_process(delta: float):
 	var player_dir := (GameEvents.player_pos - position).normalized()
 	if not parried:
 		var angle_to_player := move_dir.angle_to(player_dir)
-		var rot_delta := deg_to_rad(rot_speed)*pow((1-k), 2.0)*delta
+		var t := ease(1-k, -0.6)
+		var rot_delta := deg_to_rad(rot_speed)*t*delta
 		var act_rot_abs := minf(absf(angle_to_player), rot_delta)
 		var act_rot := signf(angle_to_player)*act_rot_abs
 		move_dir = move_dir.rotated(act_rot)

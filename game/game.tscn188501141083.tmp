@@ -1,0 +1,506 @@
+[gd_scene format=3 uid="uid://cts03l14a20ro"]
+
+[ext_resource type="Script" uid="uid://b2daktmcfuboi" path="res://game/game.gd" id="1_hb504"]
+[ext_resource type="PackedScene" uid="uid://1hng44hn5qdw" path="res://player.tscn" id="2_ee6o4"]
+[ext_resource type="Script" uid="uid://c06gjxq87qvnt" path="res://window_manager.gd" id="3_4cobl"]
+[ext_resource type="Script" uid="uid://domu7nj45ls0p" path="res://waves/enemy_spawnpoint.gd" id="3_mhvfb"]
+[ext_resource type="PackedScene" uid="uid://pk85sjbw4i8" path="res://waves/configs/wave1_minor_storm.tscn" id="4_4cobl"]
+[ext_resource type="Script" uid="uid://rakg41k8k65" path="res://game/main_camera.gd" id="4_ee6o4"]
+[ext_resource type="Script" uid="uid://cy0665amiaiit" path="res://ui.gd" id="4_ln7ps"]
+[ext_resource type="PackedScene" uid="uid://cupik7j1i7cl3" path="res://waves/configs/wave2_major_storm.tscn" id="5_ln7ps"]
+[ext_resource type="PackedScene" uid="uid://dux3t8ovio4bv" path="res://combo_shower.tscn" id="5_pxxsx"]
+[ext_resource type="PackedScene" uid="uid://dfwxrluxu0bp0" path="res://waves/configs/wave3_guys_and_shrapnel.tscn" id="6_ln7ps"]
+[ext_resource type="PackedScene" uid="uid://bceryb2t6c4tb" path="res://wave_start_sign.tscn" id="6_u8s88"]
+[ext_resource type="Script" uid="uid://d2pyev3qirkcv" path="res://progress_bar.gd" id="7_dxwpq"]
+[ext_resource type="PackedScene" uid="uid://lhtti76lwwa1" path="res://waves/configs/wave4_before_the_storm.tscn" id="7_pxxsx"]
+[ext_resource type="Script" uid="uid://be6mnpm7lobbo" path="res://combo_level.gd" id="8_mhvfb"]
+[ext_resource type="PackedScene" uid="uid://bijsehwp82jsm" path="res://waves/configs/wave5_the_storm.tscn" id="8_u8s88"]
+[ext_resource type="Script" uid="uid://bqxu6kytoqvx8" path="res://waves/jump_zones.gd" id="9_5e03w"]
+[ext_resource type="PackedScene" uid="uid://c3prliepsogua" path="res://waves/configs/wave6_shooters.tscn" id="9_dxwpq"]
+[ext_resource type="Script" uid="uid://clwjojxc4jt3h" path="res://waves/wave_manger.gd" id="10_leid8"]
+[ext_resource type="PackedScene" uid="uid://6v1xef3wawo0" path="res://waves/configs/wave7_parry.tscn" id="11_5e03w"]
+[ext_resource type="PackedScene" uid="uid://cxuiq3kl2wl0f" path="res://waves/configs/wave8_parry_this_you_fool.tscn" id="12_leid8"]
+[ext_resource type="Texture2D" uid="uid://d1gyesxr35ehm" path="res://sprites/field.png" id="12_q52ks"]
+[ext_resource type="PackedScene" uid="uid://da02iy4dpg4fp" path="res://waves/configs/wave9_mineshoot.tscn" id="13_8bboj"]
+[ext_resource type="Texture2D" uid="uid://dn0eonhbvc677" path="res://sprites/fence.png" id="13_jucfl"]
+[ext_resource type="PackedScene" uid="uid://yspcymd65km7" path="res://gun_pickup.tscn" id="14_b686c"]
+[ext_resource type="PackedScene" uid="uid://b72ybig3smvyg" path="res://waves/configs/wave10_chaos.tscn" id="14_q52ks"]
+[ext_resource type="PackedScene" uid="uid://beax458iexlun" path="res://enemies/sign_bot.tscn" id="16_ee6o4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xersf"]
+size = Vector2(43, 547)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mhvfb"]
+size = Vector2(552.25, 23.1875)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5tkv4"]
+size = Vector2(20, 480)
+
+[node name="Game" type="Node" unique_id=11082511]
+script = ExtResource("1_hb504")
+
+[node name="WindowManager" type="Node" parent="." unique_id=1480704761]
+script = ExtResource("3_4cobl")
+
+[node name="ItemSpawnPoints" type="Node" parent="." unique_id=1125359723]
+
+[node name="Spawn1" type="Marker2D" parent="ItemSpawnPoints" unique_id=789663566]
+position = Vector2(307, 109)
+
+[node name="Spawn2" type="Marker2D" parent="ItemSpawnPoints" unique_id=1441277749]
+position = Vector2(652, 110)
+
+[node name="Spawn3" type="Marker2D" parent="ItemSpawnPoints" unique_id=1413421189]
+position = Vector2(292, 430)
+
+[node name="Spawn4" type="Marker2D" parent="ItemSpawnPoints" unique_id=794755511]
+position = Vector2(649, 423)
+
+[node name="EnemySpawns" type="Node" parent="." unique_id=1836450404]
+
+[node name="Storm" type="Node" parent="EnemySpawns" unique_id=667495506]
+
+[node name="Left" type="Marker2D" parent="EnemySpawns/Storm" unique_id=1917939504]
+position = Vector2(-75, 269)
+gizmo_extents = 139.8
+script = ExtResource("3_mhvfb")
+enter_direction = Vector2(1, 0)
+
+[node name="Top" type="Marker2D" parent="EnemySpawns/Storm" unique_id=1484475014]
+position = Vector2(481, -145)
+gizmo_extents = 139.8
+script = ExtResource("3_mhvfb")
+enter_direction = Vector2(0, 1)
+
+[node name="Bottom" type="Marker2D" parent="EnemySpawns/Storm" unique_id=1928329946]
+position = Vector2(479, 735)
+gizmo_extents = 139.8
+script = ExtResource("3_mhvfb")
+enter_direction = Vector2(0, -1)
+
+[node name="Right" type="Marker2D" parent="EnemySpawns/Storm" unique_id=703074066]
+position = Vector2(1027, 270)
+gizmo_extents = 139.8
+script = ExtResource("3_mhvfb")
+enter_direction = Vector2(-1, 0)
+
+[node name="WaveManger" type="Node" parent="." unique_id=227660351 node_paths=PackedStringArray("item_spawn_points", "spawn_points")]
+script = ExtResource("10_leid8")
+item_spawn_points = [NodePath("../ItemSpawnPoints/Spawn1"), NodePath("../ItemSpawnPoints/Spawn2"), NodePath("../ItemSpawnPoints/Spawn3"), NodePath("../ItemSpawnPoints/Spawn4")]
+spawn_points = {
+0: NodePath("../EnemySpawns/Storm/Left"),
+1: NodePath("../EnemySpawns/Storm/Right"),
+2: NodePath("../EnemySpawns/Storm/Top"),
+3: NodePath("../EnemySpawns/Storm/Bottom")
+}
+waves = Array[PackedScene]([ExtResource("4_4cobl"), ExtResource("5_ln7ps"), ExtResource("6_ln7ps"), ExtResource("7_pxxsx"), ExtResource("8_u8s88"), ExtResource("9_dxwpq"), ExtResource("11_5e03w"), ExtResource("12_leid8"), ExtResource("13_8bboj"), ExtResource("14_q52ks")])
+current_wave = 9
+
+[node name="MainCamera" type="Camera2D" parent="." unique_id=928942338]
+position = Vector2(480, 270)
+script = ExtResource("4_ee6o4")
+
+[node name="UI" type="CanvasLayer" parent="MainCamera" unique_id=1692524302 node_paths=PackedStringArray("score", "score_label", "hp", "comboer", "wave_start")]
+script = ExtResource("4_ln7ps")
+score = NodePath("HUD/Stack/Score")
+score_label = NodePath("HUD/Stack/Score/Label")
+hp = NodePath("HUD/Stack/Health")
+comboer = NodePath("HUD/Stack/Comboer")
+wave_start = NodePath("WaveCompPort/WaveStart")
+combo_widget = ExtResource("5_pxxsx")
+wave_start_widget = ExtResource("6_u8s88")
+
+[node name="HUD" type="MarginContainer" parent="MainCamera/UI" unique_id=346843339]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Stack" type="VBoxContainer" parent="MainCamera/UI/HUD" unique_id=1557695383]
+layout_mode = 2
+
+[node name="Health" type="Label" parent="MainCamera/UI/HUD/Stack" unique_id=164012571]
+layout_mode = 2
+text = "HP: 0"
+
+[node name="WeaponLevel" type="HBoxContainer" parent="MainCamera/UI/HUD/Stack" unique_id=4651911]
+layout_mode = 2
+
+[node name="ProgressContainer" type="CenterContainer" parent="MainCamera/UI/HUD/Stack/WeaponLevel" unique_id=1789645960]
+layout_mode = 2
+
+[node name="WeaponLvlProgress" type="ProgressBar" parent="MainCamera/UI/HUD/Stack/WeaponLevel/ProgressContainer" unique_id=577855046]
+custom_minimum_size = Vector2(180, 10)
+layout_mode = 2
+max_value = 1.0
+show_percentage = false
+script = ExtResource("7_dxwpq")
+
+[node name="LvlContainer" type="CenterContainer" parent="MainCamera/UI/HUD/Stack/WeaponLevel" unique_id=955556203]
+layout_mode = 2
+
+[node name="WeaponLvl" type="Label" parent="MainCamera/UI/HUD/Stack/WeaponLevel/LvlContainer" unique_id=1888695682]
+layout_mode = 2
+text = "P1"
+script = ExtResource("8_mhvfb")
+
+[node name="Score" type="Control" parent="MainCamera/UI/HUD/Stack" unique_id=234420851]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainCamera/UI/HUD/Stack/Score" unique_id=1585576493]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 23.0
+pivot_offset = Vector2(30, 12)
+text = "Score: 0"
+
+[node name="Comboer" type="Control" parent="MainCamera/UI/HUD/Stack" unique_id=1806035220]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="WaveCompPort" type="VBoxContainer" parent="MainCamera/UI" unique_id=2063549560]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="WaveStart" type="Control" parent="MainCamera/UI/WaveCompPort" unique_id=309278961]
+layout_mode = 2
+
+[node name="DemoOver" type="Label" parent="MainCamera/UI" unique_id=34950317]
+modulate = Color(1, 1, 1, 0)
+offset_left = 411.0
+offset_top = 85.0
+offset_right = 558.0
+offset_bottom = 186.0
+text = "Demo Over!
+Thanks for playing!
+
+Press R to restart"
+horizontal_alignment = 1
+
+[node name="JumpZones" type="Area2D" parent="." unique_id=41572965]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("9_5e03w")
+
+[node name="Left" type="CollisionShape2D" parent="JumpZones" unique_id=1043408591]
+position = Vector2(191.5, 268.5)
+shape = SubResource("RectangleShape2D_xersf")
+debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
+
+[node name="Right" type="CollisionShape2D" parent="JumpZones" unique_id=1993226629]
+position = Vector2(771, 268.5)
+shape = SubResource("RectangleShape2D_xersf")
+debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
+
+[node name="Top" type="CollisionShape2D" parent="JumpZones" unique_id=395213772]
+position = Vector2(474, 27)
+shape = SubResource("RectangleShape2D_mhvfb")
+debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
+
+[node name="Bot" type="CollisionShape2D" parent="JumpZones" unique_id=804363970]
+position = Vector2(472, 504)
+shape = SubResource("RectangleShape2D_mhvfb")
+debug_color = Color(0.7, 0.7, 0.7, 0.41960785)
+
+[node name="Field" type="AnimatableBody2D" parent="." unique_id=1148295311]
+z_index = -1
+
+[node name="Field" type="Sprite2D" parent="Field" unique_id=1855787950]
+position = Vector2(240, 49)
+texture = ExtResource("12_q52ks")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 40, 480, 440)
+
+[node name="Fences" type="Node2D" parent="Field" unique_id=445088992]
+
+[node name="Top" type="Node2D" parent="Field/Fences" unique_id=2086815342]
+
+[node name="Sprite2D" type="Sprite2D" parent="Field/Fences/Top" unique_id=2077331863]
+texture_repeat = 2
+position = Vector2(282, 48)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Field/Fences/Top" unique_id=1492167400]
+texture_repeat = 2
+position = Vector2(368, 48)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Field/Fences/Top" unique_id=1296240055]
+texture_repeat = 2
+position = Vector2(454, 48)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Field/Fences/Top" unique_id=1056903056]
+texture_repeat = 2
+position = Vector2(540, 48)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D5" type="Sprite2D" parent="Field/Fences/Top" unique_id=1440968781]
+texture_repeat = 2
+position = Vector2(626, 48)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D6" type="Sprite2D" parent="Field/Fences/Top" unique_id=1677604268]
+texture_repeat = 2
+position = Vector2(694, 48)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(42, 71, 52, 12)
+
+[node name="Right" type="Node2D" parent="Field/Fences" unique_id=1712160728]
+position = Vector2(2, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Field/Fences/Right" unique_id=1847473245]
+position = Vector2(716, 64)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Field/Fences/Right" unique_id=198112144]
+position = Vector2(716, 101)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Field/Fences/Right" unique_id=1282160653]
+position = Vector2(716, 139)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Field/Fences/Right" unique_id=752208757]
+position = Vector2(716, 178)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D5" type="Sprite2D" parent="Field/Fences/Right" unique_id=930564237]
+position = Vector2(716, 216)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D6" type="Sprite2D" parent="Field/Fences/Right" unique_id=2141535616]
+position = Vector2(716, 254)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D7" type="Sprite2D" parent="Field/Fences/Right" unique_id=1098609447]
+position = Vector2(716, 294)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D8" type="Sprite2D" parent="Field/Fences/Right" unique_id=1876584083]
+position = Vector2(716, 333)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D9" type="Sprite2D" parent="Field/Fences/Right" unique_id=1622134109]
+position = Vector2(716, 372)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D10" type="Sprite2D" parent="Field/Fences/Right" unique_id=1382428459]
+position = Vector2(716, 411)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D11" type="Sprite2D" parent="Field/Fences/Right" unique_id=711000954]
+position = Vector2(716, 446)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D12" type="Sprite2D" parent="Field/Fences/Right" unique_id=473050590]
+position = Vector2(716, 476)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 26)
+
+[node name="Left" type="Node2D" parent="Field/Fences" unique_id=1716957973]
+position = Vector2(-476, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Field/Fences/Left" unique_id=228612819]
+position = Vector2(716, 64)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Field/Fences/Left" unique_id=477560554]
+position = Vector2(716, 101)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Field/Fences/Left" unique_id=821302088]
+position = Vector2(716, 139)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Field/Fences/Left" unique_id=2008293855]
+position = Vector2(716, 178)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D5" type="Sprite2D" parent="Field/Fences/Left" unique_id=776812644]
+position = Vector2(716, 216)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D6" type="Sprite2D" parent="Field/Fences/Left" unique_id=1843752630]
+position = Vector2(716, 254)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D7" type="Sprite2D" parent="Field/Fences/Left" unique_id=1762670631]
+position = Vector2(716, 294)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D8" type="Sprite2D" parent="Field/Fences/Left" unique_id=743631888]
+position = Vector2(716, 333)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D9" type="Sprite2D" parent="Field/Fences/Left" unique_id=173835982]
+position = Vector2(716, 372)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D10" type="Sprite2D" parent="Field/Fences/Left" unique_id=916443993]
+position = Vector2(716, 411)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D11" type="Sprite2D" parent="Field/Fences/Left" unique_id=340907539]
+position = Vector2(716, 446)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 41)
+
+[node name="Sprite2D12" type="Sprite2D" parent="Field/Fences/Left" unique_id=488376977]
+position = Vector2(716, 476)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(119, 87, 7, 26)
+
+[node name="Bot" type="Node2D" parent="Field/Fences" unique_id=920145609]
+position = Vector2(0, 443)
+
+[node name="Sprite2D" type="Sprite2D" parent="Field/Fences/Bot" unique_id=1470149040]
+texture_repeat = 2
+position = Vector2(282, 48)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Field/Fences/Bot" unique_id=1901564158]
+texture_repeat = 2
+position = Vector2(368, 48)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Field/Fences/Bot" unique_id=1694323674]
+texture_repeat = 2
+position = Vector2(454, 48)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Field/Fences/Bot" unique_id=1895326456]
+texture_repeat = 2
+position = Vector2(540, 48)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D5" type="Sprite2D" parent="Field/Fences/Bot" unique_id=1912283795]
+texture_repeat = 2
+position = Vector2(626, 48)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(42, 71, 86, 12)
+
+[node name="Sprite2D6" type="Sprite2D" parent="Field/Fences/Bot" unique_id=1767331564]
+texture_repeat = 2
+position = Vector2(694, 48)
+texture = ExtResource("13_jucfl")
+region_enabled = true
+region_rect = Rect2(42, 71, 52, 12)
+
+[node name="Left" type="CollisionShape2D" parent="Field" unique_id=861827919]
+position = Vector2(231, 270)
+shape = SubResource("RectangleShape2D_5tkv4")
+
+[node name="Right" type="CollisionShape2D" parent="Field" unique_id=227894875]
+position = Vector2(730, 272)
+shape = SubResource("RectangleShape2D_5tkv4")
+
+[node name="Top" type="CollisionShape2D" parent="Field" unique_id=2005024141]
+position = Vector2(481, 39)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_5tkv4")
+
+[node name="Bottom" type="CollisionShape2D" parent="Field" unique_id=1433114867]
+position = Vector2(477, 491)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_5tkv4")
+
+[node name="Player" parent="." unique_id=1422128146 instance=ExtResource("2_ee6o4")]
+position = Vector2(295, 280)
+hint_life = 0.0
+attack_scale = Array[Vector2]([Vector2(0, 0), Vector2(0.4, 0.6), Vector2(1.5, 1.2), Vector2(4, 3.2)])
+
+[node name="GunPickup" parent="." unique_id=454315548 instance=ExtResource("14_b686c")]
+position = Vector2(659, 276)
+
+[node name="SignBot" parent="." unique_id=1859096370 instance=ExtResource("16_ee6o4")]
+process_mode = 4
+position = Vector2(-142, 269)
+enter_dir = Vector2(1, 0)
+
+[connection signal="child_exiting_tree" from="WaveManger" to="WaveManger" method="_on_wave_done"]
+[connection signal="body_entered" from="JumpZones" to="JumpZones" method="_on_body_entered"]
+[connection signal="player_died" from="Player" to="." method="_on_player_die"]
+[connection signal="player_died" from="Player" to="MainCamera/UI" method="_on_player_dead"]
+[connection signal="player_hp_change" from="Player" to="MainCamera/UI" method="_on_player_hp_change"]
+[connection signal="weapon_lvl_changed" from="Player" to="MainCamera/UI/HUD/Stack/WeaponLevel/LvlContainer/WeaponLvl" method="_on_player_weapon_lvl_changed"]
+[connection signal="weapon_lvl_progress_changed" from="Player" to="MainCamera/UI/HUD/Stack/WeaponLevel/ProgressContainer/WeaponLvlProgress" method="_on_player_weapon_lvl_progress_change"]
+[connection signal="body_entered" from="GunPickup" to="Player" method="_on_gun_pickup"]
+[connection signal="body_entered" from="GunPickup" to="SignBot" method="_on_gun_pickup"]
+[connection signal="killed" from="SignBot" to="." method="_on_signbot_killed"]

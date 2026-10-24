@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://da02iy4dpg4fp"]
+
+[ext_resource type="Script" uid="uid://xvv42c770em2" path="res://waves/wave.gd" id="1_30g7n"]
+[ext_resource type="Script" uid="uid://b3hcn4tuvxlld" path="res://waves/spawner.gd" id="2_b17o4"]
+[ext_resource type="PackedScene" uid="uid://djsi813hh4ofy" path="res://hazard/mine.tscn" id="4_30g7n"]
+[ext_resource type="PackedScene" uid="uid://blakuum2hob7y" path="res://enemies/pogshot.tscn" id="4_r8iwm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gjvu"]
+size = Vector2(479, 442)
+
+[node name="Wave" type="Timer" unique_id=1575428059 node_paths=PackedStringArray("mines")]
+wait_time = 0.6
+autostart = true
+script = ExtResource("1_30g7n")
+mines = NodePath("Mines")
+
+[node name="RightShoot" type="Timer" parent="." unique_id=348521830]
+wait_time = 0.8
+script = ExtResource("2_b17o4")
+spawn_point = 1
+to_spawn = ExtResource("4_r8iwm")
+enemy_budget = 8
+enemy_cap = 4
+enemy_offsets = Array[Vector2]([Vector2(0, -72), Vector2(-64, 0), Vector2(-128, 72)])
+
+[node name="LeftShoot" type="Timer" parent="." unique_id=126227202]
+wait_time = 0.8
+script = ExtResource("2_b17o4")
+spawn_point = 0
+to_spawn = ExtResource("4_r8iwm")
+enemy_budget = 8
+enemy_cap = 4
+enemy_offsets = Array[Vector2]([Vector2(0, -72), Vector2(-64, 0), Vector2(-124, 72)])
+
+[node name="Fieldguide" type="CollisionShape2D" parent="." unique_id=566441336]
+position = Vector2(480, 271)
+shape = SubResource("RectangleShape2D_0gjvu")
+disabled = true
+
+[node name="Mines" type="Node2D" parent="." unique_id=102858444]
+position = Vector2(240, 49)
+
+[node name="Mine" parent="Mines" unique_id=1950467204 instance=ExtResource("4_30g7n")]
+position = Vector2(191, 318)
+
+[node name="Mine2" parent="Mines" unique_id=225248019 instance=ExtResource("4_30g7n")]
+position = Vector2(144, 343)
+
+[node name="Mine3" parent="Mines" unique_id=1143712773 instance=ExtResource("4_30g7n")]
+position = Vector2(96, 361)
+
+[node name="Mine4" parent="Mines" unique_id=2103044265 instance=ExtResource("4_30g7n")]
+position = Vector2(45, 362)
+
+[node name="Mine5" parent="Mines" unique_id=495351368 instance=ExtResource("4_30g7n")]
+position = Vector2(37, 250)
+
+[node name="Mine6" parent="Mines" unique_id=29089770 instance=ExtResource("4_30g7n")]
+position = Vector2(81, 234)
+
+[node name="Mine7" parent="Mines" unique_id=1711456753 instance=ExtResource("4_30g7n")]
+position = Vector2(132, 216)
+
+[node name="Mine8" parent="Mines" unique_id=826780336 instance=ExtResource("4_30g7n")]
+position = Vector2(179, 197)
+
+[node name="Mine9" parent="Mines" unique_id=1330579392 instance=ExtResource("4_30g7n")]
+position = Vector2(225, 177)
+
+[node name="Mine10" parent="Mines" unique_id=227001286 instance=ExtResource("4_30g7n")]
+position = Vector2(269, 142)
+
+[node name="Mine11" parent="Mines" unique_id=654626572 instance=ExtResource("4_30g7n")]
+position = Vector2(215, 114)
+
+[node name="Mine12" parent="Mines" unique_id=74578169 instance=ExtResource("4_30g7n")]
+position = Vector2(175, 141)
+
+[node name="Mine19" parent="Mines" unique_id=69118261 instance=ExtResource("4_30g7n")]
+position = Vector2(188, 357)
+
+[node name="Mine20" parent="Mines" unique_id=2124293854 instance=ExtResource("4_30g7n")]
+position = Vector2(243, 387)
+
+[node name="Mine21" parent="Mines" unique_id=752667781 instance=ExtResource("4_30g7n")]
+position = Vector2(291, 416)
+
+[node name="Mine22" parent="Mines" unique_id=1018532081 instance=ExtResource("4_30g7n")]
+position = Vector2(346, 416)
+
+[node name="Mine23" parent="Mines" unique_id=1610164355 instance=ExtResource("4_30g7n")]
+position = Vector2(410, 412)
+
+[node name="Mine24" parent="Mines" unique_id=159655973 instance=ExtResource("4_30g7n")]
+position = Vector2(457, 270)
+
+[node name="Mine25" parent="Mines" unique_id=1977460706 instance=ExtResource("4_30g7n")]
+position = Vector2(410, 265)
+
+[node name="Mine26" parent="Mines" unique_id=233497958 instance=ExtResource("4_30g7n")]
+position = Vector2(352, 268)
+
+[node name="Mine27" parent="Mines" unique_id=1599379089 instance=ExtResource("4_30g7n")]
+position = Vector2(309, 290)
+
+[node name="Mine28" parent="Mines" unique_id=937653912 instance=ExtResource("4_30g7n")]
+position = Vector2(357, 18)
+
+[node name="Mine29" parent="Mines" unique_id=1856433735 instance=ExtResource("4_30g7n")]
+position = Vector2(301, 12)
+
+[node name="Mine30" parent="Mines" unique_id=16769367 instance=ExtResource("4_30g7n")]
+position = Vector2(246, 17)
+
+[node name="Mine31" parent="Mines" unique_id=1391073080 instance=ExtResource("4_30g7n")]
+position = Vector2(189, 18)
+
+[node name="Mine32" parent="Mines" unique_id=1344843152 instance=ExtResource("4_30g7n")]
+position = Vector2(130, 17)
+
+[node name="Mine13" parent="Mines" unique_id=1130649575 instance=ExtResource("4_30g7n")]
+position = Vector2(372, 141)
+
+[node name="Mine14" parent="Mines" unique_id=368968152 instance=ExtResource("4_30g7n")]
+position = Vector2(432, 138)
+
+[node name="Mine15" parent="Mines" unique_id=2091588169 instance=ExtResource("4_30g7n")]
+position = Vector2(432, 26)
+
+[node name="Mine16" parent="Mines" unique_id=860335182 instance=ExtResource("4_30g7n")]
+position = Vector2(39, 14)
+
+[node name="Mine17" parent="Mines" unique_id=1786496099 instance=ExtResource("4_30g7n")]
+position = Vector2(79, 35)
+
+[node name="Mine18" parent="Mines" unique_id=666182661 instance=ExtResource("4_30g7n")]
+position = Vector2(79, 35)
+
+[connection signal="child_exiting_tree" from="." to="." method="_on_spawner_dying"]
+[connection signal="timeout" from="." to="." method="_item_spawn_tick"]
+[connection signal="child_exiting_tree" from="RightShoot" to="RightShoot" method="_on_enemy_despawn"]
+[connection signal="timeout" from="RightShoot" to="RightShoot" method="_on_spawn"]
+[connection signal="child_exiting_tree" from="LeftShoot" to="LeftShoot" method="_on_enemy_despawn"]
+[connection signal="timeout" from="LeftShoot" to="LeftShoot" method="_on_spawn"]

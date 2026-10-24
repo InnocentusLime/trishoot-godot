@@ -14,6 +14,7 @@ const WALK_SPEED: float = 30.0
 var wander: bool = false
 var walk_dir: Vector2 = Vector2.ZERO
 var tick_to_shoot: int = TICKS_TO_SHOOT
+var aim_dir: Vector2 = Vector2.UP
 
 func _on_entering():
 	super._on_entering()
@@ -36,12 +37,20 @@ func _think():
 		#walk_dir = walk_dir.rotated(PI / 8.0)
 	#velocity = WALK_SPEED * walk_dir
 
+func _do_aim():
+	aim_dir = (GameEvents.player_pos - position).normalized()
+
 func _update_think():
 	super._update_think()
 	
 	if tick_to_shoot == 0:
-		_shoot()
+		anim.play("idle")
 		tick_to_shoot = TICKS_TO_SHOOT
+		return
+	if tick_to_shoot == 1:
+		anim.play("shoot")
+		walk_dir = Vector2.ZERO
+		tick_to_shoot -= 1
 		return
 	
 	var dir_to_player := GameEvents.player_pos - global_position
@@ -63,9 +72,9 @@ func _update_think():
 		#var increment = randi_range(-2, -2)
 		#walk_rot = float(increment) * PI / 4.0
 		#walk_dir = dir.rotated(walk_rot)
-	
+
 func _shoot():
 	var proj: Rocket = laserball.instantiate()
 	proj.position = spawnpoint.global_position
-	proj.move_dir = (GameEvents.player_pos - position).normalized()
+	proj.move_dir = aim_dir
 	add_sibling(proj)

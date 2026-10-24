@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://5xjw8skbq1xn" path="res://hazard/rocket.gd" id="1_kdrfa"]
 [ext_resource type="Texture2D" uid="uid://114unu2t58bl" path="res://sprites/dumbo.png" id="1_oxrpc"]
 [ext_resource type="PackedScene" uid="uid://cuooppd3wvyq0" path="res://hazard/explosion.tscn" id="2_e6m6b"]
+[ext_resource type="AudioStream" uid="uid://b0tetb3hwgv0e" path="res://snd/rocket_shoot.wav" id="4_o8hbi"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e6m6b"]
 radius = 15.0
@@ -17,7 +18,7 @@ collision_mask = 10
 monitorable = false
 script = ExtResource("1_kdrfa")
 assist_angle = 8.0
-rot_speed = 60.0
+rot_speed = 80.0
 move_vel = 200.0
 explosion = ExtResource("2_e6m6b")
 level_to_parry = 2
@@ -51,6 +52,10 @@ shape = SubResource("RectangleShape2D_o8hbi")
 wait_time = 0.5
 one_shot = true
 autostart = true
+
+[node name="Spawn" type="AudioStreamPlayer2D" parent="." unique_id=957933321]
+stream = ExtResource("4_o8hbi")
+autoplay = true
 
 [connection signal="area_entered" from="." to="." method="_on_collision"]
 [connection signal="timeout" from="Lifetime" to="." method="explode"]
