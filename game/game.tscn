@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://yspcymd65km7" path="res://gun_pickup.tscn" id="14_b686c"]
 [ext_resource type="PackedScene" uid="uid://b72ybig3smvyg" path="res://waves/configs/wave10_chaos.tscn" id="14_q52ks"]
 [ext_resource type="PackedScene" uid="uid://beax458iexlun" path="res://enemies/sign_bot.tscn" id="16_ee6o4"]
+[ext_resource type="AudioStream" uid="uid://bimtyxxibgsaw" path="res://MainTheme.mp3" id="27_jucfl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xersf"]
 size = Vector2(43, 547)
@@ -94,7 +95,6 @@ spawn_points = {
 3: NodePath("../EnemySpawns/Storm/Bottom")
 }
 waves = Array[PackedScene]([ExtResource("4_4cobl"), ExtResource("5_ln7ps"), ExtResource("6_ln7ps"), ExtResource("7_pxxsx"), ExtResource("8_u8s88"), ExtResource("9_dxwpq"), ExtResource("11_5e03w"), ExtResource("12_leid8"), ExtResource("13_8bboj"), ExtResource("14_q52ks")])
-current_wave = 9
 
 [node name="MainCamera" type="Camera2D" parent="." unique_id=928942338]
 position = Vector2(480, 270)
@@ -493,6 +493,11 @@ position = Vector2(659, 276)
 process_mode = 4
 position = Vector2(-142, 269)
 enter_dir = Vector2(1, 0)
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=2048832795]
+process_mode = 3
+stream = ExtResource("27_jucfl")
+volume_db = -16.0
 
 [connection signal="child_exiting_tree" from="WaveManger" to="WaveManger" method="_on_wave_done"]
 [connection signal="body_entered" from="JumpZones" to="JumpZones" method="_on_body_entered"]
