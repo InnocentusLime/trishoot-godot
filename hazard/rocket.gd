@@ -12,6 +12,8 @@ const PARRIED_SPEED: float = 400.0
 @export var level_to_parry: int
 
 @onready var speed_timer: Timer = $SpeedTimer
+@onready var body: Sprite2D = $Body
+@onready var boost: Sprite2D = $Boost
 
 var parried: bool = false
 
@@ -58,6 +60,10 @@ func _physics_process(delta: float):
 		if node is Enemy and parried:
 			node._on_dmg(position, 999)
 			explode(false)
+
+func _on_speed_timer_timeout():
+	body.self_modulate = Color.WHITE
+	boost.frame = 1
 
 func _on_collision(player_hurtbox: Area2D):
 	var parent := player_hurtbox.get_parent()

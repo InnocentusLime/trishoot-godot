@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://5xjw8skbq1xn" path="res://hazard/rocket.gd" id="1_kdrfa"]
 [ext_resource type="Texture2D" uid="uid://114unu2t58bl" path="res://sprites/dumbo.png" id="1_oxrpc"]
 [ext_resource type="PackedScene" uid="uid://cuooppd3wvyq0" path="res://hazard/explosion.tscn" id="2_e6m6b"]
+[ext_resource type="Texture2D" uid="uid://l3psuokskv0e" path="res://sprites/rocket_fire.png" id="3_xrhq1"]
 [ext_resource type="AudioStream" uid="uid://b0tetb3hwgv0e" path="res://snd/rocket_shoot.wav" id="4_o8hbi"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e6m6b"]
@@ -23,7 +24,13 @@ move_vel = 200.0
 explosion = ExtResource("2_e6m6b")
 level_to_parry = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1941363504]
+[node name="Boost" type="Sprite2D" parent="." unique_id=770898006]
+position = Vector2(-53, -4)
+texture = ExtResource("3_xrhq1")
+hframes = 2
+
+[node name="Body" type="Sprite2D" parent="." unique_id=1941363504]
+self_modulate = Color(1, 0, 0, 1)
 rotation = -1.5707964
 texture = ExtResource("1_oxrpc")
 region_enabled = true
@@ -59,3 +66,4 @@ autoplay = true
 
 [connection signal="area_entered" from="." to="." method="_on_collision"]
 [connection signal="timeout" from="Lifetime" to="." method="explode"]
+[connection signal="timeout" from="SpeedTimer" to="." method="_on_speed_timer_timeout"]

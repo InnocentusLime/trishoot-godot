@@ -15,20 +15,20 @@ script = ExtResource("1_30g7n")
 mines = NodePath("Mines")
 
 [node name="RightShoot" type="Timer" parent="." unique_id=348521830]
-wait_time = 0.8
+wait_time = 4.0
 script = ExtResource("2_b17o4")
 spawn_point = 1
 to_spawn = ExtResource("4_r8iwm")
-enemy_budget = 8
+enemy_budget = 5
 enemy_cap = 4
 enemy_offsets = Array[Vector2]([Vector2(0, -72), Vector2(-64, 0), Vector2(-128, 72)])
 
 [node name="LeftShoot" type="Timer" parent="." unique_id=126227202]
-wait_time = 0.8
+wait_time = 4.0
 script = ExtResource("2_b17o4")
 spawn_point = 0
 to_spawn = ExtResource("4_r8iwm")
-enemy_budget = 8
+enemy_budget = 5
 enemy_cap = 4
 enemy_offsets = Array[Vector2]([Vector2(0, -72), Vector2(-64, 0), Vector2(-124, 72)])
 
