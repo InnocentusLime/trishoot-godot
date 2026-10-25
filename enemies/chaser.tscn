@@ -136,6 +136,8 @@ script = ExtResource("1_ho883")
 think_time = 0.6
 body_node = NodePath("Body")
 shadow_node = NodePath("Shadow")
+jump_height = 100.0
+jump_horiz_vel = 300.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4" unique_id=683147072]
 shape = SubResource("CircleShape2D_8yvpk")

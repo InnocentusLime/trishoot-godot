@@ -7,13 +7,14 @@ const MY_PROJ_VELOCITY: float = 160.0
 @export var shrapnel: PackedScene
 @export var explosion: PackedScene
 @export var min_player_dist: float = 180 + randi_range(0, 3)*20.0
-@export var explosion_time: float = 1.3 + randi_range(0, 2) * 0.3
+@export var explosion_time: float = 1.3
 @export var rotate_sign: float = -1.0 if randi_range(0, 1) < 1 else 1.0
 
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var explode_timer: Timer = $ExplodeTimer
 
 var walk_dir: Vector2 = Vector2.ZERO
+var exploding: bool = false
 
 func _on_entering():
 	super._on_entering()
@@ -32,6 +33,9 @@ func _on_alive():
 	explode_timer.start(explosion_time)
 
 func _think():
+	if exploding: 
+		velocity = Vector2.ZERO
+		return
 	var to_player := (GameEvents.player_pos - position)
 	var dir_to_player := to_player.normalized()
 	if to_player.length() > min_player_dist:
@@ -46,6 +50,10 @@ func _update_think():
 	var dir_to_player := (GameEvents.player_pos - position).normalized()
 	var perdir := Vector2(-dir_to_player.y, dir_to_player.x)
 	walk_dir = perdir
+
+func _on_fuse():
+	exploding = true
+	anim.play("preburst")
 
 func _on_explode():
 	killed.emit()

@@ -95,6 +95,7 @@ spawn_points = {
 3: NodePath("../EnemySpawns/Storm/Bottom")
 }
 waves = Array[PackedScene]([ExtResource("4_4cobl"), ExtResource("5_ln7ps"), ExtResource("6_ln7ps"), ExtResource("7_pxxsx"), ExtResource("8_u8s88"), ExtResource("9_dxwpq"), ExtResource("11_5e03w"), ExtResource("12_leid8"), ExtResource("13_8bboj"), ExtResource("14_q52ks")])
+current_wave = 4
 
 [node name="MainCamera" type="Camera2D" parent="." unique_id=928942338]
 position = Vector2(480, 270)

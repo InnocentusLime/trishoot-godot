@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://d1gyesxr35ehm" path="res://sprites/field.png" id="9_00tp4"]
 [ext_resource type="Texture2D" uid="uid://dn0eonhbvc677" path="res://sprites/fence.png" id="10_77dp3"]
 [ext_resource type="PackedScene" uid="uid://yspcymd65km7" path="res://gun_pickup.tscn" id="15_l0bkv"]
-[ext_resource type="PackedScene" uid="uid://b12cng6sqw7n5" path="res://enemies/sigguy.tscn" id="16_l0bkv"]
+[ext_resource type="PackedScene" uid="uid://cg5bh3sgukcl7" path="res://enemies/firepeno.tscn" id="16_l0bkv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xersf"]
 size = Vector2(43, 547)
@@ -472,8 +472,8 @@ position = Vector2(649, 423)
 [node name="GunPickup" parent="." unique_id=454315548 instance=ExtResource("15_l0bkv")]
 position = Vector2(549, 286)
 
-[node name="Sigguy" parent="." unique_id=1859096370 instance=ExtResource("16_l0bkv")]
-position = Vector2(-90, 322)
+[node name="Firepeno" parent="." unique_id=1859096370 instance=ExtResource("16_l0bkv")]
+position = Vector2(34, 288)
 enter_dir = Vector2(1, 0)
 
 [connection signal="player_died" from="Player" to="." method="_on_player_death"]

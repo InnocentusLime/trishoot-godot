@@ -48,7 +48,7 @@ script = ExtResource("1_yv2k4")
 
 [node name="Sound" type="AudioStreamPlayer2D" parent="." unique_id=1644886826]
 stream = ExtResource("1_w70cc")
-volume_db = 1.0
+volume_db = -15.0
 autoplay = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1808836431]

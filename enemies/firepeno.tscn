@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://114unu2t58bl" path="res://sprites/dumbo.png" id="2_qh3t2"]
 [ext_resource type="PackedScene" uid="uid://dj04y2bnsk3yu" path="res://attacks/laserball.tscn" id="3_u74kb"]
 [ext_resource type="PackedScene" uid="uid://c6jjflf1uw5b1" path="res://firepeno_explosion.tscn" id="4_6yvan"]
+[ext_resource type="AudioStream" uid="uid://du33glfq5hdx0" path="res://snd/firepeno_charge.wav" id="6_qma5v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_krf52"]
 radius = 16.03122
@@ -46,6 +47,30 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2, -4)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_epg4t"]
@@ -123,12 +148,82 @@ tracks/2/keys = {
 "values": [Vector2(1, 1), Vector2(1.24, 0.505), Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_63c86"]
+resource_name = "preburst"
+length = 3.0666666
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PreBurst")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 1.952669,
+"stream": ExtResource("6_qma5v")
+}],
+"times": PackedFloat32Array(0.1327402)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1.1333333, 1.2333333, 1.3),
+"transitions": PackedFloat32Array(1, 1, 5.6568522, 3.1383357),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.515, 0.7), Vector2(1, 1.3), Vector2(2, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 1.1333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5, 1.1333333, 1.3333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-2, -4), Vector2(-2, 4), Vector2(-2, -13.13)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.3666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_explode"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_25e2v"]
 _data = {
 &"RESET": SubResource("Animation_iifgy"),
 &"hurt": SubResource("Animation_epg4t"),
 &"idle": SubResource("Animation_3yqyl"),
-&"jump": SubResource("Animation_6yvan")
+&"jump": SubResource("Animation_6yvan"),
+&"preburst": SubResource("Animation_63c86")
 }
 
 [node name="Firepeno" unique_id=1859096370 node_paths=PackedStringArray("body_node", "shadow_node") instance=ExtResource("1_jpbv3")]
@@ -170,4 +265,6 @@ texture = ExtResource("2_qh3t2")
 region_enabled = true
 region_rect = Rect2(0, 514, 22, 9)
 
-[connection signal="timeout" from="ExplodeTimer" to="." method="_on_explode"]
+[node name="PreBurst" type="AudioStreamPlayer2D" parent="." index="9" unique_id=1344469714]
+
+[connection signal="timeout" from="ExplodeTimer" to="." method="_on_fuse"]
