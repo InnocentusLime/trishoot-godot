@@ -1,5 +1,6 @@
 class_name WaveManager extends Node
 
+signal on_wave_finished
 
 @export var item_spawn_points: Array[Marker2D]
 @export var spawn_points: Dictionary[WaveTypes.SpawnPoint, EnemySpawnPoint]
@@ -40,5 +41,6 @@ func _on_wave_done(child: Node):
 	if not child is Wave: return
 	if stopped: return
 	print("wave done")
+	on_wave_finished.emit()
 	# The engine is busy killing my child. Please call later
 	start_wave.call_deferred()

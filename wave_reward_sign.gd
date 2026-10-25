@@ -1,11 +1,15 @@
-class_name WaveStart extends Label
+class_name WaveReward extends Label
+
+signal reward_appeared(score_delta: int)
 
 @onready var timer = $Timer
+
+@export var score_delta: int
 
 const DELTA: float = -256.0
 
 func _done():
-	GameEvents.wave_start.emit()
+	reward_appeared.emit(score_delta)
 	queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

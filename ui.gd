@@ -1,13 +1,15 @@
+class_name GameUI
 extends CanvasLayer
 
 @export var score: Control
 @export var score_label: Label
 @export var hp: Label
 @export var comboer: Control
-@export var wave_start: Control
+@export var wave_rewarder: Control
+@export var combo: Label
 
 @export var combo_widget: PackedScene
-@export var wave_start_widget: PackedScene
+@export var wave_reward_widget: PackedScene
 
 var current_score = 0
 var current_hp = 3
@@ -15,8 +17,6 @@ var score_distort = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GameEvents.score_changed.connect(_on_score_changed)
-	GameEvents.demo_over.connect(_on_demo_over)
 	score_label.text = "Score: %d" % current_score
 	
 func _on_demo_over():
@@ -26,21 +26,36 @@ func _on_demo_over():
 func _on_player_dead():
 	$HUD.visible = false
 
-func _on_wave_complete():
-	var sign: WaveStart = wave_start_widget.instantiate()
-	wave_start.add_child(sign)
+func _on_combo_level_change(new_val: int):
+	if new_val == 0 or new_val == 1: combo.text = ""
+	else: combo.text = "X %d" % new_val
 
 func _on_player_hp_change(new_hp: int):
 	current_hp = new_hp
 	hp.text = "HP: %d" % current_hp
 
-func _on_score_changed(score_delta: int, score_label: String):
+func show_kill_reward(amount: int, delta: int):
 	var combo: ComboShower = combo_widget.instantiate()
 	combo.end = score.global_position
-	combo.score_delta = score_delta
-	combo.score_label = score_label
+	combo.score_delta = delta
+	combo.score_label = " KILLED!"
 	combo.reward_appeared.connect(_on_reward_shown)
 	comboer.add_child(combo)
+	
+func show_bonus_reward(delta: int):
+	var combo: ComboShower = combo_widget.instantiate()
+	combo.end = score.global_position
+	combo.score_delta = delta
+	combo.score_label = " BONUS!"
+	combo.reward_appeared.connect(_on_reward_shown)
+	comboer.add_child(combo)
+	
+func show_wave_reward(mult: int, delta: int):
+	var wave_reward: WaveReward = wave_reward_widget.instantiate()
+	wave_reward.text = "WOW WAVE FINISHED! x %d" % mult
+	wave_reward.score_delta = delta
+	wave_reward.reward_appeared.connect(_on_reward_shown)
+	wave_rewarder.add_child(wave_reward)
 
 func _on_reward_shown(score_delta):
 	current_score += score_delta

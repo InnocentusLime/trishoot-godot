@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cg5bh3sgukcl7" path="res://enemies/firepeno.tscn" id="8_lght5"]
 [ext_resource type="Script" uid="uid://cy0665amiaiit" path="res://ui.gd" id="9_lfj8l"]
 [ext_resource type="PackedScene" uid="uid://dux3t8ovio4bv" path="res://combo_shower.tscn" id="10_ac0cv"]
-[ext_resource type="PackedScene" uid="uid://bceryb2t6c4tb" path="res://wave_start_sign.tscn" id="11_6krrg"]
+[ext_resource type="PackedScene" uid="uid://bceryb2t6c4tb" path="res://wave_reward_sign.tscn" id="11_6krrg"]
 [ext_resource type="Texture2D" uid="uid://d1gyesxr35ehm" path="res://sprites/field.png" id="12_8slmw"]
 [ext_resource type="Texture2D" uid="uid://dn0eonhbvc677" path="res://sprites/fence.png" id="13_u7wvl"]
 [ext_resource type="Script" uid="uid://bqxu6kytoqvx8" path="res://waves/jump_zones.gd" id="14_onx7j"]

@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://crh4et22w5iw" path="res://snd/attack block.wav" id="8_ivps1"]
 [ext_resource type="AudioStream" uid="uid://bip4mw50ruc1w" path="res://snd/cock.wav" id="10_nvl01"]
 [ext_resource type="AudioStream" uid="uid://cki6o1jr5req8" path="res://snd/bonus.wav" id="11_ivps1"]
+[ext_resource type="AudioStream" uid="uid://y154jvhyf184" path="res://snd/nom.wav" id="12_urp6f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1oj5k"]
 size = Vector2(18, 35)
@@ -359,10 +360,14 @@ one_shot = true
 stream = ExtResource("10_nvl01")
 
 [node name="ScoreBonusPickup" type="AudioStreamPlayer2D" parent="BonusSounds" unique_id=2099508592]
+stream = ExtResource("12_urp6f")
+
+[node name="HealthBonusPickup" type="AudioStreamPlayer2D" parent="BonusSounds" unique_id=167156745]
 stream = ExtResource("11_ivps1")
 
 [node name="Charge" type="Timer" parent="." unique_id=360029481]
 wait_time = 0.65
 
+[connection signal="enemies_killed" from="Weapon/AttackPivot/Attack" to="." method="_on_killed_enemies"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
 [connection signal="timeout" from="Charge" to="." method="_on_gun_charge_tick"]

@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cy0665amiaiit" path="res://ui.gd" id="3_g14j6"]
 [ext_resource type="Script" uid="uid://rakg41k8k65" path="res://game/main_camera.gd" id="4_l0bkv"]
 [ext_resource type="PackedScene" uid="uid://dux3t8ovio4bv" path="res://combo_shower.tscn" id="4_vbegm"]
-[ext_resource type="PackedScene" uid="uid://bceryb2t6c4tb" path="res://wave_start_sign.tscn" id="5_ehkex"]
+[ext_resource type="PackedScene" uid="uid://bceryb2t6c4tb" path="res://wave_reward_sign.tscn" id="5_ehkex"]
 [ext_resource type="Script" uid="uid://d2pyev3qirkcv" path="res://progress_bar.gd" id="6_5tkv4"]
 [ext_resource type="Script" uid="uid://be6mnpm7lobbo" path="res://combo_level.gd" id="7_0m0f1"]
 [ext_resource type="Script" uid="uid://clwjojxc4jt3h" path="res://waves/wave_manger.gd" id="7_vbegm"]
@@ -51,7 +51,7 @@ score = NodePath("HUD/Stack/Score")
 score_label = NodePath("HUD/Stack/Score/Label")
 hp = NodePath("HUD/Stack/Health")
 comboer = NodePath("HUD/Stack/Comboer")
-wave_start = NodePath("WaveCompPort/WaveStart")
+wave_start = NodePath("WaveCompPort/WaveReward")
 combo_widget = ExtResource("4_vbegm")
 wave_start_widget = ExtResource("5_ehkex")
 
@@ -116,8 +116,11 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="WaveStart" type="Control" parent="Gameplay/UI/WaveCompPort" unique_id=309278961]
+[node name="WaveReward" type="Control" parent="Gameplay/UI/WaveCompPort" unique_id=309278961]
 layout_mode = 2
+
+[node name="WaveStartSign" parent="Gameplay/UI/WaveCompPort/WaveReward" unique_id=613257846 instance=ExtResource("5_ehkex")]
+layout_mode = 0
 
 [node name="DemoOver" type="Label" parent="Gameplay/UI" unique_id=34950317]
 modulate = Color(1, 1, 1, 0)

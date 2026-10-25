@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://kjbddmvj3x50"]
 
 [ext_resource type="Script" uid="uid://dcpxt6uup7knq" path="res://score_bonus.gd" id="1_dgdh8"]
-[ext_resource type="Texture2D" uid="uid://ddexde2kr4oy4" path="res://sprites/heart.png" id="2_uix60"]
+[ext_resource type="Texture2D" uid="uid://ondovcyc7olb" path="res://sprites/burg.png" id="2_tjqr4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b0q6j"]
+size = Vector2(42.25, 38.125)
 
 [node name="ScoreBonus" type="Area2D" unique_id=435279279]
 collision_layer = 0
@@ -12,10 +13,12 @@ monitorable = false
 script = ExtResource("1_dgdh8")
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=977194516]
+position = Vector2(0.125, 0.0625)
 shape = SubResource("RectangleShape2D_b0q6j")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=62764278]
-texture = ExtResource("2_uix60")
+position = Vector2(-4, -2)
+texture = ExtResource("2_tjqr4")
 
 [node name="Timer" type="Timer" parent="." unique_id=1960952834]
 wait_time = 3.0

@@ -1,9 +1,8 @@
 class_name PlayerAttack extends Area2D
 
-@onready var block_sound: AudioStreamPlayer2D = $BlockSound
+signal enemies_killed(count: int)
 
-const BASE_SCORE: int = 10
-const PUNISH: int = -100
+@onready var block_sound: AudioStreamPlayer2D = $BlockSound
 
 func attack(level: int):
 	var damaged := 0
@@ -26,26 +25,5 @@ func attack(level: int):
 				
 	if blocked > 0:
 		block_sound.play()
-				
-	var score_delta: int = PUNISH
-	var score_comment: String = "You suck"
-	if damaged != 0:
-		score_delta = damaged * BASE_SCORE
-		score_comment = get_comment(damaged)
-		GameEvents.combo.emit(damaged)
-	elif to_dmg_list2.size() > 0: # Grace for the projectile parrying
-		score_delta /= 2 
-	GameEvents.score_changed.emit(score_delta, "%s %d" % [score_comment, score_delta])
-	
-func get_comment(n: int) -> String:
-	n = min(n, comments.size() - 1)
-	return comments[n]
-	
-var comments: Array[String] = [
-	"NO!",
-	"Meh",
-	"Okay",
-	"Not bad",
-	"Nice!",
-	"OH SHIT!!"
-]
+	if damaged > 0:
+		enemies_killed.emit(damaged)

@@ -4,6 +4,8 @@ signal player_hp_change(new_val: int)
 signal weapon_lvl_progress_changed(new_val: float)
 signal weapon_lvl_changed(new_val: int)
 signal player_died()
+signal player_killed_enemies(amount: int)
+signal player_pickup_score()
 
 enum State {IDLE=0, RUNNING=1, SHOOTING=2}
 
@@ -25,8 +27,8 @@ const BAR_SIZE = 240
 @onready var attack: PlayerAttack = $Weapon/AttackPivot/Attack
 @onready var damage_hint: Node2D = $Weapon/AttackPivot/Attack/DamageHint
 @onready var body: Sprite2D = $Sprite
-@onready var gun_upgrade_pickup: AudioStreamPlayer2D = $BonusSounds/GunUpgradePickup
 @onready var score_bonus_pickup: AudioStreamPlayer2D = $BonusSounds/ScoreBonusPickup
+@onready var health_bonus_pickup: AudioStreamPlayer2D = $BonusSounds/HealthBonusPickup
 
 @export var boom: PackedScene
 @export var hitspark: PackedScene
@@ -41,7 +43,11 @@ const BAR_SIZE = 240
 @export var attack_scale: Array[Vector2]
 
 var state: State = State.IDLE
-var hp: int = 3
+var hp: int = 3:
+	set(val):
+		hp = val
+		player_hp_change.emit(val)
+		
 var aim_angle: float = 0.0
 var face_right: bool = false
 var walk_time: float = 0.0
@@ -80,6 +86,12 @@ func _on_gun_charge_tick():
 
 func _on_score_bonus_pickup(pickup: Node2D):
 	score_bonus_pickup.play()
+	player_pickup_score.emit()
+	
+func _on_health_bonus_pickup(pickup: Node2D):
+	hp += 1
+	health_bonus_pickup.play()
+	
 
 func _on_dmg(hitpos: Vector2, explosion: bool = false, instakill: bool = false):
 	if !invince.is_stopped() and not instakill: return
@@ -90,7 +102,6 @@ func _on_dmg(hitpos: Vector2, explosion: bool = false, instakill: bool = false):
 		player_died.emit()
 		queue_free()
 	
-	player_hp_change.emit(hp)
 	GameEvents.shake.emit(10.0, true)
 	
 	var hit: PlayerHit = hitspark.instantiate()
@@ -227,3 +238,6 @@ func get_weapon_level() -> int:
 func set_color(c: Color):
 	body.modulate = c
 	weaponSprite.modulate = c
+	
+func _on_killed_enemies(amount: int):
+	player_killed_enemies.emit(amount)
