@@ -71,3 +71,7 @@ func _on_player_die():
 func _process(delta):
 	if Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
+
+func _on_demo_over():
+	get_tree().create_tween() \
+		.tween_property($Music, "volume_linear", 0.0, 2.0)

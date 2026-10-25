@@ -190,10 +190,10 @@ layout_mode = 2
 
 [node name="DemoOver" type="Label" parent="MainCamera/UI" unique_id=34950317]
 modulate = Color(1, 1, 1, 0)
-offset_left = 411.0
-offset_top = 85.0
-offset_right = 558.0
-offset_bottom = 186.0
+offset_left = 409.0
+offset_top = 218.0
+offset_right = 556.0
+offset_bottom = 319.0
 text = "Demo Over!
 Thanks for playing!
 
@@ -510,6 +510,8 @@ enter_dir = Vector2(1, 0)
 
 [connection signal="combo_level_changed" from="." to="MainCamera/UI" method="_on_combo_level_change"]
 [connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timeout"]
+[connection signal="all_waves_done" from="WaveManger" to="." method="_on_demo_over"]
+[connection signal="all_waves_done" from="WaveManger" to="MainCamera/UI" method="_on_demo_over"]
 [connection signal="child_exiting_tree" from="WaveManger" to="WaveManger" method="_on_wave_done"]
 [connection signal="on_wave_finished" from="WaveManger" to="." method="_on_wave_finished"]
 [connection signal="body_entered" from="JumpZones" to="JumpZones" method="_on_body_entered"]

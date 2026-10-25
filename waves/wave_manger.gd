@@ -1,6 +1,7 @@
 class_name WaveManager extends Node
 
 signal on_wave_finished
+signal all_waves_done
 
 @export var item_spawn_points: Array[Marker2D]
 @export var spawn_points: Dictionary[WaveTypes.SpawnPoint, EnemySpawnPoint]
@@ -24,7 +25,7 @@ func start_wave():
 	
 	if current_wave >= waves.size():
 		print("no more waves!")
-		queue_free()
+		all_waves_done.emit()
 		return
 	
 	var wave_scene := waves[current_wave]
