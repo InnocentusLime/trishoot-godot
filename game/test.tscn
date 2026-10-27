@@ -13,8 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://dehcp0s7086fg" path="res://waves/configs/wave_test1.tscn" id="8_xersf"]
 [ext_resource type="Texture2D" uid="uid://d1gyesxr35ehm" path="res://sprites/field.png" id="9_00tp4"]
 [ext_resource type="Texture2D" uid="uid://dn0eonhbvc677" path="res://sprites/fence.png" id="10_77dp3"]
+[ext_resource type="PackedScene" uid="uid://djsi813hh4ofy" path="res://hazard/mine.tscn" id="15_1ss2l"]
 [ext_resource type="PackedScene" uid="uid://yspcymd65km7" path="res://gun_pickup.tscn" id="15_l0bkv"]
-[ext_resource type="PackedScene" uid="uid://b12cng6sqw7n5" path="res://enemies/sigguy.tscn" id="16_l0bkv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xersf"]
 size = Vector2(43, 547)
@@ -28,7 +28,8 @@ size = Vector2(43, 547)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ss2l"]
 size = Vector2(552.25, 23.1875)
 
-[node name="Test" type="Node" unique_id=923643158]
+[node name="Test" type="Node2D" unique_id=848469073]
+y_sort_enabled = true
 script = ExtResource("1_b0q6j")
 
 [node name="Player" parent="." unique_id=1422128146 instance=ExtResource("1_37kl0")]
@@ -469,12 +470,11 @@ position = Vector2(649, 423)
 [node name="GunPickup" parent="." unique_id=454315548 instance=ExtResource("15_l0bkv")]
 position = Vector2(549, 286)
 
-[node name="Sigguy" parent="." unique_id=1859096370 instance=ExtResource("16_l0bkv")]
-position = Vector2(-54, 320)
-enter_dir = Vector2(1, 0)
+[node name="Mine" parent="." unique_id=1950467204 instance=ExtResource("15_1ss2l")]
+position = Vector2(499, 195)
 
-[connection signal="player_died" from="Player" to="." method="_on_player_death"]
 [connection signal="player_died" from="Player" to="Gameplay/UI" method="_on_player_dead"]
+[connection signal="player_died" from="Player" to="." method="_on_player_death"]
 [connection signal="weapon_lvl_changed" from="Player" to="Gameplay/UI/HUD/Stack/WeaponLevel/LvlContainer/WeaponLvl" method="_on_player_weapon_lvl_changed"]
 [connection signal="weapon_lvl_progress_changed" from="Player" to="Gameplay/UI/HUD/Stack/WeaponLevel/ProgressContainer/WeaponLvlProgress" method="_on_player_weapon_lvl_progress_change"]
 [connection signal="body_entered" from="JumpZones" to="JumpZones" method="_on_body_entered"]

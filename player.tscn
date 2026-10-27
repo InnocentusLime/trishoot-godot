@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c2mrriy54iu40" path="res://hits/hitplayer.tscn" id="3_n7ghd"]
 [ext_resource type="PackedScene" uid="uid://b5r4j1xmhu0vl" path="res://hits/playerdead.tscn" id="4_nvl01"]
 [ext_resource type="Texture2D" uid="uid://bg24n80xmhwy8" path="res://sprites/hint.png" id="5_ivps1"]
+[ext_resource type="Texture2D" uid="uid://k6qksd5yv388" path="res://sprites/hero.png" id="6_bwjto"]
 [ext_resource type="Texture2D" uid="uid://rrecam8ni4kg" path="res://sprites/john.png" id="6_urp6f"]
 [ext_resource type="Script" uid="uid://cg4e3h8rp7fhn" path="res://player_attack.gd" id="7_b26j0"]
 [ext_resource type="Animation" uid="uid://cn1w4deihytdq" path="res://anims/player_idle.res" id="7_bwjto"]
@@ -22,86 +23,62 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/path = NodePath("WeaponPivot/Weapon/Weapon:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Rect2(52, 55, 37, 49)]
+"values": [Rect2(1, 24, 38, 14)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:offset")
+tracks/1/path = NodePath("WeaponPivot/Weapon/Weapon:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(8, -3)]
+"values": [Vector2(0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:flip_h")
+tracks/2/path = NodePath(".:recoil_acc")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [1.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Weapon/Weapon:visible")
+tracks/3/path = NodePath("Body/Body:frame_coords")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [Vector2i(0, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Weapon/Weapon:region_rect")
+tracks/4/path = NodePath("Body/Body:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Rect2(1, 24, 38, 14)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Weapon/Weapon:offset")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath(".:recoil_acc")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
+"values": [Vector2(-1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_dugkq"]
@@ -110,38 +87,26 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/path = NodePath("Body/Body:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Rect2(45, 1, 36, 53)]
+"values": [Vector2(-1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:offset")
+tracks/1/path = NodePath("Body/Body:frame_coords")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(14, -3)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:flip_h")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [Vector2i(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_f52ns"]
@@ -152,38 +117,26 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:region_rect")
-tracks/0/interp = 0
+tracks/0/path = NodePath("Body/Body:scale")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Rect2(52, 55, 37, 49), Rect2(134, 55, 39, 51), Rect2(217, 55, 36, 51), Rect2(303, 55, 31, 55)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:offset")
-tracks/1/interp = 0
+tracks/1/path = NodePath("Body/Body:frame_coords")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2(8, -3), Vector2(10, 0), Vector2(16, 0), Vector2(16, -5)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:flip_h")
-tracks/2/interp = 0
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_2pltu"]
@@ -193,74 +146,62 @@ step = 0.041666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/path = NodePath("WeaponPivot/Weapon/Weapon:visible")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25000003, 0.3333334, 0.41666666),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Rect2(196, 136, 40, 50), Rect2(436, 110, 40, 51), Rect2(672, 111, 55, 69), Rect2(728, 111, 33, 66), Rect2(763, 111, 32, 64), Rect2(45, 1, 36, 53)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:offset")
-tracks/1/interp = 0
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25000003, 0.3333334, 0.41666666),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2(8, 2), Vector2(8, 1), Vector2(8, -16), Vector2(8, -14), Vector2(8, -12), Vector2(0, -3)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Weapon/Weapon:visible")
-tracks/2/interp = 0
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.16666667, 0.41666666),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Weapon/Weapon:region_rect")
-tracks/3/interp = 0
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponPivot/Weapon/Weapon:region_rect")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.083333336, 0.41666666),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [Rect2(150, 146, 38, 23), Rect2(388, 128, 36, 15), Rect2(1, 24, 38, 14)]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Weapon/Weapon:offset")
-tracks/4/interp = 0
-tracks/4/loop_wrap = true
-tracks/4/keys = {
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponPivot/Weapon/Weapon:offset")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.083333336, 0.41666666),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [Vector2(0, -4), Vector2(6, 0), Vector2(0, 0)]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath(".:recoil_acc")
-tracks/5/interp = 2
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:recoil_acc")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.083333336),
 "transitions": PackedFloat32Array(1, 5.656862),
 "update": 0,
 "values": [1.8, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/Body:frame_coords")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.041666668, 0.16666667, 0.20833333, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dugkq"]
@@ -276,6 +217,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_krmtw"]
 size = Vector2(14, 14)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_urp6f"]
+size = Vector2(16, 16)
+
 [node name="Player" type="CharacterBody2D" unique_id=1422128146]
 collision_layer = 16
 motion_mode = 1
@@ -286,61 +230,70 @@ die = ExtResource("4_nvl01")
 recoil_acc = 1.0
 
 [node name="Hints" type="Sprite2D" parent="." unique_id=1312888089]
+position = Vector2(0, -19)
 texture = ExtResource("5_ivps1")
 
+[node name="Body" type="Node2D" parent="." unique_id=439098803]
+position = Vector2(0, -3)
+
+[node name="Body" type="Sprite2D" parent="Body" unique_id=559224869]
+y_sort_enabled = true
+scale = Vector2(-1, 1)
+texture = ExtResource("6_bwjto")
+centered = false
+offset = Vector2(-60, -81)
+hframes = 5
+vframes = 5
+region_rect = Rect2(45, 1, 36, 53)
+
 [node name="MapCol" type="CollisionShape2D" parent="." unique_id=621214530]
+position = Vector2(1, -19)
 shape = SubResource("RectangleShape2D_1oj5k")
 
-[node name="Sprite" type="Sprite2D" parent="." unique_id=559224869]
-position = Vector2(-28, -29)
-texture = ExtResource("6_urp6f")
-centered = false
-offset = Vector2(8, -3)
-flip_h = true
-region_enabled = true
-region_rect = Rect2(52, 55, 37, 49)
+[node name="WeaponPivot" type="Node2D" parent="." unique_id=5949746]
+position = Vector2(1, -19)
 
-[node name="Weapon" type="Node2D" parent="." unique_id=124633294]
+[node name="Weapon" type="Node2D" parent="WeaponPivot" unique_id=124633294]
 visible = false
 position = Vector2(-17, -3)
 
-[node name="Weapon" type="Sprite2D" parent="Weapon" unique_id=1796983978]
+[node name="Weapon" type="Sprite2D" parent="WeaponPivot/Weapon" unique_id=1796983978]
 position = Vector2(-19, 2)
 texture = ExtResource("6_urp6f")
 region_enabled = true
 region_rect = Rect2(1, 24, 38, 14)
 
-[node name="Muzzle" type="Marker2D" parent="Weapon" unique_id=1242479671]
+[node name="Muzzle" type="Marker2D" parent="WeaponPivot/Weapon" unique_id=1242479671]
 position = Vector2(-34, -1)
 
-[node name="AttackPivot" type="Node2D" parent="Weapon" unique_id=385499673]
+[node name="AttackPivot" type="Node2D" parent="WeaponPivot/Weapon" unique_id=385499673]
 position = Vector2(-38, -2)
 scale = Vector2(0.995, 0.995)
 
-[node name="Attack" type="Area2D" parent="Weapon/AttackPivot" unique_id=732188289]
+[node name="Attack" type="Area2D" parent="WeaponPivot/Weapon/AttackPivot" unique_id=732188289]
 position = Vector2(-6.030151, 0)
 collision_layer = 0
 collision_mask = 34
 monitorable = false
 script = ExtResource("7_b26j0")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Weapon/AttackPivot/Attack" unique_id=137464507]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WeaponPivot/Weapon/AttackPivot/Attack" unique_id=137464507]
 position = Vector2(4, 0)
 polygon = PackedVector2Array(22, -4, 23, 3, -13, 34, -99, 51, -98, -54, -13, -45)
 
-[node name="DamageHint" type="Polygon2D" parent="Weapon/AttackPivot/Attack" unique_id=477777513]
+[node name="DamageHint" type="Polygon2D" parent="WeaponPivot/Weapon/AttackPivot/Attack" unique_id=477777513]
 position = Vector2(4, 1)
 color = Color(1, 0, 0, 0.35686275)
 polygon = PackedVector2Array(2, -6, 2, -1, 1, 21, -13, 34, -98, 50, -98, -55, -13, -45, 2, -27)
 
-[node name="BlockSound" type="AudioStreamPlayer2D" parent="Weapon/AttackPivot/Attack" unique_id=517330366]
+[node name="BlockSound" type="AudioStreamPlayer2D" parent="WeaponPivot/Weapon/AttackPivot/Attack" unique_id=517330366]
 stream = ExtResource("8_ivps1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1529040987]
 libraries/ = SubResource("AnimationLibrary_dugkq")
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=348488194]
-position = Vector2(-7, -6)
+position = Vector2(-6, -25)
 collision_layer = 8
 collision_mask = 0
 monitoring = false
@@ -349,6 +302,17 @@ monitoring = false
 position = Vector2(7, 6)
 shape = SubResource("RectangleShape2D_krmtw")
 debug_color = Color(0.2711291, 0.6329507, 0, 0.41960785)
+
+[node name="MineBox" type="Area2D" parent="." unique_id=1331682283]
+position = Vector2(1, -19)
+collision_layer = 64
+collision_mask = 0
+monitoring = false
+
+[node name="MineBox" type="CollisionShape2D" parent="MineBox" unique_id=515071744]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_urp6f")
+debug_color = Color(0.63, 0, 0.48299983, 0.41960785)
 
 [node name="Invince" type="Timer" parent="." unique_id=889144586]
 wait_time = 3.0
@@ -368,6 +332,6 @@ stream = ExtResource("11_ivps1")
 [node name="Charge" type="Timer" parent="." unique_id=360029481]
 wait_time = 0.65
 
-[connection signal="enemies_killed" from="Weapon/AttackPivot/Attack" to="." method="_on_killed_enemies"]
+[connection signal="enemies_killed" from="WeaponPivot/Weapon/AttackPivot/Attack" to="." method="_on_killed_enemies"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
 [connection signal="timeout" from="Charge" to="." method="_on_gun_charge_tick"]

@@ -9,13 +9,15 @@
 size = Vector2(35, 18)
 
 [node name="Mine" type="Area2D" unique_id=1950467204]
+y_sort_enabled = true
 collision_layer = 0
-collision_mask = 16
+collision_mask = 64
 monitorable = false
 script = ExtResource("1_rnreq")
 explosion = ExtResource("2_2fi1m")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1302174834]
+y_sort_enabled = true
 position = Vector2(0, -765)
 texture = ExtResource("2_1y66r")
 region_enabled = true
@@ -40,5 +42,5 @@ stream = ExtResource("4_8kbsh")
 volume_db = -29.525
 pitch_scale = 1.8
 
-[connection signal="body_entered" from="." to="." method="_on_overlap"]
+[connection signal="area_entered" from="." to="." method="_on_overlap"]
 [connection signal="timeout" from="ArmTimer" to="." method="_on_arm"]

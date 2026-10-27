@@ -38,7 +38,8 @@ size = Vector2(552.25, 23.1875)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5tkv4"]
 size = Vector2(20, 480)
 
-[node name="Game" type="Node" unique_id=11082511]
+[node name="Game" type="Node2D" unique_id=337137111]
+y_sort_enabled = true
 script = ExtResource("1_hb504")
 dead = ExtResource("2_jdpby")
 
@@ -95,7 +96,7 @@ gizmo_extents = 139.8
 script = ExtResource("3_mhvfb")
 enter_direction = Vector2(-1, 0)
 
-[node name="WaveManger" type="Node" parent="." unique_id=227660351 node_paths=PackedStringArray("item_spawn_points", "spawn_points")]
+[node name="WaveManger" type="Node2D" parent="." unique_id=400927006 node_paths=PackedStringArray("item_spawn_points", "spawn_points")]
 script = ExtResource("10_leid8")
 item_spawn_points = [NodePath("../ItemSpawnPoints/Spawn1"), NodePath("../ItemSpawnPoints/Spawn2"), NodePath("../ItemSpawnPoints/Spawn3"), NodePath("../ItemSpawnPoints/Spawn4")]
 spawn_points = {
@@ -510,15 +511,15 @@ enter_dir = Vector2(1, 0)
 
 [connection signal="combo_level_changed" from="." to="MainCamera/UI" method="_on_combo_level_change"]
 [connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timeout"]
-[connection signal="all_waves_done" from="WaveManger" to="." method="_on_demo_over"]
 [connection signal="all_waves_done" from="WaveManger" to="MainCamera/UI" method="_on_demo_over"]
+[connection signal="all_waves_done" from="WaveManger" to="." method="_on_demo_over"]
 [connection signal="child_exiting_tree" from="WaveManger" to="WaveManger" method="_on_wave_done"]
 [connection signal="on_wave_finished" from="WaveManger" to="." method="_on_wave_finished"]
 [connection signal="body_entered" from="JumpZones" to="JumpZones" method="_on_body_entered"]
-[connection signal="player_died" from="Player" to="." method="_on_player_die"]
 [connection signal="player_died" from="Player" to="MainCamera/UI" method="_on_player_dead"]
-[connection signal="player_hp_change" from="Player" to="." method="_on_player_hp_change"]
+[connection signal="player_died" from="Player" to="." method="_on_player_die"]
 [connection signal="player_hp_change" from="Player" to="MainCamera/UI" method="_on_player_hp_change"]
+[connection signal="player_hp_change" from="Player" to="." method="_on_player_hp_change"]
 [connection signal="player_killed_enemies" from="Player" to="." method="_on_enemies_killed"]
 [connection signal="player_pickup_score" from="Player" to="." method="_on_bonus_pickup"]
 [connection signal="weapon_lvl_changed" from="Player" to="MainCamera/UI/HUD/Stack/WeaponLevel/LvlContainer/WeaponLvl" method="_on_player_weapon_lvl_changed"]

@@ -16,17 +16,17 @@ const BOOM_DIST = 24.0
 const FLICKER_SPEED = 20.0 / 1.0 # flick / s
 const BAR_SIZE = 240
 
-@onready var weapon: Node2D = $Weapon
-@onready var weaponSprite: Sprite2D = $Weapon/Weapon
+@onready var weapon: Node2D = $WeaponPivot/Weapon
+@onready var weaponSprite: Sprite2D = $WeaponPivot/Weapon/Weapon
 @onready var invince: Timer = $Invince
 @onready var charge: Timer = $Charge
 @onready var anims: AnimationPlayer = $AnimationPlayer
 @onready var walk_hints: Sprite2D = $Hints
-@onready var weapon_muzzle: Node2D = $Weapon/Muzzle
-@onready var attack_pivot: Node2D = $Weapon/AttackPivot
-@onready var attack: PlayerAttack = $Weapon/AttackPivot/Attack
-@onready var damage_hint: Node2D = $Weapon/AttackPivot/Attack/DamageHint
-@onready var body: Sprite2D = $Sprite
+@onready var weapon_muzzle: Node2D = $WeaponPivot/Weapon/Muzzle
+@onready var attack_pivot: Node2D = $WeaponPivot/Weapon/AttackPivot
+@onready var attack: PlayerAttack = $WeaponPivot/Weapon/AttackPivot/Attack
+@onready var damage_hint: Node2D = $WeaponPivot/Weapon/AttackPivot/Attack/DamageHint
+@onready var body: Node2D = $Body
 @onready var score_bonus_pickup: AudioStreamPlayer2D = $BonusSounds/ScoreBonusPickup
 @onready var health_bonus_pickup: AudioStreamPlayer2D = $BonusSounds/HealthBonusPickup
 
