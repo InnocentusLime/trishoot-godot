@@ -3,7 +3,7 @@ extends CanvasLayer
 
 @export var score: Control
 @export var score_label: Label
-@export var hp: Label
+@export var hp: Health
 @export var comboer: Control
 @export var wave_rewarder: Control
 @export var combo: Label
@@ -12,7 +12,6 @@ extends CanvasLayer
 @export var wave_reward_widget: PackedScene
 
 var current_score = 0
-var current_hp = 3
 var score_distort = 1.0
 
 # Called when the node enters the scene tree for the first time.
@@ -31,8 +30,7 @@ func _on_combo_level_change(new_val: int):
 	else: combo.text = "X %d" % new_val
 
 func _on_player_hp_change(new_hp: int):
-	current_hp = new_hp
-	hp.text = "HP: %d" % current_hp
+	hp.set_value(new_hp)
 
 func show_kill_reward(amount: int, delta: int):
 	var combo: ComboShower = combo_widget.instantiate()

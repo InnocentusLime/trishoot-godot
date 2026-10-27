@@ -35,6 +35,7 @@ func get_combo_decay(lvl: int) -> float:
 
 func _on_player_hp_change(new_val: int):
 	player_hp = new_val
+	GameEvents.player_hp = new_val
 
 func _on_enemies_killed(amount: int):
 	var reward = amount*BASE_SCORE
