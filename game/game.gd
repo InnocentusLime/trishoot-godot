@@ -8,19 +8,24 @@ signal combo_level_changed(new_val: int)
 
 const BASE_SCORE: int = 10
 const BONUS_COST: int = 20
-
+ 
 var total_score: int
 var this_wave_score: int
 var player_hp: int
+var mult: int = 1:
+	set(val):
+		if val <= 0: mult = 1
+		else: mult = val
+		GameEvents.score_mult_changed.emit(val)
+		GameEvents.mult = val
 var combo_level: int = 0:
 	set(val): 
 		combo_level = val
 		combo_level_changed.emit(val)
+		mult = int(float(combo_level)/10.0)
 
 func _on_bonus_pickup():
-	var k = combo_level
-	if k == 0: k = 1
-	var reward = combo_level*BONUS_COST
+	var reward = BONUS_COST * (mult*mult)
 	this_wave_score += reward
 	total_score += reward
 	ui.show_bonus_reward(reward)
